@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCOOjhvXOVMBILxYRKYNZXyzJ_c7MrgNvI',
-    appId: '1:950114511919:android:872f06bc5138fe3106eada',
+    appId: '1:950114511919:android:200bd521cbf60cd806eada',
     messagingSenderId: '950114511919',
     projectId: 'ul-fs-health-app',
     storageBucket: 'ul-fs-health-app.firebasestorage.app',
