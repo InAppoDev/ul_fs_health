@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "950114511919",
+    "project_id": "ul-fs-health-app",
+    "storage_bucket": "ul-fs-health-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950114511919:android:872f06bc5138fe3106eada",
+        "android_client_info": {
+          "package_name": "com.example.ul_fs_health"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOOjhvXOVMBILxYRKYNZXyzJ_c7MrgNvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950114511919:android:200bd521cbf60cd806eada",
+        "android_client_info": {
+          "package_name": "com.ulfshealth.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOOjhvXOVMBILxYRKYNZXyzJ_c7MrgNvI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
