@@ -13,10 +13,10 @@ import '../../../di/service_locator.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../../generated/l10n.dart';
+import '../../utils/widgets/submit_button.dart';
+import '../../utils/widgets/text_input_widget.dart';
 import '../bloc/auth/auth_bloc.dart';
-import '../widgets/button_widget.dart';
 import '../widgets/terms_policy_widget.dart';
-import '../widgets/text_input_widget.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -103,10 +103,12 @@ class LoginContent extends StatelessWidget {
                       },
                     ),
                     Constants.sizedBoxHeightMiddle.spaceVertical,
-                    ButtonWidget(
+                    SubmitButton(
                       titleColor: ColorScheme.of(context).onTertiary,
                       backgroundColor: ColorScheme.of(context).onSurface,
                       title: S.current.btnContinue,
+                      isLoading: context.watch<AuthBloc>().state.status ==
+                          AuthStatus.loading,
                       onPressed: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           context.read<AuthBloc>().add(
@@ -158,7 +160,7 @@ class LoginContent extends StatelessWidget {
                     const SizedBox(height: Gaps.medium),
                     Text(S.current.lblNotYetRegistered, style: body1),
                     Gaps.large.spaceVertical,
-                    ButtonWidget(
+                    SubmitButton(
                       titleColor: ColorScheme.of(context).onSurface,
                       onPressed: () {
                         context.router.pushNamed('/signup');

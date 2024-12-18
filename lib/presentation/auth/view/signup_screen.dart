@@ -13,10 +13,10 @@ import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../../generated/l10n.dart';
 import '../../logic/user/user_bloc.dart';
+import '../../utils/widgets/submit_button.dart';
+import '../../utils/widgets/text_input_widget.dart';
 import '../bloc/auth/auth_bloc.dart';
-import '../widgets/button_widget.dart';
 import '../widgets/terms_policy_widget.dart';
-import '../widgets/text_input_widget.dart';
 
 @RoutePage()
 class SignupScreen extends StatelessWidget {
@@ -136,7 +136,7 @@ class SignupContent extends StatelessWidget {
                         },
                       ),
                       Gaps.larger.spaceVertical,
-                      ButtonWidget(
+                      SubmitButton(
                         titleColor: ColorScheme.of(context).surface,
                         onPressed: () {
                           if (_formKey.currentState?.validate() ?? false) {
@@ -150,6 +150,10 @@ class SignupContent extends StatelessWidget {
                         },
                         title: S.current.btnCreateAccount,
                         backgroundColor: ColorScheme.of(context).primary,
+                        isLoading: context.watch<AuthBloc>().state.status ==
+                                AuthStatus.loading ||
+                            context.watch<UserBloc>().state.status ==
+                                UserStatus.loading,
                       ),
                       Gaps.larger.spaceVertical,
                       TermsPolicyWidget(
