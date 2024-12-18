@@ -18,10 +18,10 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'gender': _$GenderEnumMap[instance.gender],
-      'age': instance.age,
-      'height': instance.height,
-      'weight': instance.weight,
+      if (_$GenderEnumMap[instance.gender] case final value?) 'gender': value,
+      if (instance.age case final value?) 'age': value,
+      if (instance.height case final value?) 'height': value,
+      if (instance.weight case final value?) 'weight': value,
     };
 
 const _$GenderEnumMap = {

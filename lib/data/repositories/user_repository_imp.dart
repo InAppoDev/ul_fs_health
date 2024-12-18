@@ -11,18 +11,18 @@ class UserRepositoryImp implements UserRepository {
   final FirebaseService firebaseService;
 
   @override
-  Future<void> saveUserData(UserModel userModel) async {
-    if (userModel.id.isEmpty) {
+  Future<void> saveUserData(UserEntity userEntity) async {
+    if (userEntity.id.isEmpty) {
       throw NotFoundException();
     }
     final FDocumentReference documentReference = firebaseService.getDocument(
       firebaseService.userCollectionReference,
-      userModel.id,
+      userEntity.id,
     );
     if (!(await documentReference.get()).exists) {
-      await documentReference.set(userModel.toJson());
+      await documentReference.set(UserModel.fromEntity(userEntity).toJson());
     } else {
-      await documentReference.update(userModel.toJson());
+      await documentReference.update(UserModel.fromEntity(userEntity).toJson());
     }
   }
 

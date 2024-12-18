@@ -7,8 +7,8 @@ import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_text_styles.dart';
-import '../../../data/models/user_model.dart';
 import '../../../di/service_locator.dart';
+import '../../../domain/entities/user_entity.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../../generated/l10n.dart';
@@ -62,10 +62,8 @@ class SignupContent extends StatelessWidget {
             listener: (context, state) {
               if (state.status == AuthStatus.successSignup) {
                 if (state.userId != null) {
-                  final userModel = UserModel(id: state.userId!);
-                  context
-                      .read<UserBloc>()
-                      .add(UserEvent.saveUserData(userModel));
+                  context.read<UserBloc>().add(
+                      UserEvent.saveUserData(UserEntity(id: state.userId!)));
                 } else {
                   context.showSnackBarMessage(S.current.lblUnableSignup);
                 }

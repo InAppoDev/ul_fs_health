@@ -19,19 +19,19 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserModel userModel) saveUserData,
+    required TResult Function(UserEntity entity) saveUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UserModel userModel)? saveUserData,
+    TResult? Function(UserEntity entity)? saveUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel userModel)? saveUserData,
+    TResult Function(UserEntity entity)? saveUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,7 +118,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserModel userModel) saveUserData,
+    required TResult Function(UserEntity entity) saveUserData,
   }) {
     return started();
   }
@@ -127,7 +127,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UserModel userModel)? saveUserData,
+    TResult? Function(UserEntity entity)? saveUserData,
   }) {
     return started?.call();
   }
@@ -136,7 +136,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel userModel)? saveUserData,
+    TResult Function(UserEntity entity)? saveUserData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -187,9 +187,9 @@ abstract class _$$SaveUserDataImplCopyWith<$Res> {
           _$SaveUserDataImpl value, $Res Function(_$SaveUserDataImpl) then) =
       __$$SaveUserDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel userModel});
+  $Res call({UserEntity entity});
 
-  $UserModelCopyWith<$Res> get userModel;
+  $UserEntityCopyWith<$Res> get entity;
 }
 
 /// @nodoc
@@ -205,13 +205,13 @@ class __$$SaveUserDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userModel = null,
+    Object? entity = null,
   }) {
     return _then(_$SaveUserDataImpl(
-      null == userModel
-          ? _value.userModel
-          : userModel // ignore: cast_nullable_to_non_nullable
-              as UserModel,
+      null == entity
+          ? _value.entity
+          : entity // ignore: cast_nullable_to_non_nullable
+              as UserEntity,
     ));
   }
 
@@ -219,9 +219,9 @@ class __$$SaveUserDataImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res> get userModel {
-    return $UserModelCopyWith<$Res>(_value.userModel, (value) {
-      return _then(_value.copyWith(userModel: value));
+  $UserEntityCopyWith<$Res> get entity {
+    return $UserEntityCopyWith<$Res>(_value.entity, (value) {
+      return _then(_value.copyWith(entity: value));
     });
   }
 }
@@ -229,14 +229,14 @@ class __$$SaveUserDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SaveUserDataImpl implements _SaveUserData {
-  const _$SaveUserDataImpl(this.userModel);
+  const _$SaveUserDataImpl(this.entity);
 
   @override
-  final UserModel userModel;
+  final UserEntity entity;
 
   @override
   String toString() {
-    return 'UserEvent.saveUserData(userModel: $userModel)';
+    return 'UserEvent.saveUserData(entity: $entity)';
   }
 
   @override
@@ -244,12 +244,11 @@ class _$SaveUserDataImpl implements _SaveUserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveUserDataImpl &&
-            (identical(other.userModel, userModel) ||
-                other.userModel == userModel));
+            (identical(other.entity, entity) || other.entity == entity));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userModel);
+  int get hashCode => Object.hash(runtimeType, entity);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -263,29 +262,29 @@ class _$SaveUserDataImpl implements _SaveUserData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserModel userModel) saveUserData,
+    required TResult Function(UserEntity entity) saveUserData,
   }) {
-    return saveUserData(userModel);
+    return saveUserData(entity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UserModel userModel)? saveUserData,
+    TResult? Function(UserEntity entity)? saveUserData,
   }) {
-    return saveUserData?.call(userModel);
+    return saveUserData?.call(entity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserModel userModel)? saveUserData,
+    TResult Function(UserEntity entity)? saveUserData,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
-      return saveUserData(userModel);
+      return saveUserData(entity);
     }
     return orElse();
   }
@@ -323,9 +322,9 @@ class _$SaveUserDataImpl implements _SaveUserData {
 }
 
 abstract class _SaveUserData implements UserEvent {
-  const factory _SaveUserData(final UserModel userModel) = _$SaveUserDataImpl;
+  const factory _SaveUserData(final UserEntity entity) = _$SaveUserDataImpl;
 
-  UserModel get userModel;
+  UserEntity get entity;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -337,7 +336,7 @@ abstract class _SaveUserData implements UserEvent {
 /// @nodoc
 mixin _$UserState {
   UserStatus get status => throw _privateConstructorUsedError;
-  UserModel? get model => throw _privateConstructorUsedError;
+  UserEntity? get model => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of UserState
@@ -352,9 +351,9 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({UserStatus status, UserModel? model, String? errorMessage});
+  $Res call({UserStatus status, UserEntity? model, String? errorMessage});
 
-  $UserModelCopyWith<$Res>? get model;
+  $UserEntityCopyWith<$Res>? get model;
 }
 
 /// @nodoc
@@ -384,7 +383,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
       model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
+              as UserEntity?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -396,12 +395,12 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserModelCopyWith<$Res>? get model {
+  $UserEntityCopyWith<$Res>? get model {
     if (_value.model == null) {
       return null;
     }
 
-    return $UserModelCopyWith<$Res>(_value.model!, (value) {
+    return $UserEntityCopyWith<$Res>(_value.model!, (value) {
       return _then(_value.copyWith(model: value) as $Val);
     });
   }
@@ -415,10 +414,10 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserStatus status, UserModel? model, String? errorMessage});
+  $Res call({UserStatus status, UserEntity? model, String? errorMessage});
 
   @override
-  $UserModelCopyWith<$Res>? get model;
+  $UserEntityCopyWith<$Res>? get model;
 }
 
 /// @nodoc
@@ -446,7 +445,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       model: freezed == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as UserModel?,
+              as UserEntity?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -465,7 +464,7 @@ class _$InitialImpl implements _Initial {
   @JsonKey()
   final UserStatus status;
   @override
-  final UserModel? model;
+  final UserEntity? model;
   @override
   final String? errorMessage;
 
@@ -500,13 +499,13 @@ class _$InitialImpl implements _Initial {
 abstract class _Initial implements UserState {
   const factory _Initial(
       {final UserStatus status,
-      final UserModel? model,
+      final UserEntity? model,
       final String? errorMessage}) = _$InitialImpl;
 
   @override
   UserStatus get status;
   @override
-  UserModel? get model;
+  UserEntity? get model;
   @override
   String? get errorMessage;
 
