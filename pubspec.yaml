@@ -1,6 +1,6 @@
 name: ul_fs_health
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
@@ -23,6 +23,8 @@ dependencies:
   get_it: ^8.0.3
   intl: ^0.19.0
   json_annotation: ^4.9.0
+  email_validator: ^3.0.0
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   auto_route_generator: ^9.0.0

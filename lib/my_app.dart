@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/bloc_providers.dart';
 import 'core/router/app_router.dart';
 import 'core/themes/app_themes.dart';
 import 'generated/l10n.dart';
@@ -60,20 +61,23 @@ class _MyAppState extends State<MyApp> {
         FocusScope.of(context).unfocus();
       },
       child: MaterialApp(
-        home: MaterialApp.router(
-          themeMode: _themeMode,
-          theme: lightTheme,
-          darkTheme: darkTheme,
-          debugShowCheckedModeBanner: false,
-          locale: _locale,
-          routerConfig: _appRouter.config(includePrefixMatches: false),
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
+        debugShowCheckedModeBanner: false,
+        home: provideBlocProviders(
+          child: MaterialApp.router(
+            themeMode: _themeMode,
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            debugShowCheckedModeBanner: false,
+            locale: _locale,
+            routerConfig: _appRouter.config(includePrefixMatches: false),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+          ),
         ),
       ),
     );
