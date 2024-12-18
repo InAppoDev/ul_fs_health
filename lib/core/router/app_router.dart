@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 
 import '../../presentation/auth/view/login_screen.dart';
+import '../../presentation/questionnaire/view/questionnaire_screen.dart';
 
 part 'app_router.gr.dart';
 
@@ -11,6 +12,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/login',
           page: LoginRoute.page,
+        ),
+        AutoRoute(
+          path: '/questionnaire',
+          page: QuestionnaireRoute.page,
           initial: true,
         ),
       ];

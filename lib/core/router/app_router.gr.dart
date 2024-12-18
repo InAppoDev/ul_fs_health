@@ -27,3 +27,22 @@ class LoginRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [QuestionnaireScreen]
+class QuestionnaireRoute extends PageRouteInfo<void> {
+  const QuestionnaireRoute({List<PageRouteInfo>? children})
+      : super(
+          QuestionnaireRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'QuestionnaireRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const QuestionnaireScreen();
+    },
+  );
+}

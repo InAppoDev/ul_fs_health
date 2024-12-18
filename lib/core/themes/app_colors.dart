@@ -27,3 +27,11 @@ const ColorScheme darkColorScheme = ColorScheme(
   onSurface: Color(0xFF000000),
   brightness: Brightness.dark, // Light theme brightness
 );
+
+
+const Color defaultTextColor = Color(0xFF000000);
+const Color defaultDropdownColor = Color(0xFFD9D9D9);
+const Color defaultBtnBorderColor = Color(0xFFD9D9D9);
+const Color white = Color(0xFFFFFFFF);
+const Color defaultBtnBackground = Color(0xFFB43A20);
+const Color defaultBtnInactiveBackground = Color(0xFFEEEEEE);

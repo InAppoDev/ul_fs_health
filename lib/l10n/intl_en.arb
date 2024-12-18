@@ -1,5 +1,26 @@
 {
   "lblLogin": "Login",
   "lblSignUp": "Sign up",
-  "btnCreateAccount": "Create account"
+  "btnCreateAccount": "Create account",
+  "questHeaderTitle": "Fill this questionarre",
+  "questHeaderSubTitle": "In order to give the best results, our app needs detailed information about your personal and medical conditions.",
+  "questBasicInfoHeader": "Basic information",
+  "questHealthInfoHeader": "Health information",
+  "genderPlaceholder": "Select your gender",
+  "agePlaceHolder": "Enter your age",
+  "heightPlaceHolder": "Enter your height (in centimeters)",
+  "weightPlaceHolder": "Enter your weight (in kilograms)",
+  "smokerPlaceHolder": "Are you an active smoker?",
+  "drinkerPlaceHolder": "Are you an alcohol drinker?",
+  "cholesterolPlaceHolder": "Do you have increased cholesterol?",
+  "bloodSugarPlaceHolder": "Do you have increased blood sugar?",
+  "btnQuestSubmit": "Save and continue",
+  "genderRequiredErrorText": "Please select your gender",
+  "ageRequiredErrorText": "Please type your age",
+  "weightRequiredErrorText": "Please type your weight",
+  "heightRequiredErrorText": "Please type your height",
+  "smokerStatusRequiredErrorText": "The field must be filled",
+  "drinkerStatusRequiredErrorText": "The field must be filled",
+  "cholesterolStatusRequiredErrorText": "The field must be filled",
+  "bloodSugarStatusRequiredErrorText": "The field must be filled"
 }
