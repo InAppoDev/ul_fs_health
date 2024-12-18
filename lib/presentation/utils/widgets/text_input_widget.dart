@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
 
 class TextInputWidget extends StatelessWidget {
@@ -36,18 +37,15 @@ class TextInputWidget extends StatelessWidget {
             hintText: hintText,
             hintStyle: const TextStyle(color: darkGrey),
             border: OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(Constants.containerBorderRadius),
+              borderRadius: Constants.containerBorderRadius.radiusAll,
               borderSide: const BorderSide(color: lightGrey),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(Constants.containerBorderRadius),
+              borderRadius: Constants.containerBorderRadius.radiusAll,
               borderSide: const BorderSide(color: lightGrey),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius:
-                  BorderRadius.circular(Constants.containerBorderRadius),
+              borderRadius: Constants.containerBorderRadius.radiusAll,
               borderSide: const BorderSide(color: lightGrey),
             ),
           ),

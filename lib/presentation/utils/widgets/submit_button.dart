@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../core/extensions/number_extension.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({
@@ -35,8 +36,7 @@ class SubmitButton extends StatelessWidget {
           backgroundColor: backgroundColor,
           foregroundColor: titleColor,
           shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(Constants.containerBorderRadius),
+            borderRadius: Constants.containerBorderRadius.radiusAll,
           ),
         ),
         child: isLoading
