@@ -25,6 +25,10 @@ mixin _$UserModel {
   int? get age => throw _privateConstructorUsedError;
   double? get height => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
+  String? get smokerInfo => throw _privateConstructorUsedError;
+  String? get drinkerInfo => throw _privateConstructorUsedError;
+  String? get cholesterolInfo => throw _privateConstructorUsedError;
+  String? get bloodSugarInfo => throw _privateConstructorUsedError;
 
   /// Serializes this UserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +46,15 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {String id, Gender? gender, int? age, double? height, double? weight});
+      {String id,
+      Gender? gender,
+      int? age,
+      double? height,
+      double? weight,
+      String? smokerInfo,
+      String? drinkerInfo,
+      String? cholesterolInfo,
+      String? bloodSugarInfo});
 }
 
 /// @nodoc
@@ -65,6 +77,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? age = freezed,
     Object? height = freezed,
     Object? weight = freezed,
+    Object? smokerInfo = freezed,
+    Object? drinkerInfo = freezed,
+    Object? cholesterolInfo = freezed,
+    Object? bloodSugarInfo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -87,6 +103,22 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
+      smokerInfo: freezed == smokerInfo
+          ? _value.smokerInfo
+          : smokerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      drinkerInfo: freezed == drinkerInfo
+          ? _value.drinkerInfo
+          : drinkerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cholesterolInfo: freezed == cholesterolInfo
+          ? _value.cholesterolInfo
+          : cholesterolInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bloodSugarInfo: freezed == bloodSugarInfo
+          ? _value.bloodSugarInfo
+          : bloodSugarInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -100,7 +132,15 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id, Gender? gender, int? age, double? height, double? weight});
+      {String id,
+      Gender? gender,
+      int? age,
+      double? height,
+      double? weight,
+      String? smokerInfo,
+      String? drinkerInfo,
+      String? cholesterolInfo,
+      String? bloodSugarInfo});
 }
 
 /// @nodoc
@@ -121,6 +161,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? age = freezed,
     Object? height = freezed,
     Object? weight = freezed,
+    Object? smokerInfo = freezed,
+    Object? drinkerInfo = freezed,
+    Object? cholesterolInfo = freezed,
+    Object? bloodSugarInfo = freezed,
   }) {
     return _then(_$UserModelImpl(
       id: null == id
@@ -143,6 +187,22 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
+      smokerInfo: freezed == smokerInfo
+          ? _value.smokerInfo
+          : smokerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      drinkerInfo: freezed == drinkerInfo
+          ? _value.drinkerInfo
+          : drinkerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cholesterolInfo: freezed == cholesterolInfo
+          ? _value.cholesterolInfo
+          : cholesterolInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bloodSugarInfo: freezed == bloodSugarInfo
+          ? _value.bloodSugarInfo
+          : bloodSugarInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -152,7 +212,15 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable(includeIfNull: false)
 class _$UserModelImpl extends _UserModel {
   const _$UserModelImpl(
-      {required this.id, this.gender, this.age, this.height, this.weight})
+      {required this.id,
+      this.gender,
+      this.age,
+      this.height,
+      this.weight,
+      this.smokerInfo,
+      this.drinkerInfo,
+      this.cholesterolInfo,
+      this.bloodSugarInfo})
       : super._();
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -168,10 +236,18 @@ class _$UserModelImpl extends _UserModel {
   final double? height;
   @override
   final double? weight;
+  @override
+  final String? smokerInfo;
+  @override
+  final String? drinkerInfo;
+  @override
+  final String? cholesterolInfo;
+  @override
+  final String? bloodSugarInfo;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, gender: $gender, age: $age, height: $height, weight: $weight)';
+    return 'UserModel(id: $id, gender: $gender, age: $age, height: $height, weight: $weight, smokerInfo: $smokerInfo, drinkerInfo: $drinkerInfo, cholesterolInfo: $cholesterolInfo, bloodSugarInfo: $bloodSugarInfo)';
   }
 
   @override
@@ -183,12 +259,21 @@ class _$UserModelImpl extends _UserModel {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.height, height) || other.height == height) &&
-            (identical(other.weight, weight) || other.weight == weight));
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.smokerInfo, smokerInfo) ||
+                other.smokerInfo == smokerInfo) &&
+            (identical(other.drinkerInfo, drinkerInfo) ||
+                other.drinkerInfo == drinkerInfo) &&
+            (identical(other.cholesterolInfo, cholesterolInfo) ||
+                other.cholesterolInfo == cholesterolInfo) &&
+            (identical(other.bloodSugarInfo, bloodSugarInfo) ||
+                other.bloodSugarInfo == bloodSugarInfo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, gender, age, height, weight);
+  int get hashCode => Object.hash(runtimeType, id, gender, age, height, weight,
+      smokerInfo, drinkerInfo, cholesterolInfo, bloodSugarInfo);
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.
@@ -212,7 +297,11 @@ abstract class _UserModel extends UserModel {
       final Gender? gender,
       final int? age,
       final double? height,
-      final double? weight}) = _$UserModelImpl;
+      final double? weight,
+      final String? smokerInfo,
+      final String? drinkerInfo,
+      final String? cholesterolInfo,
+      final String? bloodSugarInfo}) = _$UserModelImpl;
   const _UserModel._() : super._();
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
@@ -228,6 +317,14 @@ abstract class _UserModel extends UserModel {
   double? get height;
   @override
   double? get weight;
+  @override
+  String? get smokerInfo;
+  @override
+  String? get drinkerInfo;
+  @override
+  String? get cholesterolInfo;
+  @override
+  String? get bloodSugarInfo;
 
   /// Create a copy of UserModel
   /// with the given fields replaced by the non-null parameter values.

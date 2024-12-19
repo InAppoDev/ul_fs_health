@@ -48,7 +48,7 @@ class LoginContent extends StatelessWidget {
         child: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state.status == AuthStatus.successLogin) {
-              context.router.pushNamed('/home');
+              context.router.pushNamed('/questionnaire');
             } else if (state.status == AuthStatus.failure) {
               context
                   .showSnackBarMessage(state.error ?? S.current.lblLoginFailed);
