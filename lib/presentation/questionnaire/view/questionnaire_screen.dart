@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
@@ -12,6 +13,7 @@ import '../../utils/widgets/dropdown_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/text_input_widget.dart';
 import '../bloc/questionnaire_bloc.dart';
+import '../mock/gender_values.dart';
 import '../validator/questionnaire_validator.dart';
 
 @RoutePage()
@@ -42,9 +44,6 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
   final TextEditingController _drinkerController = TextEditingController();
   final TextEditingController _cholesterolController = TextEditingController();
   final TextEditingController _bloodSugarController = TextEditingController();
-
-  final List<String> genderValues = ['male', 'female'];
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -106,7 +105,7 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     Gaps.larger.spaceVertical,
                     Text(
                       appLocalizations.questHeaderTitle,
-                      style: header1.copyWith(fontSize: 16),
+                      style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
                       textAlign: TextAlign.center,
                     ),
                     Gaps.smaller.spaceVertical,
@@ -115,7 +114,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                         textAlign: TextAlign.center),
                     Gaps.largest.spaceVertical,
                     Text(appLocalizations.questBasicInfoHeader,
-                        style: header1.copyWith(fontSize: 16), textAlign: TextAlign.center),
+                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                        textAlign: TextAlign.center),
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => DropdownWidget(
@@ -167,7 +167,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                             )),
                     Gaps.largest.spaceVertical,
                     Text(appLocalizations.questHealthInfoHeader,
-                        style: header1.copyWith(fontSize: 16), textAlign: TextAlign.center),
+                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                        textAlign: TextAlign.center),
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
