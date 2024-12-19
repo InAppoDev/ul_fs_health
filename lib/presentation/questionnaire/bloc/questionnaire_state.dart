@@ -1,10 +1,4 @@
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../model/basic_info.dart';
-import '../model/health_info.dart';
-
-part 'questionnaire_state.freezed.dart';
+part of 'questionnaire_bloc.dart';
 
 @freezed
 class QuestionnaireState with _$QuestionnaireState {

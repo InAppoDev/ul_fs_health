@@ -48,25 +48,6 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SignupScreen]
-class SignupRoute extends PageRouteInfo<void> {
-  const SignupRoute({List<PageRouteInfo>? children})
-      : super(
-          SignupRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SignupRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const SignupScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [QuestionnaireScreen]
 class QuestionnaireRoute extends PageRouteInfo<void> {
   const QuestionnaireRoute({List<PageRouteInfo>? children})
@@ -81,6 +62,25 @@ class QuestionnaireRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const QuestionnaireScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SignupScreen]
+class SignupRoute extends PageRouteInfo<void> {
+  const SignupRoute({List<PageRouteInfo>? children})
+      : super(
+          SignupRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignupRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SignupScreen();
     },
   );
 }

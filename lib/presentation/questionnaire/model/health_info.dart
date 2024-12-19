@@ -1,7 +1,4 @@
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'health_info.freezed.dart';
+part of 'questionnaire_model.dart';
 
 @freezed
 class HealthInfo with _$HealthInfo{

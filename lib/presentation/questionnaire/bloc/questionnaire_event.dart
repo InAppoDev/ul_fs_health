@@ -1,7 +1,4 @@
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'questionnaire_event.freezed.dart';
+part of 'questionnaire_bloc.dart';
 
 @freezed
 class QuestionnaireEvent with _$QuestionnaireEvent {

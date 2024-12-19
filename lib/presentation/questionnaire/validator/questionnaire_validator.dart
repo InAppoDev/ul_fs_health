@@ -1,6 +1,5 @@
 import '../../../l10n/localizations_utils.dart';
-import '../model/basic_info.dart';
-import '../model/health_info.dart';
+import '../model/questionnaire_model.dart';
 
 class QuestionnaireValidator {
   static String? validateRequiredText(String? value, String message) {
@@ -9,6 +8,7 @@ class QuestionnaireValidator {
     }
     return null;
   }
+
   static String? validateGender(String? value) {
     return validateRequiredText(value, appLocalizations.genderRequiredErrorText);
   }
@@ -16,12 +16,15 @@ class QuestionnaireValidator {
   static String? validateAge(String? value) {
     return validateRequiredText(value, appLocalizations.ageRequiredErrorText);
   }
+
   static String? validateHeight(String? value) {
     return validateRequiredText(value, appLocalizations.heightRequiredErrorText);
   }
+
   static String? validateWeight(String? value) {
     return validateRequiredText(value, appLocalizations.weightRequiredErrorText);
   }
+
   static String? validateSmokerStatus(String? value) {
     return validateRequiredText(value, appLocalizations.smokerStatusRequiredErrorText);
   }

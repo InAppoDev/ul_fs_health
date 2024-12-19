@@ -22,7 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "btnContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "agePlaceHolder":
             MessageLookupByLibrary.simpleMessage("Enter your age"),
         "ageRequiredErrorText":
@@ -31,8 +30,27 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have increased blood sugar?"),
         "bloodSugarStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "btnContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "btnCreateAccount":
             MessageLookupByLibrary.simpleMessage("Create account"),
+        "btnQuestSubmit":
+            MessageLookupByLibrary.simpleMessage("Save and continue"),
+        "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
+            "Do you have increased cholesterol?"),
+        "cholesterolStatusRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "drinkerPlaceHolder":
+            MessageLookupByLibrary.simpleMessage("Are you an alcohol drinker?"),
+        "drinkerStatusRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "genderPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Select your gender"),
+        "genderRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Please select your gender"),
+        "heightPlaceHolder": MessageLookupByLibrary.simpleMessage(
+            "Enter your height (in centimeters)"),
+        "heightRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Please type your height"),
         "hintYourEmail":
             MessageLookupByLibrary.simpleMessage("email@domain.com"),
         "hintYourPassword":
@@ -53,24 +71,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your email and password to create \n an account. Confirmation mail will be sent to \n your email."),
         "lblForgottenPassword":
             MessageLookupByLibrary.simpleMessage("Forgotten password?"),
-        "btnQuestSubmit":
-            MessageLookupByLibrary.simpleMessage("Save and continue"),
-        "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
-            "Do you have increased cholesterol?"),
-        "cholesterolStatusRequiredErrorText":
-            MessageLookupByLibrary.simpleMessage("The field must be filled"),
-        "drinkerPlaceHolder":
-            MessageLookupByLibrary.simpleMessage("Are you an alcohol drinker?"),
-        "drinkerStatusRequiredErrorText":
-            MessageLookupByLibrary.simpleMessage("The field must be filled"),
-        "genderPlaceholder":
-            MessageLookupByLibrary.simpleMessage("Select your gender"),
-        "genderRequiredErrorText":
-            MessageLookupByLibrary.simpleMessage("Please select your gender"),
-        "heightPlaceHolder": MessageLookupByLibrary.simpleMessage(
-            "Enter your height (in centimeters)"),
-        "heightRequiredErrorText":
-            MessageLookupByLibrary.simpleMessage("Please type your height"),
         "lblLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "lblLoginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
         "lblNotYetRegistered": MessageLookupByLibrary.simpleMessage(
@@ -92,8 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblValidEmail":
             MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
         "lblYouAgree": MessageLookupByLibrary.simpleMessage(
-            "By clicking continue, you agree to our")
-        "lblSignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+            "By clicking continue, you agree to our"),
         "questBasicInfoHeader":
             MessageLookupByLibrary.simpleMessage("Basic information"),
         "questHeaderSubTitle": MessageLookupByLibrary.simpleMessage(

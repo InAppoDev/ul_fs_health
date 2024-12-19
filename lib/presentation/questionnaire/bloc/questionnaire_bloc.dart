@@ -1,9 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../l10n/localizations_utils.dart';
+import '../model/questionnaire_model.dart';
 import '../validator/questionnaire_validator.dart';
-import 'questionnaire_event.dart';
-import 'questionnaire_state.dart';
+
+part 'questionnaire_bloc.freezed.dart';
+part 'questionnaire_event.dart';
+part 'questionnaire_state.dart';
 
 class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
   QuestionnaireBloc() : super(QuestionnaireState.initial()) {

@@ -1,7 +1,4 @@
-
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'basic_info.freezed.dart';
+part of 'questionnaire_model.dart';
 
 @freezed
 class BasicInfo with _$BasicInfo {
