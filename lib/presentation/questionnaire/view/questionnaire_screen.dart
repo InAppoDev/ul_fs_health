@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
+import '../../../core/constants/gender.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
+import '../../../domain/entities/user_entity.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../../logic/user/user_bloc.dart';
 import '../../utils/widgets/dropdown_widget.dart';
@@ -49,6 +53,7 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
   @override
   void initState() {
     super.initState();
+    context.read<UserBloc>().add(const UserEvent.getUserData());
     _ageController.addListener(() {
       context
           .read<QuestionnaireBloc>()
@@ -85,11 +90,14 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
     return Scaffold(
       body: Center(
         child: BlocListener<UserBloc, UserState>(
-          listener: (context, state) {
-            if (state.status == UserStatus.saved) {
+          listener: (context, userState) {
+            if (userState.model == null) {
+              context.router.replaceAll([const LoginRoute()]);
+            }
+            else if (userState.status == UserStatus.dataSaved) {
               context.router.pushNamed('/home');
-            } else if (state.status == UserStatus.failure) {
-              context.showSnackBarMessage(state.errorMessage ?? '');
+            } else if (userState.status == UserStatus.failure) {
+              context.showSnackBarMessage(userState.errorMessage ?? '');
             }
           },
           child: Padding(
@@ -118,7 +126,7 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                         textAlign: TextAlign.center),
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => DropdownWidget(
+                        builder: (context, state) => DropdownWidget<Gender>(
                             validator: QuestionnaireValidator.validateGender,
                             errorText: state.genderError,
                             values: genderValues,
@@ -132,6 +140,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               errorText: state.ageError,
                               controller: _ageController,
                               onFocusChange: (hasFocus) {
@@ -144,6 +154,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               errorText: state.heightError,
                               controller: _heightController,
                               onFocusChange: (hasFocus) {
@@ -156,6 +168,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                               errorText: state.weightError,
                               controller: _weightController,
                               onFocusChange: (hasFocus) {
@@ -222,20 +236,37 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                               hintText: appLocalizations.bloodSugarPlaceHolder,
                             )),
                     Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: SubmitButton(
-                              isValid: state.isFormValid,
-                              titleColor: ColorScheme.of(context).surface,
-                              onPressed: () {},
-                              title: appLocalizations.btnQuestSubmit,
-                              backgroundColor: ColorScheme.of(context).primary,
-                              isLoading:
-                                  context.watch<UserBloc>().state.status == UserStatus.loading ||
-                                      context.watch<QuestionnaireBloc>().state.status ==
-                                          QuestionnaireStatus.loading,
-                            ))),
+                    BlocBuilder<UserBloc, UserState>(
+                      builder: (context, userState) =>
+                          BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                              builder: (context, state) => SizedBox(
+                                  width: MediaQuery.of(context).size.width,
+                                  child: SubmitButton(
+                                    isValid: state.isFormValid,
+                                    titleColor: ColorScheme.of(context).surface,
+                                    onPressed: () {
+                                      final user = userState.model!;
+                                        context.read<UserBloc>().add(UserEvent.saveUserData(
+                                            UserEntity(
+                                                id: user.id,
+                                                gender: state.basicInfo.gender,
+                                                age: int.tryParse(state.basicInfo.age),
+                                                height: double.tryParse(state.basicInfo.height),
+                                                weight: double.tryParse(state.basicInfo.weight),
+                                                smokerInfo: state.healthInfo.smokerStatus,
+                                                drinkerInfo: state.healthInfo.drinkerStatus,
+                                                cholesterolInfo: state.healthInfo.cholesterolStatus,
+                                                bloodSugarInfo: state.healthInfo.bloodSugarStatus),
+                                            UserStatus.dataSaved));
+                                    },
+                                    title: appLocalizations.btnQuestSubmit,
+                                    backgroundColor: ColorScheme.of(context).primary,
+                                    isLoading: context.watch<UserBloc>().state.status ==
+                                            UserStatus.loading ||
+                                        context.watch<QuestionnaireBloc>().state.status ==
+                                            QuestionnaireStatus.loading,
+                                  ))),
+                    ),
                     Gaps.medium.spaceVertical
                   ],
                 ),

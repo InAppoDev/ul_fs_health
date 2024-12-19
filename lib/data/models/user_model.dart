@@ -17,6 +17,10 @@ class UserModel with _$UserModel {
     int? age,
     double? height,
     double? weight,
+    String? smokerInfo,
+    String? drinkerInfo,
+    String? cholesterolInfo,
+    String? bloodSugarInfo
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
@@ -28,6 +32,10 @@ class UserModel with _$UserModel {
         age: entity.age,
         height: entity.height,
         weight: entity.weight,
+        smokerInfo: entity.smokerInfo,
+        drinkerInfo: entity.drinkerInfo,
+        cholesterolInfo: entity.cholesterolInfo,
+        bloodSugarInfo: entity.bloodSugarInfo
       );
 
   const UserModel._();
@@ -39,6 +47,10 @@ class UserModel with _$UserModel {
       age: age,
       height: height,
       weight: weight,
+      smokerInfo: smokerInfo,
+      drinkerInfo: drinkerInfo,
+      cholesterolInfo: cholesterolInfo,
+      bloodSugarInfo: bloodSugarInfo
     );
   }
 }

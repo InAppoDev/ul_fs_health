@@ -1,3 +1,4 @@
+import '../../../core/constants/gender.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../model/questionnaire_model.dart';
 
@@ -9,8 +10,8 @@ class QuestionnaireValidator {
     return null;
   }
 
-  static String? validateGender(String? value) {
-    return validateRequiredText(value, appLocalizations.genderRequiredErrorText);
+  static String? validateGender(Gender? value) {
+    return validateRequiredText(value.toString(), appLocalizations.genderRequiredErrorText);
   }
 
   static String? validateAge(String? value) {
@@ -47,9 +48,9 @@ class QuestionnaireValidator {
     final weightError = validateWeight(basicInfo.weight);
     final ageError = validateAge(basicInfo.age);
     final smokeStatusError = validateSmokerStatus(healthInfo.smokerStatus);
-    final drinkStatusError = validateGender(healthInfo.drinkerStatus);
-    final cholesterolStatusError = validateGender(healthInfo.cholesterolStatus);
-    final bloodSugarStatusError = validateGender(healthInfo.bloodSugarStatus);
+    final drinkStatusError = validateDrinkerStatus(healthInfo.drinkerStatus);
+    final cholesterolStatusError = validateCholesterolStatus(healthInfo.cholesterolStatus);
+    final bloodSugarStatusError = validateBloodSugarStatus(healthInfo.bloodSugarStatus);
 
     if ((genderError?.isEmpty ?? true) &&
         (heightError?.isEmpty ?? true) &&

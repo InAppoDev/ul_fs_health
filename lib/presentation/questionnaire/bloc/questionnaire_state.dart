@@ -4,8 +4,6 @@ part of 'questionnaire_bloc.dart';
 class QuestionnaireState with _$QuestionnaireState {
   factory QuestionnaireState.initial({
     @Default(QuestionnaireStatus.initial) QuestionnaireStatus status,
-
-    @Default(null) String? selectedGender,
     @Default(BasicInfo.fromValues()) BasicInfo basicInfo,
     @Default(HealthInfo.fromValues()) HealthInfo healthInfo,
     @Default(null) String? genderError,

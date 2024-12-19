@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/extensions/number_extension.dart';
@@ -10,6 +11,7 @@ class TextInputWidget extends StatelessWidget {
     required this.controller,
     required this.hintText,
     this.errorText,
+    this.inputFormatters,
     this.onFocusChange,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
@@ -21,6 +23,7 @@ class TextInputWidget extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final String? errorText;
+  final List<TextInputFormatter>? inputFormatters;
   final void Function(bool)? onFocusChange;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
@@ -34,6 +37,7 @@ class TextInputWidget extends StatelessWidget {
         Focus(
           onFocusChange: onFocusChange,
           child: TextFormField(
+            inputFormatters: inputFormatters,
             controller: controller,
             obscureText: obscureText,
             keyboardType: keyboardType,

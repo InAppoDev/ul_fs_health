@@ -5,7 +5,7 @@ import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
 
-class DropdownWidget extends StatelessWidget {
+class DropdownWidget<T> extends StatelessWidget {
   const DropdownWidget(
       {super.key,
       required this.values,
@@ -16,18 +16,18 @@ class DropdownWidget extends StatelessWidget {
       this.placeholder = '',
       this.errorText});
 
-  final List<String> values;
-  final String? selectedValue;
+  final List<T> values;
+  final T? selectedValue;
   final String? errorText;
   final String placeholder;
-  final String? Function(String?)? validator;
+  final String? Function(T?)? validator;
   final VoidCallback? onTap;
-  final void Function(String?)? onChanged;
+  final void Function(T?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      DropdownButtonFormField<String>(
+      DropdownButtonFormField<T>(
           onTap: onTap,
           autovalidateMode: AutovalidateMode.onUnfocus,
           validator: validator,
@@ -63,8 +63,8 @@ class DropdownWidget extends StatelessWidget {
               onChanged!(newValue);
             }
           },
-          items: values.map((String option) {
-            return DropdownMenuItem<String>(value: option, child: Text(option));
+          items: values.map((T option) {
+            return DropdownMenuItem<T>(value: option, child: Text(option.toString()));
           }).toList()),
     ]);
   }

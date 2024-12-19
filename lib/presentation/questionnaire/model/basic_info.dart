@@ -4,7 +4,7 @@ part of 'questionnaire_model.dart';
 class BasicInfo with _$BasicInfo {
 
   const factory BasicInfo.fromValues({
-    @Default(null) String? gender,
+    @Default(null) Gender? gender,
     @Default('') String age,
     @Default('') String height,
     @Default('') String weight

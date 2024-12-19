@@ -32,7 +32,7 @@ class QuestionnaireEvent with _$QuestionnaireEvent {
     @Default(true) bool shouldValidate
   }) = QuestionnaireEventBloodSugarStatusChanged;
   factory QuestionnaireEvent.onGenderChanged({
-    String? selectedGender,
+    Gender? selectedGender,
     @Default(true) bool shouldValidate
   }) = QuestionnaireEventGenderChanged;
 }

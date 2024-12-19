@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/constants/gender.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../model/questionnaire_model.dart';
 import '../validator/questionnaire_validator.dart';
@@ -136,7 +137,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
   void _onQuestionnaireEventGenderChanged(
       QuestionnaireEventGenderChanged event, Emitter<QuestionnaireState> emit) {
     String? error = QuestionnaireValidator.validateRequiredText(
-        event.selectedGender, appLocalizations.heightRequiredErrorText);
+        event.selectedGender.toString(), appLocalizations.heightRequiredErrorText);
     final basicInfo = state.basicInfo.copyWith(gender: event.selectedGender);
     final bool isValid = QuestionnaireValidator.validate(basicInfo, state.healthInfo);
     if (!event.shouldValidate) {
