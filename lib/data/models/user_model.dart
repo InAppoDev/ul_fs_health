@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../core/constants/gender.dart';
@@ -8,6 +10,7 @@ part 'user_model.g.dart';
 
 @freezed
 class UserModel with _$UserModel {
+  @JsonSerializable(includeIfNull: false)
   const factory UserModel({
     required String id,
     Gender? gender,
@@ -18,6 +21,14 @@ class UserModel with _$UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
+
+  factory UserModel.fromEntity(UserEntity entity) => UserModel(
+        id: entity.id,
+        gender: entity.gender,
+        age: entity.age,
+        height: entity.height,
+        weight: entity.weight,
+      );
 
   const UserModel._();
 

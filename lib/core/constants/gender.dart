@@ -1,1 +1,9 @@
-enum Gender { male, female }
+enum Gender {
+  male,
+  female;
+
+  @override
+  String toString() {
+    return name;
+  }
+}

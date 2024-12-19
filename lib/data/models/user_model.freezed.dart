@@ -148,7 +148,8 @@ class __$$UserModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(includeIfNull: false)
 class _$UserModelImpl extends _UserModel {
   const _$UserModelImpl(
       {required this.id, this.gender, this.age, this.height, this.weight})

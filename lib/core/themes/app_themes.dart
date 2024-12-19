@@ -13,12 +13,13 @@ final ThemeData lightTheme = ThemeData(
   ),
 );
 
-ThemeData darkTheme = ThemeData(
-    brightness: darkColorScheme.brightness,
-    colorScheme: darkColorScheme,
-    useMaterial3: true,
-    fontFamily: FontFamily.inter,
-    scaffoldBackgroundColor: darkColorScheme.surface,
-    appBarTheme: AppBarTheme(
-      backgroundColor: darkColorScheme.surface,
-    ));
+final ThemeData darkTheme = ThemeData(
+  brightness: darkColorScheme.brightness,
+  colorScheme: darkColorScheme,
+  useMaterial3: true,
+  fontFamily: FontFamily.inter,
+  scaffoldBackgroundColor: darkColorScheme.surface,
+  appBarTheme: AppBarTheme(
+    backgroundColor: darkColorScheme.surface,
+  ),
+);

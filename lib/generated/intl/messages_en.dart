@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "btnContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "agePlaceHolder":
             MessageLookupByLibrary.simpleMessage("Enter your age"),
         "ageRequiredErrorText":
@@ -32,6 +33,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
         "btnCreateAccount":
             MessageLookupByLibrary.simpleMessage("Create account"),
+        "hintYourEmail":
+            MessageLookupByLibrary.simpleMessage("email@domain.com"),
+        "hintYourPassword":
+            MessageLookupByLibrary.simpleMessage("your password"),
+        "hintrepeatPassword":
+            MessageLookupByLibrary.simpleMessage("repeat your password"),
+        "lblAnd": MessageLookupByLibrary.simpleMessage(" and  "),
+        "lblAppName": MessageLookupByLibrary.simpleMessage("Ul Fs Health"),
+        "lblClickCreateAccount": MessageLookupByLibrary.simpleMessage(
+            "By clicking Create account, you agree to our"),
+        "lblConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your password"),
+        "lblEmailPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and password to enter app."),
+        "lblEmailRequire":
+            MessageLookupByLibrary.simpleMessage("Email is required"),
+        "lblEnterPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your email and password to create \n an account. Confirmation mail will be sent to \n your email."),
+        "lblForgottenPassword":
+            MessageLookupByLibrary.simpleMessage("Forgotten password?"),
         "btnQuestSubmit":
             MessageLookupByLibrary.simpleMessage("Save and continue"),
         "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
@@ -51,6 +72,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "heightRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("Please type your height"),
         "lblLogin": MessageLookupByLibrary.simpleMessage("Login"),
+        "lblLoginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
+        "lblNotYetRegistered": MessageLookupByLibrary.simpleMessage(
+            "Not yet registered? Sign up with your email"),
+        "lblOr": MessageLookupByLibrary.simpleMessage("or"),
+        "lblPasswordDontMatch":
+            MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "lblPasswordLength": MessageLookupByLibrary.simpleMessage(
+            "Password must be at least 6 characters"),
+        "lblPrivacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+        "lblRequirePassword":
+            MessageLookupByLibrary.simpleMessage("Password is required"),
+        "lblSignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "lblTermsService":
+            MessageLookupByLibrary.simpleMessage("Terms of Service"),
+        "lblUnableSignup":
+            MessageLookupByLibrary.simpleMessage("Unable to sign up"),
+        "lblValidEmail":
+            MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
+        "lblYouAgree": MessageLookupByLibrary.simpleMessage(
+            "By clicking continue, you agree to our")
         "lblSignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "questBasicInfoHeader":
             MessageLookupByLibrary.simpleMessage("Basic information"),
