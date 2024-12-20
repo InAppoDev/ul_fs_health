@@ -13,10 +13,12 @@ class SubmitButton extends StatelessWidget {
     required this.backgroundColor,
     required this.titleColor,
     this.isLoading = false,
+    this.isValid = true,
   });
 
   final Function() onPressed;
   final String title;
+  final bool isValid;
   final Color backgroundColor;
   final Color titleColor;
   final bool isLoading;
@@ -26,7 +28,7 @@ class SubmitButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: isLoading
+        onPressed: isLoading || !isValid
             ? null
             : () {
                 FocusScope.of(context).unfocus();

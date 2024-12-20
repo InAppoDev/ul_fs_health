@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/extensions/number_extension.dart';
@@ -9,6 +10,9 @@ class TextInputWidget extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
+    this.errorText,
+    this.inputFormatters,
+    this.onFocusChange,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.validator,
@@ -18,6 +22,9 @@ class TextInputWidget extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final String? errorText;
+  final List<TextInputFormatter>? inputFormatters;
+  final void Function(bool)? onFocusChange;
   final TextInputType keyboardType;
   final String? Function(String?)? validator;
   final TextStyle? textStyle;
@@ -27,26 +34,39 @@ class TextInputWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextFormField(
-          controller: controller,
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-          validator: validator,
-          style: textStyle,
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: const TextStyle(color: darkGrey),
-            border: OutlineInputBorder(
-              borderRadius: Constants.containerBorderRadius.radiusAll,
-              borderSide: const BorderSide(color: lightGrey),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: Constants.containerBorderRadius.radiusAll,
-              borderSide: const BorderSide(color: lightGrey),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: Constants.containerBorderRadius.radiusAll,
-              borderSide: const BorderSide(color: lightGrey),
+        Focus(
+          onFocusChange: onFocusChange,
+          child: TextFormField(
+            inputFormatters: inputFormatters,
+            controller: controller,
+            obscureText: obscureText,
+            keyboardType: keyboardType,
+            validator: validator,
+            style: textStyle,
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: const TextStyle(color: darkGrey),
+              border: OutlineInputBorder(
+                borderRadius: Constants.containerBorderRadius.radiusAll,
+                borderSide: const BorderSide(color: lightGrey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: Constants.containerBorderRadius.radiusAll,
+                borderSide: const BorderSide(color: lightGrey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: Constants.containerBorderRadius.radiusAll,
+                borderSide: const BorderSide(color: lightGrey),
+              ),
+              errorBorder: OutlineInputBorder(
+                  borderRadius: Constants.containerBorderRadius.radiusAll,
+                  borderSide: BorderSide(color: lightColorScheme.error),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: Constants.containerBorderRadius.radiusAll,
+                  borderSide: const BorderSide(color: lightGrey),
+              ),
+              errorText: errorText
             ),
           ),
         ),

@@ -12,5 +12,9 @@ class UserEntity with _$UserEntity {
     int? age,
     double? height,
     double? weight,
+    String? smokerInfo,
+    String? drinkerInfo,
+    String? cholesterolInfo,
+    String? bloodSugarInfo
   }) = _UserEntity;
 }

@@ -10,5 +10,5 @@ class UserState with _$UserState {
 }
 
 enum UserStatus {
-  inital, loading, saved, failure
+  inital, loading, saved, failure, dataSaved
 }

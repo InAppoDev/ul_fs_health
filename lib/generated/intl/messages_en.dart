@@ -22,9 +22,35 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "agePlaceHolder":
+            MessageLookupByLibrary.simpleMessage("Enter your age"),
+        "ageRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Please type your age"),
+        "bloodSugarPlaceHolder": MessageLookupByLibrary.simpleMessage(
+            "Do you have increased blood sugar?"),
+        "bloodSugarStatusRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("The field must be filled"),
         "btnContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "btnCreateAccount":
             MessageLookupByLibrary.simpleMessage("Create account"),
+        "btnQuestSubmit":
+            MessageLookupByLibrary.simpleMessage("Save and continue"),
+        "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
+            "Do you have increased cholesterol?"),
+        "cholesterolStatusRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "drinkerPlaceHolder":
+            MessageLookupByLibrary.simpleMessage("Are you an alcohol drinker?"),
+        "drinkerStatusRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "genderPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Select your gender"),
+        "genderRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Please select your gender"),
+        "heightPlaceHolder": MessageLookupByLibrary.simpleMessage(
+            "Enter your height (in centimeters)"),
+        "heightRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Please type your height"),
         "hintYourEmail":
             MessageLookupByLibrary.simpleMessage("email@domain.com"),
         "hintYourPassword":
@@ -66,6 +92,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblValidEmail":
             MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
         "lblYouAgree": MessageLookupByLibrary.simpleMessage(
-            "By clicking continue, you agree to our")
+            "By clicking continue, you agree to our"),
+        "questBasicInfoHeader":
+            MessageLookupByLibrary.simpleMessage("Basic information"),
+        "questHeaderSubTitle": MessageLookupByLibrary.simpleMessage(
+            "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
+        "questHeaderTitle":
+            MessageLookupByLibrary.simpleMessage("Fill this questionarre"),
+        "questHealthInfoHeader":
+            MessageLookupByLibrary.simpleMessage("Health information"),
+        "smokerPlaceHolder":
+            MessageLookupByLibrary.simpleMessage("Are you an active smoker?"),
+        "smokerStatusRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "weightPlaceHolder": MessageLookupByLibrary.simpleMessage(
+            "Enter your weight (in kilograms)"),
+        "weightRequiredErrorText":
+            MessageLookupByLibrary.simpleMessage("Please type your weight")
       };
 }

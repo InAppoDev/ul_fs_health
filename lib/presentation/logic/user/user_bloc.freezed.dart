@@ -19,19 +19,24 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserEntity entity) saveUserData,
+    required TResult Function(UserEntity entity, UserStatus successStatus)
+        saveUserData,
+    required TResult Function() getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UserEntity entity)? saveUserData,
+    TResult? Function(UserEntity entity, UserStatus successStatus)?
+        saveUserData,
+    TResult? Function()? getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserEntity entity)? saveUserData,
+    TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +44,21 @@ mixin _$UserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_GetUserData value) getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_GetUserData value)? getUserData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,7 +126,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserEntity entity) saveUserData,
+    required TResult Function(UserEntity entity, UserStatus successStatus)
+        saveUserData,
+    required TResult Function() getUserData,
   }) {
     return started();
   }
@@ -127,7 +137,9 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UserEntity entity)? saveUserData,
+    TResult? Function(UserEntity entity, UserStatus successStatus)?
+        saveUserData,
+    TResult? Function()? getUserData,
   }) {
     return started?.call();
   }
@@ -136,7 +148,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserEntity entity)? saveUserData,
+    TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -150,6 +163,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_GetUserData value) getUserData,
   }) {
     return started(this);
   }
@@ -159,6 +173,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_GetUserData value)? getUserData,
   }) {
     return started?.call(this);
   }
@@ -168,6 +183,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -187,7 +203,7 @@ abstract class _$$SaveUserDataImplCopyWith<$Res> {
           _$SaveUserDataImpl value, $Res Function(_$SaveUserDataImpl) then) =
       __$$SaveUserDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserEntity entity});
+  $Res call({UserEntity entity, UserStatus successStatus});
 
   $UserEntityCopyWith<$Res> get entity;
 }
@@ -206,12 +222,17 @@ class __$$SaveUserDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? entity = null,
+    Object? successStatus = null,
   }) {
     return _then(_$SaveUserDataImpl(
       null == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as UserEntity,
+      null == successStatus
+          ? _value.successStatus
+          : successStatus // ignore: cast_nullable_to_non_nullable
+              as UserStatus,
     ));
   }
 
@@ -229,14 +250,18 @@ class __$$SaveUserDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SaveUserDataImpl implements _SaveUserData {
-  const _$SaveUserDataImpl(this.entity);
+  const _$SaveUserDataImpl(this.entity,
+      [this.successStatus = UserStatus.saved]);
 
   @override
   final UserEntity entity;
+  @override
+  @JsonKey()
+  final UserStatus successStatus;
 
   @override
   String toString() {
-    return 'UserEvent.saveUserData(entity: $entity)';
+    return 'UserEvent.saveUserData(entity: $entity, successStatus: $successStatus)';
   }
 
   @override
@@ -244,11 +269,13 @@ class _$SaveUserDataImpl implements _SaveUserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveUserDataImpl &&
-            (identical(other.entity, entity) || other.entity == entity));
+            (identical(other.entity, entity) || other.entity == entity) &&
+            (identical(other.successStatus, successStatus) ||
+                other.successStatus == successStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, entity);
+  int get hashCode => Object.hash(runtimeType, entity, successStatus);
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -262,29 +289,34 @@ class _$SaveUserDataImpl implements _SaveUserData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(UserEntity entity) saveUserData,
+    required TResult Function(UserEntity entity, UserStatus successStatus)
+        saveUserData,
+    required TResult Function() getUserData,
   }) {
-    return saveUserData(entity);
+    return saveUserData(entity, successStatus);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(UserEntity entity)? saveUserData,
+    TResult? Function(UserEntity entity, UserStatus successStatus)?
+        saveUserData,
+    TResult? Function()? getUserData,
   }) {
-    return saveUserData?.call(entity);
+    return saveUserData?.call(entity, successStatus);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(UserEntity entity)? saveUserData,
+    TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
+    TResult Function()? getUserData,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
-      return saveUserData(entity);
+      return saveUserData(entity, successStatus);
     }
     return orElse();
   }
@@ -294,6 +326,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_GetUserData value) getUserData,
   }) {
     return saveUserData(this);
   }
@@ -303,6 +336,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_GetUserData value)? getUserData,
   }) {
     return saveUserData?.call(this);
   }
@@ -312,6 +346,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_GetUserData value)? getUserData,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
@@ -322,15 +357,130 @@ class _$SaveUserDataImpl implements _SaveUserData {
 }
 
 abstract class _SaveUserData implements UserEvent {
-  const factory _SaveUserData(final UserEntity entity) = _$SaveUserDataImpl;
+  const factory _SaveUserData(final UserEntity entity,
+      [final UserStatus successStatus]) = _$SaveUserDataImpl;
 
   UserEntity get entity;
+  UserStatus get successStatus;
 
   /// Create a copy of UserEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SaveUserDataImplCopyWith<_$SaveUserDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetUserDataImplCopyWith<$Res> {
+  factory _$$GetUserDataImplCopyWith(
+          _$GetUserDataImpl value, $Res Function(_$GetUserDataImpl) then) =
+      __$$GetUserDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetUserDataImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$GetUserDataImpl>
+    implements _$$GetUserDataImplCopyWith<$Res> {
+  __$$GetUserDataImplCopyWithImpl(
+      _$GetUserDataImpl _value, $Res Function(_$GetUserDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetUserDataImpl implements _GetUserData {
+  const _$GetUserDataImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.getUserData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetUserDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserEntity entity, UserStatus successStatus)
+        saveUserData,
+    required TResult Function() getUserData,
+  }) {
+    return getUserData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserEntity entity, UserStatus successStatus)?
+        saveUserData,
+    TResult? Function()? getUserData,
+  }) {
+    return getUserData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
+    TResult Function()? getUserData,
+    required TResult orElse(),
+  }) {
+    if (getUserData != null) {
+      return getUserData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_GetUserData value) getUserData,
+  }) {
+    return getUserData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_GetUserData value)? getUserData,
+  }) {
+    return getUserData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_GetUserData value)? getUserData,
+    required TResult orElse(),
+  }) {
+    if (getUserData != null) {
+      return getUserData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUserData implements UserEvent {
+  const factory _GetUserData() = _$GetUserDataImpl;
 }
 
 /// @nodoc

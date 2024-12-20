@@ -7,4 +7,5 @@ abstract class Gaps {
   static const larger = 24.0;
   static const largest = 32.0;
   static const extraLarge = 64.0;
+  static const extraLarger = 128.0;
 }

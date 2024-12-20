@@ -21,6 +21,10 @@ mixin _$UserEntity {
   int? get age => throw _privateConstructorUsedError;
   double? get height => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
+  String? get smokerInfo => throw _privateConstructorUsedError;
+  String? get drinkerInfo => throw _privateConstructorUsedError;
+  String? get cholesterolInfo => throw _privateConstructorUsedError;
+  String? get bloodSugarInfo => throw _privateConstructorUsedError;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -36,7 +40,15 @@ abstract class $UserEntityCopyWith<$Res> {
       _$UserEntityCopyWithImpl<$Res, UserEntity>;
   @useResult
   $Res call(
-      {String id, Gender? gender, int? age, double? height, double? weight});
+      {String id,
+      Gender? gender,
+      int? age,
+      double? height,
+      double? weight,
+      String? smokerInfo,
+      String? drinkerInfo,
+      String? cholesterolInfo,
+      String? bloodSugarInfo});
 }
 
 /// @nodoc
@@ -59,6 +71,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? age = freezed,
     Object? height = freezed,
     Object? weight = freezed,
+    Object? smokerInfo = freezed,
+    Object? drinkerInfo = freezed,
+    Object? cholesterolInfo = freezed,
+    Object? bloodSugarInfo = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,6 +97,22 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
+      smokerInfo: freezed == smokerInfo
+          ? _value.smokerInfo
+          : smokerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      drinkerInfo: freezed == drinkerInfo
+          ? _value.drinkerInfo
+          : drinkerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cholesterolInfo: freezed == cholesterolInfo
+          ? _value.cholesterolInfo
+          : cholesterolInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bloodSugarInfo: freezed == bloodSugarInfo
+          ? _value.bloodSugarInfo
+          : bloodSugarInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -94,7 +126,15 @@ abstract class _$$UserEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id, Gender? gender, int? age, double? height, double? weight});
+      {String id,
+      Gender? gender,
+      int? age,
+      double? height,
+      double? weight,
+      String? smokerInfo,
+      String? drinkerInfo,
+      String? cholesterolInfo,
+      String? bloodSugarInfo});
 }
 
 /// @nodoc
@@ -115,6 +155,10 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? age = freezed,
     Object? height = freezed,
     Object? weight = freezed,
+    Object? smokerInfo = freezed,
+    Object? drinkerInfo = freezed,
+    Object? cholesterolInfo = freezed,
+    Object? bloodSugarInfo = freezed,
   }) {
     return _then(_$UserEntityImpl(
       id: null == id
@@ -137,6 +181,22 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
+      smokerInfo: freezed == smokerInfo
+          ? _value.smokerInfo
+          : smokerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      drinkerInfo: freezed == drinkerInfo
+          ? _value.drinkerInfo
+          : drinkerInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cholesterolInfo: freezed == cholesterolInfo
+          ? _value.cholesterolInfo
+          : cholesterolInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bloodSugarInfo: freezed == bloodSugarInfo
+          ? _value.bloodSugarInfo
+          : bloodSugarInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -145,7 +205,15 @@ class __$$UserEntityImplCopyWithImpl<$Res>
 
 class _$UserEntityImpl implements _UserEntity {
   const _$UserEntityImpl(
-      {required this.id, this.gender, this.age, this.height, this.weight});
+      {required this.id,
+      this.gender,
+      this.age,
+      this.height,
+      this.weight,
+      this.smokerInfo,
+      this.drinkerInfo,
+      this.cholesterolInfo,
+      this.bloodSugarInfo});
 
   @override
   final String id;
@@ -157,10 +225,18 @@ class _$UserEntityImpl implements _UserEntity {
   final double? height;
   @override
   final double? weight;
+  @override
+  final String? smokerInfo;
+  @override
+  final String? drinkerInfo;
+  @override
+  final String? cholesterolInfo;
+  @override
+  final String? bloodSugarInfo;
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, gender: $gender, age: $age, height: $height, weight: $weight)';
+    return 'UserEntity(id: $id, gender: $gender, age: $age, height: $height, weight: $weight, smokerInfo: $smokerInfo, drinkerInfo: $drinkerInfo, cholesterolInfo: $cholesterolInfo, bloodSugarInfo: $bloodSugarInfo)';
   }
 
   @override
@@ -172,11 +248,20 @@ class _$UserEntityImpl implements _UserEntity {
             (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.height, height) || other.height == height) &&
-            (identical(other.weight, weight) || other.weight == weight));
+            (identical(other.weight, weight) || other.weight == weight) &&
+            (identical(other.smokerInfo, smokerInfo) ||
+                other.smokerInfo == smokerInfo) &&
+            (identical(other.drinkerInfo, drinkerInfo) ||
+                other.drinkerInfo == drinkerInfo) &&
+            (identical(other.cholesterolInfo, cholesterolInfo) ||
+                other.cholesterolInfo == cholesterolInfo) &&
+            (identical(other.bloodSugarInfo, bloodSugarInfo) ||
+                other.bloodSugarInfo == bloodSugarInfo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, gender, age, height, weight);
+  int get hashCode => Object.hash(runtimeType, id, gender, age, height, weight,
+      smokerInfo, drinkerInfo, cholesterolInfo, bloodSugarInfo);
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -193,7 +278,11 @@ abstract class _UserEntity implements UserEntity {
       final Gender? gender,
       final int? age,
       final double? height,
-      final double? weight}) = _$UserEntityImpl;
+      final double? weight,
+      final String? smokerInfo,
+      final String? drinkerInfo,
+      final String? cholesterolInfo,
+      final String? bloodSugarInfo}) = _$UserEntityImpl;
 
   @override
   String get id;
@@ -205,6 +294,14 @@ abstract class _UserEntity implements UserEntity {
   double? get height;
   @override
   double? get weight;
+  @override
+  String? get smokerInfo;
+  @override
+  String? get drinkerInfo;
+  @override
+  String? get cholesterolInfo;
+  @override
+  String? get bloodSugarInfo;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
