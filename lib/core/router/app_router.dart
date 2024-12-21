@@ -14,23 +14,19 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/login',
           page: LoginRoute.page,
-
         ),
         AutoRoute(
           path: '/questionnaire',
           page: QuestionnaireRoute.page,
-
         ),
         AutoRoute(
           path: '/signup',
           page: SignupRoute.page,
-
         ),
         AutoRoute(
           path: '/home',
           page: HomeRoute.page,
           initial: true,
-
-        ),
+        )
       ];
 }

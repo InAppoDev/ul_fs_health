@@ -28,7 +28,7 @@ class SimpleAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
             icon: Icon(Icons.info_outline_rounded, color: ColorScheme.of(context).primary))
       ],
       title: Text(appLocalizations.lblAppName, style: header1),
-      leading: !showBackButton ? null : IconButton(
+      leading: showBackButton ? null : IconButton(
           onPressed: onLeadingPress,
           icon: Assets.icons.menu.svg()),
     );

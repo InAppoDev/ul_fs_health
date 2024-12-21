@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../gen/assets.gen.dart';
@@ -69,7 +70,9 @@ class HomeContent extends StatelessWidget {
               ),
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO change to test route
+                  },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,
                   titleColor: white),
