@@ -8,6 +8,7 @@ import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
+import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 
 @RoutePage()
@@ -26,19 +27,13 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-              },
-              icon: const Icon(Icons.info_outline_rounded, color: Colors.red,))
-        ],
-        title: Text(appLocalizations.lblAppName, style: header1),
-        leading: IconButton(
-            onPressed: () {
-              // TODO Hovsep - change route to naviagtion menu
-            },
-            icon: Assets.icons.menu.svg()),
+      appBar: SimpleAppBarWidget(
+        onInfoPress: () {
+          // TODO Hovsep: implement info press
+        },
+        onLeadingPress: () {
+          // TODO Hovsep: open dashboard menu page
+        },
       ),
       body: Center(
         child: Padding(
