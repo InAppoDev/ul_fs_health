@@ -19,7 +19,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/questionnaire',
           page: QuestionnaireRoute.page,
-          initial: true,
 
         ),
         AutoRoute(
@@ -30,6 +29,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/home',
           page: HomeRoute.page,
+          initial: true,
+
         ),
       ];
 }

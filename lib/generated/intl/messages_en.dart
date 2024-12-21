@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(appName) => "Welcome to ${appName}!";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "agePlaceHolder":
@@ -35,6 +37,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create account"),
         "btnQuestSubmit":
             MessageLookupByLibrary.simpleMessage("Save and continue"),
+        "btnTestInstructionsText":
+            MessageLookupByLibrary.simpleMessage("Test instructions"),
+        "btnTestStartText": MessageLookupByLibrary.simpleMessage("Start Test"),
         "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
             "Do you have increased cholesterol?"),
         "cholesterolStatusRequiredErrorText":
@@ -101,13 +106,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fill this questionarre"),
         "questHealthInfoHeader":
             MessageLookupByLibrary.simpleMessage("Health information"),
+        "sitToStandTestDescriptionText": MessageLookupByLibrary.simpleMessage(
+            "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
+        "sitToStandTestTitleText":
+            MessageLookupByLibrary.simpleMessage("Sit-to-Stand Test"),
         "smokerPlaceHolder":
             MessageLookupByLibrary.simpleMessage("Are you an active smoker?"),
         "smokerStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
+            "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
+        "walkTestTitleText":
+            MessageLookupByLibrary.simpleMessage("6 Minute Walk Test"),
         "weightPlaceHolder": MessageLookupByLibrary.simpleMessage(
             "Enter your weight (in kilograms)"),
         "weightRequiredErrorText":
-            MessageLookupByLibrary.simpleMessage("Please type your weight")
+            MessageLookupByLibrary.simpleMessage("Please type your weight"),
+        "welcomeAppDescriptionText": MessageLookupByLibrary.simpleMessage(
+            "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
+        "welcomeAppNameText": m0
       };
 }
