@@ -519,6 +519,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome to {appName}!`
+  String welcomeAppNameText(String appName) {
+    return Intl.message(
+      'Welcome to $appName!',
+      name: 'welcomeAppNameText',
+      desc: 'welcome text for application',
+      args: [appName],
+    );
+  }
+
+  /// `In order to give the best results, our app needs detailed information about your personal and medical conditions.`
+  String get welcomeAppDescriptionText {
+    return Intl.message(
+      'In order to give the best results, our app needs detailed information about your personal and medical conditions.',
+      name: 'welcomeAppDescriptionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `6 Minute Walk Test`
+  String get walkTestTitleText {
+    return Intl.message(
+      '6 Minute Walk Test',
+      name: 'walkTestTitleText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.`
+  String get walkTestDescriptionText {
+    return Intl.message(
+      'Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.',
+      name: 'walkTestDescriptionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sit-to-Stand Test`
+  String get sitToStandTestTitleText {
+    return Intl.message(
+      'Sit-to-Stand Test',
+      name: 'sitToStandTestTitleText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.`
+  String get sitToStandTestDescriptionText {
+    return Intl.message(
+      'Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.',
+      name: 'sitToStandTestDescriptionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Test`
+  String get btnTestStartText {
+    return Intl.message(
+      'Start Test',
+      name: 'btnTestStartText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test instructions`
+  String get btnTestInstructionsText {
+    return Intl.message(
+      'Test instructions',
+      name: 'btnTestInstructionsText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
