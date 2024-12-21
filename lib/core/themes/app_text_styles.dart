@@ -10,6 +10,11 @@ TextStyle get header1 => GoogleFonts.inter(
       fontWeight: FontWeight.w600,
       color: const Color.fromRGBO(0, 0, 0, 1),
     );
+TextStyle get header2 => GoogleFonts.inter(
+  fontSize: 20,
+  fontWeight: FontWeight.w600,
+  color: const Color.fromRGBO(0, 0, 0, 1),
+);
 TextStyle get body1 => GoogleFonts.inter(
       color: const Color.fromRGBO(0, 0, 0, 1),
       fontSize: 14,

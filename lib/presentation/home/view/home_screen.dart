@@ -8,6 +8,17 @@ import '../../auth/widgets/auth_guard_widget.dart';
 
 // import '../../dashboard_menu/dashboard_menu_widget.dart';
 
+import '../../../core/constants/constants.dart';
+import '../../../core/constants/gaps.dart';
+import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
+import '../../../core/themes/app_colors.dart';
+import '../../../core/themes/app_text_styles.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../l10n/localizations_utils.dart';
+import '../../utils/widgets/simple_app_bar_widget.dart';
+import '../../utils/widgets/submit_button.dart';
+
 @RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -49,6 +60,93 @@ class HomeContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("kkk")
+            ],
+          ),
+    return Scaffold(
+      appBar: SimpleAppBarWidget(
+        onInfoPress: () {
+          // TODO Hovsep: implement info press
+        },
+        onLeadingPress: () {
+          // TODO Hovsep: open dashboard menu page
+        },
+      ),
+      body: Center(
+        child: Padding(
+          padding: Gaps.larger.paddingHorizontal,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ListTile(
+                title: Padding(
+                    padding: Gaps.smaller.paddingBottom,
+                    child: Text(
+                        appLocalizations.welcomeAppNameText(appLocalizations.lblAppName),
+                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                        textAlign: TextAlign.center,
+                    )),
+                subtitle: Text(appLocalizations.welcomeAppDescriptionText, style: body1),
+              ),
+              Constants.sizedBoxHeightLarge.spaceVertical,
+              Row(
+                children: [
+                  Assets.icons.iconWalkTest.svg(),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(appLocalizations.walkTestTitleText, style: header2),
+                        Gaps.smaller.spaceVertical,
+                        Text(appLocalizations.walkTestDescriptionText, style: body3),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Constants.sizedBoxHeightMiddle.spaceVertical,
+              SubmitButton(
+                  onPressed: () {
+                    // TODO change to test route
+                  },
+                  title: appLocalizations.btnTestStartText,
+                  backgroundColor: ColorScheme.of(context).primary,
+                  titleColor: white),
+              Constants.sizedBoxHeightSmall.spaceVertical,
+              SubmitButton(
+                  onPressed: () {},
+                  title: appLocalizations.btnTestInstructionsText,
+                  backgroundColor: defaultBtnInactiveBackground,
+                  titleColor: defaultTextColor),
+              Constants.sizedBoxHeightLarge.spaceVertical,
+              Row(
+                children: [
+                  Assets.icons.iconSitDownTest.svg(),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(appLocalizations.walkTestTitleText, style: header2),
+                        Gaps.smaller.spaceVertical,
+                        Text(appLocalizations.walkTestDescriptionText, style: body3),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Constants.sizedBoxHeightMiddle.spaceVertical,
+              SubmitButton(
+                  onPressed: () {},
+                  title: appLocalizations.btnTestStartText,
+                  backgroundColor: ColorScheme.of(context).primary,
+                  titleColor: white),
+              Constants.sizedBoxHeightSmall.spaceVertical,
+              SubmitButton(
+                  onPressed: () {},
+                  title: appLocalizations.btnTestInstructionsText,
+                  backgroundColor: defaultBtnInactiveBackground,
+                  titleColor: defaultTextColor),
+              // Gaps.larger.spaceVertical
+
             ],
           ),
         ),

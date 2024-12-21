@@ -50,5 +50,21 @@
   "menuResultsText": "My Results",
   "menuQuestionnaireText": "Questionairre",
   "menuProfileText": "My profile",
-  "menuLogoutText": "Log out"
+  "menuLogoutText": "Log out",
+  "welcomeAppNameText": "Welcome to {appName}!",
+  "@welcomeAppNameText": {
+    "description": "welcome text for application",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeAppDescriptionText": "In order to give the best results, our app needs detailed information about your personal and medical conditions.",
+  "walkTestTitleText": "6 Minute Walk Test",
+  "walkTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
+  "sitToStandTestTitleText": "Sit-to-Stand Test",
+  "sitToStandTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
+  "btnTestStartText": "Start Test",
+  "btnTestInstructionsText": "Test instructions"
 }
