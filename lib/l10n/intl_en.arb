@@ -46,6 +46,11 @@
   "drinkerStatusRequiredErrorText": "The field must be filled",
   "cholesterolStatusRequiredErrorText": "The field must be filled",
   "bloodSugarStatusRequiredErrorText": "The field must be filled",
+  "menuDashboardText": "Dashboard",
+  "menuResultsText": "My Results",
+  "menuQuestionnaireText": "Questionairre",
+  "menuProfileText": "My profile",
+  "menuLogoutText": "Log out",
   "welcomeAppNameText": "Welcome to {appName}!",
   "@welcomeAppNameText": {
     "description": "welcome text for application",

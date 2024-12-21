@@ -12,6 +12,7 @@ import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../l10n/localizations_utils.dart';
+import '../../auth/widgets/auth_guard_widget.dart';
 import '../../logic/user/user_bloc.dart';
 import '../../utils/widgets/dropdown_widget.dart';
 import '../../utils/widgets/submit_button.dart';
@@ -53,7 +54,6 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
   @override
   void initState() {
     super.initState();
-    context.read<UserBloc>().add(const UserEvent.getUserData());
     _ageController.addListener(() {
       context
           .read<QuestionnaireBloc>()
@@ -89,17 +89,7 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BlocListener<UserBloc, UserState>(
-          listener: (context, userState) {
-            if (userState.model == null) {
-              context.router.replaceAll([const LoginRoute()]);
-            }
-            else if (userState.status == UserStatus.dataSaved) {
-              context.router.pushNamed('/home');
-            } else if (userState.status == UserStatus.failure) {
-              context.showSnackBarMessage(userState.errorMessage ?? '');
-            }
-          },
+        child: AuthGuardWidget(
           child: Padding(
             padding: Gaps.large.paddingHorizontal,
             child: Form(

@@ -520,6 +520,56 @@ class S {
     );
   }
 
+  /// `Dashboard`
+  String get menuDashboardText {
+    return Intl.message(
+      'Dashboard',
+      name: 'menuDashboardText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Results`
+  String get menuResultsText {
+    return Intl.message(
+      'My Results',
+      name: 'menuResultsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Questionairre`
+  String get menuQuestionnaireText {
+    return Intl.message(
+      'Questionairre',
+      name: 'menuQuestionnaireText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My profile`
+  String get menuProfileText {
+    return Intl.message(
+      'My profile',
+      name: 'menuProfileText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get menuLogoutText {
+    return Intl.message(
+      'Log out',
+      name: 'menuLogoutText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to {appName}!`
   String welcomeAppNameText(String appName) {
     return Intl.message(

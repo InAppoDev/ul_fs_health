@@ -1,5 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/router/app_router.dart';
+import '../../../l10n/localizations_utils.dart';
+import '../../auth/widgets/auth_guard_widget.dart';
+
+// import '../../dashboard_menu/dashboard_menu_widget.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -18,12 +25,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeContent();
+    return HomeContent();
   }
 }
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+  HomeContent({super.key});
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,7 @@ class HomeContent extends StatelessWidget {
           // TODO Hovsep: implement info press
         },
         onLeadingPress: () {
-          // TODO Hovsep: open dashboard menu page
+          context.router.push(const DashboardMenuRoute());
         },
       ),
       body: Center(

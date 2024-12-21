@@ -5,4 +5,5 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.started() = _Started;
   const factory UserEvent.saveUserData(UserEntity entity, [@Default(UserStatus.saved) UserStatus successStatus]) = _SaveUserData;
   const factory UserEvent.getUserData() = _GetUserData;
+  const factory UserEvent.userLogout() = _UserLogout;
 }
