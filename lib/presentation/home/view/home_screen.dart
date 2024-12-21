@@ -37,38 +37,12 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text(appLocalizations.lblAppName),
-        actions: [
-          IconButton(
-              onPressed: () {
-              },
-              icon: const Icon(Icons.info_outline_rounded, color: Colors.red,))
-        ],
-        leading: IconButton(
-            onPressed: () {
-              context.router.push(const DashboardMenuRoute());
-            },
-            icon: const Icon(Icons.menu)),
-      ),
-      // drawer: const DashboardMenuWidget(),
-      // drawerScrimColor: Colors.white,
-      body: const AuthGuardWidget(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("kkk")
-            ],
-          ),
-    return Scaffold(
       appBar: SimpleAppBarWidget(
         onInfoPress: () {
           // TODO Hovsep: implement info press
         },
         onLeadingPress: () {
-          // TODO Hovsep: open dashboard menu page
+          context.router.push(const DashboardMenuRoute());
         },
       ),
       body: Center(

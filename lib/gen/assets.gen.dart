@@ -18,6 +18,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Chevron_Left.svg
   SvgGenImage get chevronLeft => const SvgGenImage('assets/icons/Chevron_Left.svg');
 
+  /// File path: assets/icons/Menu.svg
+  SvgGenImage get menu => const SvgGenImage('assets/icons/Menu.svg');
+
   /// File path: assets/icons/icon_home.svg
   SvgGenImage get iconHome => const SvgGenImage('assets/icons/icon_home.svg');
 
@@ -30,17 +33,23 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_results.svg
   SvgGenImage get iconResults => const SvgGenImage('assets/icons/icon_results.svg');
 
-  /// File path: assets/icons/Menu.svg
-  SvgGenImage get menu => const SvgGenImage('assets/icons/Menu.svg');
-
   /// File path: assets/icons/icon_sit_down_test.svg
   SvgGenImage get iconSitDownTest => const SvgGenImage('assets/icons/icon_sit_down_test.svg');
 
   /// File path: assets/icons/icon_walk_test.svg
   SvgGenImage get iconWalkTest => const SvgGenImage('assets/icons/icon_walk_test.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [chevronLeft, iconHome, iconProfile, iconQuestionnaire, iconResults, menu, iconSitDownTest, iconWalkTest];
+  List<SvgGenImage> get values => [
+        chevronLeft,
+        menu,
+        iconHome,
+        iconProfile,
+        iconQuestionnaire,
+        iconResults,
+        iconSitDownTest,
+        iconWalkTest
+      ];
 }
 
 class Assets {
