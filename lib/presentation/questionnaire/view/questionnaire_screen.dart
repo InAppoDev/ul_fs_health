@@ -6,9 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/constants/gender.dart';
-import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
-import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../l10n/localizations_utils.dart';
@@ -91,180 +89,180 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
       body: Center(
         child: AuthGuardWidget(
           child: Padding(
-            padding: Gaps.large.paddingHorizontal,
-            child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Gaps.extraLarger.spaceVertical,
-                    Text(appLocalizations.lblAppName, style: header1),
-                    Gaps.larger.spaceVertical,
-                    Text(
-                      appLocalizations.questHeaderTitle,
-                      style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
-                      textAlign: TextAlign.center,
-                    ),
-                    Gaps.smaller.spaceVertical,
-                    Text(appLocalizations.questHeaderSubTitle,
-                        style: body1.copyWith(overflow: TextOverflow.clip),
-                        textAlign: TextAlign.center),
-                    Gaps.largest.spaceVertical,
-                    Text(appLocalizations.questBasicInfoHeader,
+              padding: Gaps.large.paddingHorizontal,
+              child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Gaps.extraLarger.spaceVertical,
+                      Text(appLocalizations.lblAppName, style: header1),
+                      Gaps.larger.spaceVertical,
+                      Text(
+                        appLocalizations.questHeaderTitle,
                         style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
-                        textAlign: TextAlign.center),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => DropdownWidget<Gender>(
-                            validator: QuestionnaireValidator.validateGender,
-                            errorText: state.genderError,
-                            values: genderValues,
-                            selectedValue: state.basicInfo.gender,
-                            placeholder: appLocalizations.genderPlaceholder,
-                            onChanged: (selectedValue) {
-                              context.read<QuestionnaireBloc>().add(
-                                  QuestionnaireEvent.onGenderChanged(
-                                      selectedGender: selectedValue, shouldValidate: false));
-                            })),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                              errorText: state.ageError,
-                              controller: _ageController,
-                              onFocusChange: (hasFocus) {
+                        textAlign: TextAlign.center,
+                      ),
+                      Gaps.smaller.spaceVertical,
+                      Text(appLocalizations.questHeaderSubTitle,
+                          style: body1.copyWith(overflow: TextOverflow.clip),
+                          textAlign: TextAlign.center),
+                      Gaps.largest.spaceVertical,
+                      Text(appLocalizations.questBasicInfoHeader,
+                          style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                          textAlign: TextAlign.center),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => DropdownWidget<Gender>(
+                              validator: QuestionnaireValidator.validateGender,
+                              errorText: state.genderError,
+                              values: genderValues,
+                              selectedValue: state.basicInfo.gender,
+                              placeholder: appLocalizations.genderPlaceholder,
+                              onChanged: (selectedValue) {
                                 context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onAgeChanged(
-                                        age: _ageController.text, shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.agePlaceHolder,
-                            )),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                              errorText: state.heightError,
-                              controller: _heightController,
-                              onFocusChange: (hasFocus) {
-                                context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onHeightChanged(
-                                        height: _heightController.text, shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.heightPlaceHolder,
-                            )),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                              errorText: state.weightError,
-                              controller: _weightController,
-                              onFocusChange: (hasFocus) {
-                                context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onWeightChanged(
-                                        weight: _weightController.text, shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.weightPlaceHolder,
-                            )),
-                    Gaps.largest.spaceVertical,
-                    Text(appLocalizations.questHealthInfoHeader,
-                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
-                        textAlign: TextAlign.center),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              errorText: state.smokerStatusError,
-                              controller: _smokerController,
-                              onFocusChange: (hasFocus) {
-                                context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onSmokerStatusChanged(
-                                        smokerStatus: _smokerController.text,
-                                        shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.smokerPlaceHolder,
-                            )),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              errorText: state.drinkerStatusError,
-                              controller: _drinkerController,
-                              onFocusChange: (hasFocus) {
-                                context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onDrinkerStatusChanged(
-                                        drinkerStatus: _drinkerController.text,
-                                        shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.drinkerPlaceHolder,
-                            )),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              errorText: state.cholesterolStatusError,
-                              controller: _cholesterolController,
-                              onFocusChange: (hasFocus) {
-                                context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onCholesterolStatusChanged(
-                                        cholesterolStatus: _cholesterolController.text,
-                                        shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.cholesterolPlaceHolder,
-                            )),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => TextInputWidget(
-                              errorText: state.bloodSugarStatusError,
-                              controller: _bloodSugarController,
-                              onFocusChange: (hasFocus) {
-                                context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onBloodSugarStatusChanged(
-                                        bloodSugarStatus: _bloodSugarController.text,
-                                        shouldValidate: !hasFocus));
-                              },
-                              hintText: appLocalizations.bloodSugarPlaceHolder,
-                            )),
-                    Gaps.large.spaceVertical,
-                    BlocBuilder<UserBloc, UserState>(
-                      builder: (context, userState) =>
-                          BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                              builder: (context, state) => SizedBox(
-                                  width: MediaQuery.of(context).size.width,
-                                  child: SubmitButton(
-                                    isValid: state.isFormValid,
-                                    titleColor: ColorScheme.of(context).surface,
-                                    onPressed: () {
-                                      final user = userState.model!;
-                                        context.read<UserBloc>().add(UserEvent.saveUserData(
-                                            UserEntity(
-                                                id: user.id,
-                                                gender: state.basicInfo.gender,
-                                                age: int.tryParse(state.basicInfo.age),
-                                                height: double.tryParse(state.basicInfo.height),
-                                                weight: double.tryParse(state.basicInfo.weight),
-                                                smokerInfo: state.healthInfo.smokerStatus,
-                                                drinkerInfo: state.healthInfo.drinkerStatus,
-                                                cholesterolInfo: state.healthInfo.cholesterolStatus,
-                                                bloodSugarInfo: state.healthInfo.bloodSugarStatus),
-                                            UserStatus.dataSaved));
-                                    },
-                                    title: appLocalizations.btnQuestSubmit,
-                                    backgroundColor: ColorScheme.of(context).primary,
-                                    isLoading: context.watch<UserBloc>().state.status ==
-                                            UserStatus.loading ||
-                                        context.watch<QuestionnaireBloc>().state.status ==
-                                            QuestionnaireStatus.loading,
-                                  ))),
-                    ),
-                    Gaps.medium.spaceVertical
-                  ],
+                                    QuestionnaireEvent.onGenderChanged(
+                                        selectedGender: selectedValue, shouldValidate: false));
+                              })),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                errorText: state.ageError,
+                                controller: _ageController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onAgeChanged(
+                                          age: _ageController.text, shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.agePlaceHolder,
+                              )),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                errorText: state.heightError,
+                                controller: _heightController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onHeightChanged(
+                                          height: _heightController.text, shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.heightPlaceHolder,
+                              )),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                errorText: state.weightError,
+                                controller: _weightController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onWeightChanged(
+                                          weight: _weightController.text, shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.weightPlaceHolder,
+                              )),
+                      Gaps.largest.spaceVertical,
+                      Text(appLocalizations.questHealthInfoHeader,
+                          style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                          textAlign: TextAlign.center),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                errorText: state.smokerStatusError,
+                                controller: _smokerController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onSmokerStatusChanged(
+                                          smokerStatus: _smokerController.text,
+                                          shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.smokerPlaceHolder,
+                              )),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                errorText: state.drinkerStatusError,
+                                controller: _drinkerController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onDrinkerStatusChanged(
+                                          drinkerStatus: _drinkerController.text,
+                                          shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.drinkerPlaceHolder,
+                              )),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                errorText: state.cholesterolStatusError,
+                                controller: _cholesterolController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onCholesterolStatusChanged(
+                                          cholesterolStatus: _cholesterolController.text,
+                                          shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.cholesterolPlaceHolder,
+                              )),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                          builder: (context, state) => TextInputWidget(
+                                errorText: state.bloodSugarStatusError,
+                                controller: _bloodSugarController,
+                                onFocusChange: (hasFocus) {
+                                  context.read<QuestionnaireBloc>().add(
+                                      QuestionnaireEvent.onBloodSugarStatusChanged(
+                                          bloodSugarStatus: _bloodSugarController.text,
+                                          shouldValidate: !hasFocus));
+                                },
+                                hintText: appLocalizations.bloodSugarPlaceHolder,
+                              )),
+                      Gaps.large.spaceVertical,
+                      BlocBuilder<UserBloc, UserState>(
+                        builder: (context, userState) =>
+                            BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                                builder: (context, state) => SizedBox(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: SubmitButton(
+                                      isValid: state.isFormValid,
+                                      titleColor: ColorScheme.of(context).surface,
+                                      onPressed: () {
+                                        final user = userState.model!;
+                                          context.read<UserBloc>().add(UserEvent.saveUserData(
+                                              UserEntity(
+                                                  id: user.id,
+                                                  gender: state.basicInfo.gender,
+                                                  age: int.tryParse(state.basicInfo.age),
+                                                  height: double.tryParse(state.basicInfo.height),
+                                                  weight: double.tryParse(state.basicInfo.weight),
+                                                  smokerInfo: state.healthInfo.smokerStatus,
+                                                  drinkerInfo: state.healthInfo.drinkerStatus,
+                                                  cholesterolInfo: state.healthInfo.cholesterolStatus,
+                                                  bloodSugarInfo: state.healthInfo.bloodSugarStatus),
+                                              UserStatus.dataSaved));
+                                      },
+                                      title: appLocalizations.btnQuestSubmit,
+                                      backgroundColor: ColorScheme.of(context).primary,
+                                      isLoading: context.watch<UserBloc>().state.status ==
+                                              UserStatus.loading ||
+                                          context.watch<QuestionnaireBloc>().state.status ==
+                                              QuestionnaireStatus.loading,
+                                    ))),
+                      ),
+                      Gaps.medium.spaceVertical
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
     );
   }
 }

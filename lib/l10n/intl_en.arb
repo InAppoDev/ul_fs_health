@@ -12,19 +12,19 @@
   "lblValidEmail": "Enter a valid email address",
   "lblRequirePassword": "Password is required",
   "lblPasswordLength": "Password must be at least 6 characters",
-  "lblConfirmPassword" : "Please confirm your password",
-  "lblPasswordDontMatch" : "Passwords do not match",
-  "lblEnterPassword" : "Enter your email and password to create \n an account. Confirmation mail will be sent to \n your email.",
-  "lblUnableSignup":"Unable to sign up",
-  "lblLoginFailed" : "Login failed",
-  "lblEmailPassword" : "Enter your email and password to enter app.",
-  "lblNotYetRegistered":  "Not yet registered? Sign up with your email",
-  "lblTermsService" : "Terms of Service",
-  "lblClickCreateAccount" : "By clicking Create account, you agree to our",
-  "lblAnd" : " and  ",
-  "lblPrivacyPolicy" : "Privacy Policy",
-  "lblYouAgree" : "By clicking continue, you agree to our",
-  "lblAppName" : "Ul Fs Health",
+  "lblConfirmPassword": "Please confirm your password",
+  "lblPasswordDontMatch": "Passwords do not match",
+  "lblEnterPassword": "Enter your email and password to create \n an account. Confirmation mail will be sent to \n your email.",
+  "lblUnableSignup": "Unable to sign up",
+  "lblLoginFailed": "Login failed",
+  "lblEmailPassword": "Enter your email and password to enter app.",
+  "lblNotYetRegistered": "Not yet registered? Sign up with your email",
+  "lblTermsService": "Terms of Service",
+  "lblClickCreateAccount": "By clicking Create account, you agree to our",
+  "lblAnd": " and  ",
+  "lblPrivacyPolicy": "Privacy Policy",
+  "lblYouAgree": "By clicking continue, you agree to our",
+  "lblAppName": "Ul Fs Health",
   "questHeaderTitle": "Fill this questionarre",
   "questHeaderSubTitle": "In order to give the best results, our app needs detailed information about your personal and medical conditions.",
   "questBasicInfoHeader": "Basic information",
@@ -66,5 +66,39 @@
   "sitToStandTestTitleText": "Sit-to-Stand Test",
   "sitToStandTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
   "btnTestStartText": "Start Test",
-  "btnTestInstructionsText": "Test instructions"
+  "btnTestInstructionsText": "Test instructions",
+  "walkTestInstruction": "First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable.",
+  "walkTestInitialText": "Great, you are all set to start the test!",
+  "sitToDownTestInitialText": "Make sure you have a chair and enough place to stand up.",
+  "testStartText": "START TEST",
+  "testInstructionFirstPartText": "When you are ready press ",
+  "testInstructionSecondPartText": " and put the phone in your pocket. ",
+  "testInstructionBoldText": "Sound signal",
+  "testInstructionBoldLowerText": "sound signal",
+  "testInstructionThirdPart": " will let you know when you can start walking.",
+  "testInstructionAlertFirstText": "After ",
+  "testInstructionAlertSecondText": " will alert you that the test is finished.",
+  "walkTestDelayText": "{minute} minutes pass, ",
+  "@walkTestDelayText": {
+    "description": "text for walk test",
+    "placeholders": {
+      "minute": {
+        "type": "int"
+      }
+    }
+  },
+  "sitToDownTestDelayText": "{count} repetitions",
+  "@sitToDownTestDelayText": {
+    "description": "text for sit to down test",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "additionalSitToDownTestText": "and in sitting position",
+  "pauseTestUpperText": "PAUSE TEST",
+  "pauseText": "PAUSE",
+  "walkTestAdditionalInformationSecondPartText": " and resume with the test when you are feeling better.",
+  "walkTestAdditionalInfoFirstPartText": "*If you feel any dizziness or tiredness during the test, you can press "
 }

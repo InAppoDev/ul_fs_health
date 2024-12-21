@@ -11,7 +11,7 @@ class QuestionnaireValidator {
   }
 
   static String? validateGender(Gender? value) {
-    return validateRequiredText(value.toString(), appLocalizations.genderRequiredErrorText);
+    return validateRequiredText(value?.toString() ?? '', appLocalizations.genderRequiredErrorText);
   }
 
   static String? validateAge(String? value) {

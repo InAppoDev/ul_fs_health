@@ -49,13 +49,13 @@ class LoginContent extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: AuthGuardWidget(
+          isAuthRoute: true,
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state.status == AuthStatus.successLogin) {
                 context.router.replaceAll([const HomeRoute()]);
               } else if (state.status == AuthStatus.failure) {
-                context
-                    .showSnackBarMessage(state.error ?? S.current.lblLoginFailed);
+                context.showSnackBarMessage(state.error ?? S.current.lblLoginFailed);
               }
             },
             child: Padding(
