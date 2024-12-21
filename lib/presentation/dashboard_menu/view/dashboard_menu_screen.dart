@@ -81,7 +81,6 @@ class DashboardMenuScreen extends StatelessWidget {
                     visualDensity: VisualDensity.compact,
                     onTap: () {
                       context.read<UserBloc>().add(const UserEvent.userLogout());
-                      // context.read<UserBloc>().add(const UserEvent.userLogout());
                     },
                     leading: Transform.rotate(
                         angle: pi, child: Icon(Icons.logout, color: ColorScheme.of(context).primary)),
