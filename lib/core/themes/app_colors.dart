@@ -35,8 +35,10 @@ const ColorScheme darkColorScheme = ColorScheme(
 
 
 const Color defaultTextColor = Color(0xFF000000);
+const Color blackL = Color(0x00000040);
 const Color defaultDropdownColor = Color(0xFFD9D9D9);
 const Color defaultBtnBorderColor = Color(0xFFD9D9D9);
+const Color defaultDividerColor = Color(0xFFCAC4D0);
 const Color white = Color(0xFFFFFFFF);
 const Color defaultBtnBackground = Color(0xFFB43A20);
 const Color defaultBtnInactiveBackground = Color(0xFFEEEEEE);

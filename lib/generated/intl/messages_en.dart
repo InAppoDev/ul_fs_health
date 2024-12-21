@@ -93,6 +93,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
         "lblYouAgree": MessageLookupByLibrary.simpleMessage(
             "By clicking continue, you agree to our"),
+        "menuDashboardText": MessageLookupByLibrary.simpleMessage("Dashboard"),
+        "menuLogoutText": MessageLookupByLibrary.simpleMessage("Log out"),
+        "menuProfileText": MessageLookupByLibrary.simpleMessage("My profile"),
+        "menuQuestionnaireText":
+            MessageLookupByLibrary.simpleMessage("Questionairre"),
+        "menuResultsText": MessageLookupByLibrary.simpleMessage("My Results"),
         "questBasicInfoHeader":
             MessageLookupByLibrary.simpleMessage("Basic information"),
         "questHeaderSubTitle": MessageLookupByLibrary.simpleMessage(

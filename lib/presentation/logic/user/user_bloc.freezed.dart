@@ -22,6 +22,7 @@ mixin _$UserEvent {
     required TResult Function(UserEntity entity, UserStatus successStatus)
         saveUserData,
     required TResult Function() getUserData,
+    required TResult Function() userLogout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$UserEvent {
     TResult? Function(UserEntity entity, UserStatus successStatus)?
         saveUserData,
     TResult? Function()? getUserData,
+    TResult? Function()? userLogout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +39,7 @@ mixin _$UserEvent {
     TResult Function()? started,
     TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
     TResult Function()? getUserData,
+    TResult Function()? userLogout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -45,6 +48,7 @@ mixin _$UserEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_UserLogout value) userLogout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,6 +56,7 @@ mixin _$UserEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_UserLogout value)? userLogout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +64,7 @@ mixin _$UserEvent {
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_UserLogout value)? userLogout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +135,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(UserEntity entity, UserStatus successStatus)
         saveUserData,
     required TResult Function() getUserData,
+    required TResult Function() userLogout,
   }) {
     return started();
   }
@@ -140,6 +147,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(UserEntity entity, UserStatus successStatus)?
         saveUserData,
     TResult? Function()? getUserData,
+    TResult? Function()? userLogout,
   }) {
     return started?.call();
   }
@@ -150,6 +158,7 @@ class _$StartedImpl implements _Started {
     TResult Function()? started,
     TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
     TResult Function()? getUserData,
+    TResult Function()? userLogout,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -164,6 +173,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_UserLogout value) userLogout,
   }) {
     return started(this);
   }
@@ -174,6 +184,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_UserLogout value)? userLogout,
   }) {
     return started?.call(this);
   }
@@ -184,6 +195,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_UserLogout value)? userLogout,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -292,6 +304,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
     required TResult Function(UserEntity entity, UserStatus successStatus)
         saveUserData,
     required TResult Function() getUserData,
+    required TResult Function() userLogout,
   }) {
     return saveUserData(entity, successStatus);
   }
@@ -303,6 +316,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
     TResult? Function(UserEntity entity, UserStatus successStatus)?
         saveUserData,
     TResult? Function()? getUserData,
+    TResult? Function()? userLogout,
   }) {
     return saveUserData?.call(entity, successStatus);
   }
@@ -313,6 +327,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
     TResult Function()? started,
     TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
     TResult Function()? getUserData,
+    TResult Function()? userLogout,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
@@ -327,6 +342,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_UserLogout value) userLogout,
   }) {
     return saveUserData(this);
   }
@@ -337,6 +353,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_UserLogout value)? userLogout,
   }) {
     return saveUserData?.call(this);
   }
@@ -347,6 +364,7 @@ class _$SaveUserDataImpl implements _SaveUserData {
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_UserLogout value)? userLogout,
     required TResult orElse(),
   }) {
     if (saveUserData != null) {
@@ -415,6 +433,7 @@ class _$GetUserDataImpl implements _GetUserData {
     required TResult Function(UserEntity entity, UserStatus successStatus)
         saveUserData,
     required TResult Function() getUserData,
+    required TResult Function() userLogout,
   }) {
     return getUserData();
   }
@@ -426,6 +445,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult? Function(UserEntity entity, UserStatus successStatus)?
         saveUserData,
     TResult? Function()? getUserData,
+    TResult? Function()? userLogout,
   }) {
     return getUserData?.call();
   }
@@ -436,6 +456,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult Function()? started,
     TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
     TResult Function()? getUserData,
+    TResult Function()? userLogout,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -450,6 +471,7 @@ class _$GetUserDataImpl implements _GetUserData {
     required TResult Function(_Started value) started,
     required TResult Function(_SaveUserData value) saveUserData,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_UserLogout value) userLogout,
   }) {
     return getUserData(this);
   }
@@ -460,6 +482,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult? Function(_Started value)? started,
     TResult? Function(_SaveUserData value)? saveUserData,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_UserLogout value)? userLogout,
   }) {
     return getUserData?.call(this);
   }
@@ -470,6 +493,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult Function(_Started value)? started,
     TResult Function(_SaveUserData value)? saveUserData,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_UserLogout value)? userLogout,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -481,6 +505,125 @@ class _$GetUserDataImpl implements _GetUserData {
 
 abstract class _GetUserData implements UserEvent {
   const factory _GetUserData() = _$GetUserDataImpl;
+}
+
+/// @nodoc
+abstract class _$$UserLogoutImplCopyWith<$Res> {
+  factory _$$UserLogoutImplCopyWith(
+          _$UserLogoutImpl value, $Res Function(_$UserLogoutImpl) then) =
+      __$$UserLogoutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserLogoutImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserLogoutImpl>
+    implements _$$UserLogoutImplCopyWith<$Res> {
+  __$$UserLogoutImplCopyWithImpl(
+      _$UserLogoutImpl _value, $Res Function(_$UserLogoutImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UserLogoutImpl implements _UserLogout {
+  const _$UserLogoutImpl();
+
+  @override
+  String toString() {
+    return 'UserEvent.userLogout()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserLogoutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(UserEntity entity, UserStatus successStatus)
+        saveUserData,
+    required TResult Function() getUserData,
+    required TResult Function() userLogout,
+  }) {
+    return userLogout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(UserEntity entity, UserStatus successStatus)?
+        saveUserData,
+    TResult? Function()? getUserData,
+    TResult? Function()? userLogout,
+  }) {
+    return userLogout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(UserEntity entity, UserStatus successStatus)? saveUserData,
+    TResult Function()? getUserData,
+    TResult Function()? userLogout,
+    required TResult orElse(),
+  }) {
+    if (userLogout != null) {
+      return userLogout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_SaveUserData value) saveUserData,
+    required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_UserLogout value) userLogout,
+  }) {
+    return userLogout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_SaveUserData value)? saveUserData,
+    TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_UserLogout value)? userLogout,
+  }) {
+    return userLogout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_SaveUserData value)? saveUserData,
+    TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_UserLogout value)? userLogout,
+    required TResult orElse(),
+  }) {
+    if (userLogout != null) {
+      return userLogout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserLogout implements UserEvent {
+  const factory _UserLogout() = _$UserLogoutImpl;
 }
 
 /// @nodoc

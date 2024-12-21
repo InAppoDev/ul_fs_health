@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 
 import '../../presentation/auth/view/login_screen.dart';
 import '../../presentation/auth/view/signup_screen.dart';
+import '../../presentation/dashboard_menu/view/dashboard_menu_screen.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_screen.dart';
 
@@ -14,22 +15,24 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/login',
           page: LoginRoute.page,
-
+          initial: true,
         ),
         AutoRoute(
           path: '/questionnaire',
           page: QuestionnaireRoute.page,
-          initial: true,
-
+        ),
+        AutoRoute(
+          path: '/dashboard_navigation',
+          page: DashboardMenuRoute.page,
         ),
         AutoRoute(
           path: '/signup',
           page: SignupRoute.page,
-
         ),
         AutoRoute(
           path: '/home',
           page: HomeRoute.page,
         ),
       ];
+
 }

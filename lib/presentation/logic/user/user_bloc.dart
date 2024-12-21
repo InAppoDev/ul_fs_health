@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/models/user_model.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../domain/repositories/user_repository.dart';
 
@@ -13,6 +12,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc(this.userRepository) : super(const _Initial()) {
     on<_SaveUserData>(_onSaveUserData);
     on<_GetUserData>(_onGetUserData);
+    on<_UserLogout>(_onUserLogout);
   }
 
   final UserRepository userRepository;
@@ -34,10 +34,27 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       emit(state.copyWith(status: UserStatus.loading));
       final user = await userRepository.getLoggedInUser();
-      emit(state.copyWith(model: user, status: UserStatus.saved));
+      final status = user == null ? UserStatus.unauthenticated : UserStatus.authenticated;
+      emit(UserState(status: status, model: user));
     } catch (e) {
       emit(state.copyWith(
           status: UserStatus.failure, errorMessage: e.toString()));
     }
   }
+
+  Future<void> _onUserLogout(
+      _UserLogout event, Emitter<UserState> emit) async {
+    try {
+      emit(state.copyWith(status: UserStatus.loading));
+      await userRepository.logout();
+      emit(const UserState(
+        status: UserStatus.unauthenticated
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+          status: UserStatus.failure, errorMessage: e.toString()));
+    }
+  }
+
+
 }

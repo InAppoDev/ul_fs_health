@@ -11,7 +11,7 @@ Widget provideBlocProviders({required Widget child}) {
       BlocProvider<UserBloc>(
         create: (_) => UserBloc(
           getIt<UserRepository>(),
-        ),
+        )..add(const UserEvent.getUserData()),
       ),
     ],
     child: child,

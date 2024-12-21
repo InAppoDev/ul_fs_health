@@ -41,4 +41,7 @@ class UserRepositoryImp implements UserRepository {
         ? null
         : UserModel.fromJson(snapshot.data()!).toEntity();
   }
+
+  @override
+  Future<void> logout() => firebaseService.logout();
 }

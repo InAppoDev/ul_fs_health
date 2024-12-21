@@ -21,4 +21,7 @@ extension NumberExtension on double {
 
   SizedBox get spaceHorizontal => SizedBox(width: this);
   SizedBox get spaceVertical => SizedBox(height: this);
+
+  Offset get smallY => Offset(0, this);
+  Offset get smallX => Offset(this, 0);
 }

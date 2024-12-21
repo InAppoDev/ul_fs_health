@@ -45,5 +45,10 @@
   "smokerStatusRequiredErrorText": "The field must be filled",
   "drinkerStatusRequiredErrorText": "The field must be filled",
   "cholesterolStatusRequiredErrorText": "The field must be filled",
-  "bloodSugarStatusRequiredErrorText": "The field must be filled"
+  "bloodSugarStatusRequiredErrorText": "The field must be filled",
+  "menuDashboardText": "Dashboard",
+  "menuResultsText": "My Results",
+  "menuQuestionnaireText": "Questionairre",
+  "menuProfileText": "My profile",
+  "menuLogoutText": "Log out"
 }

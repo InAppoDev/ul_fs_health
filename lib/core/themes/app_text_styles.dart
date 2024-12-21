@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'app_colors.dart';
+
 TextStyle get header1 => GoogleFonts.inter(
       fontSize: 24,
       fontWeight: FontWeight.w600,
@@ -24,3 +26,11 @@ TextStyle get body3 => GoogleFonts.inter(
       fontSize: 12,
       color: const Color.fromRGBO(130, 130, 130, 1),
     );
+
+TextStyle get body4 => GoogleFonts.roboto(
+  fontWeight: FontWeight.w400,
+  fontSize: 16,
+  height: 0.875,
+  letterSpacing: 0.5,
+  color: defaultTextColor
+);
