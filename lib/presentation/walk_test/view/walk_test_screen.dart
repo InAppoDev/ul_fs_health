@@ -28,22 +28,10 @@ class WalkTestContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TestLayoutWidget(
-        headerIcon: Assets.icons.iconWalkTest.svg(
-          colorFilter: const ColorFilter.mode(white, BlendMode.srcIn)
-        ),
+        headerIcon: Assets.icons.iconWalkTest,
         headerText: appLocalizations.walkTestTitleText,
         children: [
-          TextBuilderWidget(
-            placeholders: [
-              TextModel(
-                  text: appLocalizations.walkTestInitialText,
-              ),
-              const TextModel(text: ''),
-
-              TextModel(text: appLocalizations.textWithNewLine(appLocalizations.testInstructionWalkThirdPart)),
-              TextModel(text: appLocalizations.walkTestDelayText(6))
-            ],
-          ),
+          const TextBuilderWidget(),
           Gaps.largest.spaceVertical,
           SubmitButton(
               onPressed: () {},

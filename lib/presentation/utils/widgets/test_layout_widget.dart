@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
-import '../../../core/themes/app_text_styles.dart';
+import '../../../gen/assets.gen.dart';
+import 'feature_test_header.dart';
 import 'simple_app_bar_widget.dart';
 
 class TestLayoutWidget extends StatelessWidget {
@@ -16,7 +17,7 @@ class TestLayoutWidget extends StatelessWidget {
       this.onInfoPress});
 
   final VoidCallback? onInfoPress;
-  final Widget headerIcon;
+  final SvgGenImage headerIcon;
   final List<Widget> children;
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
@@ -29,34 +30,18 @@ class TestLayoutWidget extends StatelessWidget {
         showBackButton: true,
         onInfoPress: onInfoPress,
       ),
-      body: Padding(
-        padding: Gaps.small.paddingRight,
-        child: Column(
-          children: [
-            Gaps.larger.spaceVertical,
-            Container(
-              padding: Gaps.large.paddingVertical.copyWith(left: Gaps.large, right: Gaps.large),
-              color: ColorScheme.of(context).primary,
-              child: Row(
-                children: [
-                  headerIcon,
-                  Gaps.larger.spaceHorizontal,
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.6,
-                      child: Text(headerText.toUpperCase(), style: header3))
-                ],
-              ),
-            ),
-            Gaps.extraLarge.spaceVertical,
-            Padding(
-                padding: Gaps.large.paddingHorizontal,
-                child: Column(
-                  crossAxisAlignment: crossAxisAlignment,
-                  mainAxisAlignment: mainAxisAlignment,
-                  children: children,
-                )),
-          ],
-        ),
+      body: Column(
+        children: [
+          FeatureTestHeader(title: headerText, leading: headerIcon),
+          (Gaps.largest + Gaps.large).spaceVertical,
+          Padding(
+              padding: Gaps.larger.paddingHorizontal.copyWith(bottom: Gaps.larger),
+              child: Column(
+                crossAxisAlignment: crossAxisAlignment,
+                mainAxisAlignment: mainAxisAlignment,
+                children: children,
+              )),
+        ],
       ),
     );
   }

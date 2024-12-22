@@ -810,16 +810,6 @@ class S {
     );
   }
 
-  /// ` will let you know when you can start with stand-up sit-down test.`
-  String get testInstructionSitStandThirdPart {
-    return Intl.message(
-      ' will let you know when you can start with stand-up sit-down test.',
-      name: 'testInstructionSitStandThirdPart',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `After `
   String get testInstructionAlertFirstText {
     return Intl.message(
@@ -847,26 +837,6 @@ class S {
       name: 'walkTestDelayText',
       desc: 'text for walk test',
       args: [minute],
-    );
-  }
-
-  /// `{count} repetitions, `
-  String sitToDownTestDelayText(int count) {
-    return Intl.message(
-      '$count repetitions, ',
-      name: 'sitToDownTestDelayText',
-      desc: 'text for sit to down test',
-      args: [count],
-    );
-  }
-
-  /// `and in sitting position press `
-  String get additionalSitToDownTestText {
-    return Intl.message(
-      'and in sitting position press ',
-      name: 'additionalSitToDownTestText',
-      desc: '',
-      args: [],
     );
   }
 

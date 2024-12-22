@@ -124,9 +124,7 @@ class HomeContent extends StatelessWidget {
                   titleColor: white),
               Constants.sizedBoxHeightSmall.spaceVertical,
               SubmitButton(
-                  onPressed: () {
-                    context.router.push(const SitToStandTestRoute());
-                  },
+                  onPressed: () {},
                   title: appLocalizations.btnTestInstructionsText,
                   backgroundColor: defaultBtnInactiveBackground,
                   titleColor: defaultTextColor),

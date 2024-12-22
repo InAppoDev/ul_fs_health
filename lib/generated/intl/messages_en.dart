@@ -22,9 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(count) => "After ${count} repetitions, ";
 
-  static String m1(appName) => "Welcome to ${appName}!";
-  static String m0(count) => "${count} repetitions, ";
-
   static String m1(text) => "${text}\n";
 
   static String m2(minute) => "${minute} minutes pass, ";
@@ -33,8 +30,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "additionalSitToDownTestText": MessageLookupByLibrary.simpleMessage(
-            "and in sitting position press "),
         "agePlaceHolder":
             MessageLookupByLibrary.simpleMessage("Enter your age"),
         "ageRequiredErrorText":
@@ -101,6 +96,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblRequirePassword":
             MessageLookupByLibrary.simpleMessage("Password is required"),
         "lblSignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "lblSitToStandAlertInfo1": m0,
+        "lblSitToStandAlertInfo2": MessageLookupByLibrary.simpleMessage(
+            " will alert you that the test is finished."),
+        "lblSitToStandPageDescription1": MessageLookupByLibrary.simpleMessage(
+            "When you are ready and in sitting position press "),
+        "lblSitToStandPageDescription2": MessageLookupByLibrary.simpleMessage(
+            " and put the phone in your pocket. "),
+        "lblSitToStandPageDescription3": MessageLookupByLibrary.simpleMessage(
+            " will let you know when you can start with stand-up sit-down test."),
+        "lblSitToStandPageTitle": MessageLookupByLibrary.simpleMessage(
+            "Make sure you have a chair and enough place to stand up."),
+        "lblSoundSignal": MessageLookupByLibrary.simpleMessage("sound signal"),
         "lblTermsService":
             MessageLookupByLibrary.simpleMessage("Terms of Service"),
         "lblUnableSignup":
@@ -115,6 +122,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuQuestionnaireText":
             MessageLookupByLibrary.simpleMessage("Questionairre"),
         "menuResultsText": MessageLookupByLibrary.simpleMessage("My Results"),
+        "pauseTestUpperText":
+            MessageLookupByLibrary.simpleMessage("PAUSE TEST"),
+        "pauseText": MessageLookupByLibrary.simpleMessage("PAUSE"),
         "questBasicInfoHeader":
             MessageLookupByLibrary.simpleMessage("Basic information"),
         "questHeaderSubTitle": MessageLookupByLibrary.simpleMessage(
@@ -123,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fill this questionarre"),
         "questHealthInfoHeader":
             MessageLookupByLibrary.simpleMessage("Health information"),
+        "sitToDownTestInitialText": MessageLookupByLibrary.simpleMessage(
+            "Make sure you have a chair and enough place to stand up."),
         "sitToStandTestDescriptionText": MessageLookupByLibrary.simpleMessage(
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
         "sitToStandTestTitleText":
@@ -131,8 +143,34 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you an active smoker?"),
         "smokerStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "testInstructionAlertFirstText":
+            MessageLookupByLibrary.simpleMessage("After "),
+        "testInstructionAlertSecondText": MessageLookupByLibrary.simpleMessage(
+            " will alert you that the test is finished."),
+        "testInstructionBoldLowerText":
+            MessageLookupByLibrary.simpleMessage("sound signal"),
+        "testInstructionBoldText":
+            MessageLookupByLibrary.simpleMessage("Sound signal"),
+        "testInstructionFirstPartText":
+            MessageLookupByLibrary.simpleMessage("When you are ready press "),
+        "testInstructionSecondPartText": MessageLookupByLibrary.simpleMessage(
+            " and put the phone in your pocket. "),
+        "testInstructionWalkThirdPart": MessageLookupByLibrary.simpleMessage(
+            " will let you know when you can start walking."),
+        "testStartText": MessageLookupByLibrary.simpleMessage("START TEST"),
+        "textWithNewLine": m1,
+        "walkTestAdditionalInfoFirstPartText": MessageLookupByLibrary.simpleMessage(
+            "*If you feel any dizziness or tiredness during the test, you can press "),
+        "walkTestAdditionalInformationSecondPartText":
+            MessageLookupByLibrary.simpleMessage(
+                " and resume with the test when you are feeling better."),
+        "walkTestDelayText": m2,
         "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
+        "walkTestInitialText": MessageLookupByLibrary.simpleMessage(
+            "Great, you are all set to start the test!"),
+        "walkTestInstruction": MessageLookupByLibrary.simpleMessage(
+            "First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable."),
         "walkTestTitleText":
             MessageLookupByLibrary.simpleMessage("6 Minute Walk Test"),
         "weightPlaceHolder": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +179,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please type your weight"),
         "welcomeAppDescriptionText": MessageLookupByLibrary.simpleMessage(
             "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
-        "welcomeAppNameText": m0
+        "welcomeAppNameText": m3
       };
 }

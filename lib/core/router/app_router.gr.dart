@@ -143,25 +143,6 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SitToStandTestScreen]
-class SitToStandTestRoute extends PageRouteInfo<void> {
-  const SitToStandTestRoute({List<PageRouteInfo>? children})
-      : super(
-          SitToStandTestRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SitToStandTestRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const SitToStandTestScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [WalkTestScreen]
 class WalkTestRoute extends PageRouteInfo<void> {
   const WalkTestRoute({List<PageRouteInfo>? children})

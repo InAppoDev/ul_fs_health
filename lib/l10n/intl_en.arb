@@ -73,7 +73,7 @@
   "lblSitToStandPageDescription2": " and put the phone in your pocket. ",
   "lblSitToStandPageDescription3": " will let you know when you can start with stand-up sit-down test.",
   "lblSitToStandAlertInfo1": "After {count} repetitions, ",
-  "lblSitToStandAlertInfo2": " will alert you that the test is finished."
+  "lblSitToStandAlertInfo2": " will alert you that the test is finished.",
   "walkTestInstruction": "First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable.",
   "walkTestInitialText": "Great, you are all set to start the test!",
   "sitToDownTestInitialText": "Make sure you have a chair and enough place to stand up.",
@@ -83,7 +83,6 @@
   "testInstructionBoldText": "Sound signal",
   "testInstructionBoldLowerText": "sound signal",
   "testInstructionWalkThirdPart": " will let you know when you can start walking.",
-  "testInstructionSitStandThirdPart": " will let you know when you can start with stand-up sit-down test.",
   "testInstructionAlertFirstText": "After ",
   "testInstructionAlertSecondText": " will alert you that the test is finished.",
   "walkTestDelayText": "{minute} minutes pass, ",
@@ -95,16 +94,6 @@
       }
     }
   },
-  "sitToDownTestDelayText": "{count} repetitions, ",
-  "@sitToDownTestDelayText": {
-    "description": "text for sit to down test",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
-  },
-  "additionalSitToDownTestText": "and in sitting position press ",
   "pauseTestUpperText": "PAUSE TEST",
   "pauseText": "PAUSE",
   "walkTestAdditionalInformationSecondPartText": " and resume with the test when you are feeling better.",
