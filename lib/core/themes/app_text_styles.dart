@@ -25,6 +25,7 @@ TextStyle get header2 => GoogleFonts.inter(
 TextStyle get body1 => GoogleFonts.inter(
       color: const Color.fromRGBO(0, 0, 0, 1),
       fontSize: 14,
+      height: 1.5,
       fontWeight: FontWeight.w400,
     );
 TextStyle get body2 => GoogleFonts.inter(

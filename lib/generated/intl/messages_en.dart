@@ -20,16 +20,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(count) => "${count} repetitions";
+  static String m0(count) => "${count} repetitions, ";
 
-  static String m1(minute) => "${minute} minutes pass, ";
+  static String m1(text) => "${text}\n";
 
-  static String m2(appName) => "Welcome to ${appName}!";
+  static String m2(minute) => "${minute} minutes pass, ";
+
+  static String m3(appName) => "Welcome to ${appName}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "additionalSitToDownTestText":
-            MessageLookupByLibrary.simpleMessage("and in sitting position"),
+        "additionalSitToDownTestText": MessageLookupByLibrary.simpleMessage(
+            "and in sitting position press "),
         "agePlaceHolder":
             MessageLookupByLibrary.simpleMessage("Enter your age"),
         "ageRequiredErrorText":
@@ -144,15 +146,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("When you are ready press "),
         "testInstructionSecondPartText": MessageLookupByLibrary.simpleMessage(
             " and put the phone in your pocket. "),
-        "testInstructionThirdPart": MessageLookupByLibrary.simpleMessage(
+        "testInstructionSitStandThirdPart": MessageLookupByLibrary.simpleMessage(
+            " will let you know when you can start with stand-up sit-down test."),
+        "testInstructionWalkThirdPart": MessageLookupByLibrary.simpleMessage(
             " will let you know when you can start walking."),
         "testStartText": MessageLookupByLibrary.simpleMessage("START TEST"),
+        "textWithNewLine": m1,
         "walkTestAdditionalInfoFirstPartText": MessageLookupByLibrary.simpleMessage(
             "*If you feel any dizziness or tiredness during the test, you can press "),
         "walkTestAdditionalInformationSecondPartText":
             MessageLookupByLibrary.simpleMessage(
                 " and resume with the test when you are feeling better."),
-        "walkTestDelayText": m1,
+        "walkTestDelayText": m2,
         "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
         "walkTestInitialText": MessageLookupByLibrary.simpleMessage(
@@ -167,6 +172,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please type your weight"),
         "welcomeAppDescriptionText": MessageLookupByLibrary.simpleMessage(
             "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
-        "welcomeAppNameText": m2
+        "welcomeAppNameText": m3
       };
 }

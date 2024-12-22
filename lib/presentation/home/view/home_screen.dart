@@ -101,7 +101,7 @@ class HomeContent extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(appLocalizations.walkTestTitleText, style: header2),
+                        Text(appLocalizations.sitToStandTestTitleText, style: header2),
                         Gaps.smaller.spaceVertical,
                         Text(appLocalizations.walkTestDescriptionText, style: body3),
                       ],
@@ -117,7 +117,9 @@ class HomeContent extends StatelessWidget {
                   titleColor: white),
               Constants.sizedBoxHeightSmall.spaceVertical,
               SubmitButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.push(const SitToStandTestRoute());
+                  },
                   title: appLocalizations.btnTestInstructionsText,
                   backgroundColor: defaultBtnInactiveBackground,
                   titleColor: defaultTextColor),

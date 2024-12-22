@@ -10,38 +10,37 @@ import '../../utils/model/text_model.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/test_layout_widget.dart';
 import '../../utils/widgets/text_builder_widget.dart';
-import 'walk_test_note_widget.dart';
+import '../../walk_test/view/walk_test_note_widget.dart';
 
 @RoutePage()
-class WalkTestScreen extends StatelessWidget {
-  const WalkTestScreen({super.key});
+class SitToStandTestScreen extends StatelessWidget {
+  const SitToStandTestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const WalkTestContent();
+    return const SitToStandTestContent();
   }
 }
 
-class WalkTestContent extends StatelessWidget {
-  const WalkTestContent({super.key});
+class SitToStandTestContent extends StatelessWidget {
+  const SitToStandTestContent({super.key});
 
   @override
   Widget build(BuildContext context) {
     return TestLayoutWidget(
-        headerIcon: Assets.icons.iconWalkTest.svg(
-          colorFilter: const ColorFilter.mode(white, BlendMode.srcIn)
+        headerIcon: Assets.icons.iconSitDownTest.svg(
+            colorFilter: const ColorFilter.mode(white, BlendMode.srcIn)
         ),
-        headerText: appLocalizations.walkTestTitleText,
+        headerText: appLocalizations.sitToStandTestTitleText,
         children: [
           TextBuilderWidget(
             placeholders: [
               TextModel(
-                  text: appLocalizations.walkTestInitialText,
+                text: appLocalizations.sitToDownTestInitialText,
               ),
-              const TextModel(text: ''),
-
-              TextModel(text: appLocalizations.textWithNewLine(appLocalizations.testInstructionWalkThirdPart)),
-              TextModel(text: appLocalizations.walkTestDelayText(6))
+              TextModel(text: appLocalizations.additionalSitToDownTestText),
+              TextModel(text: appLocalizations.textWithNewLine(appLocalizations.testInstructionSitStandThirdPart)),
+              TextModel(text: appLocalizations.sitToDownTestDelayText(5))
             ],
           ),
           Gaps.largest.spaceVertical,

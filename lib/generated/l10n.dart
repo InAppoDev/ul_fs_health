@@ -731,10 +731,20 @@ class S {
   }
 
   /// ` will let you know when you can start walking.`
-  String get testInstructionThirdPart {
+  String get testInstructionWalkThirdPart {
     return Intl.message(
       ' will let you know when you can start walking.',
-      name: 'testInstructionThirdPart',
+      name: 'testInstructionWalkThirdPart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` will let you know when you can start with stand-up sit-down test.`
+  String get testInstructionSitStandThirdPart {
+    return Intl.message(
+      ' will let you know when you can start with stand-up sit-down test.',
+      name: 'testInstructionSitStandThirdPart',
       desc: '',
       args: [],
     );
@@ -770,20 +780,20 @@ class S {
     );
   }
 
-  /// `{count} repetitions`
+  /// `{count} repetitions, `
   String sitToDownTestDelayText(int count) {
     return Intl.message(
-      '$count repetitions',
+      '$count repetitions, ',
       name: 'sitToDownTestDelayText',
       desc: 'text for sit to down test',
       args: [count],
     );
   }
 
-  /// `and in sitting position`
+  /// `and in sitting position press `
   String get additionalSitToDownTestText {
     return Intl.message(
-      'and in sitting position',
+      'and in sitting position press ',
       name: 'additionalSitToDownTestText',
       desc: '',
       args: [],
@@ -827,6 +837,16 @@ class S {
       name: 'walkTestAdditionalInfoFirstPartText',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `{text}\n`
+  String textWithNewLine(Object text) {
+    return Intl.message(
+      '$text\n',
+      name: 'textWithNewLine',
+      desc: 'text with new line',
+      args: [text],
     );
   }
 }

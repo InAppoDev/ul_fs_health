@@ -11,11 +11,15 @@ class TestLayoutWidget extends StatelessWidget {
       required this.headerIcon,
       required this.headerText,
       required this.children,
+      this.crossAxisAlignment = CrossAxisAlignment.start,
+      this.mainAxisAlignment = MainAxisAlignment.start,
       this.onInfoPress});
 
   final VoidCallback? onInfoPress;
   final Widget headerIcon;
   final List<Widget> children;
+  final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisAlignment mainAxisAlignment;
   final String headerText;
 
   @override
@@ -43,10 +47,12 @@ class TestLayoutWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Gaps.larger.spaceVertical,
+            Gaps.extraLarge.spaceVertical,
             Padding(
                 padding: Gaps.large.paddingHorizontal,
                 child: Column(
+                  crossAxisAlignment: crossAxisAlignment,
+                  mainAxisAlignment: mainAxisAlignment,
                   children: children,
                 )),
           ],
