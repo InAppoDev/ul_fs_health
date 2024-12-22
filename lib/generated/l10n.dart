@@ -640,6 +640,16 @@ class S {
     );
   }
 
+  /// `Stop Test`
+  String get btnTestStopText {
+    return Intl.message(
+      'Stop Test',
+      name: 'btnTestStopText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Test instructions`
   String get btnTestInstructionsText {
     return Intl.message(

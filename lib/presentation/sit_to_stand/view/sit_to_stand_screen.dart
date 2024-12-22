@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/extensions/string_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../generated/l10n.dart';
 import '../../utils/widgets/feature_test_header.dart';
@@ -16,12 +18,14 @@ class SitToStandScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SitToStandContent();
+    return SitToStandContent();
   }
 }
 
 class SitToStandContent extends StatelessWidget {
-  const SitToStandContent({super.key});
+  SitToStandContent({super.key});
+
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +80,12 @@ class SitToStandContent extends StatelessWidget {
           Padding(
             padding: Gaps.larger.paddingHorizontal,
             child: SubmitButton(
-              onPressed: () {},
+              onPressed: () async {
+                _audioPlayer
+                  ..setAsset('assets/sounds/signal.mp3')
+                  ..play();
+                context.router.push(const SitToStandTestStartRoute());
+              },
               title: S.current.btnTestStartText.toUpperCase(),
               backgroundColor: Theme.of(context).colorScheme.primary,
               titleColor: Theme.of(context).colorScheme.onPrimary,

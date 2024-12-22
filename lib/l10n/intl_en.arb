@@ -66,6 +66,7 @@
   "sitToStandTestTitleText": "Sit-to-Stand Test",
   "sitToStandTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
   "btnTestStartText": "Start Test",
+  "btnTestStopText": "Stop Test",
   "btnTestInstructionsText": "Test instructions",
   "lblSoundSignal": "sound signal",
   "lblSitToStandPageTitle": "Make sure you have a chair and enough place to stand up.",
