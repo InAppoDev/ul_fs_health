@@ -124,6 +124,25 @@ class SitToStandRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SitToStandTestStartScreen]
+class SitToStandTestStartRoute extends PageRouteInfo<void> {
+  const SitToStandTestStartRoute({List<PageRouteInfo>? children})
+      : super(
+          SitToStandTestStartRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SitToStandTestStartRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SitToStandTestStartScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})

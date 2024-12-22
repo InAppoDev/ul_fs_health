@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "btnTestInstructionsText":
             MessageLookupByLibrary.simpleMessage("Test instructions"),
         "btnTestStartText": MessageLookupByLibrary.simpleMessage("Start Test"),
+        "btnTestStopText": MessageLookupByLibrary.simpleMessage("Stop Test"),
         "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
             "Do you have increased cholesterol?"),
         "cholesterolStatusRequiredErrorText":
