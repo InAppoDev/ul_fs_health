@@ -1,12 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/router/app_router.dart';
-import '../../../l10n/localizations_utils.dart';
-import '../../auth/widgets/auth_guard_widget.dart';
-
-// import '../../dashboard_menu/dashboard_menu_widget.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -25,21 +18,19 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeContent();
+    return const HomeContent();
   }
 }
 
 class HomeContent extends StatelessWidget {
-  HomeContent({super.key});
-
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  const HomeContent({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleAppBarWidget(
         onInfoPress: () {
-          // TODO Hovsep: implement info press
+          // TODOHovsep: implement info press
         },
         onLeadingPress: () {
           context.router.push(const DashboardMenuRoute());
@@ -55,11 +46,14 @@ class HomeContent extends StatelessWidget {
                 title: Padding(
                     padding: Gaps.smaller.paddingBottom,
                     child: Text(
-                        appLocalizations.welcomeAppNameText(appLocalizations.lblAppName),
-                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
-                        textAlign: TextAlign.center,
+                      appLocalizations
+                          .welcomeAppNameText(appLocalizations.lblAppName),
+                      style: header1.copyWith(
+                          fontSize: Constants.headerLargeTextSize),
+                      textAlign: TextAlign.center,
                     )),
-                subtitle: Text(appLocalizations.welcomeAppDescriptionText, style: body1),
+                subtitle: Text(appLocalizations.welcomeAppDescriptionText,
+                    style: body1),
               ),
               Constants.sizedBoxHeightLarge.spaceVertical,
               Row(
@@ -69,9 +63,11 @@ class HomeContent extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(appLocalizations.walkTestTitleText, style: header2),
+                        Text(appLocalizations.walkTestTitleText,
+                            style: header2),
                         Gaps.smaller.spaceVertical,
-                        Text(appLocalizations.walkTestDescriptionText, style: body3),
+                        Text(appLocalizations.walkTestDescriptionText,
+                            style: body3),
                       ],
                     ),
                   )
@@ -80,7 +76,7 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
                   onPressed: () {
-                    // TODO change to test route
+                    // TODOchange to test route
                   },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,
@@ -99,9 +95,11 @@ class HomeContent extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(appLocalizations.walkTestTitleText, style: header2),
+                        Text(appLocalizations.walkTestTitleText,
+                            style: header2),
                         Gaps.smaller.spaceVertical,
-                        Text(appLocalizations.walkTestDescriptionText, style: body3),
+                        Text(appLocalizations.walkTestDescriptionText,
+                            style: body3),
                       ],
                     ),
                   )
@@ -120,7 +118,6 @@ class HomeContent extends StatelessWidget {
                   backgroundColor: defaultBtnInactiveBackground,
                   titleColor: defaultTextColor),
               // Gaps.larger.spaceVertical
-
             ],
           ),
         ),

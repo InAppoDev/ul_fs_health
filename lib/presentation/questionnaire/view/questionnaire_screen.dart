@@ -6,9 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/constants/gender.dart';
-import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
-import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../l10n/localizations_utils.dart';
@@ -55,9 +53,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
   void initState() {
     super.initState();
     _ageController.addListener(() {
-      context
-          .read<QuestionnaireBloc>()
-          .add(QuestionnaireEvent.onAgeChanged(age: _ageController.text, shouldValidate: false));
+      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.onAgeChanged(
+          age: _ageController.text, shouldValidate: false));
     });
     _heightController.addListener(() {
       context.read<QuestionnaireBloc>().add(QuestionnaireEvent.onHeightChanged(
@@ -68,20 +65,26 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
           weight: _weightController.text, shouldValidate: false));
     });
     _smokerController.addListener(() {
-      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.onSmokerStatusChanged(
-          smokerStatus: _smokerController.text, shouldValidate: false));
+      context.read<QuestionnaireBloc>().add(
+          QuestionnaireEvent.onSmokerStatusChanged(
+              smokerStatus: _smokerController.text, shouldValidate: false));
     });
     _drinkerController.addListener(() {
-      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.onDrinkerStatusChanged(
-          drinkerStatus: _drinkerController.text, shouldValidate: false));
+      context.read<QuestionnaireBloc>().add(
+          QuestionnaireEvent.onDrinkerStatusChanged(
+              drinkerStatus: _drinkerController.text, shouldValidate: false));
     });
     _cholesterolController.addListener(() {
-      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.onCholesterolStatusChanged(
-          cholesterolStatus: _cholesterolController.text, shouldValidate: false));
+      context.read<QuestionnaireBloc>().add(
+          QuestionnaireEvent.onCholesterolStatusChanged(
+              cholesterolStatus: _cholesterolController.text,
+              shouldValidate: false));
     });
     _bloodSugarController.addListener(() {
-      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.onBloodSugarStatusChanged(
-          bloodSugarStatus: _bloodSugarController.text, shouldValidate: false));
+      context.read<QuestionnaireBloc>().add(
+          QuestionnaireEvent.onBloodSugarStatusChanged(
+              bloodSugarStatus: _bloodSugarController.text,
+              shouldValidate: false));
     });
   }
 
@@ -103,7 +106,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     Gaps.larger.spaceVertical,
                     Text(
                       appLocalizations.questHeaderTitle,
-                      style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                      style: header1.copyWith(
+                          fontSize: Constants.headerLargeTextSize),
                       textAlign: TextAlign.center,
                     ),
                     Gaps.smaller.spaceVertical,
@@ -112,7 +116,8 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                         textAlign: TextAlign.center),
                     Gaps.largest.spaceVertical,
                     Text(appLocalizations.questBasicInfoHeader,
-                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                        style: header1.copyWith(
+                            fontSize: Constants.headerLargeTextSize),
                         textAlign: TextAlign.center),
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
@@ -125,19 +130,23 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                             onChanged: (selectedValue) {
                               context.read<QuestionnaireBloc>().add(
                                   QuestionnaireEvent.onGenderChanged(
-                                      selectedGender: selectedValue, shouldValidate: false));
+                                      selectedGender: selectedValue,
+                                      shouldValidate: false));
                             })),
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               errorText: state.ageError,
                               controller: _ageController,
                               onFocusChange: (hasFocus) {
                                 context.read<QuestionnaireBloc>().add(
                                     QuestionnaireEvent.onAgeChanged(
-                                        age: _ageController.text, shouldValidate: !hasFocus));
+                                        age: _ageController.text,
+                                        shouldValidate: !hasFocus));
                               },
                               hintText: appLocalizations.agePlaceHolder,
                             )),
@@ -145,13 +154,16 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               errorText: state.heightError,
                               controller: _heightController,
                               onFocusChange: (hasFocus) {
                                 context.read<QuestionnaireBloc>().add(
                                     QuestionnaireEvent.onHeightChanged(
-                                        height: _heightController.text, shouldValidate: !hasFocus));
+                                        height: _heightController.text,
+                                        shouldValidate: !hasFocus));
                               },
                               hintText: appLocalizations.heightPlaceHolder,
                             )),
@@ -159,19 +171,23 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => TextInputWidget(
                               keyboardType: TextInputType.number,
-                              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               errorText: state.weightError,
                               controller: _weightController,
                               onFocusChange: (hasFocus) {
                                 context.read<QuestionnaireBloc>().add(
                                     QuestionnaireEvent.onWeightChanged(
-                                        weight: _weightController.text, shouldValidate: !hasFocus));
+                                        weight: _weightController.text,
+                                        shouldValidate: !hasFocus));
                               },
                               hintText: appLocalizations.weightPlaceHolder,
                             )),
                     Gaps.largest.spaceVertical,
                     Text(appLocalizations.questHealthInfoHeader,
-                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
+                        style: header1.copyWith(
+                            fontSize: Constants.headerLargeTextSize),
                         textAlign: TextAlign.center),
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
@@ -206,9 +222,11 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                               controller: _cholesterolController,
                               onFocusChange: (hasFocus) {
                                 context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onCholesterolStatusChanged(
-                                        cholesterolStatus: _cholesterolController.text,
-                                        shouldValidate: !hasFocus));
+                                    QuestionnaireEvent
+                                        .onCholesterolStatusChanged(
+                                            cholesterolStatus:
+                                                _cholesterolController.text,
+                                            shouldValidate: !hasFocus));
                               },
                               hintText: appLocalizations.cholesterolPlaceHolder,
                             )),
@@ -219,9 +237,11 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                               controller: _bloodSugarController,
                               onFocusChange: (hasFocus) {
                                 context.read<QuestionnaireBloc>().add(
-                                    QuestionnaireEvent.onBloodSugarStatusChanged(
-                                        bloodSugarStatus: _bloodSugarController.text,
-                                        shouldValidate: !hasFocus));
+                                    QuestionnaireEvent
+                                        .onBloodSugarStatusChanged(
+                                            bloodSugarStatus:
+                                                _bloodSugarController.text,
+                                            shouldValidate: !hasFocus));
                               },
                               hintText: appLocalizations.bloodSugarPlaceHolder,
                             )),
@@ -236,24 +256,42 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                                     titleColor: ColorScheme.of(context).surface,
                                     onPressed: () {
                                       final user = userState.model!;
-                                        context.read<UserBloc>().add(UserEvent.saveUserData(
-                                            UserEntity(
-                                                id: user.id,
-                                                gender: state.basicInfo.gender,
-                                                age: int.tryParse(state.basicInfo.age),
-                                                height: double.tryParse(state.basicInfo.height),
-                                                weight: double.tryParse(state.basicInfo.weight),
-                                                smokerInfo: state.healthInfo.smokerStatus,
-                                                drinkerInfo: state.healthInfo.drinkerStatus,
-                                                cholesterolInfo: state.healthInfo.cholesterolStatus,
-                                                bloodSugarInfo: state.healthInfo.bloodSugarStatus),
-                                            UserStatus.dataSaved));
+                                      context.read<UserBloc>().add(
+                                          UserEvent.saveUserData(
+                                              UserEntity(
+                                                  id: user.id,
+                                                  gender:
+                                                      state.basicInfo.gender,
+                                                  age: int.tryParse(
+                                                      state.basicInfo.age),
+                                                  height: double.tryParse(
+                                                      state.basicInfo.height),
+                                                  weight: double.tryParse(
+                                                      state.basicInfo.weight),
+                                                  smokerInfo: state
+                                                      .healthInfo.smokerStatus,
+                                                  drinkerInfo: state
+                                                      .healthInfo.drinkerStatus,
+                                                  cholesterolInfo: state
+                                                      .healthInfo
+                                                      .cholesterolStatus,
+                                                  bloodSugarInfo: state
+                                                      .healthInfo
+                                                      .bloodSugarStatus),
+                                              UserStatus.dataSaved));
                                     },
                                     title: appLocalizations.btnQuestSubmit,
-                                    backgroundColor: ColorScheme.of(context).primary,
-                                    isLoading: context.watch<UserBloc>().state.status ==
+                                    backgroundColor:
+                                        ColorScheme.of(context).primary,
+                                    isLoading: context
+                                                .watch<UserBloc>()
+                                                .state
+                                                .status ==
                                             UserStatus.loading ||
-                                        context.watch<QuestionnaireBloc>().state.status ==
+                                        context
+                                                .watch<QuestionnaireBloc>()
+                                                .state
+                                                .status ==
                                             QuestionnaireStatus.loading,
                                   ))),
                     ),
