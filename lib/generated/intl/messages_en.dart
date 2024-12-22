@@ -20,7 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(appName) => "Welcome to ${appName}!";
+  static String m0(count) => "After ${count} repetitions, ";
+
+  static String m1(appName) => "Welcome to ${appName}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -90,6 +92,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblRequirePassword":
             MessageLookupByLibrary.simpleMessage("Password is required"),
         "lblSignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
+        "lblSitToStandAlertInfo1": m0,
+        "lblSitToStandAlertInfo2": MessageLookupByLibrary.simpleMessage(
+            " will alert you that the test is finished."),
+        "lblSitToStandPageDescription1": MessageLookupByLibrary.simpleMessage(
+            "When you are ready and in sitting position press "),
+        "lblSitToStandPageDescription2": MessageLookupByLibrary.simpleMessage(
+            " and put the phone in your pocket. "),
+        "lblSitToStandPageDescription3": MessageLookupByLibrary.simpleMessage(
+            " will let you know when you can start with stand-up sit-down test."),
+        "lblSitToStandPageTitle": MessageLookupByLibrary.simpleMessage(
+            "Make sure you have a chair and enough place to stand up."),
+        "lblSoundSignal": MessageLookupByLibrary.simpleMessage("sound signal"),
         "lblTermsService":
             MessageLookupByLibrary.simpleMessage("Terms of Service"),
         "lblUnableSignup":
@@ -130,6 +144,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please type your weight"),
         "welcomeAppDescriptionText": MessageLookupByLibrary.simpleMessage(
             "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
-        "welcomeAppNameText": m0
+        "welcomeAppNameText": m1
       };
 }

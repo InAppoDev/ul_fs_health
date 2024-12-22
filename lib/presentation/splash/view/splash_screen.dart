@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
           }
         }
       },
-      child: const Center(child: CircularProgressIndicator()),
+      child: const Scaffold(body: Center(child: CircularProgressIndicator())),
     );
   }
 }

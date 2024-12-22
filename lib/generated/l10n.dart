@@ -649,6 +649,76 @@ class S {
       args: [],
     );
   }
+
+  /// `sound signal`
+  String get lblSoundSignal {
+    return Intl.message(
+      'sound signal',
+      name: 'lblSoundSignal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure you have a chair and enough place to stand up.`
+  String get lblSitToStandPageTitle {
+    return Intl.message(
+      'Make sure you have a chair and enough place to stand up.',
+      name: 'lblSitToStandPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you are ready and in sitting position press `
+  String get lblSitToStandPageDescription1 {
+    return Intl.message(
+      'When you are ready and in sitting position press ',
+      name: 'lblSitToStandPageDescription1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` and put the phone in your pocket. `
+  String get lblSitToStandPageDescription2 {
+    return Intl.message(
+      ' and put the phone in your pocket. ',
+      name: 'lblSitToStandPageDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` will let you know when you can start with stand-up sit-down test.`
+  String get lblSitToStandPageDescription3 {
+    return Intl.message(
+      ' will let you know when you can start with stand-up sit-down test.',
+      name: 'lblSitToStandPageDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `After {count} repetitions, `
+  String lblSitToStandAlertInfo1(Object count) {
+    return Intl.message(
+      'After $count repetitions, ',
+      name: 'lblSitToStandAlertInfo1',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// ` will alert you that the test is finished.`
+  String get lblSitToStandAlertInfo2 {
+    return Intl.message(
+      ' will alert you that the test is finished.',
+      name: 'lblSitToStandAlertInfo2',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

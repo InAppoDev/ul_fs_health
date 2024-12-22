@@ -5,6 +5,7 @@ import '../../presentation/auth/view/signup_screen.dart';
 import '../../presentation/dashboard_menu/view/dashboard_menu_screen.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_screen.dart';
+import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
 
 part 'app_router.gr.dart';
@@ -37,6 +38,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/home',
           page: HomeRoute.page,
+        ),
+        AutoRoute(
+          path: '/sit_to_stand',
+          page: SitToStandRoute.page,
         ),
       ];
 }

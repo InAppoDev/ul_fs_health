@@ -8,5 +8,5 @@ abstract class Constants {
   static double get defaultDividerEndIndent => 30;
   static double get dividerThickness => 1;
   static double get headerLargeTextSize => 16;
-
+  static double get featureTestHeaderHeight => 110;
 }
