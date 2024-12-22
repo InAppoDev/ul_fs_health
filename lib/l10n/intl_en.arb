@@ -67,6 +67,13 @@
   "sitToStandTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
   "btnTestStartText": "Start Test",
   "btnTestInstructionsText": "Test instructions",
+  "lblSoundSignal": "sound signal",
+  "lblSitToStandPageTitle": "Make sure you have a chair and enough place to stand up.",
+  "lblSitToStandPageDescription1": "When you are ready and in sitting position press ",
+  "lblSitToStandPageDescription2": " and put the phone in your pocket. ",
+  "lblSitToStandPageDescription3": " will let you know when you can start with stand-up sit-down test.",
+  "lblSitToStandAlertInfo1": "After {count} repetitions, ",
+  "lblSitToStandAlertInfo2": " will alert you that the test is finished."
   "walkTestInstruction": "First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable.",
   "walkTestInitialText": "Great, you are all set to start the test!",
   "sitToDownTestInitialText": "Make sure you have a chair and enough place to stand up.",

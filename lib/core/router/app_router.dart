@@ -5,6 +5,8 @@ import '../../presentation/auth/view/signup_screen.dart';
 import '../../presentation/dashboard_menu/view/dashboard_menu_screen.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_screen.dart';
+import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';
+import '../../presentation/splash/view/splash_screen.dart';
 import '../../presentation/sit_stand_test/view/sit_to_stand_test_screen.dart';
 import '../../presentation/walk_test/view/walk_test_screen.dart';
 
@@ -14,6 +16,11 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
+        AutoRoute(
+          path: '/splash',
+          page: SplashRoute.page,
+          initial: true,
+        ),
         AutoRoute(
           path: '/login',
           page: LoginRoute.page,
@@ -43,6 +50,9 @@ class AppRouter extends RootStackRouter {
           path: '/home',
           page: HomeRoute.page,
         ),
+        AutoRoute(
+          path: '/sit_to_stand',
+          page: SitToStandRoute.page,
+        ),
       ];
-
 }

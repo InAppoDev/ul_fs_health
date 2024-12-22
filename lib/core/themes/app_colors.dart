@@ -5,6 +5,7 @@ const darkGrey = Color(0x82828282);
 const lightGrey = Color(0xEEEEEEEE);
 const lighterGrey = Color(0xFF878787);
  
+
 const ColorScheme lightColorScheme = ColorScheme(
   primary: Color(0xFFB43A20),
   onPrimary: Color(0xFFFFFFFF),
@@ -30,9 +31,8 @@ const ColorScheme darkColorScheme = ColorScheme(
   onError: Color(0xFFFFFFFF),
   surface: Color(0xFFFFFFFF),
   onSurface: Color(0xFF000000),
-  brightness: Brightness.dark, 
+  brightness: Brightness.dark,
 );
-
 
 const Color defaultTextColor = Color(0xFF000000);
 const Color blackL = Color(0x00000040);

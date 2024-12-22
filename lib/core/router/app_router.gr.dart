@@ -105,6 +105,44 @@ class SignupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SitToStandScreen]
+class SitToStandRoute extends PageRouteInfo<void> {
+  const SitToStandRoute({List<PageRouteInfo>? children})
+      : super(
+          SitToStandRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SitToStandRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SitToStandScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SplashRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SplashScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SitToStandTestScreen]
 class SitToStandTestRoute extends PageRouteInfo<void> {
   const SitToStandTestRoute({List<PageRouteInfo>? children})
