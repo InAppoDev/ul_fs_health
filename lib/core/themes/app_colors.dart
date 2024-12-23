@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 const dividerColor = Color(0xFFE6E6E6);
 const darkGrey = Color(0x82828282);
 const lightGrey = Color(0xEEEEEEEE);
+const lighterGrey = Color(0xFF878787);
+ 
 
 const ColorScheme lightColorScheme = ColorScheme(
   primary: Color(0xFFB43A20),
