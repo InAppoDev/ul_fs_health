@@ -107,5 +107,7 @@
     }
   },
   "btnTestPauseText": "pause test",
-  "btnTestResumeText": "resume test"
+  "btnTestResumeText": "resume test",
+  "remainingTimeText": "Remaining time:",
+  "testFinishedText": "Test finished"
 }

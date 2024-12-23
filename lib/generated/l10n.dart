@@ -920,191 +920,21 @@ class S {
     );
   }
 
-  /// `First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable.`
-  String get walkTestInstruction {
+  /// `Remaining time:`
+  String get remainingTimeText {
     return Intl.message(
-      'First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable.',
-      name: 'walkTestInstruction',
+      'Remaining time:',
+      name: 'remainingTimeText',
       desc: '',
       args: [],
     );
   }
 
-  /// `Great, you are all set to start the test!`
-  String get walkTestInitialText {
+  /// `Test finished`
+  String get testFinishedText {
     return Intl.message(
-      'Great, you are all set to start the test!',
-      name: 'walkTestInitialText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Make sure you have a chair and enough place to stand up.`
-  String get sitToDownTestInitialText {
-    return Intl.message(
-      'Make sure you have a chair and enough place to stand up.',
-      name: 'sitToDownTestInitialText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `START TEST`
-  String get testStartText {
-    return Intl.message(
-      'START TEST',
-      name: 'testStartText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `When you are ready press `
-  String get testInstructionFirstPartText {
-    return Intl.message(
-      'When you are ready press ',
-      name: 'testInstructionFirstPartText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` and put the phone in your pocket. `
-  String get testInstructionSecondPartText {
-    return Intl.message(
-      ' and put the phone in your pocket. ',
-      name: 'testInstructionSecondPartText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sound signal`
-  String get testInstructionBoldText {
-    return Intl.message(
-      'Sound signal',
-      name: 'testInstructionBoldText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `sound signal`
-  String get testInstructionBoldLowerText {
-    return Intl.message(
-      'sound signal',
-      name: 'testInstructionBoldLowerText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` will let you know when you can start walking.`
-  String get testInstructionWalkThirdPart {
-    return Intl.message(
-      ' will let you know when you can start walking.',
-      name: 'testInstructionWalkThirdPart',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `After `
-  String get testInstructionAlertFirstText {
-    return Intl.message(
-      'After ',
-      name: 'testInstructionAlertFirstText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` will alert you that the test is finished.`
-  String get testInstructionAlertSecondText {
-    return Intl.message(
-      ' will alert you that the test is finished.',
-      name: 'testInstructionAlertSecondText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `{minute} minutes pass, `
-  String walkTestDelayText(int minute) {
-    return Intl.message(
-      '$minute minutes pass, ',
-      name: 'walkTestDelayText',
-      desc: 'text for walk test',
-      args: [minute],
-    );
-  }
-
-  /// `PAUSE TEST`
-  String get pauseTestUpperText {
-    return Intl.message(
-      'PAUSE TEST',
-      name: 'pauseTestUpperText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `PAUSE`
-  String get pauseText {
-    return Intl.message(
-      'PAUSE',
-      name: 'pauseText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// ` and resume with the test when you are feeling better.`
-  String get walkTestAdditionalInformationSecondPartText {
-    return Intl.message(
-      ' and resume with the test when you are feeling better.',
-      name: 'walkTestAdditionalInformationSecondPartText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `*If you feel any dizziness or tiredness during the test, you can press `
-  String get walkTestAdditionalInfoFirstPartText {
-    return Intl.message(
-      '*If you feel any dizziness or tiredness during the test, you can press ',
-      name: 'walkTestAdditionalInfoFirstPartText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `{text}\n`
-  String textWithNewLine(Object text) {
-    return Intl.message(
-      '$text\n',
-      name: 'textWithNewLine',
-      desc: 'text with new line',
-      args: [text],
-    );
-  }
-
-  /// `pause test`
-  String get btnTestPauseText {
-    return Intl.message(
-      'pause test',
-      name: 'btnTestPauseText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `resume test`
-  String get btnTestResumeText {
-    return Intl.message(
-      'resume test',
-      name: 'btnTestResumeText',
+      'Test finished',
+      name: 'testFinishedText',
       desc: '',
       args: [],
     );

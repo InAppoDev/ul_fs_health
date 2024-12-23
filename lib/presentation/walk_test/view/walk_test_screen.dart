@@ -1,8 +1,11 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
@@ -18,12 +21,14 @@ class WalkTestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const WalkTestContent();
+    return WalkTestContent();
   }
 }
 
 class WalkTestContent extends StatelessWidget {
-  const WalkTestContent({super.key});
+  WalkTestContent({super.key});
+
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,12 @@ class WalkTestContent extends StatelessWidget {
           const TextBuilderWidget(),
           Gaps.largest.spaceVertical,
           SubmitButton(
-              onPressed: () {},
+              onPressed: () {
+                _audioPlayer
+                  ..setAsset('assets/sounds/signal.mp3')
+                  ..play();
+                context.router.push(const WalkTestStartRoute());
+              },
               title: appLocalizations.btnTestStartText.toUpperCase(),
               backgroundColor: ColorScheme.of(context).primary,
               titleColor: white

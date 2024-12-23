@@ -137,6 +137,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fill this questionarre"),
         "questHealthInfoHeader":
             MessageLookupByLibrary.simpleMessage("Health information"),
+        "remainingTimeText":
+            MessageLookupByLibrary.simpleMessage("Remaining time:"),
         "sitToDownTestInitialText": MessageLookupByLibrary.simpleMessage(
             "Make sure you have a chair and enough place to stand up."),
         "sitToStandTestDescriptionText": MessageLookupByLibrary.simpleMessage(
@@ -147,6 +149,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you an active smoker?"),
         "smokerStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "testFinishedText":
+            MessageLookupByLibrary.simpleMessage("Test finished"),
         "testInstructionAlertFirstText":
             MessageLookupByLibrary.simpleMessage("After "),
         "testInstructionAlertSecondText": MessageLookupByLibrary.simpleMessage(

@@ -6,6 +6,7 @@ import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
+import '../../../core/themes/app_text_styles.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../../logic/timer/timer_bloc.dart';
@@ -13,6 +14,8 @@ import '../../timer/timer_widget.dart';
 import '../../utils/widgets/feature_test_header.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../../utils/widgets/submit_button.dart';
+import '../../utils/widgets/test_layout_widget.dart';
+import '../../walk_test/view/walk_test_note_widget.dart';
 
 @RoutePage()
 class WalkTestStartScreen extends StatelessWidget {
@@ -32,18 +35,26 @@ class WalkTestStartContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SimpleAppBarWidget(
-        onInfoPress: () {},
-        showBackButton: true,
-      ),
-      body: Column(
+    return TestLayoutWidget(
+        headerIcon: Assets.icons.iconWalkTest,
+        headerText: appLocalizations.walkTestTitleText,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          FeatureTestHeader(
-            title: appLocalizations.walkTestTitleText,
-            leading: Assets.icons.iconWalkTest,
+          if (context.watch<TimerBloc>().state.status == TimerStatus.completed)
+            Align(
+              child: Text(
+                appLocalizations.testFinishedText,
+                style: header3.copyWith(
+                    fontWeight: FontWeight.w600, color: ColorScheme.of(context).primary),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          Gaps.larger.spaceVertical,
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Text(appLocalizations.remainingTimeText, style: body1),
           ),
-          (Gaps.largest + Gaps.large).spaceVertical,
+          Gaps.large.spaceVertical,
           const TimerWidget(),
           Padding(
               padding: Gaps.larger.paddingAll.copyWith(top: Gaps.largest),
@@ -70,9 +81,10 @@ class WalkTestStartContent extends StatelessWidget {
                       ? white
                       : Theme.of(context).colorScheme.onSecondary,
                 );
-              }))
+              })),
+          Gaps.largest.spaceVertical,
+          WalkTestNoteWidget(boldText: appLocalizations.pauseTestUpperText),
         ],
-      ),
-    );
+      );
   }
 }

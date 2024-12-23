@@ -1,12 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../core/router/app_router.dart';
-import '../../../l10n/localizations_utils.dart';
-import '../../auth/widgets/auth_guard_widget.dart';
-
-// import '../../dashboard_menu/dashboard_menu_widget.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -83,8 +76,7 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
                   onPressed: () {
-                    context.router.push(WalkTestStartRoute());
-                    // TODOchange to test route
+                    context.router.push(const WalkTestStartRoute());
                   },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,
