@@ -899,6 +899,36 @@ class S {
       args: [text],
     );
   }
+
+  /// `My Profile`
+  String get profileHeaderText {
+    return Intl.message(
+      'My Profile',
+      name: 'profileHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here you can edit your login data and create your new password.`
+  String get profileDescriptionText {
+    return Intl.message(
+      'Here you can edit your login data and create your new password.',
+      name: 'profileDescriptionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save changes`
+  String get btnSaveChangesText {
+    return Intl.message(
+      'Save changes',
+      name: 'btnSaveChangesText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

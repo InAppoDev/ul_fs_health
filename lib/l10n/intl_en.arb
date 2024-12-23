@@ -105,5 +105,8 @@
     "placeHolders": {
 
     }
-  }
+  },
+  "profileHeaderText": "My Profile",
+  "profileDescriptionText": "Here you can edit your login data and create your new password.",
+  "btnSaveChangesText": "Save changes"
 }
