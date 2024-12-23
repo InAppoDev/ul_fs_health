@@ -28,10 +28,10 @@ void _configureServices() {
         firestore: FirebaseFirestore.instance,
       ),
     )
-    ..registerSingleton<PermissionService>(
-        GpsPermissionService())
-    ..registerLazySingleton<GPSService>(
-        () => GPSServiceImp(getIt<GpsPermissionService>()));
+    ..registerLazySingleton<PermissionService>(
+        ()=> GpsPermissionService())
+    ..registerFactory<GPSService>(
+        () => GPSServiceImp(getIt<PermissionService>()));
 }
 
 void _configureRepositories() {

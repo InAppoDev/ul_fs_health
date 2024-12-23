@@ -21,8 +21,8 @@ mixin _$TimerEvent {
     required TResult Function(int duration) startTimer,
     required TResult Function() cancelTimer,
     required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) onPauseTimer,
-    required TResult Function(int duration) onResume,
+    required TResult Function(int duration, int remainingTime) pauseTimer,
+    required TResult Function() resumeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +30,8 @@ mixin _$TimerEvent {
     TResult? Function(int duration)? startTimer,
     TResult? Function()? cancelTimer,
     TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? onPauseTimer,
-    TResult? Function(int duration)? onResume,
+    TResult? Function(int duration, int remainingTime)? pauseTimer,
+    TResult? Function()? resumeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +39,8 @@ mixin _$TimerEvent {
     TResult Function(int duration)? startTimer,
     TResult Function()? cancelTimer,
     TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? onPauseTimer,
-    TResult Function(int duration)? onResume,
+    TResult Function(int duration, int remainingTime)? pauseTimer,
+    TResult Function()? resumeTimer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,8 +49,8 @@ mixin _$TimerEvent {
     required TResult Function(_StartTimer value) startTimer,
     required TResult Function(_CancelTimer value) cancelTimer,
     required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) onPauseTimer,
-    required TResult Function(_ResumeTimer value) onResume,
+    required TResult Function(_PauseTimer value) pauseTimer,
+    required TResult Function(_ResumeTimer value) resumeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,8 +58,8 @@ mixin _$TimerEvent {
     TResult? Function(_StartTimer value)? startTimer,
     TResult? Function(_CancelTimer value)? cancelTimer,
     TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? onPauseTimer,
-    TResult? Function(_ResumeTimer value)? onResume,
+    TResult? Function(_PauseTimer value)? pauseTimer,
+    TResult? Function(_ResumeTimer value)? resumeTimer,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,8 +67,8 @@ mixin _$TimerEvent {
     TResult Function(_StartTimer value)? startTimer,
     TResult Function(_CancelTimer value)? cancelTimer,
     TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? onPauseTimer,
-    TResult Function(_ResumeTimer value)? onResume,
+    TResult Function(_PauseTimer value)? pauseTimer,
+    TResult Function(_ResumeTimer value)? resumeTimer,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,8 +167,8 @@ class _$StartTimerImpl implements _StartTimer {
     required TResult Function(int duration) startTimer,
     required TResult Function() cancelTimer,
     required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) onPauseTimer,
-    required TResult Function(int duration) onResume,
+    required TResult Function(int duration, int remainingTime) pauseTimer,
+    required TResult Function() resumeTimer,
   }) {
     return startTimer(duration);
   }
@@ -179,8 +179,8 @@ class _$StartTimerImpl implements _StartTimer {
     TResult? Function(int duration)? startTimer,
     TResult? Function()? cancelTimer,
     TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? onPauseTimer,
-    TResult? Function(int duration)? onResume,
+    TResult? Function(int duration, int remainingTime)? pauseTimer,
+    TResult? Function()? resumeTimer,
   }) {
     return startTimer?.call(duration);
   }
@@ -191,8 +191,8 @@ class _$StartTimerImpl implements _StartTimer {
     TResult Function(int duration)? startTimer,
     TResult Function()? cancelTimer,
     TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? onPauseTimer,
-    TResult Function(int duration)? onResume,
+    TResult Function(int duration, int remainingTime)? pauseTimer,
+    TResult Function()? resumeTimer,
     required TResult orElse(),
   }) {
     if (startTimer != null) {
@@ -207,8 +207,8 @@ class _$StartTimerImpl implements _StartTimer {
     required TResult Function(_StartTimer value) startTimer,
     required TResult Function(_CancelTimer value) cancelTimer,
     required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) onPauseTimer,
-    required TResult Function(_ResumeTimer value) onResume,
+    required TResult Function(_PauseTimer value) pauseTimer,
+    required TResult Function(_ResumeTimer value) resumeTimer,
   }) {
     return startTimer(this);
   }
@@ -219,8 +219,8 @@ class _$StartTimerImpl implements _StartTimer {
     TResult? Function(_StartTimer value)? startTimer,
     TResult? Function(_CancelTimer value)? cancelTimer,
     TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? onPauseTimer,
-    TResult? Function(_ResumeTimer value)? onResume,
+    TResult? Function(_PauseTimer value)? pauseTimer,
+    TResult? Function(_ResumeTimer value)? resumeTimer,
   }) {
     return startTimer?.call(this);
   }
@@ -231,8 +231,8 @@ class _$StartTimerImpl implements _StartTimer {
     TResult Function(_StartTimer value)? startTimer,
     TResult Function(_CancelTimer value)? cancelTimer,
     TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? onPauseTimer,
-    TResult Function(_ResumeTimer value)? onResume,
+    TResult Function(_PauseTimer value)? pauseTimer,
+    TResult Function(_ResumeTimer value)? resumeTimer,
     required TResult orElse(),
   }) {
     if (startTimer != null) {
@@ -298,8 +298,8 @@ class _$CancelTimerImpl implements _CancelTimer {
     required TResult Function(int duration) startTimer,
     required TResult Function() cancelTimer,
     required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) onPauseTimer,
-    required TResult Function(int duration) onResume,
+    required TResult Function(int duration, int remainingTime) pauseTimer,
+    required TResult Function() resumeTimer,
   }) {
     return cancelTimer();
   }
@@ -310,8 +310,8 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult? Function(int duration)? startTimer,
     TResult? Function()? cancelTimer,
     TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? onPauseTimer,
-    TResult? Function(int duration)? onResume,
+    TResult? Function(int duration, int remainingTime)? pauseTimer,
+    TResult? Function()? resumeTimer,
   }) {
     return cancelTimer?.call();
   }
@@ -322,8 +322,8 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult Function(int duration)? startTimer,
     TResult Function()? cancelTimer,
     TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? onPauseTimer,
-    TResult Function(int duration)? onResume,
+    TResult Function(int duration, int remainingTime)? pauseTimer,
+    TResult Function()? resumeTimer,
     required TResult orElse(),
   }) {
     if (cancelTimer != null) {
@@ -338,8 +338,8 @@ class _$CancelTimerImpl implements _CancelTimer {
     required TResult Function(_StartTimer value) startTimer,
     required TResult Function(_CancelTimer value) cancelTimer,
     required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) onPauseTimer,
-    required TResult Function(_ResumeTimer value) onResume,
+    required TResult Function(_PauseTimer value) pauseTimer,
+    required TResult Function(_ResumeTimer value) resumeTimer,
   }) {
     return cancelTimer(this);
   }
@@ -350,8 +350,8 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult? Function(_StartTimer value)? startTimer,
     TResult? Function(_CancelTimer value)? cancelTimer,
     TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? onPauseTimer,
-    TResult? Function(_ResumeTimer value)? onResume,
+    TResult? Function(_PauseTimer value)? pauseTimer,
+    TResult? Function(_ResumeTimer value)? resumeTimer,
   }) {
     return cancelTimer?.call(this);
   }
@@ -362,8 +362,8 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult Function(_StartTimer value)? startTimer,
     TResult Function(_CancelTimer value)? cancelTimer,
     TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? onPauseTimer,
-    TResult Function(_ResumeTimer value)? onResume,
+    TResult Function(_PauseTimer value)? pauseTimer,
+    TResult Function(_ResumeTimer value)? resumeTimer,
     required TResult orElse(),
   }) {
     if (cancelTimer != null) {
@@ -459,8 +459,8 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     required TResult Function(int duration) startTimer,
     required TResult Function() cancelTimer,
     required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) onPauseTimer,
-    required TResult Function(int duration) onResume,
+    required TResult Function(int duration, int remainingTime) pauseTimer,
+    required TResult Function() resumeTimer,
   }) {
     return updateTimer(duration, remainingTime);
   }
@@ -471,8 +471,8 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult? Function(int duration)? startTimer,
     TResult? Function()? cancelTimer,
     TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? onPauseTimer,
-    TResult? Function(int duration)? onResume,
+    TResult? Function(int duration, int remainingTime)? pauseTimer,
+    TResult? Function()? resumeTimer,
   }) {
     return updateTimer?.call(duration, remainingTime);
   }
@@ -483,8 +483,8 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult Function(int duration)? startTimer,
     TResult Function()? cancelTimer,
     TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? onPauseTimer,
-    TResult Function(int duration)? onResume,
+    TResult Function(int duration, int remainingTime)? pauseTimer,
+    TResult Function()? resumeTimer,
     required TResult orElse(),
   }) {
     if (updateTimer != null) {
@@ -499,8 +499,8 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     required TResult Function(_StartTimer value) startTimer,
     required TResult Function(_CancelTimer value) cancelTimer,
     required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) onPauseTimer,
-    required TResult Function(_ResumeTimer value) onResume,
+    required TResult Function(_PauseTimer value) pauseTimer,
+    required TResult Function(_ResumeTimer value) resumeTimer,
   }) {
     return updateTimer(this);
   }
@@ -511,8 +511,8 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult? Function(_StartTimer value)? startTimer,
     TResult? Function(_CancelTimer value)? cancelTimer,
     TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? onPauseTimer,
-    TResult? Function(_ResumeTimer value)? onResume,
+    TResult? Function(_PauseTimer value)? pauseTimer,
+    TResult? Function(_ResumeTimer value)? resumeTimer,
   }) {
     return updateTimer?.call(this);
   }
@@ -523,8 +523,8 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult Function(_StartTimer value)? startTimer,
     TResult Function(_CancelTimer value)? cancelTimer,
     TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? onPauseTimer,
-    TResult Function(_ResumeTimer value)? onResume,
+    TResult Function(_PauseTimer value)? pauseTimer,
+    TResult Function(_ResumeTimer value)? resumeTimer,
     required TResult orElse(),
   }) {
     if (updateTimer != null) {
@@ -599,7 +599,7 @@ class _$PauseTimerImpl implements _PauseTimer {
 
   @override
   String toString() {
-    return 'TimerEvent.onPauseTimer(duration: $duration, remainingTime: $remainingTime)';
+    return 'TimerEvent.pauseTimer(duration: $duration, remainingTime: $remainingTime)';
   }
 
   @override
@@ -630,10 +630,10 @@ class _$PauseTimerImpl implements _PauseTimer {
     required TResult Function(int duration) startTimer,
     required TResult Function() cancelTimer,
     required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) onPauseTimer,
-    required TResult Function(int duration) onResume,
+    required TResult Function(int duration, int remainingTime) pauseTimer,
+    required TResult Function() resumeTimer,
   }) {
-    return onPauseTimer(duration, remainingTime);
+    return pauseTimer(duration, remainingTime);
   }
 
   @override
@@ -642,10 +642,10 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult? Function(int duration)? startTimer,
     TResult? Function()? cancelTimer,
     TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? onPauseTimer,
-    TResult? Function(int duration)? onResume,
+    TResult? Function(int duration, int remainingTime)? pauseTimer,
+    TResult? Function()? resumeTimer,
   }) {
-    return onPauseTimer?.call(duration, remainingTime);
+    return pauseTimer?.call(duration, remainingTime);
   }
 
   @override
@@ -654,12 +654,12 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult Function(int duration)? startTimer,
     TResult Function()? cancelTimer,
     TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? onPauseTimer,
-    TResult Function(int duration)? onResume,
+    TResult Function(int duration, int remainingTime)? pauseTimer,
+    TResult Function()? resumeTimer,
     required TResult orElse(),
   }) {
-    if (onPauseTimer != null) {
-      return onPauseTimer(duration, remainingTime);
+    if (pauseTimer != null) {
+      return pauseTimer(duration, remainingTime);
     }
     return orElse();
   }
@@ -670,10 +670,10 @@ class _$PauseTimerImpl implements _PauseTimer {
     required TResult Function(_StartTimer value) startTimer,
     required TResult Function(_CancelTimer value) cancelTimer,
     required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) onPauseTimer,
-    required TResult Function(_ResumeTimer value) onResume,
+    required TResult Function(_PauseTimer value) pauseTimer,
+    required TResult Function(_ResumeTimer value) resumeTimer,
   }) {
-    return onPauseTimer(this);
+    return pauseTimer(this);
   }
 
   @override
@@ -682,10 +682,10 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult? Function(_StartTimer value)? startTimer,
     TResult? Function(_CancelTimer value)? cancelTimer,
     TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? onPauseTimer,
-    TResult? Function(_ResumeTimer value)? onResume,
+    TResult? Function(_PauseTimer value)? pauseTimer,
+    TResult? Function(_ResumeTimer value)? resumeTimer,
   }) {
-    return onPauseTimer?.call(this);
+    return pauseTimer?.call(this);
   }
 
   @override
@@ -694,12 +694,12 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult Function(_StartTimer value)? startTimer,
     TResult Function(_CancelTimer value)? cancelTimer,
     TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? onPauseTimer,
-    TResult Function(_ResumeTimer value)? onResume,
+    TResult Function(_PauseTimer value)? pauseTimer,
+    TResult Function(_ResumeTimer value)? resumeTimer,
     required TResult orElse(),
   }) {
-    if (onPauseTimer != null) {
-      return onPauseTimer(this);
+    if (pauseTimer != null) {
+      return pauseTimer(this);
     }
     return orElse();
   }
@@ -725,8 +725,6 @@ abstract class _$$ResumeTimerImplCopyWith<$Res> {
   factory _$$ResumeTimerImplCopyWith(
           _$ResumeTimerImpl value, $Res Function(_$ResumeTimerImpl) then) =
       __$$ResumeTimerImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int duration});
 }
 
 /// @nodoc
@@ -739,52 +737,26 @@ class __$$ResumeTimerImplCopyWithImpl<$Res>
 
   /// Create a copy of TimerEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? duration = null,
-  }) {
-    return _then(_$ResumeTimerImpl(
-      duration: null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$ResumeTimerImpl implements _ResumeTimer {
-  const _$ResumeTimerImpl({required this.duration});
-
-  @override
-  final int duration;
+  const _$ResumeTimerImpl();
 
   @override
   String toString() {
-    return 'TimerEvent.onResume(duration: $duration)';
+    return 'TimerEvent.resumeTimer()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResumeTimerImpl &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
+        (other.runtimeType == runtimeType && other is _$ResumeTimerImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, duration);
-
-  /// Create a copy of TimerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResumeTimerImplCopyWith<_$ResumeTimerImpl> get copyWith =>
-      __$$ResumeTimerImplCopyWithImpl<_$ResumeTimerImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -792,10 +764,10 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     required TResult Function(int duration) startTimer,
     required TResult Function() cancelTimer,
     required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) onPauseTimer,
-    required TResult Function(int duration) onResume,
+    required TResult Function(int duration, int remainingTime) pauseTimer,
+    required TResult Function() resumeTimer,
   }) {
-    return onResume(duration);
+    return resumeTimer();
   }
 
   @override
@@ -804,10 +776,10 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult? Function(int duration)? startTimer,
     TResult? Function()? cancelTimer,
     TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? onPauseTimer,
-    TResult? Function(int duration)? onResume,
+    TResult? Function(int duration, int remainingTime)? pauseTimer,
+    TResult? Function()? resumeTimer,
   }) {
-    return onResume?.call(duration);
+    return resumeTimer?.call();
   }
 
   @override
@@ -816,12 +788,12 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult Function(int duration)? startTimer,
     TResult Function()? cancelTimer,
     TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? onPauseTimer,
-    TResult Function(int duration)? onResume,
+    TResult Function(int duration, int remainingTime)? pauseTimer,
+    TResult Function()? resumeTimer,
     required TResult orElse(),
   }) {
-    if (onResume != null) {
-      return onResume(duration);
+    if (resumeTimer != null) {
+      return resumeTimer();
     }
     return orElse();
   }
@@ -832,10 +804,10 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     required TResult Function(_StartTimer value) startTimer,
     required TResult Function(_CancelTimer value) cancelTimer,
     required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) onPauseTimer,
-    required TResult Function(_ResumeTimer value) onResume,
+    required TResult Function(_PauseTimer value) pauseTimer,
+    required TResult Function(_ResumeTimer value) resumeTimer,
   }) {
-    return onResume(this);
+    return resumeTimer(this);
   }
 
   @override
@@ -844,10 +816,10 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult? Function(_StartTimer value)? startTimer,
     TResult? Function(_CancelTimer value)? cancelTimer,
     TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? onPauseTimer,
-    TResult? Function(_ResumeTimer value)? onResume,
+    TResult? Function(_PauseTimer value)? pauseTimer,
+    TResult? Function(_ResumeTimer value)? resumeTimer,
   }) {
-    return onResume?.call(this);
+    return resumeTimer?.call(this);
   }
 
   @override
@@ -856,27 +828,19 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult Function(_StartTimer value)? startTimer,
     TResult Function(_CancelTimer value)? cancelTimer,
     TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? onPauseTimer,
-    TResult Function(_ResumeTimer value)? onResume,
+    TResult Function(_PauseTimer value)? pauseTimer,
+    TResult Function(_ResumeTimer value)? resumeTimer,
     required TResult orElse(),
   }) {
-    if (onResume != null) {
-      return onResume(this);
+    if (resumeTimer != null) {
+      return resumeTimer(this);
     }
     return orElse();
   }
 }
 
 abstract class _ResumeTimer implements TimerEvent {
-  const factory _ResumeTimer({required final int duration}) = _$ResumeTimerImpl;
-
-  int get duration;
-
-  /// Create a copy of TimerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResumeTimerImplCopyWith<_$ResumeTimerImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _ResumeTimer() = _$ResumeTimerImpl;
 }
 
 /// @nodoc

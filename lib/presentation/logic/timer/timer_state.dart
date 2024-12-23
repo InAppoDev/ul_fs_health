@@ -16,6 +16,7 @@ enum TimerStatus {
   running,
   cancelled,
   completed,
-  paused
+  paused,
+  resumed
 }
 

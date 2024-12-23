@@ -14,6 +14,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     on<_CancelTimer>(_onCancelTimer);
     on<_UpdateTimer>(_onUpdateTimer);
     on<_PauseTimer>(_onPauseTimer);
+    on<_ResumeTimer>(_onResumeTimer);
   }
 
   Timer? _timer;
@@ -24,6 +25,10 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     emit(state.copyWith(remainingTime: event.remainingTime,
         status: isFinished ? TimerStatus.completed : TimerStatus.running,
         progress: progress));
+  }
+
+  Future<void> _onResumeTimer(_ResumeTimer event, Emitter<TimerState> emit) async {
+    emit(state.copyWith(status: TimerStatus.resumed));
   }
 
   Future<void> _onStartTimer(_StartTimer event, Emitter<TimerState> emit) async {
