@@ -27,8 +27,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventAgeChanged(
       QuestionnaireEventAgeChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.age, appLocalizations.ageRequiredErrorText);
+    String? error = QuestionnaireValidator.validateAge(event.age);
     final basicInfo = state.basicInfo.copyWith(age: event.age ?? '');
     final bool isValid = QuestionnaireValidator.validate(basicInfo, state.healthInfo);
     if (!event.shouldValidate) {
@@ -39,8 +38,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventHeightChanged(
       QuestionnaireEventHeightChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.height, appLocalizations.heightRequiredErrorText);
+    String? error = QuestionnaireValidator.validateHeight(event.height);
     final basicInfo = state.basicInfo.copyWith(height: event.height ?? '');
     final bool isValid = QuestionnaireValidator.validate(basicInfo, state.healthInfo);
     if (!event.shouldValidate) {
@@ -55,8 +53,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventWeightChanged(
       QuestionnaireEventWeightChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.weight, appLocalizations.weightRequiredErrorText);
+    String? error = QuestionnaireValidator.validateWeight(event.weight);
     final basicInfo = state.basicInfo.copyWith(weight: event.weight ?? '');
     final bool isValid = QuestionnaireValidator.validate(basicInfo, state.healthInfo);
     if (!event.shouldValidate) {
@@ -71,8 +68,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventSmokerStatusChanged(
       QuestionnaireEventSmokerStatusChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.smokerStatus, appLocalizations.smokerStatusRequiredErrorText);
+    String? error = QuestionnaireValidator.validateSmokerStatus(event.smokerStatus);
     final healthInfo = state.healthInfo.copyWith(smokerStatus: event.smokerStatus ?? '');
     final bool isValid = QuestionnaireValidator.validate(state.basicInfo, healthInfo);
     if (!event.shouldValidate) {
@@ -87,8 +83,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventDrinkerStatusChanged(
       QuestionnaireEventDrinkerStatusChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.drinkerStatus, appLocalizations.drinkerStatusRequiredErrorText);
+    String? error = QuestionnaireValidator.validateDrinkerStatus(event.drinkerStatus);
     final healthInfo = state.healthInfo.copyWith(drinkerStatus: event.drinkerStatus ?? '');
     final bool isValid = QuestionnaireValidator.validate(state.basicInfo, healthInfo);
     if (!event.shouldValidate) {
@@ -103,8 +98,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventCholesterolStatusChanged(
       QuestionnaireEventCholesterolStatusChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.cholesterolStatus, appLocalizations.cholesterolStatusRequiredErrorText);
+    String? error = QuestionnaireValidator.validateCholesterolStatus(event.cholesterolStatus);
     final healthInfo = state.healthInfo.copyWith(cholesterolStatus: event.cholesterolStatus ?? '');
     final bool isValid = QuestionnaireValidator.validate(state.basicInfo, healthInfo);
     if (!event.shouldValidate) {
@@ -119,8 +113,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventBloodSugarStatusChanged(
       QuestionnaireEventBloodSugarStatusChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.bloodSugarStatus, appLocalizations.bloodSugarStatusRequiredErrorText);
+    String? error = QuestionnaireValidator.validateBloodSugarStatus(event.bloodSugarStatus);
 
     final healthInfo = state.healthInfo.copyWith(bloodSugarStatus: event.bloodSugarStatus ?? '');
     final bool isValid = QuestionnaireValidator.validate(state.basicInfo, healthInfo);
@@ -136,8 +129,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
 
   void _onQuestionnaireEventGenderChanged(
       QuestionnaireEventGenderChanged event, Emitter<QuestionnaireState> emit) {
-    String? error = QuestionnaireValidator.validateRequiredText(
-        event.selectedGender.toString(), appLocalizations.heightRequiredErrorText);
+    String? error = QuestionnaireValidator.validateGender(event.selectedGender);
     final basicInfo = state.basicInfo.copyWith(gender: event.selectedGender);
     final bool isValid = QuestionnaireValidator.validate(basicInfo, state.healthInfo);
     if (!event.shouldValidate) {

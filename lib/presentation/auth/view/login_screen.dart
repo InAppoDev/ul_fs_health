@@ -14,6 +14,7 @@ import '../../../di/service_locator.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../../generated/l10n.dart';
+import '../../logic/user/user_bloc.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/text_input_widget.dart';
 import '../bloc/auth/auth_bloc.dart';
@@ -48,13 +49,14 @@ class LoginContent extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: AuthGuardWidget(
+          isAuthRoute: true,
           child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state.status == AuthStatus.successLogin) {
                 context.router.replaceAll([const HomeRoute()]);
+                context.read<UserBloc>().add(const UserEvent.getUserData());
               } else if (state.status == AuthStatus.failure) {
-                context
-                    .showSnackBarMessage(state.error ?? S.current.lblLoginFailed);
+                context.showSnackBarMessage(state.error ?? S.current.lblLoginFailed);
               }
             },
             child: Padding(
