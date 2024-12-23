@@ -7,12 +7,10 @@ import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../gen/assets.gen.dart';
-import '../../../generated/l10n.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../../logic/timer/timer_bloc.dart';
 import '../../timer/timer_widget.dart';
 import '../../utils/widgets/feature_test_header.dart';
-import '../../utils/widgets/repetition_counter.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 
