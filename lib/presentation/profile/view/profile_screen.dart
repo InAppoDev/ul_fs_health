@@ -9,6 +9,7 @@ import '../../../core/extensions/number_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../di/service_locator.dart';
+import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/profile_repository.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../../auth/widgets/auth_guard_widget.dart';
@@ -29,22 +30,34 @@ class ProfileScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => ProfileBloc(
             getIt<ProfileRepository>(),
+            getIt<AuthRepository>()
           )..add(const ProfileEvent.getProfile()),
         ),
       ],
-      child: ProfileContent(),
+      child: const ProfileContent(),
     );
   }
 }
 
-class ProfileContent extends StatelessWidget {
+class ProfileContent extends StatefulWidget {
+  const ProfileContent({super.key});
 
-  ProfileContent({super.key});
+  @override
+  State<ProfileContent> createState() => ProfileContentState();
+}
 
+class ProfileContentState extends State<ProfileContent> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _repeatPasswordController = TextEditingController();
+  final _currentPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _emailController.text = context.watch<ProfileBloc>().state.currentUser?.email ?? '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +73,10 @@ class ProfileContent extends StatelessWidget {
               if (state.status == ProfileStatus.failure) {
                 context.showSnackBarMessage(state.error ?? '');
               } else if (state.status == ProfileStatus.loaded) {
-                _emailController.text = context.watch<ProfileBloc>().state.currentUser?.email ?? '';
+                _emailController.text = state.currentUser?.email ?? '';
                 context.read<ProfileBloc>().add(const ProfileEvent.resetStatus());
+              } else if (state.status == ProfileStatus.success) {
+                context.read<UserBloc>().add(const UserEvent.userLogout());
               }
             },
             child: Padding(
@@ -97,13 +112,23 @@ class ProfileContent extends StatelessWidget {
                       ),
                       Gaps.larger.spaceVertical,
                       TextInputWidget(
-                        controller: _passwordController,
+                        controller: _currentPasswordController,
                         obscureText: true,
                         hintText: appLocalizations.hintYourPassword,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return appLocalizations.lblRequirePassword;
-                          } else if (value.length < 6) {
+                          if (value == null || value.length < 6) {
+                            return appLocalizations.lblPasswordLength;
+                          }
+                          return null;
+                        },
+                      ),
+                      Gaps.larger.spaceVertical,
+                      TextInputWidget(
+                        controller: _passwordController,
+                        obscureText: true,
+                        hintText: appLocalizations.hintNewPassword,
+                        validator: (value) {
+                          if (value != null && value.isNotEmpty && value.length < 6) {
                             return appLocalizations.lblPasswordLength;
                           }
                           return null;
@@ -113,9 +138,11 @@ class ProfileContent extends StatelessWidget {
                       TextInputWidget(
                         controller: _repeatPasswordController,
                         obscureText: true,
-                        hintText: appLocalizations.hintrepeatPassword,
+                        hintText: appLocalizations.hintNewRepeatPassword,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          final password = _passwordController.text;
+                          final newPassword = _repeatPasswordController.text;
+                          if (password != newPassword && password.isNotEmpty && newPassword.isNotEmpty) {
                             return appLocalizations.lblConfirmPassword;
                           }
                           return null;
@@ -127,9 +154,9 @@ class ProfileContent extends StatelessWidget {
                                 onPressed: () {
                                   if (_formKey.currentState?.validate() ?? false) {
                                     context.read<ProfileBloc>().add(ProfileEvent.updateUserProfile(
+                                        password: _currentPasswordController.text,
                                         email: _emailController.text,
-                                        password: _passwordController.text,
-                                        newPassword: _repeatPasswordController.text));
+                                        newPassword: _passwordController.text));
                                   }
                                 },
                                 title: appLocalizations.btnSaveChangesText,

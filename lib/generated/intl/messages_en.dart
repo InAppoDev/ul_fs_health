@@ -65,6 +65,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your height (in centimeters)"),
         "heightRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("Please type your height"),
+        "hintNewPassword":
+            MessageLookupByLibrary.simpleMessage("your new password"),
+        "hintNewRepeatPassword":
+            MessageLookupByLibrary.simpleMessage("repeat your new password"),
         "hintYourEmail":
             MessageLookupByLibrary.simpleMessage("email@domain.com"),
         "hintYourPassword":

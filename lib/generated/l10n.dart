@@ -110,6 +110,26 @@ class S {
     );
   }
 
+  /// `your new password`
+  String get hintNewPassword {
+    return Intl.message(
+      'your new password',
+      name: 'hintNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `repeat your new password`
+  String get hintNewRepeatPassword {
+    return Intl.message(
+      'repeat your new password',
+      name: 'hintNewRepeatPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `email@domain.com`
   String get hintYourEmail {
     return Intl.message(

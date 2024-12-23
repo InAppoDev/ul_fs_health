@@ -8,6 +8,7 @@ abstract interface class FirebaseService {
   Future<void> logout();
   Future<User?> getLoggedinUser();
   FDocumentReference getDocument(FCollectionReference reference, String docId);
+  Future<AuthCredential> reAuthenticateUser(String email, String password);
 
   FCollectionReference get userCollectionReference;
 }
