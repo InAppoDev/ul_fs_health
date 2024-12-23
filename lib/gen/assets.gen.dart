@@ -52,10 +52,21 @@ class $AssetsIconsGen {
       ];
 }
 
+class $AssetsSoundsGen {
+  const $AssetsSoundsGen();
+
+  /// File path: assets/sounds/signal.mp3
+  String get signal => 'assets/sounds/signal.mp3';
+
+  /// List of all assets
+  List<String> get values => [signal];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsSoundsGen sounds = $AssetsSoundsGen();
 }
 
 class SvgGenImage {

@@ -41,6 +41,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Save and continue"),
         "btnTestInstructionsText":
             MessageLookupByLibrary.simpleMessage("Test instructions"),
+        "btnTestPauseText": MessageLookupByLibrary.simpleMessage("pause test"),
+        "btnTestResumeText":
+            MessageLookupByLibrary.simpleMessage("resume test"),
         "btnTestStartText": MessageLookupByLibrary.simpleMessage("Start Test"),
         "btnTestStopText": MessageLookupByLibrary.simpleMessage("Stop Test"),
         "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(

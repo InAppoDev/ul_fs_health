@@ -729,6 +729,26 @@ class S {
       args: [],
     );
   }
+
+  /// `pause test`
+  String get btnTestPauseText {
+    return Intl.message(
+      'pause test',
+      name: 'btnTestPauseText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `resume test`
+  String get btnTestResumeText {
+    return Intl.message(
+      'resume test',
+      name: 'btnTestResumeText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

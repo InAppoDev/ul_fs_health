@@ -76,6 +76,7 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
                   onPressed: () {
+                    context.router.push(WalkTestStartRoute());
                     // TODOchange to test route
                   },
                   title: appLocalizations.btnTestStartText,
