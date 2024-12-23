@@ -21,6 +21,7 @@ mixin _$ProfileEvent {
     required TResult Function() getProfile,
     required TResult Function(String email, String password, String newPassword)
         updateUserProfile,
+    required TResult Function() resetStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$ProfileEvent {
     TResult? Function()? getProfile,
     TResult? Function(String email, String password, String newPassword)?
         updateUserProfile,
+    TResult? Function()? resetStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$ProfileEvent {
     TResult Function()? getProfile,
     TResult Function(String email, String password, String newPassword)?
         updateUserProfile,
+    TResult Function()? resetStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,18 +45,21 @@ mixin _$ProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
     required TResult Function(_UpdateProfile value) updateUserProfile,
+    required TResult Function(_ResetStaus value) resetStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
     TResult? Function(_UpdateProfile value)? updateUserProfile,
+    TResult? Function(_ResetStaus value)? resetStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
     TResult Function(_UpdateProfile value)? updateUserProfile,
+    TResult Function(_ResetStaus value)? resetStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,6 +130,7 @@ class _$GetProfileImpl implements _GetProfile {
     required TResult Function() getProfile,
     required TResult Function(String email, String password, String newPassword)
         updateUserProfile,
+    required TResult Function() resetStatus,
   }) {
     return getProfile();
   }
@@ -134,6 +141,7 @@ class _$GetProfileImpl implements _GetProfile {
     TResult? Function()? getProfile,
     TResult? Function(String email, String password, String newPassword)?
         updateUserProfile,
+    TResult? Function()? resetStatus,
   }) {
     return getProfile?.call();
   }
@@ -144,6 +152,7 @@ class _$GetProfileImpl implements _GetProfile {
     TResult Function()? getProfile,
     TResult Function(String email, String password, String newPassword)?
         updateUserProfile,
+    TResult Function()? resetStatus,
     required TResult orElse(),
   }) {
     if (getProfile != null) {
@@ -157,6 +166,7 @@ class _$GetProfileImpl implements _GetProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
     required TResult Function(_UpdateProfile value) updateUserProfile,
+    required TResult Function(_ResetStaus value) resetStatus,
   }) {
     return getProfile(this);
   }
@@ -166,6 +176,7 @@ class _$GetProfileImpl implements _GetProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
     TResult? Function(_UpdateProfile value)? updateUserProfile,
+    TResult? Function(_ResetStaus value)? resetStatus,
   }) {
     return getProfile?.call(this);
   }
@@ -175,6 +186,7 @@ class _$GetProfileImpl implements _GetProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
     TResult Function(_UpdateProfile value)? updateUserProfile,
+    TResult Function(_ResetStaus value)? resetStatus,
     required TResult orElse(),
   }) {
     if (getProfile != null) {
@@ -278,6 +290,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     required TResult Function() getProfile,
     required TResult Function(String email, String password, String newPassword)
         updateUserProfile,
+    required TResult Function() resetStatus,
   }) {
     return updateUserProfile(email, password, newPassword);
   }
@@ -288,6 +301,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult? Function()? getProfile,
     TResult? Function(String email, String password, String newPassword)?
         updateUserProfile,
+    TResult? Function()? resetStatus,
   }) {
     return updateUserProfile?.call(email, password, newPassword);
   }
@@ -298,6 +312,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
     TResult Function()? getProfile,
     TResult Function(String email, String password, String newPassword)?
         updateUserProfile,
+    TResult Function()? resetStatus,
     required TResult orElse(),
   }) {
     if (updateUserProfile != null) {
@@ -311,6 +326,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetProfile value) getProfile,
     required TResult Function(_UpdateProfile value) updateUserProfile,
+    required TResult Function(_ResetStaus value) resetStatus,
   }) {
     return updateUserProfile(this);
   }
@@ -320,6 +336,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_GetProfile value)? getProfile,
     TResult? Function(_UpdateProfile value)? updateUserProfile,
+    TResult? Function(_ResetStaus value)? resetStatus,
   }) {
     return updateUserProfile?.call(this);
   }
@@ -329,6 +346,7 @@ class _$UpdateProfileImpl implements _UpdateProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetProfile value)? getProfile,
     TResult Function(_UpdateProfile value)? updateUserProfile,
+    TResult Function(_ResetStaus value)? resetStatus,
     required TResult orElse(),
   }) {
     if (updateUserProfile != null) {
@@ -353,6 +371,120 @@ abstract class _UpdateProfile implements ProfileEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateProfileImplCopyWith<_$UpdateProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetStausImplCopyWith<$Res> {
+  factory _$$ResetStausImplCopyWith(
+          _$ResetStausImpl value, $Res Function(_$ResetStausImpl) then) =
+      __$$ResetStausImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetStausImplCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res, _$ResetStausImpl>
+    implements _$$ResetStausImplCopyWith<$Res> {
+  __$$ResetStausImplCopyWithImpl(
+      _$ResetStausImpl _value, $Res Function(_$ResetStausImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResetStausImpl implements _ResetStaus {
+  const _$ResetStausImpl();
+
+  @override
+  String toString() {
+    return 'ProfileEvent.resetStatus()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetStausImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getProfile,
+    required TResult Function(String email, String password, String newPassword)
+        updateUserProfile,
+    required TResult Function() resetStatus,
+  }) {
+    return resetStatus();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getProfile,
+    TResult? Function(String email, String password, String newPassword)?
+        updateUserProfile,
+    TResult? Function()? resetStatus,
+  }) {
+    return resetStatus?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getProfile,
+    TResult Function(String email, String password, String newPassword)?
+        updateUserProfile,
+    TResult Function()? resetStatus,
+    required TResult orElse(),
+  }) {
+    if (resetStatus != null) {
+      return resetStatus();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetProfile value) getProfile,
+    required TResult Function(_UpdateProfile value) updateUserProfile,
+    required TResult Function(_ResetStaus value) resetStatus,
+  }) {
+    return resetStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetProfile value)? getProfile,
+    TResult? Function(_UpdateProfile value)? updateUserProfile,
+    TResult? Function(_ResetStaus value)? resetStatus,
+  }) {
+    return resetStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetProfile value)? getProfile,
+    TResult Function(_UpdateProfile value)? updateUserProfile,
+    TResult Function(_ResetStaus value)? resetStatus,
+    required TResult orElse(),
+  }) {
+    if (resetStatus != null) {
+      return resetStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetStaus implements ProfileEvent {
+  const factory _ResetStaus() = _$ResetStausImpl;
 }
 
 /// @nodoc

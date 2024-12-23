@@ -8,5 +8,6 @@ class ProfileEvent with _$ProfileEvent {
         required String password,
         required String newPassword
       }) = _UpdateProfile;
+  const factory ProfileEvent.resetStatus() = _ResetStaus;
 }
 

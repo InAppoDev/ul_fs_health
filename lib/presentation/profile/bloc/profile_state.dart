@@ -9,4 +9,4 @@ class ProfileState with _$ProfileState {
   }) = _Initial;
 }
 
-enum ProfileStatus { initial, loading, saved, success, failure }
+enum ProfileStatus { initial, loading, loaded, success, failure }

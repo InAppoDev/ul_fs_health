@@ -32,32 +32,19 @@ class ProfileScreen extends StatelessWidget {
           )..add(const ProfileEvent.getProfile()),
         ),
       ],
-      child: const ProfileContent(),
+      child: ProfileContent(),
     );
   }
 }
 
-class ProfileContent extends StatefulWidget {
+class ProfileContent extends StatelessWidget {
 
-  const ProfileContent({super.key});
-
-  @override
-  State<ProfileContent> createState()  => ProfileContentState();
-}
-
-class ProfileContentState extends State<ProfileContent> {
+  ProfileContent({super.key});
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _repeatPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
-
- @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _emailController.text = context.watch<ProfileBloc>().state.currentUser?.email ?? '';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +59,9 @@ class ProfileContentState extends State<ProfileContent> {
             listener: (context, state) {
               if (state.status == ProfileStatus.failure) {
                 context.showSnackBarMessage(state.error ?? '');
+              } else if (state.status == ProfileStatus.loaded) {
+                _emailController.text = context.watch<ProfileBloc>().state.currentUser?.email ?? '';
+                context.read<ProfileBloc>().add(const ProfileEvent.resetStatus());
               }
             },
             child: Padding(
