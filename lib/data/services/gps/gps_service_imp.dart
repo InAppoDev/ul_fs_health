@@ -2,30 +2,31 @@ import 'dart:async';
 
 import 'package:geolocator/geolocator.dart';
 
-import '../permission/gps_permission_service.dart';
 import '../permission/permission_service.dart';
 import 'gps_service.dart';
 
-class GPSServiceImp implements GPSService {
+mixin GPSMixin {
+  final LocationSettings kLocationSettings = const LocationSettings(
+    accuracy: LocationAccuracy.high,
+    distanceFilter: 1,
+  );
+}
+
+class GPSServiceImp with GPSMixin implements GPSService {
   GPSServiceImp(this.gpsPermissionService);
 
   PermissionService gpsPermissionService;
 
   final StreamController<Position> _positionController = StreamController<Position>.broadcast();
   StreamSubscription<Position>? _positionStream;
-  final LocationSettings _locationSettings = const LocationSettings(
-    accuracy: LocationAccuracy.high,
-    distanceFilter: 1,
-  );
+
 
   @override
-  LocationSettings get locationSettings => _locationSettings;
+  LocationSettings get locationSettings => kLocationSettings;
 
   double _distanceTraveled = 0.0;
   Position? _lastPosition;
   double _speed = 0.0;
-
-
 
   @override
   double get distanceTraveled => _distanceTraveled;
@@ -52,7 +53,7 @@ class GPSServiceImp implements GPSService {
 
     if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
       _positionStream = Geolocator.getPositionStream(
-        locationSettings: _locationSettings
+        locationSettings: kLocationSettings
       ).listen(_onLocationUpdate);
       return;
     } else {
@@ -62,8 +63,7 @@ class GPSServiceImp implements GPSService {
 
   @override
   Future<void> stopTracking() async {
-    // _positionStream?.cancel();
-    // _positionController.close();
+    _positionStream?.cancel();
   }
 
   void _onLocationUpdate(Position position) {

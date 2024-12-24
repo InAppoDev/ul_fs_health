@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:geolocator/geolocator.dart';
 
 
+
 abstract class GPSService {
   LocationSettings get locationSettings;
   double get distanceTraveled;

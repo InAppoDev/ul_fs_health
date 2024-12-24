@@ -50,7 +50,7 @@ class TestLayoutWidget extends StatelessWidget {
       ),
       body: ScrollableWidget(
         isScrollable: isScrollable,
-        child: Column(
+        child: ListView(
           children: [
             FeatureTestHeader(title: headerText, leading: headerIcon),
             (Gaps.largest + Gaps.large).spaceVertical,

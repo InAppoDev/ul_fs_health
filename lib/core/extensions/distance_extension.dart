@@ -9,7 +9,7 @@ extension DistanceExtension on double {
         return '${NumberFormat('0.00').format(km)} km';
       }
   }
-  String get formattedSpeed {
+  String get formattedSpeedInKmHour {
     final double speedKmh = this * 3.6;
     return '${NumberFormat('0.00').format(speedKmh)} km/h';
   }

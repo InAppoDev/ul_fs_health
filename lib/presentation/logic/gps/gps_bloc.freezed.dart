@@ -19,24 +19,24 @@ mixin _$GPSEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTracking,
-    required TResult Function(int remainingTime) stopTracking,
-    required TResult Function(Position position) updatePosition,
+    required TResult Function(int duration) stopTracking,
+    required TResult Function() updatePosition,
     required TResult Function(double averageSpeed) updateAverageSpeed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTracking,
-    TResult? Function(int remainingTime)? stopTracking,
-    TResult? Function(Position position)? updatePosition,
+    TResult? Function(int duration)? stopTracking,
+    TResult? Function()? updatePosition,
     TResult? Function(double averageSpeed)? updateAverageSpeed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTracking,
-    TResult Function(int remainingTime)? stopTracking,
-    TResult Function(Position position)? updatePosition,
+    TResult Function(int duration)? stopTracking,
+    TResult Function()? updatePosition,
     TResult Function(double averageSpeed)? updateAverageSpeed,
     required TResult orElse(),
   }) =>
@@ -130,8 +130,8 @@ class _$StartTrackingImpl implements _StartTracking {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTracking,
-    required TResult Function(int remainingTime) stopTracking,
-    required TResult Function(Position position) updatePosition,
+    required TResult Function(int duration) stopTracking,
+    required TResult Function() updatePosition,
     required TResult Function(double averageSpeed) updateAverageSpeed,
   }) {
     return startTracking();
@@ -141,8 +141,8 @@ class _$StartTrackingImpl implements _StartTracking {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTracking,
-    TResult? Function(int remainingTime)? stopTracking,
-    TResult? Function(Position position)? updatePosition,
+    TResult? Function(int duration)? stopTracking,
+    TResult? Function()? updatePosition,
     TResult? Function(double averageSpeed)? updateAverageSpeed,
   }) {
     return startTracking?.call();
@@ -152,8 +152,8 @@ class _$StartTrackingImpl implements _StartTracking {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTracking,
-    TResult Function(int remainingTime)? stopTracking,
-    TResult Function(Position position)? updatePosition,
+    TResult Function(int duration)? stopTracking,
+    TResult Function()? updatePosition,
     TResult Function(double averageSpeed)? updateAverageSpeed,
     required TResult orElse(),
   }) {
@@ -211,7 +211,7 @@ abstract class _$$StopTrackingImplCopyWith<$Res> {
           _$StopTrackingImpl value, $Res Function(_$StopTrackingImpl) then) =
       __$$StopTrackingImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int remainingTime});
+  $Res call({int duration});
 }
 
 /// @nodoc
@@ -227,12 +227,12 @@ class __$$StopTrackingImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? remainingTime = null,
+    Object? duration = null,
   }) {
     return _then(_$StopTrackingImpl(
-      remainingTime: null == remainingTime
-          ? _value.remainingTime
-          : remainingTime // ignore: cast_nullable_to_non_nullable
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -241,14 +241,14 @@ class __$$StopTrackingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$StopTrackingImpl implements _StopTracking {
-  const _$StopTrackingImpl({required this.remainingTime});
+  const _$StopTrackingImpl({required this.duration});
 
   @override
-  final int remainingTime;
+  final int duration;
 
   @override
   String toString() {
-    return 'GPSEvent.stopTracking(remainingTime: $remainingTime)';
+    return 'GPSEvent.stopTracking(duration: $duration)';
   }
 
   @override
@@ -256,12 +256,12 @@ class _$StopTrackingImpl implements _StopTracking {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StopTrackingImpl &&
-            (identical(other.remainingTime, remainingTime) ||
-                other.remainingTime == remainingTime));
+            (identical(other.duration, duration) ||
+                other.duration == duration));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, remainingTime);
+  int get hashCode => Object.hash(runtimeType, duration);
 
   /// Create a copy of GPSEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -275,35 +275,35 @@ class _$StopTrackingImpl implements _StopTracking {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTracking,
-    required TResult Function(int remainingTime) stopTracking,
-    required TResult Function(Position position) updatePosition,
+    required TResult Function(int duration) stopTracking,
+    required TResult Function() updatePosition,
     required TResult Function(double averageSpeed) updateAverageSpeed,
   }) {
-    return stopTracking(remainingTime);
+    return stopTracking(duration);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTracking,
-    TResult? Function(int remainingTime)? stopTracking,
-    TResult? Function(Position position)? updatePosition,
+    TResult? Function(int duration)? stopTracking,
+    TResult? Function()? updatePosition,
     TResult? Function(double averageSpeed)? updateAverageSpeed,
   }) {
-    return stopTracking?.call(remainingTime);
+    return stopTracking?.call(duration);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTracking,
-    TResult Function(int remainingTime)? stopTracking,
-    TResult Function(Position position)? updatePosition,
+    TResult Function(int duration)? stopTracking,
+    TResult Function()? updatePosition,
     TResult Function(double averageSpeed)? updateAverageSpeed,
     required TResult orElse(),
   }) {
     if (stopTracking != null) {
-      return stopTracking(remainingTime);
+      return stopTracking(duration);
     }
     return orElse();
   }
@@ -347,10 +347,10 @@ class _$StopTrackingImpl implements _StopTracking {
 }
 
 abstract class _StopTracking implements GPSEvent {
-  const factory _StopTracking({required final int remainingTime}) =
+  const factory _StopTracking({required final int duration}) =
       _$StopTrackingImpl;
 
-  int get remainingTime;
+  int get duration;
 
   /// Create a copy of GPSEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -364,8 +364,6 @@ abstract class _$$UpdatePositionImplCopyWith<$Res> {
   factory _$$UpdatePositionImplCopyWith(_$UpdatePositionImpl value,
           $Res Function(_$UpdatePositionImpl) then) =
       __$$UpdatePositionImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Position position});
 }
 
 /// @nodoc
@@ -378,87 +376,60 @@ class __$$UpdatePositionImplCopyWithImpl<$Res>
 
   /// Create a copy of GPSEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? position = null,
-  }) {
-    return _then(_$UpdatePositionImpl(
-      null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as Position,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$UpdatePositionImpl implements _UpdatePosition {
-  const _$UpdatePositionImpl(this.position);
-
-  @override
-  final Position position;
+  const _$UpdatePositionImpl();
 
   @override
   String toString() {
-    return 'GPSEvent.updatePosition(position: $position)';
+    return 'GPSEvent.updatePosition()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdatePositionImpl &&
-            (identical(other.position, position) ||
-                other.position == position));
+        (other.runtimeType == runtimeType && other is _$UpdatePositionImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, position);
-
-  /// Create a copy of GPSEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdatePositionImplCopyWith<_$UpdatePositionImpl> get copyWith =>
-      __$$UpdatePositionImplCopyWithImpl<_$UpdatePositionImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTracking,
-    required TResult Function(int remainingTime) stopTracking,
-    required TResult Function(Position position) updatePosition,
+    required TResult Function(int duration) stopTracking,
+    required TResult Function() updatePosition,
     required TResult Function(double averageSpeed) updateAverageSpeed,
   }) {
-    return updatePosition(position);
+    return updatePosition();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTracking,
-    TResult? Function(int remainingTime)? stopTracking,
-    TResult? Function(Position position)? updatePosition,
+    TResult? Function(int duration)? stopTracking,
+    TResult? Function()? updatePosition,
     TResult? Function(double averageSpeed)? updateAverageSpeed,
   }) {
-    return updatePosition?.call(position);
+    return updatePosition?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTracking,
-    TResult Function(int remainingTime)? stopTracking,
-    TResult Function(Position position)? updatePosition,
+    TResult Function(int duration)? stopTracking,
+    TResult Function()? updatePosition,
     TResult Function(double averageSpeed)? updateAverageSpeed,
     required TResult orElse(),
   }) {
     if (updatePosition != null) {
-      return updatePosition(position);
+      return updatePosition();
     }
     return orElse();
   }
@@ -502,15 +473,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
 }
 
 abstract class _UpdatePosition implements GPSEvent {
-  const factory _UpdatePosition(final Position position) = _$UpdatePositionImpl;
-
-  Position get position;
-
-  /// Create a copy of GPSEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdatePositionImplCopyWith<_$UpdatePositionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _UpdatePosition() = _$UpdatePositionImpl;
 }
 
 /// @nodoc
@@ -584,8 +547,8 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTracking,
-    required TResult Function(int remainingTime) stopTracking,
-    required TResult Function(Position position) updatePosition,
+    required TResult Function(int duration) stopTracking,
+    required TResult Function() updatePosition,
     required TResult Function(double averageSpeed) updateAverageSpeed,
   }) {
     return updateAverageSpeed(averageSpeed);
@@ -595,8 +558,8 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTracking,
-    TResult? Function(int remainingTime)? stopTracking,
-    TResult? Function(Position position)? updatePosition,
+    TResult? Function(int duration)? stopTracking,
+    TResult? Function()? updatePosition,
     TResult? Function(double averageSpeed)? updateAverageSpeed,
   }) {
     return updateAverageSpeed?.call(averageSpeed);
@@ -606,8 +569,8 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTracking,
-    TResult Function(int remainingTime)? stopTracking,
-    TResult Function(Position position)? updatePosition,
+    TResult Function(int duration)? stopTracking,
+    TResult Function()? updatePosition,
     TResult Function(double averageSpeed)? updateAverageSpeed,
     required TResult orElse(),
   }) {

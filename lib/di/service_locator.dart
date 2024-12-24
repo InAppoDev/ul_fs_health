@@ -29,7 +29,7 @@ void _configureServices() {
       ),
     )
     ..registerLazySingleton<PermissionService>(
-        ()=> GpsPermissionService())
+        () => GpsPermissionService())
     ..registerFactory<GPSService>(
         () => GPSServiceImp(getIt<PermissionService>()));
 }

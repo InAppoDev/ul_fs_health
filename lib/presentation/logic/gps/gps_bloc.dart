@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 
 import '../../../data/services/gps/gps_service.dart';
 
@@ -23,8 +22,6 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   GPSService gpsService;
 
-  StreamSubscription<Position>? _positionSubscription;
-
 
   Future<void> _onUpdateAverageSpeed(_UpdateAverageSpeed event, Emitter<GPSState> emit) async {
     emit(state.copyWith(averageSpeed: event.averageSpeed));
@@ -33,18 +30,27 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   Future<void> _onStartTracking(_StartTracking event, Emitter<GPSState> emit) async {
     emit(state.copyWith(status: GPSStatus.loading));
     await gpsService.startTracking();
-    _positionSubscription = gpsService.positionStream.listen((position) {
-      add(_UpdatePosition(position));
-    });
     emit(state.copyWith(status: GPSStatus.running));
   }
 
   Future<void> _onStopTracking(_StopTracking event, Emitter<GPSState> emit) async {
+    emit(state.copyWith(status: GPSStatus.loading));
     await gpsService.stopTracking();
-    _positionSubscription?.cancel();
-    final double averageSpeed = event.remainingTime == 0
-        ? 0.0
-        : state.distanceTraveled / event.remainingTime;
+    final double duration = event.duration.toDouble();
+    final double distance = state.distanceTraveled;
+
+    double averageSpeed = 0.0;
+
+    if (duration > 0) {
+      averageSpeed = distance / duration;
+    }
+
+    if (gpsService.speed > 0.0) {
+      const double distanceBasedSpeedFactor = 0.8;
+      const double instantaneousSpeedFactor = 0.2;
+      averageSpeed = (averageSpeed * distanceBasedSpeedFactor) + (gpsService.speed * instantaneousSpeedFactor);
+    }
+
     emit(state.copyWith(status: GPSStatus.stopped, averageSpeed: averageSpeed));
   }
 

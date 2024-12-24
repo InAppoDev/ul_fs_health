@@ -939,6 +939,36 @@ class S {
       args: [],
     );
   }
+
+  /// `6 min walk test RESULT:`
+  String get walkTestResultsText {
+    return Intl.message(
+      '6 min walk test RESULT:',
+      name: 'walkTestResultsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `average speed:`
+  String get walkTestAverageSpeedText {
+    return Intl.message(
+      'average speed:',
+      name: 'walkTestAverageSpeedText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `distance:`
+  String get walkTestDistanceText {
+    return Intl.message(
+      'distance:',
+      name: 'walkTestDistanceText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

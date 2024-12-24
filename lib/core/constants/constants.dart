@@ -9,5 +9,4 @@ abstract class Constants {
   static double get dividerThickness => 1;
   static double get headerLargeTextSize => 16;
   static double get featureTestHeaderHeight => 110;
-  static int get defaultTimerDuration => 60;
 }

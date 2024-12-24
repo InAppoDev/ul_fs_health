@@ -109,5 +109,8 @@
   "btnTestPauseText": "pause test",
   "btnTestResumeText": "resume test",
   "remainingTimeText": "Remaining time:",
-  "testFinishedText": "Test finished"
+  "testFinishedText": "Test finished",
+  "walkTestResultsText": "6 min walk test RESULT:",
+  "walkTestAverageSpeedText": "average speed:",
+  "walkTestDistanceText": "distance:"
 }

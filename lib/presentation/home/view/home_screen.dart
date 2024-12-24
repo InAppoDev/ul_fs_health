@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -18,12 +19,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeContent();
+    return HomeContent();
   }
 }
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+  HomeContent({super.key});
+
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +79,9 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
                   onPressed: () {
+                    _audioPlayer
+                      ..setAsset('assets/sounds/signal.mp3')
+                      ..play();
                     context.router.push(const WalkTestStartRoute());
                   },
                   title: appLocalizations.btnTestStartText,
@@ -110,14 +116,19 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
                   onPressed: () {
-                    context.router.push(const SitToStandRoute());
+                    _audioPlayer
+                      ..setAsset('assets/sounds/signal.mp3')
+                      ..play();
+                    context.router.push(const SitToStandTestStartRoute());
                   },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,
                   titleColor: white),
               Constants.sizedBoxHeightSmall.spaceVertical,
               SubmitButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.push(const SitToStandRoute());
+                  },
                   title: appLocalizations.btnTestInstructionsText,
                   backgroundColor: defaultBtnInactiveBackground,
                   titleColor: defaultTextColor),
