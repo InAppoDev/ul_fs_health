@@ -104,9 +104,7 @@
   "textWithNewLine": "{text}\n",
   "@textWithNewLine": {
     "description": "text with new line",
-    "placeHolders": {
-
-    }
+    "placeHolders": {}
   },
   "profileHeaderText": "My Profile",
   "profileDescriptionText": "Here you can edit your login data and create your new password.",
@@ -117,5 +115,9 @@
   "testFinishedText": "Test finished",
   "walkTestResultsText": "6 min walk test RESULT:",
   "walkTestAverageSpeedText": "average speed:",
-  "walkTestDistanceText": "distance:"
+  "walkTestDistanceText": "distance:",
+  "lblsitToStandTestTitleText": "Sit-to-Stand\nTest",
+  "lblDate": "DATE",
+  "lblTime": "TIME",
+  "lblVelocity": "VELOCITY"
 }

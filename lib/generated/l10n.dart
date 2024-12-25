@@ -1019,6 +1019,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Sit-to-Stand\nTest`
+  String get lblsitToStandTestTitleText {
+    return Intl.message(
+      'Sit-to-Stand\nTest',
+      name: 'lblsitToStandTestTitleText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE`
+  String get lblDate {
+    return Intl.message(
+      'DATE',
+      name: 'lblDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TIME`
+  String get lblTime {
+    return Intl.message(
+      'TIME',
+      name: 'lblTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VELOCITY`
+  String get lblVelocity {
+    return Intl.message(
+      'VELOCITY',
+      name: 'lblVelocity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

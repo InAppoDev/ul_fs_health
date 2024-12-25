@@ -8,6 +8,7 @@ import '../../presentation/profile/view/profile_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_test_start_screen.dart';
+import '../../presentation/sit_to_stand_result/view/sit_to_stand_result_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
 import '../../presentation/walk_test/view/walk_test_screen.dart';
 import '../../presentation/walk_test_start/view/walk_test_start_screen.dart';
@@ -62,6 +63,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/sit_to_stand_test_start',
           page: SitToStandTestStartRoute.page,
+        ),
+        AutoRoute(
+          path: '/sit_to_stand_result',
+          page: SitToStandResultRoute.page,
         ),
       ];
 }

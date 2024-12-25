@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "By clicking Create account, you agree to our"),
         "lblConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Please confirm your password"),
+        "lblDate": MessageLookupByLibrary.simpleMessage("DATE"),
         "lblEmailPassword": MessageLookupByLibrary.simpleMessage(
             "Enter your email and password to enter app."),
         "lblEmailRequire":
@@ -120,12 +121,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblSoundSignal": MessageLookupByLibrary.simpleMessage("sound signal"),
         "lblTermsService":
             MessageLookupByLibrary.simpleMessage("Terms of Service"),
+        "lblTime": MessageLookupByLibrary.simpleMessage("TIME"),
         "lblUnableSignup":
             MessageLookupByLibrary.simpleMessage("Unable to sign up"),
         "lblValidEmail":
             MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
+        "lblVelocity": MessageLookupByLibrary.simpleMessage("VELOCITY"),
         "lblYouAgree": MessageLookupByLibrary.simpleMessage(
             "By clicking continue, you agree to our"),
+        "lblsitToStandTestTitleText":
+            MessageLookupByLibrary.simpleMessage("Sit-to-Stand\nTest"),
         "menuDashboardText": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "menuLogoutText": MessageLookupByLibrary.simpleMessage("Log out"),
         "menuProfileText": MessageLookupByLibrary.simpleMessage("My profile"),
