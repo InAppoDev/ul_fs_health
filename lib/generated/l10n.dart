@@ -1019,6 +1019,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Please select meter length`
+  String get walkSelectLengthErrorText {
+    return Intl.message(
+      'Please select meter length',
+      name: 'walkSelectLengthErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `save results`
+  String get btnSaveResultsText {
+    return Intl.message(
+      'save results',
+      name: 'btnSaveResultsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select length:`
+  String get walkTestInitialLblText {
+    return Intl.message(
+      'Select length:',
+      name: 'walkTestInitialLblText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

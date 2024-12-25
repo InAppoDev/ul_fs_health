@@ -13,7 +13,7 @@ import '../../utils/model/text_model.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/test_layout_widget.dart';
 import '../../utils/widgets/text_builder_widget.dart';
-import 'walk_test_note_widget.dart';
+import '../widget/walk_test_note_widget.dart';
 
 @RoutePage()
 class WalkTestScreen extends StatelessWidget {

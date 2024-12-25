@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Save and continue"),
         "btnSaveChangesText":
             MessageLookupByLibrary.simpleMessage("Save changes"),
+        "btnSaveResultsText":
+            MessageLookupByLibrary.simpleMessage("save results"),
         "btnTestInstructionsText":
             MessageLookupByLibrary.simpleMessage("Test instructions"),
         "btnTestPauseText": MessageLookupByLibrary.simpleMessage("pause test"),
@@ -176,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
             " will let you know when you can start walking."),
         "testStartText": MessageLookupByLibrary.simpleMessage("START TEST"),
         "textWithNewLine": m1,
+        "walkSelectLengthErrorText":
+            MessageLookupByLibrary.simpleMessage("Please select meter length"),
         "walkTestAdditionalInfoFirstPartText": MessageLookupByLibrary.simpleMessage(
             "*If you feel any dizziness or tiredness during the test, you can press "),
         "walkTestAdditionalInformationSecondPartText":
@@ -188,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
         "walkTestDistanceText":
             MessageLookupByLibrary.simpleMessage("distance:"),
+        "walkTestInitialLblText":
+            MessageLookupByLibrary.simpleMessage("Select length:"),
         "walkTestInitialText": MessageLookupByLibrary.simpleMessage(
             "Great, you are all set to start the test!"),
         "walkTestInstruction": MessageLookupByLibrary.simpleMessage(

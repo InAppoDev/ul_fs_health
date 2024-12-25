@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
+import '../../../core/themes/app_text_styles.dart';
 
 class DropdownWidget<T> extends StatelessWidget {
   const DropdownWidget(
@@ -28,9 +29,10 @@ class DropdownWidget<T> extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       DropdownButtonFormField<T>(
           onTap: onTap,
+          style: body1,
           autovalidateMode: AutovalidateMode.onUnfocus,
           validator: validator,
-          hint: Text(placeholder),
+          hint: placeholder.isNotEmpty ? Text(placeholder) : null,
           decoration: InputDecoration(
             errorText: errorText,
             border: OutlineInputBorder(

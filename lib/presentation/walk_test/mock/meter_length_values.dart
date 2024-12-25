@@ -1,0 +1,23 @@
+final List<String> mockMeterLengths = [
+  '10 meter',
+  '20 meter',
+  '30 meter',
+  '40 meter',
+  '50 meter',
+  '60 meter',
+  '70 meter',
+  '80 meter',
+  '90 meter',
+  '100 meter',
+  '110 meter',
+  '120 meter',
+  '130 meter',
+  '140 meter',
+  '150 meter',
+  '160 meter',
+  '170 meter',
+  '180 meter',
+  '190 meter',
+  '200 meter',
+  '210 meter'
+];

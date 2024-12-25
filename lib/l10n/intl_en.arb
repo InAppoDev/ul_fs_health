@@ -117,5 +117,8 @@
   "testFinishedText": "Test finished",
   "walkTestResultsText": "6 min walk test RESULT:",
   "walkTestAverageSpeedText": "average speed:",
-  "walkTestDistanceText": "distance:"
+  "walkTestDistanceText": "distance:",
+  "walkSelectLengthErrorText": "Please select meter length",
+  "btnSaveResultsText": "save results",
+  "walkTestInitialLblText": "Select length:"
 }

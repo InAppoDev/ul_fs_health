@@ -15,6 +15,7 @@ class UserEntity with _$UserEntity {
     String? smokerInfo,
     String? drinkerInfo,
     String? cholesterolInfo,
-    String? bloodSugarInfo
+    String? bloodSugarInfo,
+
   }) = _UserEntity;
 }

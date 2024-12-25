@@ -3,12 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../core/constants/calculation_constants.dart';
 import '../../../data/services/gps/gps_service.dart';
 
 part 'gps_event.dart';
-
 part 'gps_state.dart';
-
 part 'gps_bloc.freezed.dart';
 
 class GPSBloc extends Bloc<GPSEvent, GPSState> {
@@ -46,8 +45,8 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     }
 
     if (gpsService.speed > 0.0) {
-      const double distanceBasedSpeedFactor = 0.8;
-      const double instantaneousSpeedFactor = 0.2;
+      final double distanceBasedSpeedFactor = CalculationConstants.distanceBasedSpeedFactor;
+      final double instantaneousSpeedFactor = CalculationConstants.instantaneousSpeedFactor;
       averageSpeed = (averageSpeed * distanceBasedSpeedFactor) + (gpsService.speed * instantaneousSpeedFactor);
     }
 

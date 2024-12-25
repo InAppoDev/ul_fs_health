@@ -17,7 +17,7 @@ import '../../logic/timer/timer_bloc.dart';
 import '../../timer/timer_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/test_layout_widget.dart';
-import '../../walk_test/view/walk_test_note_widget.dart';
+import '../../walk_test/widget/walk_test_note_widget.dart';
 
 @RoutePage()
 class WalkTestStartScreen extends StatelessWidget {
@@ -158,8 +158,10 @@ class WalkTestStartContent extends StatelessWidget {
             ]),
             Gaps.largest.spaceVertical,
             SubmitButton(
-              onPressed: () async {},
-              title: appLocalizations.btnTestStartText,
+              onPressed: () async {
+
+              },
+              title: appLocalizations.btnSaveResultsText,
               backgroundColor: Theme.of(context).colorScheme.primary,
               titleColor: Theme.of(context).colorScheme.onPrimary,
             ),

@@ -9,6 +9,7 @@ import '../../presentation/questionnaire/view/questionnaire_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_test_start_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
+import '../../presentation/walk_test/view/walk_test_initial_screen.dart';
 import '../../presentation/walk_test/view/walk_test_screen.dart';
 import '../../presentation/walk_test_start/view/walk_test_start_screen.dart';
 
@@ -44,16 +45,20 @@ class AppRouter extends RootStackRouter {
           page: WalkTestRoute.page,
         ),
         AutoRoute(
+          path: '/walk_test_start',
+          page: WalkTestStartRoute.page,
+        ),
+        AutoRoute(
+          path: '/walk_test_initial',
+          page: WalkTestInitialRoute.page,
+        ),
+        AutoRoute(
           path: '/home',
           page: HomeRoute.page,
         ),
         AutoRoute(
           path: '/sit_to_stand',
           page: SitToStandRoute.page,
-        ),
-        AutoRoute(
-          path: '/walk_test_start',
-          page: WalkTestStartRoute.page,
         ),
         AutoRoute(
           path: '/profile',
