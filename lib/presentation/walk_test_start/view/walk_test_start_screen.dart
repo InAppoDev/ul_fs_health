@@ -161,7 +161,7 @@ class WalkTestStartContent extends StatelessWidget {
               onPressed: () async {
 
               },
-              title: appLocalizations.btnSaveResultsText,
+              title: appLocalizations.btnSaveResultsText.toUpperCase(),
               backgroundColor: Theme.of(context).colorScheme.primary,
               titleColor: Theme.of(context).colorScheme.onPrimary,
             ),
