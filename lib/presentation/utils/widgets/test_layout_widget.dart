@@ -32,6 +32,7 @@ class TestLayoutWidget extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Gaps.large.spaceVertical,
           FeatureTestHeader(title: headerText, leading: headerIcon),
           (Gaps.largest + Gaps.large).spaceVertical,
           Padding(

@@ -110,6 +110,26 @@ class S {
     );
   }
 
+  /// `your new password`
+  String get hintNewPassword {
+    return Intl.message(
+      'your new password',
+      name: 'hintNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `repeat your new password`
+  String get hintNewRepeatPassword {
+    return Intl.message(
+      'repeat your new password',
+      name: 'hintNewRepeatPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `email@domain.com`
   String get hintYourEmail {
     return Intl.message(
@@ -897,6 +917,36 @@ class S {
       name: 'textWithNewLine',
       desc: 'text with new line',
       args: [text],
+    );
+  }
+
+  /// `My Profile`
+  String get profileHeaderText {
+    return Intl.message(
+      'My Profile',
+      name: 'profileHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here you can edit your login data and create your new password.`
+  String get profileDescriptionText {
+    return Intl.message(
+      'Here you can edit your login data and create your new password.',
+      name: 'profileDescriptionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save changes`
+  String get btnSaveChangesText {
+    return Intl.message(
+      'Save changes',
+      name: 'btnSaveChangesText',
+      desc: '',
+      args: [],
     );
   }
 }

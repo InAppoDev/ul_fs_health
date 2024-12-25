@@ -3,10 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
 import '../data/repositories/auth_repository_imp.dart';
+import '../data/repositories/profile_repository_imp.dart';
 import '../data/repositories/user_repository_imp.dart';
 import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
 import '../domain/repositories/auth_repository.dart';
+import '../domain/repositories/profile_repository.dart';
 import '../domain/repositories/user_repository.dart';
 
 final getIt = GetIt.instance;
@@ -30,5 +32,7 @@ void _configureRepositories() {
     ..registerLazySingleton<AuthRepository>(
         () => AuthRepositoryImp(firebaseService: getIt<FirebaseService>()))
     ..registerLazySingleton<UserRepository>(
-        () => UserRepositoryImp(firebaseService: getIt<FirebaseService>()));
+        () => UserRepositoryImp(firebaseService: getIt<FirebaseService>()))
+    ..registerLazySingleton<ProfileRepository>(
+        () => ProfileRepositoryImp(firebaseService: getIt<FirebaseService>()));
 }

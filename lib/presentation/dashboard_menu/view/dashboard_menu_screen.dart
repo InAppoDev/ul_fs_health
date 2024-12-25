@@ -73,7 +73,9 @@ class DashboardMenuScreen extends StatelessWidget {
                 Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),
                 ListTile(
                     visualDensity: VisualDensity.compact,
-                    onTap: () {},
+                    onTap: () {
+                      context.router.push(const ProfileRoute());
+                    },
                     leading: Assets.icons.iconProfile.svg(),
                     title: Text(appLocalizations.menuProfileText)),
                 Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),

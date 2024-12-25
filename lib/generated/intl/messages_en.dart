@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create account"),
         "btnQuestSubmit":
             MessageLookupByLibrary.simpleMessage("Save and continue"),
+        "btnSaveChangesText":
+            MessageLookupByLibrary.simpleMessage("Save changes"),
         "btnTestInstructionsText":
             MessageLookupByLibrary.simpleMessage("Test instructions"),
         "btnTestStartText": MessageLookupByLibrary.simpleMessage("Start Test"),
@@ -63,6 +65,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your height (in centimeters)"),
         "heightRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("Please type your height"),
+        "hintNewPassword":
+            MessageLookupByLibrary.simpleMessage("your new password"),
+        "hintNewRepeatPassword":
+            MessageLookupByLibrary.simpleMessage("repeat your new password"),
         "hintYourEmail":
             MessageLookupByLibrary.simpleMessage("email@domain.com"),
         "hintYourPassword":
@@ -126,6 +132,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pauseTestUpperText":
             MessageLookupByLibrary.simpleMessage("PAUSE TEST"),
         "pauseText": MessageLookupByLibrary.simpleMessage("PAUSE"),
+        "profileDescriptionText": MessageLookupByLibrary.simpleMessage(
+            "Here you can edit your login data and create your new password."),
+        "profileHeaderText": MessageLookupByLibrary.simpleMessage("My Profile"),
         "questBasicInfoHeader":
             MessageLookupByLibrary.simpleMessage("Basic information"),
         "questHeaderSubTitle": MessageLookupByLibrary.simpleMessage(

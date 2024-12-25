@@ -36,6 +36,7 @@ class SitToStandContent extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Gaps.large.spaceVertical,
           FeatureTestHeader(
             title: S.current.sitToStandTestTitleText,
             leading: Assets.icons.iconSitDownTest,
