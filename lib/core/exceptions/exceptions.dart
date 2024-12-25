@@ -59,3 +59,8 @@ class ValidationException extends ApiException {
   ValidationException({String? message})
       : super(message: message ?? 'Validation error');
 }
+
+class PermissionDeniedException extends ApiException {
+  PermissionDeniedException({String? message})
+      : super(message: message ?? 'Permission denied');
+}

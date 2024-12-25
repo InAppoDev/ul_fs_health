@@ -198,3 +198,22 @@ class WalkTestRoute extends PageRouteInfo<void> {
     },
   );
 }
+
+/// generated route for
+/// [WalkTestStartScreen]
+class WalkTestStartRoute extends PageRouteInfo<void> {
+  const WalkTestStartRoute({List<PageRouteInfo>? children})
+      : super(
+          WalkTestStartRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WalkTestStartRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WalkTestStartScreen();
+    },
+  );
+}

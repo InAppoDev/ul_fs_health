@@ -7,6 +7,10 @@ import '../data/repositories/profile_repository_imp.dart';
 import '../data/repositories/user_repository_imp.dart';
 import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
+import '../data/services/gps/gps_service.dart';
+import '../data/services/gps/gps_service_imp.dart';
+import '../data/services/permission/gps_permission_service.dart';
+import '../data/services/permission/permission_service.dart';
 import '../domain/repositories/auth_repository.dart';
 import '../domain/repositories/profile_repository.dart';
 import '../domain/repositories/user_repository.dart';
@@ -19,12 +23,17 @@ void configureDependencies() {
 }
 
 void _configureServices() {
-  getIt.registerSingleton<FirebaseService>(
-    FirebaseServiceImp(
-      auth: FirebaseAuth.instance,
-      firestore: FirebaseFirestore.instance,
-    ),
-  );
+  getIt
+    ..registerSingleton<FirebaseService>(
+      FirebaseServiceImp(
+        auth: FirebaseAuth.instance,
+        firestore: FirebaseFirestore.instance,
+      ),
+    )
+    ..registerLazySingleton<PermissionService>(
+        () => GpsPermissionService())
+    ..registerFactory<GPSService>(
+        () => GPSServiceImp(getIt<PermissionService>()));
 }
 
 void _configureRepositories() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/gaps.dart';
-import '../../../core/extensions/number_extension.dart';
+import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
@@ -24,25 +23,21 @@ class SimpleAppBarWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: contentPadding ?? Gaps.large.paddingTop,
-        child: AppBar(
-          centerTitle: true,
-          automaticallyImplyLeading: showBackButton,
-          actions: [
-            IconButton(
-                onPressed: onInfoPress,
-                icon: Icon(Icons.info_outline_rounded,
-                    color: ColorScheme.of(context).primary))
-          ],
-          title: Text(appLocalizations.lblAppName, style: header1),
-          leading: showBackButton
-              ? null
-              : IconButton(
-                  onPressed: onLeadingPress, icon: Assets.icons.menu.svg()),
-        ),
-      ),
+    return AppBar(
+      surfaceTintColor: white,
+      centerTitle: true,
+      automaticallyImplyLeading: showBackButton,
+      actions: [
+        IconButton(
+            onPressed: onInfoPress,
+            icon: Icon(Icons.info_outline_rounded,
+                color: ColorScheme.of(context).primary))
+      ],
+      title: Text(appLocalizations.lblAppName, style: header1),
+      leading: showBackButton
+          ? null
+          : IconButton(
+              onPressed: onLeadingPress, icon: Assets.icons.menu.svg()),
     );
   }
 

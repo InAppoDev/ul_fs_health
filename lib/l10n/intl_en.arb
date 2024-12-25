@@ -110,5 +110,12 @@
   },
   "profileHeaderText": "My Profile",
   "profileDescriptionText": "Here you can edit your login data and create your new password.",
-  "btnSaveChangesText": "Save changes"
+  "btnSaveChangesText": "Save changes",
+  "btnTestPauseText": "pause test",
+  "btnTestResumeText": "resume test",
+  "remainingTimeText": "Remaining time:",
+  "testFinishedText": "Test finished",
+  "walkTestResultsText": "6 min walk test RESULT:",
+  "walkTestAverageSpeedText": "average speed:",
+  "walkTestDistanceText": "distance:"
 }

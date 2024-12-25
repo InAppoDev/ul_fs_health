@@ -47,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Save changes"),
         "btnTestInstructionsText":
             MessageLookupByLibrary.simpleMessage("Test instructions"),
+        "btnTestPauseText": MessageLookupByLibrary.simpleMessage("pause test"),
+        "btnTestResumeText":
+            MessageLookupByLibrary.simpleMessage("resume test"),
         "btnTestStartText": MessageLookupByLibrary.simpleMessage("Start Test"),
         "btnTestStopText": MessageLookupByLibrary.simpleMessage("Stop Test"),
         "cholesterolPlaceHolder": MessageLookupByLibrary.simpleMessage(
@@ -143,6 +146,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fill this questionarre"),
         "questHealthInfoHeader":
             MessageLookupByLibrary.simpleMessage("Health information"),
+        "remainingTimeText":
+            MessageLookupByLibrary.simpleMessage("Remaining time:"),
         "sitToDownTestInitialText": MessageLookupByLibrary.simpleMessage(
             "Make sure you have a chair and enough place to stand up."),
         "sitToStandTestDescriptionText": MessageLookupByLibrary.simpleMessage(
@@ -153,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you an active smoker?"),
         "smokerStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "testFinishedText":
+            MessageLookupByLibrary.simpleMessage("Test finished"),
         "testInstructionAlertFirstText":
             MessageLookupByLibrary.simpleMessage("After "),
         "testInstructionAlertSecondText": MessageLookupByLibrary.simpleMessage(
@@ -174,13 +181,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "walkTestAdditionalInformationSecondPartText":
             MessageLookupByLibrary.simpleMessage(
                 " and resume with the test when you are feeling better."),
+        "walkTestAverageSpeedText":
+            MessageLookupByLibrary.simpleMessage("average speed:"),
         "walkTestDelayText": m2,
         "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
+        "walkTestDistanceText":
+            MessageLookupByLibrary.simpleMessage("distance:"),
         "walkTestInitialText": MessageLookupByLibrary.simpleMessage(
             "Great, you are all set to start the test!"),
         "walkTestInstruction": MessageLookupByLibrary.simpleMessage(
             "First you need to define length of one distance. Please note that recommended distance is 40 meters but other options are also viable."),
+        "walkTestResultsText":
+            MessageLookupByLibrary.simpleMessage("6 min walk test RESULT:"),
         "walkTestTitleText":
             MessageLookupByLibrary.simpleMessage("6 Minute Walk Test"),
         "weightPlaceHolder": MessageLookupByLibrary.simpleMessage(
