@@ -119,5 +119,9 @@
   "lblsitToStandTestTitleText": "Sit-to-Stand\nTest",
   "lblDate": "DATE",
   "lblTime": "TIME",
-  "lblVelocity": "VELOCITY"
+  "lblVelocity": "VELOCITY",
+  "lblSitToStandRepetitions" : "Sit-to-stand Repetitions:",
+  "lblTestFinished" : "Test Finished!",
+  "lblBestSitToStandResult" : "BEST SIT-TO-STAND RESULT:",
+  "lblPower" : "Power"
 }

@@ -1059,6 +1059,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Sit-to-stand Repetitions:`
+  String get lblSitToStandRepetitions {
+    return Intl.message(
+      'Sit-to-stand Repetitions:',
+      name: 'lblSitToStandRepetitions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test Finished!`
+  String get lblTestFinished {
+    return Intl.message(
+      'Test Finished!',
+      name: 'lblTestFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BEST SIT-TO-STAND RESULT:`
+  String get lblBestSitToStandResult {
+    return Intl.message(
+      'BEST SIT-TO-STAND RESULT:',
+      name: 'lblBestSitToStandResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Power`
+  String get lblPower {
+    return Intl.message(
+      'Power',
+      name: 'lblPower',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
