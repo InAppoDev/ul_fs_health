@@ -119,9 +119,9 @@ class WalkTestStartContent extends StatelessWidget {
           if (context.watch<TimerBloc>().state.status == TimerStatus.completed) ...[
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(appLocalizations.walkTestResultsText, style: body1),
+              child: Text(appLocalizations.walkTestResultsText.toUpperCase(), style: body1),
             ),
-            Gaps.largest.spaceVertical,
+            Gaps.large.spaceVertical,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Flexible(
                 flex: 2,
