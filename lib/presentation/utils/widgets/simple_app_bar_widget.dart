@@ -11,8 +11,11 @@ class SimpleAppBarWidget extends StatelessWidget
       {super.key,
       this.showBackButton = false,
       this.onInfoPress,
+      this.contentPadding,
       this.toolBarHeight = kToolbarHeight,
       this.onLeadingPress});
+
+  final EdgeInsets? contentPadding;
   final bool showBackButton;
   final double toolBarHeight;
   final VoidCallback? onLeadingPress;

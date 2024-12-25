@@ -5,6 +5,8 @@
   "lblOr": "or",
   "btnContinue": "Continue",
   "hintYourPassword": "your password",
+  "hintNewPassword": "your new password",
+  "hintNewRepeatPassword": "repeat your new password",
   "hintYourEmail": "email@domain.com",
   "lblForgottenPassword": "Forgotten password?",
   "hintrepeatPassword": "repeat your password",
@@ -106,6 +108,9 @@
 
     }
   },
+  "profileHeaderText": "My Profile",
+  "profileDescriptionText": "Here you can edit your login data and create your new password.",
+  "btnSaveChangesText": "Save changes",
   "btnTestPauseText": "pause test",
   "btnTestResumeText": "resume test",
   "remainingTimeText": "Remaining time:",

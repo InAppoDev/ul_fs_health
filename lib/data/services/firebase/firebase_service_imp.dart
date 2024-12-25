@@ -28,6 +28,12 @@ class FirebaseServiceImp with FirebaseMixin implements FirebaseService {
   Future<User?> getLoggedinUser() async => auth.currentUser;
 
   @override
+  Future<AuthCredential> reAuthenticateUser(String email, String password) async =>  EmailAuthProvider.credential(
+      email: email,
+      password: password,
+    );
+
+  @override
   Future<void> logout() async => auth.signOut();
 
   @override
