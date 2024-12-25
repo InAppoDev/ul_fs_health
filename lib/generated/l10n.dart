@@ -130,26 +130,6 @@ class S {
     );
   }
 
-  /// `your new password`
-  String get hintNewPassword {
-    return Intl.message(
-      'your new password',
-      name: 'hintNewPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `repeat your new password`
-  String get hintNewRepeatPassword {
-    return Intl.message(
-      'repeat your new password',
-      name: 'hintNewRepeatPassword',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `email@domain.com`
   String get hintYourEmail {
     return Intl.message(
@@ -937,106 +917,6 @@ class S {
       name: 'textWithNewLine',
       desc: 'text with new line',
       args: [text],
-    );
-  }
-
-  /// `My Profile`
-  String get profileHeaderText {
-    return Intl.message(
-      'My Profile',
-      name: 'profileHeaderText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Here you can edit your login data and create your new password.`
-  String get profileDescriptionText {
-    return Intl.message(
-      'Here you can edit your login data and create your new password.',
-      name: 'profileDescriptionText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Save changes`
-  String get btnSaveChangesText {
-    return Intl.message(
-      'Save changes',
-      name: 'btnSaveChangesText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `pause test`
-  String get btnTestPauseText {
-    return Intl.message(
-      'pause test',
-      name: 'btnTestPauseText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `resume test`
-  String get btnTestResumeText {
-    return Intl.message(
-      'resume test',
-      name: 'btnTestResumeText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Remaining time:`
-  String get remainingTimeText {
-    return Intl.message(
-      'Remaining time:',
-      name: 'remainingTimeText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Test finished`
-  String get testFinishedText {
-    return Intl.message(
-      'Test finished',
-      name: 'testFinishedText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `6 min walk test RESULT:`
-  String get walkTestResultsText {
-    return Intl.message(
-      '6 min walk test RESULT:',
-      name: 'walkTestResultsText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `average speed:`
-  String get walkTestAverageSpeedText {
-    return Intl.message(
-      'average speed:',
-      name: 'walkTestAverageSpeedText',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `distance:`
-  String get walkTestDistanceText {
-    return Intl.message(
-      'distance:',
-      name: 'walkTestDistanceText',
-      desc: '',
-      args: [],
     );
   }
 

@@ -7,16 +7,20 @@ import 'feature_test_header.dart';
 import 'simple_app_bar_widget.dart';
 
 class ScrollableWidget extends StatelessWidget {
-  const ScrollableWidget({super.key, required this.child, this.isScrollable = false});
+  const ScrollableWidget({super.key, required this.children, this.isScrollable = false});
 
   final bool isScrollable;
-  final Widget child;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
-    return isScrollable ? SingleChildScrollView(
-      child: child,
-    ) : child;
+    return isScrollable
+        ? ListView(
+            children: children,
+          )
+        : Column(
+            children: children,
+          );
   }
 }
 
@@ -39,8 +43,6 @@ class TestLayoutWidget extends StatelessWidget {
   final MainAxisAlignment mainAxisAlignment;
   final String headerText;
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,19 +52,17 @@ class TestLayoutWidget extends StatelessWidget {
       ),
       body: ScrollableWidget(
         isScrollable: isScrollable,
-        child: ListView(
-          children: [
-            FeatureTestHeader(title: headerText, leading: headerIcon),
-            (Gaps.largest + Gaps.large).spaceVertical,
-            Padding(
-                padding: Gaps.larger.paddingHorizontal.copyWith(bottom: Gaps.larger),
-                child: Column(
-                  crossAxisAlignment: crossAxisAlignment,
-                  mainAxisAlignment: mainAxisAlignment,
-                  children: children,
-                )),
-          ],
-        ),
+        children: [
+          FeatureTestHeader(title: headerText, leading: headerIcon),
+          (Gaps.largest + Gaps.large).spaceVertical,
+          Padding(
+              padding: Gaps.larger.paddingHorizontal,
+              child: Column(
+                crossAxisAlignment: crossAxisAlignment,
+                mainAxisAlignment: mainAxisAlignment,
+                children: children,
+              )),
+        ],
       ),
     );
   }

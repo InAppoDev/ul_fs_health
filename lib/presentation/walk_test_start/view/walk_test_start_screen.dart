@@ -163,7 +163,6 @@ class WalkTestStartContent extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.primary,
               titleColor: Theme.of(context).colorScheme.onPrimary,
             ),
-            Gaps.largest.spaceVertical,
           ],
         ],
       ),
