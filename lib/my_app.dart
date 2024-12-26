@@ -58,9 +58,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        print("KKKK");
         FocusScope.of(context).unfocus();
-        FocusManager.instance.primaryFocus?.unfocus();
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
