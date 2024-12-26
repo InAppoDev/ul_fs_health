@@ -17,19 +17,22 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WalkTestEvent {
   String? get selectedLength => throw _privateConstructorUsedError;
+  bool get shouldValidate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? selectedLength) selectLength,
+    required TResult Function(String? selectedLength, bool shouldValidate)
+        selectLength,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? selectedLength)? selectLength,
+    TResult? Function(String? selectedLength, bool shouldValidate)?
+        selectLength,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? selectedLength)? selectLength,
+    TResult Function(String? selectedLength, bool shouldValidate)? selectLength,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +66,7 @@ abstract class $WalkTestEventCopyWith<$Res> {
           WalkTestEvent value, $Res Function(WalkTestEvent) then) =
       _$WalkTestEventCopyWithImpl<$Res, WalkTestEvent>;
   @useResult
-  $Res call({String? selectedLength});
+  $Res call({String? selectedLength, bool shouldValidate});
 }
 
 /// @nodoc
@@ -82,12 +85,17 @@ class _$WalkTestEventCopyWithImpl<$Res, $Val extends WalkTestEvent>
   @override
   $Res call({
     Object? selectedLength = freezed,
+    Object? shouldValidate = null,
   }) {
     return _then(_value.copyWith(
       selectedLength: freezed == selectedLength
           ? _value.selectedLength
           : selectedLength // ignore: cast_nullable_to_non_nullable
               as String?,
+      shouldValidate: null == shouldValidate
+          ? _value.shouldValidate
+          : shouldValidate // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -100,7 +108,7 @@ abstract class _$$WalkTestSelectImplCopyWith<$Res>
       __$$WalkTestSelectImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? selectedLength});
+  $Res call({String? selectedLength, bool shouldValidate});
 }
 
 /// @nodoc
@@ -117,12 +125,17 @@ class __$$WalkTestSelectImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedLength = freezed,
+    Object? shouldValidate = null,
   }) {
     return _then(_$WalkTestSelectImpl(
       freezed == selectedLength
           ? _value.selectedLength
           : selectedLength // ignore: cast_nullable_to_non_nullable
               as String?,
+      null == shouldValidate
+          ? _value.shouldValidate
+          : shouldValidate // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -130,14 +143,17 @@ class __$$WalkTestSelectImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WalkTestSelectImpl implements _WalkTestSelect {
-  const _$WalkTestSelectImpl(this.selectedLength);
+  const _$WalkTestSelectImpl(this.selectedLength, [this.shouldValidate = true]);
 
   @override
   final String? selectedLength;
+  @override
+  @JsonKey()
+  final bool shouldValidate;
 
   @override
   String toString() {
-    return 'WalkTestEvent.selectLength(selectedLength: $selectedLength)';
+    return 'WalkTestEvent.selectLength(selectedLength: $selectedLength, shouldValidate: $shouldValidate)';
   }
 
   @override
@@ -146,11 +162,13 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
         (other.runtimeType == runtimeType &&
             other is _$WalkTestSelectImpl &&
             (identical(other.selectedLength, selectedLength) ||
-                other.selectedLength == selectedLength));
+                other.selectedLength == selectedLength) &&
+            (identical(other.shouldValidate, shouldValidate) ||
+                other.shouldValidate == shouldValidate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedLength);
+  int get hashCode => Object.hash(runtimeType, selectedLength, shouldValidate);
 
   /// Create a copy of WalkTestEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -164,27 +182,29 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? selectedLength) selectLength,
+    required TResult Function(String? selectedLength, bool shouldValidate)
+        selectLength,
   }) {
-    return selectLength(selectedLength);
+    return selectLength(selectedLength, shouldValidate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? selectedLength)? selectLength,
+    TResult? Function(String? selectedLength, bool shouldValidate)?
+        selectLength,
   }) {
-    return selectLength?.call(selectedLength);
+    return selectLength?.call(selectedLength, shouldValidate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? selectedLength)? selectLength,
+    TResult Function(String? selectedLength, bool shouldValidate)? selectLength,
     required TResult orElse(),
   }) {
     if (selectLength != null) {
-      return selectLength(selectedLength);
+      return selectLength(selectedLength, shouldValidate);
     }
     return orElse();
   }
@@ -219,11 +239,13 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
 }
 
 abstract class _WalkTestSelect implements WalkTestEvent {
-  const factory _WalkTestSelect(final String? selectedLength) =
-      _$WalkTestSelectImpl;
+  const factory _WalkTestSelect(final String? selectedLength,
+      [final bool shouldValidate]) = _$WalkTestSelectImpl;
 
   @override
   String? get selectedLength;
+  @override
+  bool get shouldValidate;
 
   /// Create a copy of WalkTestEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -237,6 +259,7 @@ abstract class _WalkTestSelect implements WalkTestEvent {
 mixin _$WalkTestState {
   WalkTestStatus get status => throw _privateConstructorUsedError;
   String? get selectedLength => throw _privateConstructorUsedError;
+  String? get errorText => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
 
   /// Create a copy of WalkTestState
@@ -252,7 +275,11 @@ abstract class $WalkTestStateCopyWith<$Res> {
           WalkTestState value, $Res Function(WalkTestState) then) =
       _$WalkTestStateCopyWithImpl<$Res, WalkTestState>;
   @useResult
-  $Res call({WalkTestStatus status, String? selectedLength, bool isValid});
+  $Res call(
+      {WalkTestStatus status,
+      String? selectedLength,
+      String? errorText,
+      bool isValid});
 }
 
 /// @nodoc
@@ -272,6 +299,7 @@ class _$WalkTestStateCopyWithImpl<$Res, $Val extends WalkTestState>
   $Res call({
     Object? status = null,
     Object? selectedLength = freezed,
+    Object? errorText = freezed,
     Object? isValid = null,
   }) {
     return _then(_value.copyWith(
@@ -282,6 +310,10 @@ class _$WalkTestStateCopyWithImpl<$Res, $Val extends WalkTestState>
       selectedLength: freezed == selectedLength
           ? _value.selectedLength
           : selectedLength // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
               as String?,
       isValid: null == isValid
           ? _value.isValid
@@ -299,7 +331,11 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({WalkTestStatus status, String? selectedLength, bool isValid});
+  $Res call(
+      {WalkTestStatus status,
+      String? selectedLength,
+      String? errorText,
+      bool isValid});
 }
 
 /// @nodoc
@@ -317,6 +353,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? selectedLength = freezed,
+    Object? errorText = freezed,
     Object? isValid = null,
   }) {
     return _then(_$InitialImpl(
@@ -327,6 +364,10 @@ class __$$InitialImplCopyWithImpl<$Res>
       selectedLength: freezed == selectedLength
           ? _value.selectedLength
           : selectedLength // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
               as String?,
       isValid: null == isValid
           ? _value.isValid
@@ -342,6 +383,7 @@ class _$InitialImpl implements _Initial {
   const _$InitialImpl(
       {this.status = WalkTestStatus.initial,
       this.selectedLength,
+      this.errorText,
       this.isValid = false});
 
   @override
@@ -350,12 +392,14 @@ class _$InitialImpl implements _Initial {
   @override
   final String? selectedLength;
   @override
+  final String? errorText;
+  @override
   @JsonKey()
   final bool isValid;
 
   @override
   String toString() {
-    return 'WalkTestState(status: $status, selectedLength: $selectedLength, isValid: $isValid)';
+    return 'WalkTestState(status: $status, selectedLength: $selectedLength, errorText: $errorText, isValid: $isValid)';
   }
 
   @override
@@ -366,11 +410,14 @@ class _$InitialImpl implements _Initial {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.selectedLength, selectedLength) ||
                 other.selectedLength == selectedLength) &&
+            (identical(other.errorText, errorText) ||
+                other.errorText == errorText) &&
             (identical(other.isValid, isValid) || other.isValid == isValid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, selectedLength, isValid);
+  int get hashCode =>
+      Object.hash(runtimeType, status, selectedLength, errorText, isValid);
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.
@@ -385,12 +432,15 @@ abstract class _Initial implements WalkTestState {
   const factory _Initial(
       {final WalkTestStatus status,
       final String? selectedLength,
+      final String? errorText,
       final bool isValid}) = _$InitialImpl;
 
   @override
   WalkTestStatus get status;
   @override
   String? get selectedLength;
+  @override
+  String? get errorText;
   @override
   bool get isValid;
 

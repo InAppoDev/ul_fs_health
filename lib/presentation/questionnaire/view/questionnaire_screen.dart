@@ -7,6 +7,7 @@ import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/constants/gender.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../l10n/localizations_utils.dart';
@@ -122,9 +123,16 @@ class QuestionnaireContentState extends State<QuestionnaireContent> {
                     Gaps.large.spaceVertical,
                     BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => DropdownWidget<Gender>(
-                            validator: QuestionnaireValidator.validateGender,
+                            hintStyle: body1.copyWith(color: darkGrey, fontSize: 16),
                             errorText: state.genderError,
+                            hintText: appLocalizations.genderPlaceholder,
                             values: genderValues,
+                            onFocusChange: (hasFocus) {
+                              context.read<QuestionnaireBloc>().add(
+                                  QuestionnaireEvent.onGenderChanged(
+                                      selectedGender: state.basicInfo.gender,
+                                      shouldValidate: !hasFocus));
+                            },
                             selectedValue: state.basicInfo.gender,
                             placeholder: appLocalizations.genderPlaceholder,
                             onChanged: (selectedValue) {

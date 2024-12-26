@@ -17,7 +17,19 @@ class WalkTestBloc extends Bloc<WalkTestEvent, WalkTestState> {
     if (event.selectedLength != null && event.selectedLength!.isNotEmpty) {
       isValid = true;
     }
-    emit(state.copyWith(selectedLength: event.selectedLength, isValid: isValid));
+    String? error = validate(event.selectedLength);
+    if (!event.shouldValidate) {
+      error = null;
+    }
+
+    emit(state.copyWith(selectedLength: event.selectedLength, isValid: isValid, errorText: error));
+  }
+
+  String? validate(String? value) {
+    if (value == null || value.isEmpty) {
+      return appLocalizations.walkSelectLengthErrorText;
+    }
+    return null;
   }
 
 }

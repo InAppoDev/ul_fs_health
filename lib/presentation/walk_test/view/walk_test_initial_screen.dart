@@ -42,18 +42,21 @@ class WalkTestInitialContent extends StatelessWidget {
           Align(
               alignment: Alignment.centerLeft,
               child: Text(appLocalizations.walkTestInitialLblText, style: body1)),
-          DropdownWidget<String>(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return appLocalizations.walkSelectLengthErrorText;
-              }
-              return null;
-            },
-            selectedValue: context.watch<WalkTestBloc>().state.selectedLength,
-            onChanged: (value) {
-              context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(value));
-            },
-              values: mockMeterLengths),
+          Gaps.largest.spaceVertical,
+          BlocBuilder<WalkTestBloc, WalkTestState>(
+            builder: (context, state) => DropdownWidget<String>(
+              hintText: '',
+              hintStyle: body1,
+              errorText: state.errorText,
+              onFocusChange: (hasFocus) {
+                context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(state.selectedLength, !hasFocus));
+              },
+              selectedValue: context.watch<WalkTestBloc>().state.selectedLength,
+              onChanged: (value) {
+                context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(value, false));
+              },
+                values: mockMeterLengths),
+          ),
           Gaps.largest.spaceVertical,
           SubmitButton(
               isValid: context.watch<WalkTestBloc>().state.isValid,
