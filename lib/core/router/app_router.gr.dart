@@ -200,6 +200,25 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [WalkTestInitialScreen]
+class WalkTestInitialRoute extends PageRouteInfo<void> {
+  const WalkTestInitialRoute({List<PageRouteInfo>? children})
+      : super(
+          WalkTestInitialRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WalkTestInitialRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WalkTestInitialScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [WalkTestScreen]
 class WalkTestRoute extends PageRouteInfo<void> {
   const WalkTestRoute({List<PageRouteInfo>? children})

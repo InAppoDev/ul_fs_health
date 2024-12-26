@@ -123,5 +123,8 @@
   "lblSitToStandRepetitions" : "Sit-to-stand Repetitions:",
   "lblTestFinished" : "Test Finished!",
   "lblBestSitToStandResult" : "BEST SIT-TO-STAND RESULT:",
-  "lblPower" : "Power"
+  "lblPower" : "Power",
+  "walkSelectLengthErrorText": "Please select meter length",
+  "btnSaveResultsText": "save results",
+  "walkTestInitialLblText": "Select length:"
 }
