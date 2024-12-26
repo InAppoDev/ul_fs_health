@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: MaterialApp(
