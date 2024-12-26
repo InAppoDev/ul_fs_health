@@ -51,7 +51,7 @@ class WalkTestInitialContent extends StatelessWidget {
               onFocusChange: (hasFocus) {
                 context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(state.selectedLength, !hasFocus));
               },
-              selectedValue: context.watch<WalkTestBloc>().state.selectedLength,
+              selectedValue: state.selectedLength,
               onChanged: (value) {
                 context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(value, false));
               },
