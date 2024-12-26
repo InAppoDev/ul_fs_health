@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RepetitionCounter extends StatefulWidget {
-  const RepetitionCounter({super.key, required this.repetition});
+  const RepetitionCounter(
+      {super.key, required this.repetition, required this.totalRepetitions});
 
   final int repetition;
+  final int totalRepetitions;
 
   @override
   State<RepetitionCounter> createState() => _RepetitionCounterState();
@@ -23,7 +25,7 @@ class _RepetitionCounterState extends State<RepetitionCounter> {
   void _testOneRep() {
     setState(() {
       _remainingTime++;
-      _progress = _remainingTime / widget.repetition;
+      _progress = _remainingTime / widget.totalRepetitions;
     });
   }
 
@@ -44,7 +46,7 @@ class _RepetitionCounterState extends State<RepetitionCounter> {
           ),
         ),
         Text(
-          '$_remainingTime/${widget.repetition}',
+          '${widget.repetition}/${widget.totalRepetitions}',
           style: const TextStyle(fontSize: 48),
         )
       ],

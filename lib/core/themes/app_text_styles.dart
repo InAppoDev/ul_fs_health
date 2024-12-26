@@ -11,17 +11,17 @@ TextStyle get header1 => GoogleFonts.inter(
       color: const Color.fromRGBO(0, 0, 0, 1),
     );
 TextStyle get header3 => GoogleFonts.inter(
-  fontSize: 26,
-  fontWeight: FontWeight.w300,
-  height: 1.352,
-  letterSpacing: -2,
-  color: white,
-);
+      fontSize: 26,
+      fontWeight: FontWeight.w300,
+      height: 1.352,
+      letterSpacing: -2,
+      color: white,
+    );
 TextStyle get header2 => GoogleFonts.inter(
-  fontSize: 20,
-  fontWeight: FontWeight.w600,
-  color: const Color.fromRGBO(0, 0, 0, 1),
-);
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+      color: const Color.fromRGBO(0, 0, 0, 1),
+    );
 TextStyle get body1 => GoogleFonts.inter(
       color: const Color.fromRGBO(0, 0, 0, 1),
       fontSize: 14,
@@ -41,9 +41,8 @@ TextStyle get body3 => GoogleFonts.inter(
     );
 
 TextStyle get body4 => GoogleFonts.roboto(
-  fontWeight: FontWeight.w400,
-  fontSize: 16,
-  height: 0.875,
-  letterSpacing: 0.5,
-  color: defaultTextColor
-);
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 0.875,
+    letterSpacing: 0.5,
+    color: defaultTextColor);

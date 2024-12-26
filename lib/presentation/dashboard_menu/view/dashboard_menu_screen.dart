@@ -27,7 +27,8 @@ class DashboardMenuScreen extends StatelessWidget {
           padding: Gaps.extraLarge.paddingTop,
           child: Container(
             padding: Gaps.large.paddingHorizontal,
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * 0.7),
             decoration: BoxDecoration(color: white, boxShadow: [
               BoxShadow(
                   offset: Constants.defaultShadowSize.smallY,
@@ -52,14 +53,22 @@ class DashboardMenuScreen extends StatelessWidget {
                       context.router.maybePop();
                     },
                     leading: Assets.icons.iconHome.svg(),
-                    title: Text(appLocalizations.menuDashboardText, style: body4)),
-                Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),
+                    title:
+                        Text(appLocalizations.menuDashboardText, style: body4)),
+                Divider(
+                    color: defaultDividerColor,
+                    endIndent: Constants.defaultDividerEndIndent),
                 ListTile(
                     visualDensity: VisualDensity.compact,
-                    onTap: () {},
+                    onTap: () {
+                      context.router.push(const SitToStandResultRoute());
+                    },
                     leading: Assets.icons.iconResults.svg(),
-                    title: Text(appLocalizations.menuResultsText, style: body4)),
-                Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),
+                    title:
+                        Text(appLocalizations.menuResultsText, style: body4)),
+                Divider(
+                    color: defaultDividerColor,
+                    endIndent: Constants.defaultDividerEndIndent),
                 ListTile(
                     visualDensity: VisualDensity.compact,
                     onTap: () {
@@ -70,7 +79,9 @@ class DashboardMenuScreen extends StatelessWidget {
                       appLocalizations.menuQuestionnaireText,
                       style: body4,
                     )),
-                Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),
+                Divider(
+                    color: defaultDividerColor,
+                    endIndent: Constants.defaultDividerEndIndent),
                 ListTile(
                     visualDensity: VisualDensity.compact,
                     onTap: () {
@@ -78,17 +89,26 @@ class DashboardMenuScreen extends StatelessWidget {
                     },
                     leading: Assets.icons.iconProfile.svg(),
                     title: Text(appLocalizations.menuProfileText)),
-                Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),
+                Divider(
+                    color: defaultDividerColor,
+                    endIndent: Constants.defaultDividerEndIndent),
                 ListTile(
                     visualDensity: VisualDensity.compact,
                     onTap: () {
-                      context.read<UserBloc>().add(const UserEvent.userLogout());
+                      context
+                          .read<UserBloc>()
+                          .add(const UserEvent.userLogout());
                     },
                     leading: Transform.rotate(
-                        angle: pi, child: Icon(Icons.logout, color: ColorScheme.of(context).primary)),
+                        angle: pi,
+                        child: Icon(Icons.logout,
+                            color: ColorScheme.of(context).primary)),
                     title: Text(appLocalizations.menuLogoutText,
-                        style: body4.copyWith(color: ColorScheme.of(context).primary))),
-                Divider(color: defaultDividerColor, endIndent: Constants.defaultDividerEndIndent),
+                        style: body4.copyWith(
+                            color: ColorScheme.of(context).primary))),
+                Divider(
+                    color: defaultDividerColor,
+                    endIndent: Constants.defaultDividerEndIndent),
               ],
             ),
           ),

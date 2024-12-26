@@ -82,10 +82,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("repeat your password"),
         "lblAnd": MessageLookupByLibrary.simpleMessage(" and  "),
         "lblAppName": MessageLookupByLibrary.simpleMessage("Ul Fs Health"),
+        "lblBestSitToStandResult":
+            MessageLookupByLibrary.simpleMessage("BEST SIT-TO-STAND RESULT:"),
         "lblClickCreateAccount": MessageLookupByLibrary.simpleMessage(
             "By clicking Create account, you agree to our"),
         "lblConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Please confirm your password"),
+        "lblDate": MessageLookupByLibrary.simpleMessage("DATE"),
         "lblEmailPassword": MessageLookupByLibrary.simpleMessage(
             "Enter your email and password to enter app."),
         "lblEmailRequire":
@@ -103,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "lblPasswordLength": MessageLookupByLibrary.simpleMessage(
             "Password must be at least 6 characters"),
+        "lblPower": MessageLookupByLibrary.simpleMessage("Power"),
         "lblPrivacyPolicy":
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "lblRequirePassword":
@@ -119,15 +123,23 @@ class MessageLookup extends MessageLookupByLibrary {
             " will let you know when you can start with stand-up sit-down test."),
         "lblSitToStandPageTitle": MessageLookupByLibrary.simpleMessage(
             "Make sure you have a chair and enough place to stand up."),
+        "lblSitToStandRepetitions":
+            MessageLookupByLibrary.simpleMessage("Sit-to-stand Repetitions:"),
         "lblSoundSignal": MessageLookupByLibrary.simpleMessage("sound signal"),
         "lblTermsService":
             MessageLookupByLibrary.simpleMessage("Terms of Service"),
+        "lblTestFinished":
+            MessageLookupByLibrary.simpleMessage("Test Finished!"),
+        "lblTime": MessageLookupByLibrary.simpleMessage("TIME"),
         "lblUnableSignup":
             MessageLookupByLibrary.simpleMessage("Unable to sign up"),
         "lblValidEmail":
             MessageLookupByLibrary.simpleMessage("Enter a valid email address"),
+        "lblVelocity": MessageLookupByLibrary.simpleMessage("VELOCITY"),
         "lblYouAgree": MessageLookupByLibrary.simpleMessage(
             "By clicking continue, you agree to our"),
+        "lblsitToStandTestTitleText":
+            MessageLookupByLibrary.simpleMessage("Sit-to-Stand\nTest"),
         "menuDashboardText": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "menuLogoutText": MessageLookupByLibrary.simpleMessage("Log out"),
         "menuProfileText": MessageLookupByLibrary.simpleMessage("My profile"),

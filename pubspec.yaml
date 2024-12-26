@@ -29,6 +29,8 @@ dependencies:
   just_audio: ^0.9.42
   intl_utils: ^2.8.7
   geolocator: ^13.0.2
+  fl_chart: ^0.70.0
+  sensors_plus: ^6.1.1
 
 dev_dependencies:
   auto_route_generator: ^9.0.0

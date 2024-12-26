@@ -1020,6 +1020,196 @@ class S {
     );
   }
 
+  /// `Sit-to-Stand\nTest`
+  String get lblsitToStandTestTitleText {
+    return Intl.message(
+      'Sit-to-Stand\nTest',
+      name: 'lblsitToStandTestTitleText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE`
+  String get lblDate {
+    return Intl.message(
+      'DATE',
+      name: 'lblDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TIME`
+  String get lblTime {
+    return Intl.message(
+      'TIME',
+      name: 'lblTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VELOCITY`
+  String get lblVelocity {
+    return Intl.message(
+      'VELOCITY',
+      name: 'lblVelocity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sit-to-stand Repetitions:`
+  String get lblSitToStandRepetitions {
+    return Intl.message(
+      'Sit-to-stand Repetitions:',
+      name: 'lblSitToStandRepetitions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test Finished!`
+  String get lblTestFinished {
+    return Intl.message(
+      'Test Finished!',
+      name: 'lblTestFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BEST SIT-TO-STAND RESULT:`
+  String get lblBestSitToStandResult {
+    return Intl.message(
+      'BEST SIT-TO-STAND RESULT:',
+      name: 'lblBestSitToStandResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Power`
+  String get lblPower {
+    return Intl.message(
+      'Power',
+      name: 'lblPower',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select meter length`
+  String get walkSelectLengthErrorText {
+    return Intl.message(
+      'Please select meter length',
+      name: 'walkSelectLengthErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `save results`
+  String get btnSaveResultsText {
+    return Intl.message(
+      'save results',
+      name: 'btnSaveResultsText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select length:`
+  String get walkTestInitialLblText {
+    return Intl.message(
+      'Select length:',
+      name: 'walkTestInitialLblText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sit-to-Stand\nTest`
+  String get lblsitToStandTestTitleText {
+    return Intl.message(
+      'Sit-to-Stand\nTest',
+      name: 'lblsitToStandTestTitleText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE`
+  String get lblDate {
+    return Intl.message(
+      'DATE',
+      name: 'lblDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TIME`
+  String get lblTime {
+    return Intl.message(
+      'TIME',
+      name: 'lblTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VELOCITY`
+  String get lblVelocity {
+    return Intl.message(
+      'VELOCITY',
+      name: 'lblVelocity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sit-to-stand Repetitions:`
+  String get lblSitToStandRepetitions {
+    return Intl.message(
+      'Sit-to-stand Repetitions:',
+      name: 'lblSitToStandRepetitions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Test Finished!`
+  String get lblTestFinished {
+    return Intl.message(
+      'Test Finished!',
+      name: 'lblTestFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BEST SIT-TO-STAND RESULT:`
+  String get lblBestSitToStandResult {
+    return Intl.message(
+      'BEST SIT-TO-STAND RESULT:',
+      name: 'lblBestSitToStandResult',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Power`
+  String get lblPower {
+    return Intl.message(
+      'Power',
+      name: 'lblPower',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please select meter length`
   String get walkSelectLengthErrorText {
     return Intl.message(

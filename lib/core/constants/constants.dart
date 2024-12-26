@@ -9,4 +9,7 @@ abstract class Constants {
   static double get dividerThickness => 1;
   static double get headerLargeTextSize => 16;
   static double get featureTestHeaderHeight => 110;
+  static double get chartHeight => 200;
+  static double get barChartRodDataWidth => 16;
+  static double get flBorderDataWidth => 2;
 }
