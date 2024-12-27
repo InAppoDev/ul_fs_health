@@ -109,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "lblRequirePassword":
             MessageLookupByLibrary.simpleMessage("Password is required"),
+        "lblSaveResults": MessageLookupByLibrary.simpleMessage("SAVE RESULTS"),
         "lblSignUp": MessageLookupByLibrary.simpleMessage("Sign up"),
         "lblSitToStandAlertInfo1": m0,
         "lblSitToStandAlertInfo2": MessageLookupByLibrary.simpleMessage(

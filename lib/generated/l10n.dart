@@ -1099,6 +1099,16 @@ class S {
       args: [],
     );
   }
+
+  /// `SAVE RESULTS`
+  String get lblSaveResults {
+    return Intl.message(
+      'SAVE RESULTS',
+      name: 'lblSaveResults',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -34,7 +34,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       emit(state.copyWith(status: UserStatus.loading));
       final user = await userRepository.getLoggedInUser();
-      final status = user == null ? UserStatus.unauthenticated : UserStatus.authenticated;
+      final status =
+          user == null ? UserStatus.unauthenticated : UserStatus.authenticated;
       emit(UserState(status: status, model: user));
     } catch (e) {
       emit(state.copyWith(
@@ -42,19 +43,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _onUserLogout(
-      _UserLogout event, Emitter<UserState> emit) async {
+  Future<void> _onUserLogout(_UserLogout event, Emitter<UserState> emit) async {
     try {
       emit(state.copyWith(status: UserStatus.loading));
       await userRepository.logout();
-      emit(const UserState(
-        status: UserStatus.unauthenticated
-      ));
+      emit(const UserState(status: UserStatus.unauthenticated));
     } catch (e) {
       emit(state.copyWith(
           status: UserStatus.failure, errorMessage: e.toString()));
     }
   }
-
-
 }

@@ -120,8 +120,9 @@
   "lblDate": "DATE",
   "lblTime": "TIME",
   "lblVelocity": "VELOCITY",
-  "lblSitToStandRepetitions" : "Sit-to-stand Repetitions:",
-  "lblTestFinished" : "Test Finished!",
-  "lblBestSitToStandResult" : "BEST SIT-TO-STAND RESULT:",
-  "lblPower" : "Power"
+  "lblSitToStandRepetitions": "Sit-to-stand Repetitions:",
+  "lblTestFinished": "Test Finished!",
+  "lblBestSitToStandResult": "BEST SIT-TO-STAND RESULT:",
+  "lblPower": "Power",
+  "lblSaveResults": "SAVE RESULTS"
 }

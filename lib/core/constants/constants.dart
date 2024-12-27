@@ -12,4 +12,5 @@ abstract class Constants {
   static double get chartHeight => 200;
   static double get barChartRodDataWidth => 16;
   static double get flBorderDataWidth => 2;
+  static double get totalRepetitions => 5.0;
 }

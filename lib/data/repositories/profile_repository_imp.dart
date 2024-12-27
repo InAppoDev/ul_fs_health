@@ -12,6 +12,4 @@ class ProfileRepositoryImp implements ProfileRepository {
     final user = await firebaseService.getLoggedinUser();
     return UserProfile(email: user?.email ?? '');
   }
-
-
 }
