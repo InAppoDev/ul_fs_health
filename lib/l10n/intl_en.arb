@@ -124,5 +124,8 @@
   "lblTestFinished": "Test Finished!",
   "lblBestSitToStandResult": "BEST SIT-TO-STAND RESULT:",
   "lblPower": "Power",
-  "lblSaveResults": "SAVE RESULTS"
+  "lblSaveResults": "SAVE RESULTS",
+  "walkSelectLengthErrorText": "Please select meter length",
+  "btnSaveResultsText": "save results",
+  "walkTestInitialLblText": "Select length:"
 }

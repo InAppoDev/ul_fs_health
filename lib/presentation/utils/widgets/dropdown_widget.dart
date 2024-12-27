@@ -1,17 +1,22 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
 
 class DropdownWidget<T> extends StatelessWidget {
-  const DropdownWidget(
+  DropdownWidget(
       {super.key,
       required this.values,
       this.selectedValue,
       this.onChanged,
+      this.hintText,
+      this.hintStyle,
       this.onTap,
-      this.validator,
+      this.onFocusChange,
       this.placeholder = '',
       this.errorText});
 
@@ -19,20 +24,26 @@ class DropdownWidget<T> extends StatelessWidget {
   final T? selectedValue;
   final String? errorText;
   final String placeholder;
-  final String? Function(T?)? validator;
+  final String? hintText;
+  final TextStyle? hintStyle;
+  final void Function(bool)? onFocusChange;
   final VoidCallback? onTap;
   final void Function(T?)? onChanged;
+  final FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      DropdownButtonFormField<T>(
-          onTap: onTap,
-          autovalidateMode: AutovalidateMode.onUnfocus,
-          validator: validator,
-          hint: Text(placeholder),
-          decoration: InputDecoration(
-            errorText: errorText,
+      Focus(
+        canRequestFocus: true,
+        focusNode: focusNode,
+        onFocusChange: onFocusChange,
+        child: DropdownMenu<T>(
+          hintText: hintText,
+          keyboardType: TextInputType.none,
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle: hintStyle,
+            contentPadding: Gaps.large.paddingHorizontal,
             border: OutlineInputBorder(
               borderRadius: Constants.containerBorderRadius.radiusAll,
               borderSide: const BorderSide(color: lightGrey),
@@ -54,17 +65,18 @@ class DropdownWidget<T> extends StatelessWidget {
               borderSide: const BorderSide(color: lightGrey),
             ),
           ),
-          borderRadius: Constants.containerBorderRadius.radiusAll,
-          isExpanded: true,
-          value: selectedValue,
-          onChanged: (newValue) {
-            if (onChanged != null) {
-              onChanged!(newValue);
-            }
-          },
-          items: values.map((T option) {
-            return DropdownMenuItem<T>(value: option, child: Text(option.toString()));
-          }).toList()),
+          enableSearch: false,
+          errorText: errorText,
+          requestFocusOnTap: true,
+          initialSelection: selectedValue,
+          expandedInsets: EdgeInsets.zero,
+          onSelected: onChanged,
+          dropdownMenuEntries: UnmodifiableListView<DropdownMenuEntry<T>>(
+            values.map<DropdownMenuEntry<T>>(
+                (T value) => DropdownMenuEntry<T>(value: value, label: value.toString())),
+          ),
+        ),
+      ),
     ]);
   }
 }

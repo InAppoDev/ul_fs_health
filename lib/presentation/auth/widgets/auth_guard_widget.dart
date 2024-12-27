@@ -7,21 +7,28 @@ import '../../../core/router/app_router.dart';
 import '../../logic/user/user_bloc.dart';
 
 class AuthGuardWidget extends StatelessWidget {
-  const AuthGuardWidget({super.key, required this.child, this.loading, this.isAuthRoute = false});
+  const AuthGuardWidget(
+      {super.key,
+      required this.child,
+      this.loading,
+      this.isAuthRoute = false,
+      this.include = true});
 
   final Widget child;
   final bool isAuthRoute;
+  final bool include;
   final Widget? loading;
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<UserBloc, UserState>(
+    return include ? BlocListener<UserBloc, UserState>(
       listener: (context, state) {
         if (state.status != UserStatus.loading) {
           if (isAuthRoute) {
             if (state.status == UserStatus.authenticated) {
               context.router.replaceAll([const HomeRoute()]);
             }
-          } else if(state.status == UserStatus.unauthenticated) {
+          } else if (state.status == UserStatus.unauthenticated) {
             context.router.replaceAll([const LoginRoute()]);
           } else if (state.status == UserStatus.dataSaved) {
             context.router.push(const HomeRoute());
@@ -33,6 +40,6 @@ class AuthGuardWidget extends StatelessWidget {
       child: context.watch<UserBloc>().state.status == UserStatus.loading
           ? Center(child: loading ?? const CircularProgressIndicator())
           : child,
-    );
+    ) : child;
   }
 }
