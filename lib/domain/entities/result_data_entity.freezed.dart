@@ -16,9 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ResultDataEntity {
-  String? get date => throw _privateConstructorUsedError;
-  String? get time => throw _privateConstructorUsedError;
-  String? get velocity => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
+  double? get resultTime => throw _privateConstructorUsedError;
+  double? get velocity => throw _privateConstructorUsedError;
+  @DocumentReferenceConverter()
+  DocumentReference<Map<String, dynamic>>? get userRef =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of ResultDataEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +36,12 @@ abstract class $ResultDataEntityCopyWith<$Res> {
           ResultDataEntity value, $Res Function(ResultDataEntity) then) =
       _$ResultDataEntityCopyWithImpl<$Res, ResultDataEntity>;
   @useResult
-  $Res call({String? date, String? time, String? velocity});
+  $Res call(
+      {DateTime? date,
+      double? resultTime,
+      double? velocity,
+      @DocumentReferenceConverter()
+      DocumentReference<Map<String, dynamic>>? userRef});
 }
 
 /// @nodoc
@@ -52,22 +60,27 @@ class _$ResultDataEntityCopyWithImpl<$Res, $Val extends ResultDataEntity>
   @override
   $Res call({
     Object? date = freezed,
-    Object? time = freezed,
+    Object? resultTime = freezed,
     Object? velocity = freezed,
+    Object? userRef = freezed,
   }) {
     return _then(_value.copyWith(
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
+      resultTime: freezed == resultTime
+          ? _value.resultTime
+          : resultTime // ignore: cast_nullable_to_non_nullable
+              as double?,
       velocity: freezed == velocity
           ? _value.velocity
           : velocity // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
+      userRef: freezed == userRef
+          ? _value.userRef
+          : userRef // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Map<String, dynamic>>?,
     ) as $Val);
   }
 }
@@ -80,7 +93,12 @@ abstract class _$$ResultDataEntityImplCopyWith<$Res>
       __$$ResultDataEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? date, String? time, String? velocity});
+  $Res call(
+      {DateTime? date,
+      double? resultTime,
+      double? velocity,
+      @DocumentReferenceConverter()
+      DocumentReference<Map<String, dynamic>>? userRef});
 }
 
 /// @nodoc
@@ -97,22 +115,27 @@ class __$$ResultDataEntityImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? date = freezed,
-    Object? time = freezed,
+    Object? resultTime = freezed,
     Object? velocity = freezed,
+    Object? userRef = freezed,
   }) {
     return _then(_$ResultDataEntityImpl(
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
+      resultTime: freezed == resultTime
+          ? _value.resultTime
+          : resultTime // ignore: cast_nullable_to_non_nullable
+              as double?,
       velocity: freezed == velocity
           ? _value.velocity
           : velocity // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
+      userRef: freezed == userRef
+          ? _value.userRef
+          : userRef // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Map<String, dynamic>>?,
     ));
   }
 }
@@ -120,18 +143,25 @@ class __$$ResultDataEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ResultDataEntityImpl implements _ResultDataEntity {
-  const _$ResultDataEntityImpl({this.date, this.time, this.velocity});
+  const _$ResultDataEntityImpl(
+      {this.date,
+      this.resultTime,
+      this.velocity,
+      @DocumentReferenceConverter() this.userRef});
 
   @override
-  final String? date;
+  final DateTime? date;
   @override
-  final String? time;
+  final double? resultTime;
   @override
-  final String? velocity;
+  final double? velocity;
+  @override
+  @DocumentReferenceConverter()
+  final DocumentReference<Map<String, dynamic>>? userRef;
 
   @override
   String toString() {
-    return 'ResultDataEntity(date: $date, time: $time, velocity: $velocity)';
+    return 'ResultDataEntity(date: $date, resultTime: $resultTime, velocity: $velocity, userRef: $userRef)';
   }
 
   @override
@@ -140,13 +170,16 @@ class _$ResultDataEntityImpl implements _ResultDataEntity {
         (other.runtimeType == runtimeType &&
             other is _$ResultDataEntityImpl &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.time, time) || other.time == time) &&
+            (identical(other.resultTime, resultTime) ||
+                other.resultTime == resultTime) &&
             (identical(other.velocity, velocity) ||
-                other.velocity == velocity));
+                other.velocity == velocity) &&
+            (identical(other.userRef, userRef) || other.userRef == userRef));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, date, time, velocity);
+  int get hashCode =>
+      Object.hash(runtimeType, date, resultTime, velocity, userRef);
 
   /// Create a copy of ResultDataEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -160,16 +193,22 @@ class _$ResultDataEntityImpl implements _ResultDataEntity {
 
 abstract class _ResultDataEntity implements ResultDataEntity {
   const factory _ResultDataEntity(
-      {final String? date,
-      final String? time,
-      final String? velocity}) = _$ResultDataEntityImpl;
+          {final DateTime? date,
+          final double? resultTime,
+          final double? velocity,
+          @DocumentReferenceConverter()
+          final DocumentReference<Map<String, dynamic>>? userRef}) =
+      _$ResultDataEntityImpl;
 
   @override
-  String? get date;
+  DateTime? get date;
   @override
-  String? get time;
+  double? get resultTime;
   @override
-  String? get velocity;
+  double? get velocity;
+  @override
+  @DocumentReferenceConverter()
+  DocumentReference<Map<String, dynamic>>? get userRef;
 
   /// Create a copy of ResultDataEntity
   /// with the given fields replaced by the non-null parameter values.

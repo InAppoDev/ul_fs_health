@@ -116,10 +116,7 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightMiddle.spaceVertical,
               SubmitButton(
                   onPressed: () {
-                    _audioPlayer
-                      ..setAsset('assets/sounds/signal.mp3')
-                      ..play();
-                    context.router.push(const SitToStandTestStartRoute());
+                    context.router.push(const SitToStandRoute());
                   },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,

@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:sensors_plus/sensors_plus.dart';
-import '../../../../core/constants/constants.dart';
-import '../../../../domain/repositories/sit_to_stand_repository.dart';
+import '../../../core/constants/constants.dart';
+import '../../../domain/entities/result_data_entity.dart';
+import '../../../domain/repositories/sit_to_stand_repository.dart';
 import 'sit_to_stand_event.dart';
 import 'sit_to_stand_state.dart';
 
@@ -89,9 +90,8 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       ));
 
       await sitToStandRepository.saveTestResult(
-        timeMilliseconds: state.avgTime,
-        velocity: avgVelocity,
-        userRef: event.userRef,
+        entity:
+            ResultDataEntity(resultTime: state.avgTime, velocity: avgVelocity),
       );
 
       if (state.currentRepetition >= Constants.totalRepetitions - 1) {

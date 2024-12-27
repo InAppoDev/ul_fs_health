@@ -25,7 +25,8 @@ class SitToStandScreen extends StatelessWidget {
 class SitToStandContent extends StatelessWidget {
   SitToStandContent({super.key});
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  final _audioPlayer = AudioPlayer();
+  final _isStarting = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
@@ -80,16 +81,25 @@ class SitToStandContent extends StatelessWidget {
           ),
           Padding(
             padding: Gaps.larger.paddingHorizontal,
-            child: SubmitButton(
-              onPressed: () async {
-                _audioPlayer
-                  ..setAsset('assets/sounds/signal.mp3')
-                  ..play();
-                context.router.push(const SitToStandTestStartRoute());
-              },
-              title: S.current.btnTestStartText.toUpperCase(),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              titleColor: Theme.of(context).colorScheme.onPrimary,
+            child: ValueListenableBuilder(
+              valueListenable: _isStarting,
+              builder: (context, value, child) => SubmitButton(
+                onPressed: () async {
+                  _isStarting.value = true;
+                  await Future<void>.delayed(const Duration(seconds: 5)).then(
+                    (_) {
+                      _audioPlayer
+                        ..setAsset('assets/sounds/signal.mp3')
+                        ..play();
+                      context.router.push(const SitToStandTestStartRoute());
+                    },
+                  );
+                },
+                isLoading: value,
+                title: S.current.btnTestStartText.toUpperCase(),
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                titleColor: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
           )
         ],

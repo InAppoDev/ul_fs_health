@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../data/repositories/auth_repository_imp.dart';
 import '../data/repositories/profile_repository_imp.dart';
+import '../data/repositories/sit_to_stand_repository_imp.dart';
 import '../data/repositories/user_repository_imp.dart';
 import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
@@ -13,6 +14,7 @@ import '../data/services/permission/gps_permission_service.dart';
 import '../data/services/permission/permission_service.dart';
 import '../domain/repositories/auth_repository.dart';
 import '../domain/repositories/profile_repository.dart';
+import '../domain/repositories/sit_to_stand_repository.dart';
 import '../domain/repositories/user_repository.dart';
 
 final getIt = GetIt.instance;
@@ -30,8 +32,7 @@ void _configureServices() {
         firestore: FirebaseFirestore.instance,
       ),
     )
-    ..registerLazySingleton<PermissionService>(
-        () => GpsPermissionService())
+    ..registerLazySingleton<PermissionService>(() => GpsPermissionService())
     ..registerFactory<GPSService>(
         () => GPSServiceImp(getIt<PermissionService>()));
 }
@@ -43,5 +44,7 @@ void _configureRepositories() {
     ..registerLazySingleton<UserRepository>(
         () => UserRepositoryImp(firebaseService: getIt<FirebaseService>()))
     ..registerLazySingleton<ProfileRepository>(
-        () => ProfileRepositoryImp(firebaseService: getIt<FirebaseService>()));
+        () => ProfileRepositoryImp(firebaseService: getIt<FirebaseService>()))
+    ..registerLazySingleton<SitToStandRepository>(() =>
+        SitToStandRepositoryImp(firebaseService: getIt<FirebaseService>()));
 }

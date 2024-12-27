@@ -1,6 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,17 +6,17 @@ import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_text_styles.dart';
-import '../../../data/repositories/sit_to_stand_repository_imp.dart';
-import '../../../data/services/sit_to_stand/sit_to_stand_service_imp.dart';
+import '../../../di/service_locator.dart';
+import '../../../domain/repositories/sit_to_stand_repository.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../generated/l10n.dart';
 import '../../utils/widgets/feature_test_header.dart';
 import '../../utils/widgets/repetition_counter.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../../utils/widgets/submit_button.dart';
-import '../logic/bloc/sit_to_stand_bloc.dart';
-import '../logic/bloc/sit_to_stand_event.dart';
-import '../logic/bloc/sit_to_stand_state.dart';
+import '../bloc/sit_to_stand_bloc.dart';
+import '../bloc/sit_to_stand_event.dart';
+import '../bloc/sit_to_stand_state.dart';
 
 @RoutePage()
 class SitToStandTestStartScreen extends StatefulWidget {
@@ -41,10 +39,8 @@ class _SitToStandTestStartScreenState extends State<SitToStandTestStartScreen> {
       providers: [
         BlocProvider(
           create: (context) => SitToStandBloc(
-            sitToStandRepository: SitToStandRepositoryImp(
-              sitToStandService: SitToStandServiceImp(),
-            ),
-          ),
+              sitToStandRepository: getIt<SitToStandRepository>())
+            ..add(const SitToStandEvent.startTest()),
         ),
       ],
       child: const SitToStandTestStartContent(),
@@ -57,9 +53,6 @@ class SitToStandTestStartContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userId = FirebaseAuth.instance.currentUser?.uid;
-    final userRef = FirebaseFirestore.instance.collection('users').doc(userId);
-
     return Scaffold(
       appBar: SimpleAppBarWidget(
         onInfoPress: () {},
@@ -104,13 +97,9 @@ class SitToStandTestStartContent extends StatelessWidget {
                 Padding(
                   padding: Gaps.larger.paddingAll.copyWith(top: Gaps.largest),
                   child: SubmitButton(
-                    onPressed: !state.isTestRunning
-                        ? () => sitToStandBloc.add(const StartTestEvent())
-                        : () =>
-                            sitToStandBloc.add(StopTestEvent(userRef: userRef)),
-                    title: !state.isTestRunning
-                        ? S.current.btnTestStartText.toUpperCase()
-                        : S.current.btnTestStopText.toUpperCase(),
+                    isValid: state.isTestRunning,
+                    onPressed: () => sitToStandBloc.add(const StopTestEvent()),
+                    title: S.current.btnTestStopText.toUpperCase(),
                     backgroundColor: Theme.of(context).colorScheme.secondary,
                     titleColor: Theme.of(context).colorScheme.onSecondary,
                   ),
