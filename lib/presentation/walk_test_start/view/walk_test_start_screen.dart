@@ -151,7 +151,7 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.distanceTraveled.formattedDistanceKmReplaced,
+                      context.watch<GPSBloc>().state.distanceTraveled.formattedDistanceMReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],

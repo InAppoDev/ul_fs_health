@@ -60,4 +60,3 @@ void _configureUseCases() {
           () => GpsUseCase(getIt<GPSService>(), getIt<PermissionService>())
   );
 }
-

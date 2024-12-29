@@ -10,7 +10,7 @@ _$WalkResultModelImpl _$$WalkResultModelImplFromJson(
         Map<String, dynamic> json) =>
     _$WalkResultModelImpl(
       userRef: const DocumentReferenceConverter()
-          .fromJson(json['userRef'] as String),
+          .fromJson(json['userRef'] as DocumentReference<Map<String, dynamic>>),
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       distance: (json['distance'] as num?)?.toDouble(),

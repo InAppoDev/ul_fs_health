@@ -165,7 +165,7 @@ class WalkTestResultContent extends StatelessWidget {
             return InfoWidget(
               color: data.date?.isToday == true ? ColorScheme.of(context).primary : defaultTextColor,
               date: data.date?.formattedDate ?? '',
-              time: data.distance?.formattedDistanceKmReplaced ?? '',
+              time: data.distance?.formattedDistanceMReplaced ?? '',
               velocity: data.averageSpeed?.formattedSpeedKmhReplaced ?? '',
             );
           }),

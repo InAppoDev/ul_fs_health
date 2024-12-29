@@ -39,7 +39,7 @@ class WalkRepositoryImp implements WalkRepository {
     try {
       final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
       final FQuerySnapshot querySnapshot = await firebaseService.resultCollectionReference.where(
-          'userRef', isEqualTo: userRef.path).get();
+          'userRef', isEqualTo: userRef).get();
       final List<WalkResultEntity> results = querySnapshot.docs.map((doc) {
         return WalkResultModel.fromJson(doc.data()).toEntity();
       }).toList();
