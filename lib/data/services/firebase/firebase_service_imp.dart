@@ -6,6 +6,7 @@ import 'firebase_service.dart';
 
 mixin FirebaseMixin {
   final kUserCollection = 'users';
+  final kResultCollection = 'results';
 }
 
 class FirebaseServiceImp with FirebaseMixin implements FirebaseService {
@@ -46,4 +47,8 @@ class FirebaseServiceImp with FirebaseMixin implements FirebaseService {
   @override
   FCollectionReference get userCollectionReference =>
       firestore.collection(kUserCollection);
+
+  @override
+  FCollectionReference get resultCollectionReference =>
+      firestore.collection(kResultCollection);
 }

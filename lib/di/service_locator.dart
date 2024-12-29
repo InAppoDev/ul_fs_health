@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import '../data/repositories/auth_repository_imp.dart';
 import '../data/repositories/profile_repository_imp.dart';
 import '../data/repositories/user_repository_imp.dart';
+import '../data/repositories/walk_repository_imp.dart';
 import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
 import '../data/services/gps/gps_service.dart';
@@ -14,12 +15,15 @@ import '../data/services/permission/permission_service.dart';
 import '../domain/repositories/auth_repository.dart';
 import '../domain/repositories/profile_repository.dart';
 import '../domain/repositories/user_repository.dart';
+import '../domain/repositories/walk_repository.dart';
+import '../domain/usecase/gps_use_case.dart';
 
 final getIt = GetIt.instance;
 
 void configureDependencies() {
   _configureServices();
   _configureRepositories();
+  _configureUseCases();
 }
 
 void _configureServices() {
@@ -43,5 +47,13 @@ void _configureRepositories() {
     ..registerLazySingleton<UserRepository>(
         () => UserRepositoryImp(firebaseService: getIt<FirebaseService>()))
     ..registerLazySingleton<ProfileRepository>(
-        () => ProfileRepositoryImp(firebaseService: getIt<FirebaseService>()));
+        () => ProfileRepositoryImp(firebaseService: getIt<FirebaseService>()))
+    ..registerLazySingleton<WalkRepository>(
+        () => WalkRepositoryImp(firebaseService: getIt<FirebaseService>()));
+}
+
+void _configureUseCases() {
+  getIt.registerFactory<GpsUseCase>(
+      () => GpsUseCase(getIt<GPSService>(), getIt<PermissionService>())
+  );
 }

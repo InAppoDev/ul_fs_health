@@ -127,5 +127,15 @@
   "lblSaveResults": "SAVE RESULTS",
   "walkSelectLengthErrorText": "Please select meter length",
   "btnSaveResultsText": "save results",
-  "walkTestInitialLblText": "Select length:"
+  "walkTestInitialLblText": "Select length:",
+  "textFromMeter": "{value} meter",
+  "@textFromMeter": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "lblDistance": "Distance",
+  "lblAverageSpeed": "AVG. Speed"
 }

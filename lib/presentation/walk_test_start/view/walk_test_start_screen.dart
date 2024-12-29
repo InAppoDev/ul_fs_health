@@ -4,20 +4,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/calculation_constants.dart';
 import '../../../core/constants/gaps.dart';
-import '../../../core/extensions/distance_extension.dart';
+import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/extensions/unit_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
-import '../../../data/services/gps/gps_service.dart';
 import '../../../di/service_locator.dart';
+import '../../../domain/repositories/user_repository.dart';
+import '../../../domain/repositories/walk_repository.dart';
+import '../../../domain/usecase/gps_use_case.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../../logic/gps/gps_bloc.dart';
 import '../../logic/timer/timer_bloc.dart';
+import '../../logic/user/user_bloc.dart';
 import '../../timer/timer_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/test_layout_widget.dart';
+import '../../walk_test/bloc/walk_test_bloc.dart';
 import '../../walk_test/widget/walk_test_note_widget.dart';
+import '../bloc/result_bloc.dart';
 
 @RoutePage()
 class WalkTestStartScreen extends StatelessWidget {
@@ -27,36 +34,46 @@ class WalkTestStartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => TimerBloc()),
-          BlocProvider(create: (_) => GPSBloc(getIt<GPSService>())),
+          BlocProvider(create: (_) => ResultBloc(getIt<UserRepository>(), getIt<WalkRepository>())),
+          BlocProvider(create: (_) => TimerBloc()..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration))),
+          BlocProvider(create: (_) => GPSBloc(getIt<GpsUseCase>())..add(const GPSEvent.startTracking())),
         ],
         child: Builder(builder: (context) {
-          Future.microtask(() {
-            if (context.mounted) {
-              context.read<GPSBloc>().add(const GPSEvent.startTracking());
-              context.read<TimerBloc>().add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration));
-            }
-          });
-          return const WalkTestStartContent();
+          return WalkTestStartContent(
+              goalDistance: context.watch<WalkTestBloc>().state.selectedLength ?? CalculationConstants.defaultDistanceUnit);
         }));
   }
 }
 
 class WalkTestStartContent extends StatelessWidget {
-  const WalkTestStartContent({super.key});
+  const WalkTestStartContent({super.key, required this.goalDistance});
+
+  final double goalDistance;
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<TimerBloc, TimerState>(
-      listener: (context, state) {
-        if (state.status == TimerStatus.completed) {
-          context.read<GPSBloc>().add(const GPSEvent.updatePosition());
-          context
-              .read<GPSBloc>()
-              .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
-        } else if (state.status == TimerStatus.paused) {}
-
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<TimerBloc, TimerState>(listener: (context, state) {
+          if (state.status == TimerStatus.completed) {
+            context.read<GPSBloc>().add(const GPSEvent.updatePosition());
+            context
+                .read<GPSBloc>()
+                .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
+          } else if (state.status == TimerStatus.running) {
+            context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
+                duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
+            context.read<GPSBloc>().add(GPSEvent.reachGoal(goalDistance: goalDistance));
+          }
+        }),
+        BlocListener<ResultBloc, ResultState>(listener: (context, state) {
+          if (state.status == ResultStatus.success) {
+            context.router.push(const WalkTestResultRoute());
+          } else if (state.status == ResultStatus.failure) {
+            context.showSnackBarMessage(state.errorText ?? '');
+          }
+        })
+      ],
       child: TestLayoutWidget(
         headerIcon: Assets.icons.iconWalkTest,
         headerText: appLocalizations.walkTestTitleText,
@@ -90,7 +107,8 @@ class WalkTestStartContent extends StatelessWidget {
                                 remainingTime: state.remainingTime));
                             context.read<GPSBloc>().add(const GPSEvent.updatePosition());
                             context.read<GPSBloc>().add(GPSEvent.stopTracking(
-                                duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
+                                duration: CalculationConstants.defaultTimerDuration -
+                                    state.remainingTime));
                           } else if (state.status == TimerStatus.paused) {
                             context.read<GPSBloc>().add(const GPSEvent.startTracking());
                             context.read<TimerBloc>().add(const TimerEvent.resumeTimer());
@@ -133,7 +151,7 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.distanceTraveled.formattedDistance,
+                      context.watch<GPSBloc>().state.distanceTraveled.formattedDistanceKmReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],
@@ -149,7 +167,7 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.averageSpeed.formattedSpeedInKmHour,
+                      context.watch<GPSBloc>().state.averageSpeed.formattedSpeedKmhReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],
@@ -157,13 +175,21 @@ class WalkTestStartContent extends StatelessWidget {
               ),
             ]),
             Gaps.largest.spaceVertical,
-            SubmitButton(
-              onPressed: () async {
-
-              },
-              title: appLocalizations.btnSaveResultsText.toUpperCase(),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              titleColor: Theme.of(context).colorScheme.onPrimary,
+            BlocBuilder<GPSBloc, GPSState>(
+              builder: (context, state) => SubmitButton(
+                onPressed: () async {
+                  context.read<ResultBloc>().add(ResultEvent.saveResults(
+                      date: DateTime.now(),
+                      distance: state.distanceTraveled,
+                      averageSpeed: state.averageSpeed));
+                },
+                isLoading: context.watch<ResultBloc>().state.status == ResultStatus.loading ||
+                    context.watch<GPSBloc>().state.status == GPSStatus.loading ||
+                    context.watch<UserBloc>().state.status == UserStatus.loading,
+                title: appLocalizations.btnSaveResultsText.toUpperCase(),
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                titleColor: Theme.of(context).colorScheme.onPrimary,
+              ),
             ),
           ],
         ],

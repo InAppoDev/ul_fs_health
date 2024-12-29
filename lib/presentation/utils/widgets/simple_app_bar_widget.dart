@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/themes/app_colors.dart';
@@ -26,7 +27,6 @@ class SimpleAppBarWidget extends StatelessWidget
     return AppBar(
       surfaceTintColor: white,
       centerTitle: true,
-      automaticallyImplyLeading: showBackButton,
       actions: [
         IconButton(
             onPressed: onInfoPress,
@@ -35,7 +35,7 @@ class SimpleAppBarWidget extends StatelessWidget
       ],
       title: Text(appLocalizations.lblAppName, style: header1),
       leading: showBackButton
-          ? null
+          ? const AutoLeadingButton()
           : IconButton(
               onPressed: onLeadingPress, icon: Assets.icons.menu.svg()),
     );

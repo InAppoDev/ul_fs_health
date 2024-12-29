@@ -10,4 +10,5 @@ abstract interface class FirebaseService {
   FDocumentReference getDocument(FCollectionReference reference, String docId);
   Future<AuthCredential> reAuthenticateUser(String email, String password);
   FCollectionReference get userCollectionReference;
+  FCollectionReference get resultCollectionReference;
 }

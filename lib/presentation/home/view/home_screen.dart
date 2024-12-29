@@ -33,7 +33,7 @@ class HomeContent extends StatelessWidget {
     return Scaffold(
       appBar: SimpleAppBarWidget(
         onInfoPress: () {
-          // TODOHovsep: implement info press
+          // TODO Hovsep: implement info press
         },
         onLeadingPress: () {
           context.router.push(const DashboardMenuRoute());
@@ -82,7 +82,7 @@ class HomeContent extends StatelessWidget {
                     _audioPlayer
                       ..setAsset('assets/sounds/signal.mp3')
                       ..play();
-                    context.router.push(const WalkTestStartRoute());
+                    context.router.push(const WalkTestNavigatorRoute(children: [WalkTestStartRoute()]));
                   },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,
@@ -90,7 +90,7 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightSmall.spaceVertical,
               SubmitButton(
                   onPressed: () {
-                    context.router.push(const WalkTestInitialRoute());
+                    context.router.push(const WalkTestNavigatorRoute());
                   },
                   title: appLocalizations.btnTestInstructionsText,
                   backgroundColor: defaultBtnInactiveBackground,

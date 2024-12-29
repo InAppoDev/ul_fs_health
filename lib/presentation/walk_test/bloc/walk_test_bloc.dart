@@ -14,7 +14,7 @@ class WalkTestBloc extends Bloc<WalkTestEvent, WalkTestState> {
 
   Future<void> _onWalkTestSelect(_WalkTestSelect event, Emitter<WalkTestState> emit) async {
     bool isValid = false;
-    if (event.selectedLength != null && event.selectedLength!.isNotEmpty) {
+    if (event.selectedLength != null) {
       isValid = true;
     }
     String? error = validate(event.selectedLength);
@@ -25,8 +25,8 @@ class WalkTestBloc extends Bloc<WalkTestEvent, WalkTestState> {
     emit(state.copyWith(selectedLength: event.selectedLength, isValid: isValid, errorText: error));
   }
 
-  String? validate(String? value) {
-    if (value == null || value.isEmpty) {
+  String? validate(double? value) {
+    if (value == null) {
       return appLocalizations.walkSelectLengthErrorText;
     }
     return null;

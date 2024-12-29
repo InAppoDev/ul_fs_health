@@ -70,109 +70,111 @@ class SitToStandTestStartContent extends StatelessWidget {
         builder: (context, state) {
           final sitToStandBloc = context.read<SitToStandBloc>();
 
-          return Column(
-            children: [
-              Gaps.large.spaceVertical,
-              FeatureTestHeader(
-                title: S.current.sitToStandTestTitleText,
-                leading: Assets.icons.iconSitDownTest,
-              ),
-              (Gaps.largest + Gaps.large).spaceVertical,
-              if (state.isTestFinished)
-                Text(
-                  S.current.lblTestFinished.toUpperCase(),
-                  style: header2.copyWith(
-                      color: Theme.of(context).colorScheme.primary),
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Gaps.large.spaceVertical,
+                FeatureTestHeader(
+                  title: S.current.sitToStandTestTitleText,
+                  leading: Assets.icons.iconSitDownTest,
                 ),
-              Gaps.largest.spaceVertical,
-              Padding(
-                padding: Gaps.larger.paddingHorizontal,
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      S.current.lblSitToStandRepetitions.toUpperCase(),
-                      style: body1,
-                    )),
-              ),
-              Gaps.largest.spaceVertical,
-              RepetitionCounter(
-                repetition: state.currentRepetition,
-                totalRepetitions: Constants.totalRepetitions,
-                progress: state.progress,
-              ),
-              if (!state.isTestFinished)
-                Padding(
-                  padding: Gaps.larger.paddingAll.copyWith(top: Gaps.largest),
-                  child: SubmitButton(
-                    onPressed: !state.isTestRunning
-                        ? () => sitToStandBloc.add(const StartTestEvent())
-                        : () =>
-                            sitToStandBloc.add(StopTestEvent(userRef: userRef)),
-                    title: !state.isTestRunning
-                        ? S.current.btnTestStartText.toUpperCase()
-                        : S.current.btnTestStopText.toUpperCase(),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    titleColor: Theme.of(context).colorScheme.onSecondary,
+                (Gaps.largest + Gaps.large).spaceVertical,
+                if (state.isTestFinished)
+                  Text(
+                    S.current.lblTestFinished.toUpperCase(),
+                    style: header2.copyWith(
+                        color: Theme.of(context).colorScheme.primary),
                   ),
-                ),
-              Gaps.largest.spaceVertical,
-              if (state.isTestFinished) ...[
+                Gaps.largest.spaceVertical,
                 Padding(
                   padding: Gaps.larger.paddingHorizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(S.current.lblBestSitToStandResult),
-                      ),
-                      Gaps.large.spaceVertical,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Text(S.current.lblTime, style: body1),
-                              Text('${state.bestTime.toStringAsFixed(3)} ms',
-                                  style: body1.copyWith(fontSize: 28)),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(S.current.lblVelocity, style: body1),
-                              Text(
-                                  '${state.bestVelocity.toStringAsFixed(2)} m/s',
-                                  style: body1.copyWith(fontSize: 28)),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Gaps.largest.spaceVertical,
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorScheme.of(context).primary,
-                        ).copyWith(
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  Constants.containerBorderRadius),
+                  child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        S.current.lblSitToStandRepetitions.toUpperCase(),
+                        style: body1,
+                      )),
+                ),
+                Gaps.largest.spaceVertical,
+                RepetitionCounter(
+                  repetition: state.currentRepetition,
+                  totalRepetitions: Constants.totalRepetitions,
+                  progress: state.progress,
+                ),
+                if (!state.isTestFinished)
+                  Padding(
+                    padding: Gaps.larger.paddingAll.copyWith(top: Gaps.largest),
+                    child: SubmitButton(
+                      onPressed: !state.isTestRunning
+                          ? () => sitToStandBloc.add(const StartTestEvent())
+                          : () =>
+                              sitToStandBloc.add(StopTestEvent(userRef: userRef)),
+                      title: !state.isTestRunning
+                          ? S.current.btnTestStartText.toUpperCase()
+                          : S.current.btnTestStopText.toUpperCase(),
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      titleColor: Theme.of(context).colorScheme.onSecondary,
+                    ),
+                  ),
+                Gaps.largest.spaceVertical,
+                if (state.isTestFinished) ...[
+                  Padding(
+                    padding: Gaps.larger.paddingHorizontal,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(S.current.lblBestSitToStandResult),
+                        ),
+                        Gaps.large.spaceVertical,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                Text(S.current.lblTime, style: body1),
+                                Text('${state.bestTime.toStringAsFixed(3)} ms',
+                                    style: body1.copyWith(fontSize: 28)),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text(S.current.lblVelocity, style: body1),
+                                Text(
+                                    '${state.bestVelocity.toStringAsFixed(2)} m/s',
+                                    style: body1.copyWith(fontSize: 28)),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Gaps.largest.spaceVertical,
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorScheme.of(context).primary,
+                          ).copyWith(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    Constants.containerBorderRadius),
+                              ),
                             ),
                           ),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          S.current.lblSaveResults,
-                          style: body1.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: ColorScheme.of(context).onPrimary,
+                          onPressed: () {},
+                          child: Text(
+                            S.current.lblSaveResults,
+                            style: body1.copyWith(
+                              fontWeight: FontWeight.w500,
+                              color: ColorScheme.of(context).onPrimary,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ]
-            ],
+                ]
+              ],
+            ),
           );
         },
       ),

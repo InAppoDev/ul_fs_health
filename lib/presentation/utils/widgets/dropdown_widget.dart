@@ -13,6 +13,7 @@ class DropdownWidget<T> extends StatelessWidget {
       required this.values,
       this.selectedValue,
       this.onChanged,
+      this.onGenerateLabel,
       this.hintText,
       this.hintStyle,
       this.onTap,
@@ -23,6 +24,7 @@ class DropdownWidget<T> extends StatelessWidget {
   final List<T> values;
   final T? selectedValue;
   final String? errorText;
+  final String Function(T)? onGenerateLabel;
   final String placeholder;
   final String? hintText;
   final TextStyle? hintStyle;
@@ -72,8 +74,9 @@ class DropdownWidget<T> extends StatelessWidget {
           expandedInsets: EdgeInsets.zero,
           onSelected: onChanged,
           dropdownMenuEntries: UnmodifiableListView<DropdownMenuEntry<T>>(
-            values.map<DropdownMenuEntry<T>>(
-                (T value) => DropdownMenuEntry<T>(value: value, label: value.toString())),
+            values.map<DropdownMenuEntry<T>>((T value) => DropdownMenuEntry<T>(
+                value: value,
+                label: onGenerateLabel != null ? onGenerateLabel!(value) : value.toString())),
           ),
         ),
       ),
