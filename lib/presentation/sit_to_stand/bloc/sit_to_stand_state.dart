@@ -11,7 +11,7 @@ class SitToStandState with _$SitToStandState {
     @Default(0.0) double avgTime,
     @Default(0.0) double avgVelocity,
     @Default(1) int currentRepetition,
-    @Default(double.infinity) double bestTime,
+    @Default(0.0) double bestTime,
     @Default(0.0) double bestVelocity,
     @Default(0.0) double bestPower,
     @Default(0.0) double progress,

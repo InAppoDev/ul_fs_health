@@ -35,18 +35,24 @@ class SitToStandResultContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<ResultDataEntity> resultDataEntities = [
-      const ResultDataEntity(date: '13.12.2024', time: '837', velocity: '0,32'),
-      const ResultDataEntity(date: '10.12.2024', time: '712', velocity: '0,42'),
-      const ResultDataEntity(date: '09.12.2024', time: '659', velocity: '0,49'),
-      const ResultDataEntity(date: '06.12.2024', time: '770', velocity: '0,38'),
-      const ResultDataEntity(date: '04.12.2024', time: '739', velocity: '0,32'),
-      const ResultDataEntity(date: '01.12.2024', time: '825', velocity: '0,32'),
+      ResultDataEntity(
+        date: DateTime.now(),
+        resultTime: 837.0,
+        velocity: 0.32,
+      ),
+      ResultDataEntity(
+          date: DateTime.now().subtract(const Duration(days: 1)),
+          resultTime: 837.0,
+          velocity: 0.32),
+      ResultDataEntity(
+        date: DateTime.now().subtract(const Duration(days: 2)),
+        resultTime: 937.0,
+        velocity: 0.52,
+      ),
     ];
 
     resultDataEntities.sort((a, b) {
-      final dateA = _parseDate(a.date!);
-      final dateB = _parseDate(b.date!);
-      return dateA.compareTo(dateB);
+      return a.date!.compareTo(b.date!);
     });
 
     return Scaffold(
@@ -107,12 +113,12 @@ class SitToStandResultContent extends StatelessWidget {
                                   getTitlesWidget: (value, meta) {
                                     if (value >= 0 &&
                                         value < resultDataEntities.length) {
-                                      final dateParts =
+                                      final date =
                                           resultDataEntities[value.toInt()]
-                                              .date!
-                                              .split('.');
+                                              .date
+                                              ?.toIso8601String();
                                       return Text(
-                                        '${dateParts[0]}.${dateParts[1]}.',
+                                        date ?? '',
                                         style: body2.copyWith(
                                           fontSize: 10,
                                           color: darkGrey,
@@ -130,7 +136,7 @@ class SitToStandResultContent extends StatelessWidget {
                                     if (value >= 0 &&
                                         value < resultDataEntities.length) {
                                       return Text(
-                                        '${resultDataEntities[value.toInt()].time} ms',
+                                        '${resultDataEntities[value.toInt()].resultTime} ms',
                                         style: body2.copyWith(
                                           fontSize: 10,
                                           color: darkGrey,
@@ -154,12 +160,13 @@ class SitToStandResultContent extends StatelessWidget {
                               ),
                             ),
                             barGroups: resultDataEntities.map((data) {
-                              final time = double.parse(data.time!);
+                              final time = double.tryParse(
+                                  data.resultTime?.toString() ?? '');
                               return BarChartGroupData(
                                 x: resultDataEntities.indexOf(data),
                                 barRods: [
                                   BarChartRodData(
-                                    toY: time / 1000,
+                                    toY: time == null ? 0 : time / 1000,
                                     color: darkGrey,
                                     width: Constants.barChartRodDataWidth,
                                     borderRadius: BorderRadius.zero,
@@ -189,8 +196,8 @@ class SitToStandResultContent extends StatelessWidget {
             ),
             ...resultDataEntities.map((data) {
               return InfoWidget(
-                date: data.date!,
-                time: '${data.time} ms',
+                date: data.date?.toIso8601String() ?? '',
+                time: '${data.resultTime} ms',
                 velocity: '${data.velocity} m/s',
               );
             }),
@@ -198,10 +205,5 @@ class SitToStandResultContent extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  DateTime _parseDate(String date) {
-    final dateParts = date.split('.');
-    return DateTime.parse('${dateParts[2]}-${dateParts[1]}-${dateParts[0]}');
   }
 }

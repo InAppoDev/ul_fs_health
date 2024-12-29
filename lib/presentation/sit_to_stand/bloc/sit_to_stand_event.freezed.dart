@@ -19,21 +19,21 @@ mixin _$SitToStandEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
-    required TResult Function(DocumentReference<Object?> userRef) stopTest,
+    required TResult Function() stopTest,
     required TResult Function(double avgTime) updateTestReady,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
-    TResult? Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult? Function()? stopTest,
     TResult? Function(double avgTime)? updateTestReady,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
-    TResult Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult Function()? stopTest,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
-    required TResult Function(DocumentReference<Object?> userRef) stopTest,
+    required TResult Function() stopTest,
     required TResult Function(double avgTime) updateTestReady,
   }) {
     return startTest();
@@ -135,7 +135,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
-    TResult? Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult? Function()? stopTest,
     TResult? Function(double avgTime)? updateTestReady,
   }) {
     return startTest?.call();
@@ -145,7 +145,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
-    TResult Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult Function()? stopTest,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) {
@@ -199,8 +199,6 @@ abstract class _$$StopTestEventImplCopyWith<$Res> {
   factory _$$StopTestEventImplCopyWith(
           _$StopTestEventImpl value, $Res Function(_$StopTestEventImpl) then) =
       __$$StopTestEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({DocumentReference<Object?> userRef});
 }
 
 /// @nodoc
@@ -213,82 +211,57 @@ class __$$StopTestEventImplCopyWithImpl<$Res>
 
   /// Create a copy of SitToStandEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userRef = null,
-  }) {
-    return _then(_$StopTestEventImpl(
-      userRef: null == userRef
-          ? _value.userRef
-          : userRef // ignore: cast_nullable_to_non_nullable
-              as DocumentReference<Object?>,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$StopTestEventImpl implements StopTestEvent {
-  const _$StopTestEventImpl({required this.userRef});
-
-  @override
-  final DocumentReference<Object?> userRef;
+  const _$StopTestEventImpl();
 
   @override
   String toString() {
-    return 'SitToStandEvent.stopTest(userRef: $userRef)';
+    return 'SitToStandEvent.stopTest()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StopTestEventImpl &&
-            (identical(other.userRef, userRef) || other.userRef == userRef));
+        (other.runtimeType == runtimeType && other is _$StopTestEventImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userRef);
-
-  /// Create a copy of SitToStandEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StopTestEventImplCopyWith<_$StopTestEventImpl> get copyWith =>
-      __$$StopTestEventImplCopyWithImpl<_$StopTestEventImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
-    required TResult Function(DocumentReference<Object?> userRef) stopTest,
+    required TResult Function() stopTest,
     required TResult Function(double avgTime) updateTestReady,
   }) {
-    return stopTest(userRef);
+    return stopTest();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
-    TResult? Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult? Function()? stopTest,
     TResult? Function(double avgTime)? updateTestReady,
   }) {
-    return stopTest?.call(userRef);
+    return stopTest?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
-    TResult Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult Function()? stopTest,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) {
     if (stopTest != null) {
-      return stopTest(userRef);
+      return stopTest();
     }
     return orElse();
   }
@@ -329,17 +302,7 @@ class _$StopTestEventImpl implements StopTestEvent {
 }
 
 abstract class StopTestEvent implements SitToStandEvent {
-  const factory StopTestEvent(
-          {required final DocumentReference<Object?> userRef}) =
-      _$StopTestEventImpl;
-
-  DocumentReference<Object?> get userRef;
-
-  /// Create a copy of SitToStandEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StopTestEventImplCopyWith<_$StopTestEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory StopTestEvent() = _$StopTestEventImpl;
 }
 
 /// @nodoc
@@ -413,7 +376,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
-    required TResult Function(DocumentReference<Object?> userRef) stopTest,
+    required TResult Function() stopTest,
     required TResult Function(double avgTime) updateTestReady,
   }) {
     return updateTestReady(avgTime);
@@ -423,7 +386,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
-    TResult? Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult? Function()? stopTest,
     TResult? Function(double avgTime)? updateTestReady,
   }) {
     return updateTestReady?.call(avgTime);
@@ -433,7 +396,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
-    TResult Function(DocumentReference<Object?> userRef)? stopTest,
+    TResult Function()? stopTest,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) {

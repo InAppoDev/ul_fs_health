@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '../entities/result_data_entity.dart';
 
 abstract class SitToStandRepository {
-  Future<void> saveTestResult({
-    required double timeMilliseconds,
-    required double velocity,
-    required DocumentReference userRef,
-  });
+  Future<void> saveTestResult({required ResultDataEntity entity});
 }

@@ -20,9 +20,12 @@ ResultDataModel _$ResultDataModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ResultDataModel {
-  String? get date => throw _privateConstructorUsedError;
-  String? get time => throw _privateConstructorUsedError;
-  String? get velocity => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
+  double? get resultTime => throw _privateConstructorUsedError;
+  double? get velocity => throw _privateConstructorUsedError;
+  @DocumentReferenceConverter()
+  DocumentReference<Map<String, dynamic>>? get userRef =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this ResultDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +43,12 @@ abstract class $ResultDataModelCopyWith<$Res> {
           ResultDataModel value, $Res Function(ResultDataModel) then) =
       _$ResultDataModelCopyWithImpl<$Res, ResultDataModel>;
   @useResult
-  $Res call({String? date, String? time, String? velocity});
+  $Res call(
+      {DateTime? date,
+      double? resultTime,
+      double? velocity,
+      @DocumentReferenceConverter()
+      DocumentReference<Map<String, dynamic>>? userRef});
 }
 
 /// @nodoc
@@ -59,22 +67,27 @@ class _$ResultDataModelCopyWithImpl<$Res, $Val extends ResultDataModel>
   @override
   $Res call({
     Object? date = freezed,
-    Object? time = freezed,
+    Object? resultTime = freezed,
     Object? velocity = freezed,
+    Object? userRef = freezed,
   }) {
     return _then(_value.copyWith(
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
+      resultTime: freezed == resultTime
+          ? _value.resultTime
+          : resultTime // ignore: cast_nullable_to_non_nullable
+              as double?,
       velocity: freezed == velocity
           ? _value.velocity
           : velocity // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
+      userRef: freezed == userRef
+          ? _value.userRef
+          : userRef // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Map<String, dynamic>>?,
     ) as $Val);
   }
 }
@@ -87,7 +100,12 @@ abstract class _$$ResultDataModelImplCopyWith<$Res>
       __$$ResultDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? date, String? time, String? velocity});
+  $Res call(
+      {DateTime? date,
+      double? resultTime,
+      double? velocity,
+      @DocumentReferenceConverter()
+      DocumentReference<Map<String, dynamic>>? userRef});
 }
 
 /// @nodoc
@@ -104,22 +122,27 @@ class __$$ResultDataModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? date = freezed,
-    Object? time = freezed,
+    Object? resultTime = freezed,
     Object? velocity = freezed,
+    Object? userRef = freezed,
   }) {
     return _then(_$ResultDataModelImpl(
       date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String?,
-      time: freezed == time
-          ? _value.time
-          : time // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
+      resultTime: freezed == resultTime
+          ? _value.resultTime
+          : resultTime // ignore: cast_nullable_to_non_nullable
+              as double?,
       velocity: freezed == velocity
           ? _value.velocity
           : velocity // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
+      userRef: freezed == userRef
+          ? _value.userRef
+          : userRef // ignore: cast_nullable_to_non_nullable
+              as DocumentReference<Map<String, dynamic>>?,
     ));
   }
 }
@@ -128,22 +151,29 @@ class __$$ResultDataModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(includeIfNull: false)
 class _$ResultDataModelImpl extends _ResultDataModel {
-  const _$ResultDataModelImpl({this.date, this.time, this.velocity})
+  const _$ResultDataModelImpl(
+      {this.date,
+      this.resultTime,
+      this.velocity,
+      @DocumentReferenceConverter() this.userRef})
       : super._();
 
   factory _$ResultDataModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResultDataModelImplFromJson(json);
 
   @override
-  final String? date;
+  final DateTime? date;
   @override
-  final String? time;
+  final double? resultTime;
   @override
-  final String? velocity;
+  final double? velocity;
+  @override
+  @DocumentReferenceConverter()
+  final DocumentReference<Map<String, dynamic>>? userRef;
 
   @override
   String toString() {
-    return 'ResultDataModel(date: $date, time: $time, velocity: $velocity)';
+    return 'ResultDataModel(date: $date, resultTime: $resultTime, velocity: $velocity, userRef: $userRef)';
   }
 
   @override
@@ -152,14 +182,17 @@ class _$ResultDataModelImpl extends _ResultDataModel {
         (other.runtimeType == runtimeType &&
             other is _$ResultDataModelImpl &&
             (identical(other.date, date) || other.date == date) &&
-            (identical(other.time, time) || other.time == time) &&
+            (identical(other.resultTime, resultTime) ||
+                other.resultTime == resultTime) &&
             (identical(other.velocity, velocity) ||
-                other.velocity == velocity));
+                other.velocity == velocity) &&
+            (identical(other.userRef, userRef) || other.userRef == userRef));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, date, time, velocity);
+  int get hashCode =>
+      Object.hash(runtimeType, date, resultTime, velocity, userRef);
 
   /// Create a copy of ResultDataModel
   /// with the given fields replaced by the non-null parameter values.
@@ -180,20 +213,26 @@ class _$ResultDataModelImpl extends _ResultDataModel {
 
 abstract class _ResultDataModel extends ResultDataModel {
   const factory _ResultDataModel(
-      {final String? date,
-      final String? time,
-      final String? velocity}) = _$ResultDataModelImpl;
+          {final DateTime? date,
+          final double? resultTime,
+          final double? velocity,
+          @DocumentReferenceConverter()
+          final DocumentReference<Map<String, dynamic>>? userRef}) =
+      _$ResultDataModelImpl;
   const _ResultDataModel._() : super._();
 
   factory _ResultDataModel.fromJson(Map<String, dynamic> json) =
       _$ResultDataModelImpl.fromJson;
 
   @override
-  String? get date;
+  DateTime? get date;
   @override
-  String? get time;
+  double? get resultTime;
   @override
-  String? get velocity;
+  double? get velocity;
+  @override
+  @DocumentReferenceConverter()
+  DocumentReference<Map<String, dynamic>>? get userRef;
 
   /// Create a copy of ResultDataModel
   /// with the given fields replaced by the non-null parameter values.

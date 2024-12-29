@@ -224,7 +224,7 @@ class _$SitToStandStateImpl implements _SitToStandState {
       this.avgTime = 0.0,
       this.avgVelocity = 0.0,
       this.currentRepetition = 1,
-      this.bestTime = double.infinity,
+      this.bestTime = 0.0,
       this.bestVelocity = 0.0,
       this.bestPower = 0.0,
       this.progress = 0.0});
