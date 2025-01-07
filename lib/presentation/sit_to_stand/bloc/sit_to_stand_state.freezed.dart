@@ -17,15 +17,19 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SitToStandState {
   bool get isTestRunning => throw _privateConstructorUsedError;
+  bool get isTestReady => throw _privateConstructorUsedError;
   bool get isTestFinished => throw _privateConstructorUsedError;
   double get avgTime => throw _privateConstructorUsedError;
   double get avgVelocity => throw _privateConstructorUsedError;
   int get currentRepetition => throw _privateConstructorUsedError;
+  int get totalRepetitions => throw _privateConstructorUsedError;
   double get bestTime => throw _privateConstructorUsedError;
   double get bestVelocity => throw _privateConstructorUsedError;
   double get bestPower => throw _privateConstructorUsedError;
   double get progress => throw _privateConstructorUsedError;
   SitToStandStatus get status => throw _privateConstructorUsedError;
+  List<int> get times => throw _privateConstructorUsedError;
+  bool get buttonsVisible => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   /// Create a copy of SitToStandState
@@ -43,15 +47,19 @@ abstract class $SitToStandStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isTestRunning,
+      bool isTestReady,
       bool isTestFinished,
       double avgTime,
       double avgVelocity,
       int currentRepetition,
+      int totalRepetitions,
       double bestTime,
       double bestVelocity,
       double bestPower,
       double progress,
       SitToStandStatus status,
+      List<int> times,
+      bool buttonsVisible,
       String? error});
 }
 
@@ -71,21 +79,29 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
   @override
   $Res call({
     Object? isTestRunning = null,
+    Object? isTestReady = null,
     Object? isTestFinished = null,
     Object? avgTime = null,
     Object? avgVelocity = null,
     Object? currentRepetition = null,
+    Object? totalRepetitions = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
     Object? bestPower = null,
     Object? progress = null,
     Object? status = null,
+    Object? times = null,
+    Object? buttonsVisible = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
       isTestRunning: null == isTestRunning
           ? _value.isTestRunning
           : isTestRunning // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTestReady: null == isTestReady
+          ? _value.isTestReady
+          : isTestReady // ignore: cast_nullable_to_non_nullable
               as bool,
       isTestFinished: null == isTestFinished
           ? _value.isTestFinished
@@ -102,6 +118,10 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
       currentRepetition: null == currentRepetition
           ? _value.currentRepetition
           : currentRepetition // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalRepetitions: null == totalRepetitions
+          ? _value.totalRepetitions
+          : totalRepetitions // ignore: cast_nullable_to_non_nullable
               as int,
       bestTime: null == bestTime
           ? _value.bestTime
@@ -123,6 +143,14 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SitToStandStatus,
+      times: null == times
+          ? _value.times
+          : times // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      buttonsVisible: null == buttonsVisible
+          ? _value.buttonsVisible
+          : buttonsVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -141,15 +169,19 @@ abstract class _$$SitToStandStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isTestRunning,
+      bool isTestReady,
       bool isTestFinished,
       double avgTime,
       double avgVelocity,
       int currentRepetition,
+      int totalRepetitions,
       double bestTime,
       double bestVelocity,
       double bestPower,
       double progress,
       SitToStandStatus status,
+      List<int> times,
+      bool buttonsVisible,
       String? error});
 }
 
@@ -167,21 +199,29 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isTestRunning = null,
+    Object? isTestReady = null,
     Object? isTestFinished = null,
     Object? avgTime = null,
     Object? avgVelocity = null,
     Object? currentRepetition = null,
+    Object? totalRepetitions = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
     Object? bestPower = null,
     Object? progress = null,
     Object? status = null,
+    Object? times = null,
+    Object? buttonsVisible = null,
     Object? error = freezed,
   }) {
     return _then(_$SitToStandStateImpl(
       isTestRunning: null == isTestRunning
           ? _value.isTestRunning
           : isTestRunning // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTestReady: null == isTestReady
+          ? _value.isTestReady
+          : isTestReady // ignore: cast_nullable_to_non_nullable
               as bool,
       isTestFinished: null == isTestFinished
           ? _value.isTestFinished
@@ -198,6 +238,10 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
       currentRepetition: null == currentRepetition
           ? _value.currentRepetition
           : currentRepetition // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalRepetitions: null == totalRepetitions
+          ? _value.totalRepetitions
+          : totalRepetitions // ignore: cast_nullable_to_non_nullable
               as int,
       bestTime: null == bestTime
           ? _value.bestTime
@@ -219,6 +263,14 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SitToStandStatus,
+      times: null == times
+          ? _value._times
+          : times // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      buttonsVisible: null == buttonsVisible
+          ? _value.buttonsVisible
+          : buttonsVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -232,20 +284,28 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
 class _$SitToStandStateImpl implements _SitToStandState {
   const _$SitToStandStateImpl(
       {this.isTestRunning = false,
+      this.isTestReady = false,
       this.isTestFinished = false,
       this.avgTime = 0.0,
       this.avgVelocity = 0.0,
-      this.currentRepetition = 1,
+      this.currentRepetition = 0,
+      this.totalRepetitions = 5,
       this.bestTime = 0.0,
       this.bestVelocity = 0.0,
       this.bestPower = 0.0,
       this.progress = 0.0,
       this.status = SitToStandStatus.initial,
-      this.error});
+      final List<int> times = const [],
+      this.buttonsVisible = false,
+      this.error})
+      : _times = times;
 
   @override
   @JsonKey()
   final bool isTestRunning;
+  @override
+  @JsonKey()
+  final bool isTestReady;
   @override
   @JsonKey()
   final bool isTestFinished;
@@ -258,6 +318,9 @@ class _$SitToStandStateImpl implements _SitToStandState {
   @override
   @JsonKey()
   final int currentRepetition;
+  @override
+  @JsonKey()
+  final int totalRepetitions;
   @override
   @JsonKey()
   final double bestTime;
@@ -273,12 +336,24 @@ class _$SitToStandStateImpl implements _SitToStandState {
   @override
   @JsonKey()
   final SitToStandStatus status;
+  final List<int> _times;
+  @override
+  @JsonKey()
+  List<int> get times {
+    if (_times is EqualUnmodifiableListView) return _times;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_times);
+  }
+
+  @override
+  @JsonKey()
+  final bool buttonsVisible;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'SitToStandState(isTestRunning: $isTestRunning, isTestFinished: $isTestFinished, avgTime: $avgTime, avgVelocity: $avgVelocity, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, progress: $progress, status: $status, error: $error)';
+    return 'SitToStandState(isTestRunning: $isTestRunning, isTestReady: $isTestReady, isTestFinished: $isTestFinished, avgTime: $avgTime, avgVelocity: $avgVelocity, currentRepetition: $currentRepetition, totalRepetitions: $totalRepetitions, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, progress: $progress, status: $status, times: $times, buttonsVisible: $buttonsVisible, error: $error)';
   }
 
   @override
@@ -288,6 +363,8 @@ class _$SitToStandStateImpl implements _SitToStandState {
             other is _$SitToStandStateImpl &&
             (identical(other.isTestRunning, isTestRunning) ||
                 other.isTestRunning == isTestRunning) &&
+            (identical(other.isTestReady, isTestReady) ||
+                other.isTestReady == isTestReady) &&
             (identical(other.isTestFinished, isTestFinished) ||
                 other.isTestFinished == isTestFinished) &&
             (identical(other.avgTime, avgTime) || other.avgTime == avgTime) &&
@@ -295,6 +372,8 @@ class _$SitToStandStateImpl implements _SitToStandState {
                 other.avgVelocity == avgVelocity) &&
             (identical(other.currentRepetition, currentRepetition) ||
                 other.currentRepetition == currentRepetition) &&
+            (identical(other.totalRepetitions, totalRepetitions) ||
+                other.totalRepetitions == totalRepetitions) &&
             (identical(other.bestTime, bestTime) ||
                 other.bestTime == bestTime) &&
             (identical(other.bestVelocity, bestVelocity) ||
@@ -304,6 +383,9 @@ class _$SitToStandStateImpl implements _SitToStandState {
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality().equals(other._times, _times) &&
+            (identical(other.buttonsVisible, buttonsVisible) ||
+                other.buttonsVisible == buttonsVisible) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -311,15 +393,19 @@ class _$SitToStandStateImpl implements _SitToStandState {
   int get hashCode => Object.hash(
       runtimeType,
       isTestRunning,
+      isTestReady,
       isTestFinished,
       avgTime,
       avgVelocity,
       currentRepetition,
+      totalRepetitions,
       bestTime,
       bestVelocity,
       bestPower,
       progress,
       status,
+      const DeepCollectionEquality().hash(_times),
+      buttonsVisible,
       error);
 
   /// Create a copy of SitToStandState
@@ -335,19 +421,25 @@ class _$SitToStandStateImpl implements _SitToStandState {
 abstract class _SitToStandState implements SitToStandState {
   const factory _SitToStandState(
       {final bool isTestRunning,
+      final bool isTestReady,
       final bool isTestFinished,
       final double avgTime,
       final double avgVelocity,
       final int currentRepetition,
+      final int totalRepetitions,
       final double bestTime,
       final double bestVelocity,
       final double bestPower,
       final double progress,
       final SitToStandStatus status,
+      final List<int> times,
+      final bool buttonsVisible,
       final String? error}) = _$SitToStandStateImpl;
 
   @override
   bool get isTestRunning;
+  @override
+  bool get isTestReady;
   @override
   bool get isTestFinished;
   @override
@@ -356,6 +448,8 @@ abstract class _SitToStandState implements SitToStandState {
   double get avgVelocity;
   @override
   int get currentRepetition;
+  @override
+  int get totalRepetitions;
   @override
   double get bestTime;
   @override
@@ -366,6 +460,10 @@ abstract class _SitToStandState implements SitToStandState {
   double get progress;
   @override
   SitToStandStatus get status;
+  @override
+  List<int> get times;
+  @override
+  bool get buttonsVisible;
   @override
   String? get error;
 

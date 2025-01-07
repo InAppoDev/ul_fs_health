@@ -21,7 +21,8 @@ mixin _$SitToStandEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function() startNewRepetition,
+    required TResult Function() completeRepetition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +30,8 @@ mixin _$SitToStandEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function()? startNewRepetition,
+    TResult? Function()? completeRepetition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +39,8 @@ mixin _$SitToStandEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function()? startNewRepetition,
+    TResult Function()? completeRepetition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +49,8 @@ mixin _$SitToStandEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(StartNewRepetitionEvent value) startNewRepetition,
+    required TResult Function(CompleteRepetitionEvent value) completeRepetition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +58,8 @@ mixin _$SitToStandEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult? Function(CompleteRepetitionEvent value)? completeRepetition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +67,8 @@ mixin _$SitToStandEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult Function(CompleteRepetitionEvent value)? completeRepetition,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,7 +139,8 @@ class _$StartTestEventImpl implements StartTestEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function() startNewRepetition,
+    required TResult Function() completeRepetition,
   }) {
     return startTest();
   }
@@ -144,7 +151,8 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function()? startNewRepetition,
+    TResult? Function()? completeRepetition,
   }) {
     return startTest?.call();
   }
@@ -155,7 +163,8 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function()? startNewRepetition,
+    TResult Function()? completeRepetition,
     required TResult orElse(),
   }) {
     if (startTest != null) {
@@ -170,7 +179,8 @@ class _$StartTestEventImpl implements StartTestEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(StartNewRepetitionEvent value) startNewRepetition,
+    required TResult Function(CompleteRepetitionEvent value) completeRepetition,
   }) {
     return startTest(this);
   }
@@ -181,7 +191,8 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult? Function(CompleteRepetitionEvent value)? completeRepetition,
   }) {
     return startTest?.call(this);
   }
@@ -192,7 +203,8 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult Function(CompleteRepetitionEvent value)? completeRepetition,
     required TResult orElse(),
   }) {
     if (startTest != null) {
@@ -250,7 +262,8 @@ class _$StopTestEventImpl implements StopTestEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function() startNewRepetition,
+    required TResult Function() completeRepetition,
   }) {
     return stopTest();
   }
@@ -261,7 +274,8 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function()? startNewRepetition,
+    TResult? Function()? completeRepetition,
   }) {
     return stopTest?.call();
   }
@@ -272,7 +286,8 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function()? startNewRepetition,
+    TResult Function()? completeRepetition,
     required TResult orElse(),
   }) {
     if (stopTest != null) {
@@ -287,7 +302,8 @@ class _$StopTestEventImpl implements StopTestEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(StartNewRepetitionEvent value) startNewRepetition,
+    required TResult Function(CompleteRepetitionEvent value) completeRepetition,
   }) {
     return stopTest(this);
   }
@@ -298,7 +314,8 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult? Function(CompleteRepetitionEvent value)? completeRepetition,
   }) {
     return stopTest?.call(this);
   }
@@ -309,7 +326,8 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult Function(CompleteRepetitionEvent value)? completeRepetition,
     required TResult orElse(),
   }) {
     if (stopTest != null) {
@@ -368,7 +386,8 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function() startNewRepetition,
+    required TResult Function() completeRepetition,
   }) {
     return saveTestResult();
   }
@@ -379,7 +398,8 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function()? startNewRepetition,
+    TResult? Function()? completeRepetition,
   }) {
     return saveTestResult?.call();
   }
@@ -390,7 +410,8 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function()? startNewRepetition,
+    TResult Function()? completeRepetition,
     required TResult orElse(),
   }) {
     if (saveTestResult != null) {
@@ -405,7 +426,8 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(StartNewRepetitionEvent value) startNewRepetition,
+    required TResult Function(CompleteRepetitionEvent value) completeRepetition,
   }) {
     return saveTestResult(this);
   }
@@ -416,7 +438,8 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult? Function(CompleteRepetitionEvent value)? completeRepetition,
   }) {
     return saveTestResult?.call(this);
   }
@@ -427,7 +450,8 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult Function(CompleteRepetitionEvent value)? completeRepetition,
     required TResult orElse(),
   }) {
     if (saveTestResult != null) {
@@ -442,71 +466,45 @@ abstract class SaveTestResultEvent implements SitToStandEvent {
 }
 
 /// @nodoc
-abstract class _$$UpdateTestReadyEventImplCopyWith<$Res> {
-  factory _$$UpdateTestReadyEventImplCopyWith(_$UpdateTestReadyEventImpl value,
-          $Res Function(_$UpdateTestReadyEventImpl) then) =
-      __$$UpdateTestReadyEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({double avgTime});
+abstract class _$$StartNewRepetitionEventImplCopyWith<$Res> {
+  factory _$$StartNewRepetitionEventImplCopyWith(
+          _$StartNewRepetitionEventImpl value,
+          $Res Function(_$StartNewRepetitionEventImpl) then) =
+      __$$StartNewRepetitionEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UpdateTestReadyEventImplCopyWithImpl<$Res>
-    extends _$SitToStandEventCopyWithImpl<$Res, _$UpdateTestReadyEventImpl>
-    implements _$$UpdateTestReadyEventImplCopyWith<$Res> {
-  __$$UpdateTestReadyEventImplCopyWithImpl(_$UpdateTestReadyEventImpl _value,
-      $Res Function(_$UpdateTestReadyEventImpl) _then)
+class __$$StartNewRepetitionEventImplCopyWithImpl<$Res>
+    extends _$SitToStandEventCopyWithImpl<$Res, _$StartNewRepetitionEventImpl>
+    implements _$$StartNewRepetitionEventImplCopyWith<$Res> {
+  __$$StartNewRepetitionEventImplCopyWithImpl(
+      _$StartNewRepetitionEventImpl _value,
+      $Res Function(_$StartNewRepetitionEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SitToStandEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? avgTime = null,
-  }) {
-    return _then(_$UpdateTestReadyEventImpl(
-      avgTime: null == avgTime
-          ? _value.avgTime
-          : avgTime // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
-  const _$UpdateTestReadyEventImpl({required this.avgTime});
-
-  @override
-  final double avgTime;
+class _$StartNewRepetitionEventImpl implements StartNewRepetitionEvent {
+  const _$StartNewRepetitionEventImpl();
 
   @override
   String toString() {
-    return 'SitToStandEvent.updateTestReady(avgTime: $avgTime)';
+    return 'SitToStandEvent.startNewRepetition()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateTestReadyEventImpl &&
-            (identical(other.avgTime, avgTime) || other.avgTime == avgTime));
+            other is _$StartNewRepetitionEventImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, avgTime);
-
-  /// Create a copy of SitToStandEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdateTestReadyEventImplCopyWith<_$UpdateTestReadyEventImpl>
-      get copyWith =>
-          __$$UpdateTestReadyEventImplCopyWithImpl<_$UpdateTestReadyEventImpl>(
-              this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -514,9 +512,10 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function() startNewRepetition,
+    required TResult Function() completeRepetition,
   }) {
-    return updateTestReady(avgTime);
+    return startNewRepetition();
   }
 
   @override
@@ -525,9 +524,10 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function()? startNewRepetition,
+    TResult? Function()? completeRepetition,
   }) {
-    return updateTestReady?.call(avgTime);
+    return startNewRepetition?.call();
   }
 
   @override
@@ -536,11 +536,12 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function()? startNewRepetition,
+    TResult Function()? completeRepetition,
     required TResult orElse(),
   }) {
-    if (updateTestReady != null) {
-      return updateTestReady(avgTime);
+    if (startNewRepetition != null) {
+      return startNewRepetition();
     }
     return orElse();
   }
@@ -551,9 +552,10 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(StartNewRepetitionEvent value) startNewRepetition,
+    required TResult Function(CompleteRepetitionEvent value) completeRepetition,
   }) {
-    return updateTestReady(this);
+    return startNewRepetition(this);
   }
 
   @override
@@ -562,9 +564,10 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult? Function(CompleteRepetitionEvent value)? completeRepetition,
   }) {
-    return updateTestReady?.call(this);
+    return startNewRepetition?.call(this);
   }
 
   @override
@@ -573,25 +576,143 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult Function(CompleteRepetitionEvent value)? completeRepetition,
     required TResult orElse(),
   }) {
-    if (updateTestReady != null) {
-      return updateTestReady(this);
+    if (startNewRepetition != null) {
+      return startNewRepetition(this);
     }
     return orElse();
   }
 }
 
-abstract class UpdateTestReadyEvent implements SitToStandEvent {
-  const factory UpdateTestReadyEvent({required final double avgTime}) =
-      _$UpdateTestReadyEventImpl;
+abstract class StartNewRepetitionEvent implements SitToStandEvent {
+  const factory StartNewRepetitionEvent() = _$StartNewRepetitionEventImpl;
+}
 
-  double get avgTime;
+/// @nodoc
+abstract class _$$CompleteRepetitionEventImplCopyWith<$Res> {
+  factory _$$CompleteRepetitionEventImplCopyWith(
+          _$CompleteRepetitionEventImpl value,
+          $Res Function(_$CompleteRepetitionEventImpl) then) =
+      __$$CompleteRepetitionEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CompleteRepetitionEventImplCopyWithImpl<$Res>
+    extends _$SitToStandEventCopyWithImpl<$Res, _$CompleteRepetitionEventImpl>
+    implements _$$CompleteRepetitionEventImplCopyWith<$Res> {
+  __$$CompleteRepetitionEventImplCopyWithImpl(
+      _$CompleteRepetitionEventImpl _value,
+      $Res Function(_$CompleteRepetitionEventImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of SitToStandEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateTestReadyEventImplCopyWith<_$UpdateTestReadyEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+
+class _$CompleteRepetitionEventImpl implements CompleteRepetitionEvent {
+  const _$CompleteRepetitionEventImpl();
+
+  @override
+  String toString() {
+    return 'SitToStandEvent.completeRepetition()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CompleteRepetitionEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startTest,
+    required TResult Function() stopTest,
+    required TResult Function() saveTestResult,
+    required TResult Function() startNewRepetition,
+    required TResult Function() completeRepetition,
+  }) {
+    return completeRepetition();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? startTest,
+    TResult? Function()? stopTest,
+    TResult? Function()? saveTestResult,
+    TResult? Function()? startNewRepetition,
+    TResult? Function()? completeRepetition,
+  }) {
+    return completeRepetition?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startTest,
+    TResult Function()? stopTest,
+    TResult Function()? saveTestResult,
+    TResult Function()? startNewRepetition,
+    TResult Function()? completeRepetition,
+    required TResult orElse(),
+  }) {
+    if (completeRepetition != null) {
+      return completeRepetition();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StartTestEvent value) startTest,
+    required TResult Function(StopTestEvent value) stopTest,
+    required TResult Function(SaveTestResultEvent value) saveTestResult,
+    required TResult Function(StartNewRepetitionEvent value) startNewRepetition,
+    required TResult Function(CompleteRepetitionEvent value) completeRepetition,
+  }) {
+    return completeRepetition(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(StartTestEvent value)? startTest,
+    TResult? Function(StopTestEvent value)? stopTest,
+    TResult? Function(SaveTestResultEvent value)? saveTestResult,
+    TResult? Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult? Function(CompleteRepetitionEvent value)? completeRepetition,
+  }) {
+    return completeRepetition?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartTestEvent value)? startTest,
+    TResult Function(StopTestEvent value)? stopTest,
+    TResult Function(SaveTestResultEvent value)? saveTestResult,
+    TResult Function(StartNewRepetitionEvent value)? startNewRepetition,
+    TResult Function(CompleteRepetitionEvent value)? completeRepetition,
+    required TResult orElse(),
+  }) {
+    if (completeRepetition != null) {
+      return completeRepetition(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CompleteRepetitionEvent implements SitToStandEvent {
+  const factory CompleteRepetitionEvent() = _$CompleteRepetitionEventImpl;
 }

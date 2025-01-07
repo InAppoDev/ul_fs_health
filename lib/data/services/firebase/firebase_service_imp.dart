@@ -51,7 +51,7 @@ class FirebaseServiceImp with FirebaseMixin implements FirebaseService {
 
   @override
   FCollectionReference get sitToStandCollectionReference =>
-      firestore.collection(kUserCollection);
+      firestore.collection(kSitToStandCollection);
 
   @override
   FCollectionReference get resultCollectionReference =>
