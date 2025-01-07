@@ -12,6 +12,8 @@ import '../../presentation/sit_to_stand_result/view/sit_to_stand_result_screen.d
 import '../../presentation/splash/view/splash_screen.dart';
 import '../../presentation/walk_test/view/walk_test_initial_screen.dart';
 import '../../presentation/walk_test/view/walk_test_screen.dart';
+import '../../presentation/walk_test_navigator/view/walk_test_navigator_screen.dart';
+import '../../presentation/walk_test_result/view/walk_test_result_screen.dart';
 import '../../presentation/walk_test_start/view/walk_test_start_screen.dart';
 
 part 'app_router.gr.dart';
@@ -41,18 +43,25 @@ class AppRouter extends RootStackRouter {
           path: '/signup',
           page: SignupRoute.page,
         ),
-        AutoRoute(
-          path: '/walk_test',
-          page: WalkTestRoute.page,
-        ),
-        AutoRoute(
-          path: '/walk_test_start',
-          page: WalkTestStartRoute.page,
-        ),
-        AutoRoute(
-          path: '/walk_test_initial',
-          page: WalkTestInitialRoute.page,
-        ),
+        AutoRoute(path: '/walk_test_initial', page: WalkTestNavigatorRoute.page, children: [
+          AutoRoute(
+            path: 'walk_test',
+            page: WalkTestRoute.page,
+          ),
+          AutoRoute(
+            path: 'walk_test_start',
+            page: WalkTestStartRoute.page,
+          ),
+          AutoRoute(
+            initial: true,
+            path: 'walk_test_initial',
+            page: WalkTestInitialRoute.page,
+          ),
+          AutoRoute(
+            path: 'walk_test_result',
+            page: WalkTestResultRoute.page,
+          )
+        ]),
         AutoRoute(
           path: '/home',
           page: HomeRoute.page,

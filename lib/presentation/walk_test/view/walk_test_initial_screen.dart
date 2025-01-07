@@ -22,9 +22,7 @@ class WalkTestInitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (_) => WalkTestBloc(),
-        child: const WalkTestInitialContent());
+    return const WalkTestInitialContent();
   }
 }
 
@@ -44,17 +42,20 @@ class WalkTestInitialContent extends StatelessWidget {
               child: Text(appLocalizations.walkTestInitialLblText, style: body1)),
           Gaps.largest.spaceVertical,
           BlocBuilder<WalkTestBloc, WalkTestState>(
-            builder: (context, state) => DropdownWidget<String>(
-              hintText: '',
-              hintStyle: body1,
-              errorText: state.errorText,
-              onFocusChange: (hasFocus) {
-                context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(state.selectedLength, !hasFocus));
-              },
-              selectedValue: state.selectedLength,
-              onChanged: (value) {
-                context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(value, false));
-              },
+            builder: (context, state) => DropdownWidget<double>(
+                hintText: '',
+                hintStyle: body1,
+                errorText: state.errorText,
+                onFocusChange: (hasFocus) {
+                  context
+                      .read<WalkTestBloc>()
+                      .add(WalkTestEvent.selectLength(selectedLength: state.selectedLength, shouldValidate: !hasFocus));
+                },
+                onGenerateLabel: (value) => appLocalizations.textFromMeter(value.round()),
+                selectedValue: state.selectedLength,
+                onChanged: (value) {
+                  context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(selectedLength: value, shouldValidate: false));
+                },
                 values: mockMeterLengths),
           ),
           Gaps.largest.spaceVertical,
@@ -66,8 +67,7 @@ class WalkTestInitialContent extends StatelessWidget {
               },
               title: appLocalizations.btnContinue.toUpperCase(),
               backgroundColor: ColorScheme.of(context).primary,
-              titleColor: white
-          ),
+              titleColor: white),
         ]);
   }
 }

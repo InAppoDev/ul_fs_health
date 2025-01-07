@@ -29,15 +29,15 @@ class InfoWidget extends StatelessWidget {
             children: [
               Text(
                 date,
-                style: body4.copyWith(fontSize: 14),
+                style: body4.copyWith(fontSize: 14, color: color),
               ),
               Text(
                 time,
-                style: body4.copyWith(fontSize: 14),
+                style: body4.copyWith(fontSize: 14, color: color),
               ),
               Text(
                 velocity,
-                style: body4.copyWith(fontSize: 14),
+                style: body4.copyWith(fontSize: 14, color: color),
               ),
             ],
           ),

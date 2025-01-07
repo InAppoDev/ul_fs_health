@@ -219,6 +219,44 @@ class WalkTestInitialRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [WalkTestNavigatorScreen]
+class WalkTestNavigatorRoute extends PageRouteInfo<void> {
+  const WalkTestNavigatorRoute({List<PageRouteInfo>? children})
+      : super(
+          WalkTestNavigatorRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WalkTestNavigatorRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WalkTestNavigatorScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [WalkTestResultScreen]
+class WalkTestResultRoute extends PageRouteInfo<void> {
+  const WalkTestResultRoute({List<PageRouteInfo>? children})
+      : super(
+          WalkTestResultRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'WalkTestResultRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WalkTestResultScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [WalkTestScreen]
 class WalkTestRoute extends PageRouteInfo<void> {
   const WalkTestRoute({List<PageRouteInfo>? children})

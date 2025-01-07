@@ -1139,6 +1139,36 @@ class S {
       args: [],
     );
   }
+
+  /// `{value} meter`
+  String textFromMeter(int value) {
+    return Intl.message(
+      '$value meter',
+      name: 'textFromMeter',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Distance`
+  String get lblDistance {
+    return Intl.message(
+      'Distance',
+      name: 'lblDistance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AVG. Speed`
+  String get lblAverageSpeed {
+    return Intl.message(
+      'AVG. Speed',
+      name: 'lblAverageSpeed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

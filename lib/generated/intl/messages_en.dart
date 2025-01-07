@@ -22,11 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(count) => "After ${count} repetitions, ";
 
-  static String m1(text) => "${text}\n";
+  static String m1(value) => "${value} meter";
 
-  static String m2(minute) => "${minute} minutes pass, ";
+  static String m2(text) => "${text}\n";
 
-  static String m3(appName) => "Welcome to ${appName}!";
+  static String m3(minute) => "${minute} minutes pass, ";
+
+  static String m4(appName) => "Welcome to ${appName}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -82,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("repeat your password"),
         "lblAnd": MessageLookupByLibrary.simpleMessage(" and  "),
         "lblAppName": MessageLookupByLibrary.simpleMessage("Ul Fs Health"),
+        "lblAverageSpeed": MessageLookupByLibrary.simpleMessage("AVG. Speed"),
         "lblBestSitToStandResult":
             MessageLookupByLibrary.simpleMessage("BEST SIT-TO-STAND RESULT:"),
         "lblClickCreateAccount": MessageLookupByLibrary.simpleMessage(
@@ -89,6 +92,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Please confirm your password"),
         "lblDate": MessageLookupByLibrary.simpleMessage("DATE"),
+        "lblDistance": MessageLookupByLibrary.simpleMessage("Distance"),
         "lblEmailPassword": MessageLookupByLibrary.simpleMessage(
             "Enter your email and password to enter app."),
         "lblEmailRequire":
@@ -190,7 +194,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "testInstructionWalkThirdPart": MessageLookupByLibrary.simpleMessage(
             " will let you know when you can start walking."),
         "testStartText": MessageLookupByLibrary.simpleMessage("START TEST"),
-        "textWithNewLine": m1,
+        "textFromMeter": m1,
+        "textWithNewLine": m2,
         "walkSelectLengthErrorText":
             MessageLookupByLibrary.simpleMessage("Please select meter length"),
         "walkTestAdditionalInfoFirstPartText": MessageLookupByLibrary.simpleMessage(
@@ -200,7 +205,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 " and resume with the test when you are feeling better."),
         "walkTestAverageSpeedText":
             MessageLookupByLibrary.simpleMessage("average speed:"),
-        "walkTestDelayText": m2,
+        "walkTestDelayText": m3,
         "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
         "walkTestDistanceText":
@@ -221,6 +226,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please type your weight"),
         "welcomeAppDescriptionText": MessageLookupByLibrary.simpleMessage(
             "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
-        "welcomeAppNameText": m3
+        "welcomeAppNameText": m4
       };
 }
