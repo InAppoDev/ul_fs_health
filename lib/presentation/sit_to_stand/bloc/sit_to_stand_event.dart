@@ -5,9 +5,6 @@ part 'sit_to_stand_event.freezed.dart';
 @freezed
 class SitToStandEvent with _$SitToStandEvent {
   const factory SitToStandEvent.startTest() = StartTestEvent;
-
   const factory SitToStandEvent.stopTest() = StopTestEvent;
-
-  const factory SitToStandEvent.updateTestReady({required double avgTime}) =
-      UpdateTestReadyEvent;
+  const factory SitToStandEvent.saveTestResult() = SaveTestResultEvent;
 }

@@ -20,6 +20,7 @@ mixin _$SitToStandEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
     required TResult Function() stopTest,
+    required TResult Function() saveTestResult,
     required TResult Function(double avgTime) updateTestReady,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$SitToStandEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
+    TResult? Function()? saveTestResult,
     TResult? Function(double avgTime)? updateTestReady,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$SitToStandEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
     TResult Function()? stopTest,
+    TResult Function()? saveTestResult,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$SitToStandEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
+    required TResult Function(SaveTestResultEvent value) saveTestResult,
     required TResult Function(UpdateTestReadyEvent value) updateTestReady,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$SitToStandEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
+    TResult? Function(SaveTestResultEvent value)? saveTestResult,
     TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$SitToStandEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
+    TResult Function(SaveTestResultEvent value)? saveTestResult,
     TResult Function(UpdateTestReadyEvent value)? updateTestReady,
     required TResult orElse(),
   }) =>
@@ -126,6 +132,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
     required TResult Function() stopTest,
+    required TResult Function() saveTestResult,
     required TResult Function(double avgTime) updateTestReady,
   }) {
     return startTest();
@@ -136,6 +143,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
+    TResult? Function()? saveTestResult,
     TResult? Function(double avgTime)? updateTestReady,
   }) {
     return startTest?.call();
@@ -146,6 +154,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
     TResult Function()? stopTest,
+    TResult Function()? saveTestResult,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) {
@@ -160,6 +169,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
+    required TResult Function(SaveTestResultEvent value) saveTestResult,
     required TResult Function(UpdateTestReadyEvent value) updateTestReady,
   }) {
     return startTest(this);
@@ -170,6 +180,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
+    TResult? Function(SaveTestResultEvent value)? saveTestResult,
     TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
   }) {
     return startTest?.call(this);
@@ -180,6 +191,7 @@ class _$StartTestEventImpl implements StartTestEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
+    TResult Function(SaveTestResultEvent value)? saveTestResult,
     TResult Function(UpdateTestReadyEvent value)? updateTestReady,
     required TResult orElse(),
   }) {
@@ -237,6 +249,7 @@ class _$StopTestEventImpl implements StopTestEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
     required TResult Function() stopTest,
+    required TResult Function() saveTestResult,
     required TResult Function(double avgTime) updateTestReady,
   }) {
     return stopTest();
@@ -247,6 +260,7 @@ class _$StopTestEventImpl implements StopTestEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
+    TResult? Function()? saveTestResult,
     TResult? Function(double avgTime)? updateTestReady,
   }) {
     return stopTest?.call();
@@ -257,6 +271,7 @@ class _$StopTestEventImpl implements StopTestEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
     TResult Function()? stopTest,
+    TResult Function()? saveTestResult,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) {
@@ -271,6 +286,7 @@ class _$StopTestEventImpl implements StopTestEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
+    required TResult Function(SaveTestResultEvent value) saveTestResult,
     required TResult Function(UpdateTestReadyEvent value) updateTestReady,
   }) {
     return stopTest(this);
@@ -281,6 +297,7 @@ class _$StopTestEventImpl implements StopTestEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
+    TResult? Function(SaveTestResultEvent value)? saveTestResult,
     TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
   }) {
     return stopTest?.call(this);
@@ -291,6 +308,7 @@ class _$StopTestEventImpl implements StopTestEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
+    TResult Function(SaveTestResultEvent value)? saveTestResult,
     TResult Function(UpdateTestReadyEvent value)? updateTestReady,
     required TResult orElse(),
   }) {
@@ -303,6 +321,124 @@ class _$StopTestEventImpl implements StopTestEvent {
 
 abstract class StopTestEvent implements SitToStandEvent {
   const factory StopTestEvent() = _$StopTestEventImpl;
+}
+
+/// @nodoc
+abstract class _$$SaveTestResultEventImplCopyWith<$Res> {
+  factory _$$SaveTestResultEventImplCopyWith(_$SaveTestResultEventImpl value,
+          $Res Function(_$SaveTestResultEventImpl) then) =
+      __$$SaveTestResultEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SaveTestResultEventImplCopyWithImpl<$Res>
+    extends _$SitToStandEventCopyWithImpl<$Res, _$SaveTestResultEventImpl>
+    implements _$$SaveTestResultEventImplCopyWith<$Res> {
+  __$$SaveTestResultEventImplCopyWithImpl(_$SaveTestResultEventImpl _value,
+      $Res Function(_$SaveTestResultEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SitToStandEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$SaveTestResultEventImpl implements SaveTestResultEvent {
+  const _$SaveTestResultEventImpl();
+
+  @override
+  String toString() {
+    return 'SitToStandEvent.saveTestResult()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SaveTestResultEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startTest,
+    required TResult Function() stopTest,
+    required TResult Function() saveTestResult,
+    required TResult Function(double avgTime) updateTestReady,
+  }) {
+    return saveTestResult();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? startTest,
+    TResult? Function()? stopTest,
+    TResult? Function()? saveTestResult,
+    TResult? Function(double avgTime)? updateTestReady,
+  }) {
+    return saveTestResult?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startTest,
+    TResult Function()? stopTest,
+    TResult Function()? saveTestResult,
+    TResult Function(double avgTime)? updateTestReady,
+    required TResult orElse(),
+  }) {
+    if (saveTestResult != null) {
+      return saveTestResult();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(StartTestEvent value) startTest,
+    required TResult Function(StopTestEvent value) stopTest,
+    required TResult Function(SaveTestResultEvent value) saveTestResult,
+    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+  }) {
+    return saveTestResult(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(StartTestEvent value)? startTest,
+    TResult? Function(StopTestEvent value)? stopTest,
+    TResult? Function(SaveTestResultEvent value)? saveTestResult,
+    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+  }) {
+    return saveTestResult?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(StartTestEvent value)? startTest,
+    TResult Function(StopTestEvent value)? stopTest,
+    TResult Function(SaveTestResultEvent value)? saveTestResult,
+    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    required TResult orElse(),
+  }) {
+    if (saveTestResult != null) {
+      return saveTestResult(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SaveTestResultEvent implements SitToStandEvent {
+  const factory SaveTestResultEvent() = _$SaveTestResultEventImpl;
 }
 
 /// @nodoc
@@ -377,6 +513,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() startTest,
     required TResult Function() stopTest,
+    required TResult Function() saveTestResult,
     required TResult Function(double avgTime) updateTestReady,
   }) {
     return updateTestReady(avgTime);
@@ -387,6 +524,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
+    TResult? Function()? saveTestResult,
     TResult? Function(double avgTime)? updateTestReady,
   }) {
     return updateTestReady?.call(avgTime);
@@ -397,6 +535,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? startTest,
     TResult Function()? stopTest,
+    TResult Function()? saveTestResult,
     TResult Function(double avgTime)? updateTestReady,
     required TResult orElse(),
   }) {
@@ -411,6 +550,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
+    required TResult Function(SaveTestResultEvent value) saveTestResult,
     required TResult Function(UpdateTestReadyEvent value) updateTestReady,
   }) {
     return updateTestReady(this);
@@ -421,6 +561,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
+    TResult? Function(SaveTestResultEvent value)? saveTestResult,
     TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
   }) {
     return updateTestReady?.call(this);
@@ -431,6 +572,7 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
+    TResult Function(SaveTestResultEvent value)? saveTestResult,
     TResult Function(UpdateTestReadyEvent value)? updateTestReady,
     required TResult orElse(),
   }) {

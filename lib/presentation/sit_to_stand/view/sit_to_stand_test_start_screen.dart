@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
+import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../di/service_locator.dart';
@@ -19,19 +20,8 @@ import '../bloc/sit_to_stand_event.dart';
 import '../bloc/sit_to_stand_state.dart';
 
 @RoutePage()
-class SitToStandTestStartScreen extends StatefulWidget {
+class SitToStandTestStartScreen extends StatelessWidget {
   const SitToStandTestStartScreen({super.key});
-
-  @override
-  State<SitToStandTestStartScreen> createState() =>
-      _SitToStandTestStartScreenState();
-}
-
-class _SitToStandTestStartScreenState extends State<SitToStandTestStartScreen> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +49,12 @@ class SitToStandTestStartContent extends StatelessWidget {
         showBackButton: true,
       ),
       body: BlocConsumer<SitToStandBloc, SitToStandState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.status == SitToStandStatus.failure) {
+            context.showSnackBarMessage(state.error ?? '');
+          }
+        },
         builder: (context, state) {
-          final sitToStandBloc = context.read<SitToStandBloc>();
-
           return Column(
             children: [
               Gaps.large.spaceVertical,
@@ -98,7 +90,9 @@ class SitToStandTestStartContent extends StatelessWidget {
                   padding: Gaps.larger.paddingAll.copyWith(top: Gaps.largest),
                   child: SubmitButton(
                     isValid: state.isTestRunning,
-                    onPressed: () => sitToStandBloc.add(const StopTestEvent()),
+                    onPressed: () => context
+                        .read<SitToStandBloc>()
+                        .add(const StopTestEvent()),
                     title: S.current.btnTestStopText.toUpperCase(),
                     backgroundColor: Theme.of(context).colorScheme.secondary,
                     titleColor: Theme.of(context).colorScheme.onSecondary,

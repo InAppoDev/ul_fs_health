@@ -87,11 +87,16 @@ class SitToStandContent extends StatelessWidget {
                 onPressed: () async {
                   _isStarting.value = true;
                   await Future<void>.delayed(const Duration(seconds: 5)).then(
-                    (_) {
+                    (_) async {
                       _audioPlayer
                         ..setAsset('assets/sounds/signal.mp3')
-                        ..play();
-                      context.router.push(const SitToStandTestStartRoute());
+                        ..play().then(
+                          (_) {
+                            _isStarting.value = false;
+                            context.router
+                                .push(const SitToStandTestStartRoute());
+                          },
+                        );
                     },
                   );
                 },
