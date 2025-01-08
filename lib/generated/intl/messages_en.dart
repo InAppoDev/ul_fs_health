@@ -40,18 +40,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have increased blood sugar?"),
         "bloodSugarStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
-        "btnBackActionText": MessageLookupByLibrary.simpleMessage("Back"),
         "btnContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "btnCreateAccount":
             MessageLookupByLibrary.simpleMessage("Create account"),
-        "btnNextActionText": MessageLookupByLibrary.simpleMessage("Next"),
         "btnQuestSubmit":
             MessageLookupByLibrary.simpleMessage("Save and continue"),
         "btnSaveChangesText":
             MessageLookupByLibrary.simpleMessage("Save changes"),
         "btnSaveResultsText":
             MessageLookupByLibrary.simpleMessage("save results"),
-        "btnStartText": MessageLookupByLibrary.simpleMessage("start"),
         "btnTestInstructionsText":
             MessageLookupByLibrary.simpleMessage("Test instructions"),
         "btnTestPauseText": MessageLookupByLibrary.simpleMessage("pause test"),
@@ -71,18 +68,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select your gender"),
         "genderRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("Please select your gender"),
-        "gpaqDescription": MessageLookupByLibrary.simpleMessage(
-            "This questionnaire will consist of questions about your physical activity in a normal week. Please answer these questions even if you do not consider yourself to be a physically active person."),
-        "gpaqHeaderText": MessageLookupByLibrary.simpleMessage(
-            "Global Physical Activity Questionnaire (GPAQ)"),
-        "gpaqInitialDescription1": MessageLookupByLibrary.simpleMessage(
-            "Following questions will be about the time you spend doing different types of physical activity in a typical week. Please answer these questions even if you do not consider yourself to be a physically active person."),
-        "gpaqInitialDescription2": MessageLookupByLibrary.simpleMessage(
-            "Think first about the time you spend doing work. Think of work as the things that you have to do such as paid or unpaid work, study/training, household chores, harvesting food/crops, fishing or hunting for food, seeking employment."),
-        "gpaqInitialDescription3": MessageLookupByLibrary.simpleMessage(
-            "In answering the following questions \'vigorous-intensity activities\' are activities that require hard physical effort and cause large increases in breathing or heart rate, \'moderate-intensity activities\' are activities that require moderate physical effort and cause small increases in breathing or heart rate."),
-        "gpaqInitialHeaderText":
-            MessageLookupByLibrary.simpleMessage("Physical Activity"),
         "heightPlaceHolder": MessageLookupByLibrary.simpleMessage(
             "Enter your height (in centimeters)"),
         "heightRequiredErrorText":
@@ -99,8 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("repeat your password"),
         "lblAnd": MessageLookupByLibrary.simpleMessage(" and  "),
         "lblAppName": MessageLookupByLibrary.simpleMessage("Ul Fs Health"),
-        "lblAppNamePart1": MessageLookupByLibrary.simpleMessage("Act"),
-        "lblAppNamePart2": MessageLookupByLibrary.simpleMessage("On"),
         "lblAverageSpeed": MessageLookupByLibrary.simpleMessage("AVG. Speed"),
         "lblBestSitToStandResult":
             MessageLookupByLibrary.simpleMessage("BEST SIT-TO-STAND RESULT:"),
@@ -162,26 +145,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "By clicking continue, you agree to our"),
         "lblsitToStandTestTitleText":
             MessageLookupByLibrary.simpleMessage("Sit-to-Stand\nTest"),
-        "lefsDescription": MessageLookupByLibrary.simpleMessage(
-            "This questionnaire will consist of 20 questions about a person’s ability to perform everyday tasks."),
-        "lefsDescription2": MessageLookupByLibrary.simpleMessage(
-            "We are interested in knowing whether you are having any difficulty at all with the activities listed below because of your lower limb problem for which you are currently seeking attention. Please provide an answer for each activity."),
-        "lefsDescription3": MessageLookupByLibrary.simpleMessage("Today, "),
-        "lefsDescription4": MessageLookupByLibrary.simpleMessage("do you"),
-        "lefsDescription5": MessageLookupByLibrary.simpleMessage(" or "),
-        "lefsDescription6": MessageLookupByLibrary.simpleMessage("would you"),
-        "lefsDescription7": MessageLookupByLibrary.simpleMessage(
-            " have any difficulty at all with:"),
-        "lefsHeaderText": MessageLookupByLibrary.simpleMessage(
-            "Lower Extremity Functional Scale (LEFS)"),
-        "mandatoryText": MessageLookupByLibrary.simpleMessage("mandatory"),
         "menuDashboardText": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "menuLogoutText": MessageLookupByLibrary.simpleMessage("Log out"),
         "menuProfileText": MessageLookupByLibrary.simpleMessage("My profile"),
         "menuQuestionnaireText":
             MessageLookupByLibrary.simpleMessage("Questionairre"),
         "menuResultsText": MessageLookupByLibrary.simpleMessage("My Results"),
-        "optionalText": MessageLookupByLibrary.simpleMessage("optional"),
         "pauseTestUpperText":
             MessageLookupByLibrary.simpleMessage("PAUSE TEST"),
         "pauseText": MessageLookupByLibrary.simpleMessage("PAUSE"),
@@ -190,16 +159,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "profileHeaderText": MessageLookupByLibrary.simpleMessage("My Profile"),
         "questBasicInfoHeader":
             MessageLookupByLibrary.simpleMessage("Basic information"),
+        "questHeaderSubTitle": MessageLookupByLibrary.simpleMessage(
+            "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
         "questHeaderTitle":
-            MessageLookupByLibrary.simpleMessage("Questionnaire"),
+            MessageLookupByLibrary.simpleMessage("Fill this questionarre"),
         "questHealthInfoHeader":
             MessageLookupByLibrary.simpleMessage("Health information"),
-        "questInitialHeaderDescription": MessageLookupByLibrary.simpleMessage(
-            "In order to give the best results, our app needs detailed information about your physical activity and health."),
-        "questInitialHeaderDescription2": MessageLookupByLibrary.simpleMessage(
-            "For this purpose, please fill out the following questionnaires:"),
-        "questionnaireInfoTextPart":
-            MessageLookupByLibrary.simpleMessage("*this questionnaire is "),
         "remainingTimeText":
             MessageLookupByLibrary.simpleMessage("Remaining time:"),
         "sitToDownTestInitialText": MessageLookupByLibrary.simpleMessage(
