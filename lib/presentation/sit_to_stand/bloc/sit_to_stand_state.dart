@@ -9,8 +9,6 @@ class SitToStandState with _$SitToStandState {
   const factory SitToStandState({
     @Default(false) bool isTestRunning,
     @Default(false) bool isTestFinished,
-    @Default(0.0) double avgTime,
-    @Default(0.0) double avgVelocity,
     @Default(0) int currentRepetition,
     @Default(0.0) double bestTime,
     @Default(0.0) double bestVelocity,

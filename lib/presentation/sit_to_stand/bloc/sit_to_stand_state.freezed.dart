@@ -18,8 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SitToStandState {
   bool get isTestRunning => throw _privateConstructorUsedError;
   bool get isTestFinished => throw _privateConstructorUsedError;
-  double get avgTime => throw _privateConstructorUsedError;
-  double get avgVelocity => throw _privateConstructorUsedError;
   int get currentRepetition => throw _privateConstructorUsedError;
   double get bestTime => throw _privateConstructorUsedError;
   double get bestVelocity => throw _privateConstructorUsedError;
@@ -46,8 +44,6 @@ abstract class $SitToStandStateCopyWith<$Res> {
   $Res call(
       {bool isTestRunning,
       bool isTestFinished,
-      double avgTime,
-      double avgVelocity,
       int currentRepetition,
       double bestTime,
       double bestVelocity,
@@ -76,8 +72,6 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
   $Res call({
     Object? isTestRunning = null,
     Object? isTestFinished = null,
-    Object? avgTime = null,
-    Object? avgVelocity = null,
     Object? currentRepetition = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
@@ -97,14 +91,6 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.isTestFinished
           : isTestFinished // ignore: cast_nullable_to_non_nullable
               as bool,
-      avgTime: null == avgTime
-          ? _value.avgTime
-          : avgTime // ignore: cast_nullable_to_non_nullable
-              as double,
-      avgVelocity: null == avgVelocity
-          ? _value.avgVelocity
-          : avgVelocity // ignore: cast_nullable_to_non_nullable
-              as double,
       currentRepetition: null == currentRepetition
           ? _value.currentRepetition
           : currentRepetition // ignore: cast_nullable_to_non_nullable
@@ -156,8 +142,6 @@ abstract class _$$SitToStandStateImplCopyWith<$Res>
   $Res call(
       {bool isTestRunning,
       bool isTestFinished,
-      double avgTime,
-      double avgVelocity,
       int currentRepetition,
       double bestTime,
       double bestVelocity,
@@ -184,8 +168,6 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isTestRunning = null,
     Object? isTestFinished = null,
-    Object? avgTime = null,
-    Object? avgVelocity = null,
     Object? currentRepetition = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
@@ -205,14 +187,6 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.isTestFinished
           : isTestFinished // ignore: cast_nullable_to_non_nullable
               as bool,
-      avgTime: null == avgTime
-          ? _value.avgTime
-          : avgTime // ignore: cast_nullable_to_non_nullable
-              as double,
-      avgVelocity: null == avgVelocity
-          ? _value.avgVelocity
-          : avgVelocity // ignore: cast_nullable_to_non_nullable
-              as double,
       currentRepetition: null == currentRepetition
           ? _value.currentRepetition
           : currentRepetition // ignore: cast_nullable_to_non_nullable
@@ -259,8 +233,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
   const _$SitToStandStateImpl(
       {this.isTestRunning = false,
       this.isTestFinished = false,
-      this.avgTime = 0.0,
-      this.avgVelocity = 0.0,
       this.currentRepetition = 0,
       this.bestTime = 0.0,
       this.bestVelocity = 0.0,
@@ -278,12 +250,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
   @override
   @JsonKey()
   final bool isTestFinished;
-  @override
-  @JsonKey()
-  final double avgTime;
-  @override
-  @JsonKey()
-  final double avgVelocity;
   @override
   @JsonKey()
   final int currentRepetition;
@@ -319,7 +285,7 @@ class _$SitToStandStateImpl implements _SitToStandState {
 
   @override
   String toString() {
-    return 'SitToStandState(isTestRunning: $isTestRunning, isTestFinished: $isTestFinished, avgTime: $avgTime, avgVelocity: $avgVelocity, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, buttonsVisible: $buttonsVisible, progress: $progress, status: $status, error: $error, testResults: $testResults)';
+    return 'SitToStandState(isTestRunning: $isTestRunning, isTestFinished: $isTestFinished, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, buttonsVisible: $buttonsVisible, progress: $progress, status: $status, error: $error, testResults: $testResults)';
   }
 
   @override
@@ -331,9 +297,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
                 other.isTestRunning == isTestRunning) &&
             (identical(other.isTestFinished, isTestFinished) ||
                 other.isTestFinished == isTestFinished) &&
-            (identical(other.avgTime, avgTime) || other.avgTime == avgTime) &&
-            (identical(other.avgVelocity, avgVelocity) ||
-                other.avgVelocity == avgVelocity) &&
             (identical(other.currentRepetition, currentRepetition) ||
                 other.currentRepetition == currentRepetition) &&
             (identical(other.bestTime, bestTime) ||
@@ -357,8 +320,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
       runtimeType,
       isTestRunning,
       isTestFinished,
-      avgTime,
-      avgVelocity,
       currentRepetition,
       bestTime,
       bestVelocity,
@@ -383,8 +344,6 @@ abstract class _SitToStandState implements SitToStandState {
   const factory _SitToStandState(
       {final bool isTestRunning,
       final bool isTestFinished,
-      final double avgTime,
-      final double avgVelocity,
       final int currentRepetition,
       final double bestTime,
       final double bestVelocity,
@@ -399,10 +358,6 @@ abstract class _SitToStandState implements SitToStandState {
   bool get isTestRunning;
   @override
   bool get isTestFinished;
-  @override
-  double get avgTime;
-  @override
-  double get avgVelocity;
   @override
   int get currentRepetition;
   @override

@@ -22,9 +22,8 @@ class _RepetitionCounterState extends State<RepetitionCounter> {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.6,
-          height: MediaQuery.sizeOf(context).width * 0.6,
+        SizedBox.square(
+          dimension: MediaQuery.sizeOf(context).width * 0.5,
           child: CircularProgressIndicator(
             value: widget.progress,
             backgroundColor:
