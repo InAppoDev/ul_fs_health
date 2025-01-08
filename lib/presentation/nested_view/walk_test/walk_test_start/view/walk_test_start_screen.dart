@@ -7,7 +7,6 @@ import '../../../../../core/constants/gaps.dart';
 import '../../../../../core/extensions/context_extension.dart';
 import '../../../../../core/extensions/number_extension.dart';
 import '../../../../../core/extensions/unit_extension.dart';
-import '../../../../../core/router/app_router.dart';
 import '../../../../../core/router/walk_test_router.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/app_text_styles.dart';

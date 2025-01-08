@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/constants/gaps.dart';
 import '../../../../../core/extensions/number_extension.dart';
-import '../../../../../core/router/app_router.dart';
 import '../../../../../core/router/walk_test_router.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/themes/app_text_styles.dart';
@@ -16,7 +15,6 @@ import '../../../../utils/widgets/submit_button.dart';
 import '../../../../utils/widgets/test_layout_widget.dart';
 import '../../../../utils/widgets/text_builder_widget.dart';
 import '../bloc/walk_test_bloc.dart';
-import '../mock/meter_length_values.dart';
 
 @RoutePage()
 class WalkTestInitialScreen extends StatelessWidget {
@@ -24,12 +22,14 @@ class WalkTestInitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const WalkTestInitialContent();
+    return WalkTestInitialContent();
   }
 }
 
 class WalkTestInitialContent extends StatelessWidget {
-  const WalkTestInitialContent({super.key});
+  WalkTestInitialContent({super.key});
+
+  final List<double> meterValues = [15, 20, 30, 40, 400];
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class WalkTestInitialContent extends StatelessWidget {
                 onChanged: (value) {
                   context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(selectedLength: value, shouldValidate: false));
                 },
-                values: mockMeterLengths),
+                values: meterValues),
           ),
           Gaps.largest.spaceVertical,
           SubmitButton(
