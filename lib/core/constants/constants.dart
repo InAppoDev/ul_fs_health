@@ -13,4 +13,7 @@ abstract class Constants {
   static double get barChartRodDataWidth => 16;
   static double get flBorderDataWidth => 2;
   static double get totalRepetitions => 5.0;
+  static double get standingPosition => 3.0;
+  static double get sittingPosition => 7.0;
+  static int get debounceDuration => 100;
 }

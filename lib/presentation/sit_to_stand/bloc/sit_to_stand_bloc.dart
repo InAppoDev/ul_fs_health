@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
@@ -19,15 +21,13 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
   }
 
   final SitToStandRepository sitToStandRepository;
-
-  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
-  final List<DateTime> _timestamps = [];
   final List<ResultDataEntity> _result = [];
+  Timer? _timer;
   var _isStanding = false;
 
   @override
   Future<void> close() {
-    _accelerometerSubscription?.cancel();
+    _timer?.cancel();
     return super.close();
   }
 
@@ -35,21 +35,15 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       StartTestEvent event, Emitter<SitToStandState> emit) async {
     emit(state.copyWith(
         isTestRunning: true, currentRepetition: 0, isTestFinished: false));
-
-    await _accelerometerSubscription?.cancel();
-
     final Stopwatch stopwatch = Stopwatch()..start();
-    const double standingPos = 3.0;
-    const double sittingPosition = 7.0;
-    const int debounceDuration = 100;
-    const double distance = 1.0;
-
-    DateTime lastEventTime = DateTime.now();
-
+    var lastEventTime = DateTime.now();
     await for (final event in accelerometerEvents) {
+      if (state.isTestFinished) {
+        break;
+      }
       final currentTime = DateTime.now();
       final elapsedTime = currentTime.difference(lastEventTime).inMilliseconds;
-      if (elapsedTime < debounceDuration) {
+      if (elapsedTime < Constants.debounceDuration) {
         continue;
       }
       lastEventTime = currentTime;
@@ -69,28 +63,28 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
           ));
           break;
         } else {
-          if (!_isStanding && event.z < standingPos) {
+          if (!_isStanding && event.z < Constants.standingPosition) {
             /* Detect stand-up movement */
             _isStanding = true;
             stopwatch.stop();
             final standDuration = stopwatch.elapsed.inMilliseconds / 1000.0;
             stopwatch.reset();
             if (standDuration > 0) {
-              final velocity = distance / standDuration;
+              final velocity = 1.0 / standDuration;
               _result.add(ResultDataEntity(
                 resultTime: standDuration,
                 velocity: velocity,
               ));
               final progress =
-                  state.currentRepetition + 1 / Constants.totalRepetitions;
+                  (state.currentRepetition + 1) / Constants.totalRepetitions;
               emit(state.copyWith(
                 progress: progress,
                 currentRepetition: state.currentRepetition + 1,
               ));
             }
-          } else if (_isStanding && event.z > sittingPosition ||
-              event.x > sittingPosition ||
-              event.x < -sittingPosition) {
+          } else if (_isStanding && event.z > Constants.sittingPosition ||
+              event.x > Constants.sittingPosition ||
+              event.x < -Constants.sittingPosition) {
             /* Detect sit-down movement */
             _isStanding = false;
             stopwatch.start();
@@ -103,9 +97,17 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
   Future<void> _onStopTest(
       StopTestEvent event, Emitter<SitToStandState> emit) async {
     if (state.isTestRunning) {
+      final bestTime = _result.findBestTime(whenEmpty: state.bestTime);
+      final bestVelocity =
+          _result.findBestVelocity(whenEmpty: state.bestVelocity);
       _result.clear();
-      _timestamps.clear();
-      emit(state.copyWith(isTestFinished: true));
+      emit(state.copyWith(
+        isTestRunning: false,
+        isTestFinished: true,
+        status: SitToStandStatus.stop,
+        bestTime: bestTime,
+        bestVelocity: bestVelocity,
+      ));
     }
   }
 
@@ -134,6 +136,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       return;
     }
     try {
+      emit(state.copyWith(status: SitToStandStatus.loading));
       final resultEntity = ResultDataEntity(
         resultTime: state.bestTime,
         velocity: state.bestVelocity,

@@ -8,17 +8,17 @@ part 'sit_to_stand_state.freezed.dart';
 class SitToStandState with _$SitToStandState {
   const factory SitToStandState({
     @Default(false) bool isTestRunning,
+    @Default(false) bool isTestReady,
     @Default(false) bool isTestFinished,
     @Default(0) int currentRepetition,
     @Default(0.0) double bestTime,
     @Default(0.0) double bestVelocity,
-    @Default(0.0) double bestPower,
-    @Default(false) bool buttonsVisible,
     @Default(0.0) double progress,
     @Default(SitToStandStatus.initial) SitToStandStatus status,
+    @Default([]) List<int> times,
     String? error,
     List<ResultDataEntity>? testResults,
   }) = _SitToStandState;
 }
 
-enum SitToStandStatus { initial, failure, start, stop, save }
+enum SitToStandStatus { initial, failure, start, stop, save, loading }

@@ -6,6 +6,7 @@ import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../di/service_locator.dart';
 import '../../../domain/repositories/sit_to_stand_repository.dart';
@@ -29,8 +30,8 @@ class SitToStandTestStartScreen extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => SitToStandBloc(
-              sitToStandRepository: getIt<SitToStandRepository>())
-            ..add(const SitToStandEvent.startTest()),
+            sitToStandRepository: getIt<SitToStandRepository>(),
+          )..add(const SitToStandEvent.startTest()),
         ),
       ],
       child: const SitToStandTestStartContent(),
@@ -54,7 +55,7 @@ class SitToStandTestStartContent extends StatelessWidget {
             context.showSnackBarMessage(state.error ?? '');
           }
           if (state.status == SitToStandStatus.save) {
-            context.showSnackBarMessage('Saved successfully');
+            context.router.replaceAll([const HomeRoute()]);
           }
         },
         builder: (context, state) {
@@ -90,6 +91,7 @@ class SitToStandTestStartContent extends StatelessWidget {
                   repetition: state.currentRepetition,
                   totalRepetitions: Constants.totalRepetitions,
                   progress: state.progress,
+                  bestTime: 0,
                 ),
                 if (!state.isTestFinished)
                   Padding(
@@ -142,6 +144,7 @@ class SitToStandTestStartContent extends StatelessWidget {
                               .read<SitToStandBloc>()
                               .add(const SaveTestResultEvent()),
                           title: S.current.lblSaveResults,
+                          isLoading: state.status == SitToStandStatus.loading,
                           backgroundColor: ColorScheme.of(context).primary,
                           titleColor: Theme.of(context).colorScheme.onPrimary,
                         ),
