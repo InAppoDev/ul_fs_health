@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
 import '../../../gen/assets.gen.dart';
-import '../../auth/widgets/auth_guard_widget.dart';
+import '../../simple_view/auth/widgets/auth_guard_widget.dart';
 import 'feature_test_header.dart';
 import 'scrollable_list_widget.dart';
 import 'simple_app_bar_widget.dart';

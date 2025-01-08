@@ -3,6 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/bloc_providers.dart';
 import 'core/router/app_router.dart';
+import 'core/router/questionnaire_router.dart';
+import 'core/router/walk_test_router.dart';
 import 'core/themes/app_themes.dart';
 import 'generated/l10n.dart';
 
@@ -36,7 +38,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _locale = const Locale('en');
   var _themeMode = ThemeMode.light;
-  final _appRouter = AppRouter();
+  final _appRouter = AppRouter(
+    questionnaireRouter: QuestionnaireRouter(),
+    walkTestRouter: WalkTestRouter()
+  );
 
   set locale(Locale locale) {
     setState(() {
