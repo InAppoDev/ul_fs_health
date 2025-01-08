@@ -137,5 +137,8 @@
     }
   },
   "lblDistance": "Distance",
-  "lblAverageSpeed": "AVG. Speed"
+  "lblAverageSpeed": "AVG. Speed",
+  "lblAct": "Act-",
+  "lblOn": "On",
+  "lblNoResultsFound" : "No Results Found"
 }

@@ -19,18 +19,16 @@ mixin _$SitToStandState {
   bool get isTestRunning => throw _privateConstructorUsedError;
   bool get isTestReady => throw _privateConstructorUsedError;
   bool get isTestFinished => throw _privateConstructorUsedError;
-  double get avgTime => throw _privateConstructorUsedError;
-  double get avgVelocity => throw _privateConstructorUsedError;
   int get currentRepetition => throw _privateConstructorUsedError;
-  int get totalRepetitions => throw _privateConstructorUsedError;
   double get bestTime => throw _privateConstructorUsedError;
   double get bestVelocity => throw _privateConstructorUsedError;
   double get bestPower => throw _privateConstructorUsedError;
+  bool get buttonsVisible => throw _privateConstructorUsedError;
   double get progress => throw _privateConstructorUsedError;
   SitToStandStatus get status => throw _privateConstructorUsedError;
   List<int> get times => throw _privateConstructorUsedError;
-  bool get buttonsVisible => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  List<ResultDataEntity>? get testResults => throw _privateConstructorUsedError;
 
   /// Create a copy of SitToStandState
   /// with the given fields replaced by the non-null parameter values.
@@ -49,18 +47,16 @@ abstract class $SitToStandStateCopyWith<$Res> {
       {bool isTestRunning,
       bool isTestReady,
       bool isTestFinished,
-      double avgTime,
-      double avgVelocity,
       int currentRepetition,
-      int totalRepetitions,
       double bestTime,
       double bestVelocity,
       double bestPower,
+      bool buttonsVisible,
       double progress,
       SitToStandStatus status,
       List<int> times,
-      bool buttonsVisible,
-      String? error});
+      String? error,
+      List<ResultDataEntity>? testResults});
 }
 
 /// @nodoc
@@ -81,18 +77,16 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
     Object? isTestRunning = null,
     Object? isTestReady = null,
     Object? isTestFinished = null,
-    Object? avgTime = null,
-    Object? avgVelocity = null,
     Object? currentRepetition = null,
-    Object? totalRepetitions = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
     Object? bestPower = null,
+    Object? buttonsVisible = null,
     Object? progress = null,
     Object? status = null,
     Object? times = null,
-    Object? buttonsVisible = null,
     Object? error = freezed,
+    Object? testResults = freezed,
   }) {
     return _then(_value.copyWith(
       isTestRunning: null == isTestRunning
@@ -107,21 +101,9 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.isTestFinished
           : isTestFinished // ignore: cast_nullable_to_non_nullable
               as bool,
-      avgTime: null == avgTime
-          ? _value.avgTime
-          : avgTime // ignore: cast_nullable_to_non_nullable
-              as double,
-      avgVelocity: null == avgVelocity
-          ? _value.avgVelocity
-          : avgVelocity // ignore: cast_nullable_to_non_nullable
-              as double,
       currentRepetition: null == currentRepetition
           ? _value.currentRepetition
           : currentRepetition // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalRepetitions: null == totalRepetitions
-          ? _value.totalRepetitions
-          : totalRepetitions // ignore: cast_nullable_to_non_nullable
               as int,
       bestTime: null == bestTime
           ? _value.bestTime
@@ -135,6 +117,10 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.bestPower
           : bestPower // ignore: cast_nullable_to_non_nullable
               as double,
+      buttonsVisible: null == buttonsVisible
+          ? _value.buttonsVisible
+          : buttonsVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -147,14 +133,14 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.times
           : times // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      buttonsVisible: null == buttonsVisible
-          ? _value.buttonsVisible
-          : buttonsVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      testResults: freezed == testResults
+          ? _value.testResults
+          : testResults // ignore: cast_nullable_to_non_nullable
+              as List<ResultDataEntity>?,
     ) as $Val);
   }
 }
@@ -171,18 +157,16 @@ abstract class _$$SitToStandStateImplCopyWith<$Res>
       {bool isTestRunning,
       bool isTestReady,
       bool isTestFinished,
-      double avgTime,
-      double avgVelocity,
       int currentRepetition,
-      int totalRepetitions,
       double bestTime,
       double bestVelocity,
       double bestPower,
+      bool buttonsVisible,
       double progress,
       SitToStandStatus status,
       List<int> times,
-      bool buttonsVisible,
-      String? error});
+      String? error,
+      List<ResultDataEntity>? testResults});
 }
 
 /// @nodoc
@@ -201,18 +185,16 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
     Object? isTestRunning = null,
     Object? isTestReady = null,
     Object? isTestFinished = null,
-    Object? avgTime = null,
-    Object? avgVelocity = null,
     Object? currentRepetition = null,
-    Object? totalRepetitions = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
     Object? bestPower = null,
+    Object? buttonsVisible = null,
     Object? progress = null,
     Object? status = null,
     Object? times = null,
-    Object? buttonsVisible = null,
     Object? error = freezed,
+    Object? testResults = freezed,
   }) {
     return _then(_$SitToStandStateImpl(
       isTestRunning: null == isTestRunning
@@ -227,21 +209,9 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.isTestFinished
           : isTestFinished // ignore: cast_nullable_to_non_nullable
               as bool,
-      avgTime: null == avgTime
-          ? _value.avgTime
-          : avgTime // ignore: cast_nullable_to_non_nullable
-              as double,
-      avgVelocity: null == avgVelocity
-          ? _value.avgVelocity
-          : avgVelocity // ignore: cast_nullable_to_non_nullable
-              as double,
       currentRepetition: null == currentRepetition
           ? _value.currentRepetition
           : currentRepetition // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalRepetitions: null == totalRepetitions
-          ? _value.totalRepetitions
-          : totalRepetitions // ignore: cast_nullable_to_non_nullable
               as int,
       bestTime: null == bestTime
           ? _value.bestTime
@@ -255,6 +225,10 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.bestPower
           : bestPower // ignore: cast_nullable_to_non_nullable
               as double,
+      buttonsVisible: null == buttonsVisible
+          ? _value.buttonsVisible
+          : buttonsVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -267,14 +241,14 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value._times
           : times // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      buttonsVisible: null == buttonsVisible
-          ? _value.buttonsVisible
-          : buttonsVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      testResults: freezed == testResults
+          ? _value._testResults
+          : testResults // ignore: cast_nullable_to_non_nullable
+              as List<ResultDataEntity>?,
     ));
   }
 }
@@ -286,19 +260,18 @@ class _$SitToStandStateImpl implements _SitToStandState {
       {this.isTestRunning = false,
       this.isTestReady = false,
       this.isTestFinished = false,
-      this.avgTime = 0.0,
-      this.avgVelocity = 0.0,
       this.currentRepetition = 0,
-      this.totalRepetitions = 5,
       this.bestTime = 0.0,
       this.bestVelocity = 0.0,
       this.bestPower = 0.0,
+      this.buttonsVisible = false,
       this.progress = 0.0,
       this.status = SitToStandStatus.initial,
       final List<int> times = const [],
-      this.buttonsVisible = false,
-      this.error})
-      : _times = times;
+      this.error,
+      final List<ResultDataEntity>? testResults})
+      : _times = times,
+        _testResults = testResults;
 
   @override
   @JsonKey()
@@ -311,16 +284,7 @@ class _$SitToStandStateImpl implements _SitToStandState {
   final bool isTestFinished;
   @override
   @JsonKey()
-  final double avgTime;
-  @override
-  @JsonKey()
-  final double avgVelocity;
-  @override
-  @JsonKey()
   final int currentRepetition;
-  @override
-  @JsonKey()
-  final int totalRepetitions;
   @override
   @JsonKey()
   final double bestTime;
@@ -330,6 +294,9 @@ class _$SitToStandStateImpl implements _SitToStandState {
   @override
   @JsonKey()
   final double bestPower;
+  @override
+  @JsonKey()
+  final bool buttonsVisible;
   @override
   @JsonKey()
   final double progress;
@@ -346,14 +313,20 @@ class _$SitToStandStateImpl implements _SitToStandState {
   }
 
   @override
-  @JsonKey()
-  final bool buttonsVisible;
-  @override
   final String? error;
+  final List<ResultDataEntity>? _testResults;
+  @override
+  List<ResultDataEntity>? get testResults {
+    final value = _testResults;
+    if (value == null) return null;
+    if (_testResults is EqualUnmodifiableListView) return _testResults;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'SitToStandState(isTestRunning: $isTestRunning, isTestReady: $isTestReady, isTestFinished: $isTestFinished, avgTime: $avgTime, avgVelocity: $avgVelocity, currentRepetition: $currentRepetition, totalRepetitions: $totalRepetitions, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, progress: $progress, status: $status, times: $times, buttonsVisible: $buttonsVisible, error: $error)';
+    return 'SitToStandState(isTestRunning: $isTestRunning, isTestReady: $isTestReady, isTestFinished: $isTestFinished, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, buttonsVisible: $buttonsVisible, progress: $progress, status: $status, times: $times, error: $error, testResults: $testResults)';
   }
 
   @override
@@ -367,26 +340,23 @@ class _$SitToStandStateImpl implements _SitToStandState {
                 other.isTestReady == isTestReady) &&
             (identical(other.isTestFinished, isTestFinished) ||
                 other.isTestFinished == isTestFinished) &&
-            (identical(other.avgTime, avgTime) || other.avgTime == avgTime) &&
-            (identical(other.avgVelocity, avgVelocity) ||
-                other.avgVelocity == avgVelocity) &&
             (identical(other.currentRepetition, currentRepetition) ||
                 other.currentRepetition == currentRepetition) &&
-            (identical(other.totalRepetitions, totalRepetitions) ||
-                other.totalRepetitions == totalRepetitions) &&
             (identical(other.bestTime, bestTime) ||
                 other.bestTime == bestTime) &&
             (identical(other.bestVelocity, bestVelocity) ||
                 other.bestVelocity == bestVelocity) &&
             (identical(other.bestPower, bestPower) ||
                 other.bestPower == bestPower) &&
+            (identical(other.buttonsVisible, buttonsVisible) ||
+                other.buttonsVisible == buttonsVisible) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._times, _times) &&
-            (identical(other.buttonsVisible, buttonsVisible) ||
-                other.buttonsVisible == buttonsVisible) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            const DeepCollectionEquality()
+                .equals(other._testResults, _testResults));
   }
 
   @override
@@ -395,18 +365,16 @@ class _$SitToStandStateImpl implements _SitToStandState {
       isTestRunning,
       isTestReady,
       isTestFinished,
-      avgTime,
-      avgVelocity,
       currentRepetition,
-      totalRepetitions,
       bestTime,
       bestVelocity,
       bestPower,
+      buttonsVisible,
       progress,
       status,
       const DeepCollectionEquality().hash(_times),
-      buttonsVisible,
-      error);
+      error,
+      const DeepCollectionEquality().hash(_testResults));
 
   /// Create a copy of SitToStandState
   /// with the given fields replaced by the non-null parameter values.
@@ -423,18 +391,16 @@ abstract class _SitToStandState implements SitToStandState {
       {final bool isTestRunning,
       final bool isTestReady,
       final bool isTestFinished,
-      final double avgTime,
-      final double avgVelocity,
       final int currentRepetition,
-      final int totalRepetitions,
       final double bestTime,
       final double bestVelocity,
       final double bestPower,
+      final bool buttonsVisible,
       final double progress,
       final SitToStandStatus status,
       final List<int> times,
-      final bool buttonsVisible,
-      final String? error}) = _$SitToStandStateImpl;
+      final String? error,
+      final List<ResultDataEntity>? testResults}) = _$SitToStandStateImpl;
 
   @override
   bool get isTestRunning;
@@ -443,13 +409,7 @@ abstract class _SitToStandState implements SitToStandState {
   @override
   bool get isTestFinished;
   @override
-  double get avgTime;
-  @override
-  double get avgVelocity;
-  @override
   int get currentRepetition;
-  @override
-  int get totalRepetitions;
   @override
   double get bestTime;
   @override
@@ -457,15 +417,17 @@ abstract class _SitToStandState implements SitToStandState {
   @override
   double get bestPower;
   @override
+  bool get buttonsVisible;
+  @override
   double get progress;
   @override
   SitToStandStatus get status;
   @override
   List<int> get times;
   @override
-  bool get buttonsVisible;
-  @override
   String? get error;
+  @override
+  List<ResultDataEntity>? get testResults;
 
   /// Create a copy of SitToStandState
   /// with the given fields replaced by the non-null parameter values.

@@ -1,9 +1,11 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
 import 'dart:async';
+import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import '../../../core/constants/constants.dart';
+import '../../../core/extensions/list_extension.dart';
 import '../../../domain/entities/result_data_entity.dart';
 import '../../../domain/repositories/sit_to_stand_repository.dart';
 import 'sit_to_stand_event.dart';
@@ -13,132 +15,137 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
   SitToStandBloc({required this.sitToStandRepository})
       : super(const SitToStandState()) {
     on<StartTestEvent>(_onStartTest);
-    on<StartNewRepetitionEvent>(_onStartNewRepetition);
     on<StopTestEvent>(_onStopTest);
     on<SaveTestResultEvent>(_onSaveTestResult);
-    on<CompleteRepetitionEvent>(_onCompleteRepetition);
+    on<GetTestResultEvent>(_onGetTestResult);
   }
 
   final SitToStandRepository sitToStandRepository;
-
-  StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
-  final List<int> _sitStandTimes = [];
+  final List<ResultDataEntity> _result = [];
   Timer? _timer;
-  int _elapsedTime = 0;
+  var _isStanding = false;
 
   @override
   Future<void> close() {
-    _accelerometerSubscription?.cancel();
     _timer?.cancel();
     return super.close();
   }
 
-  double _calculateBestSitToStandResult() {
-    if (_sitStandTimes.isEmpty) {
-      return 0.0;
-    }
-    final bestTimeInMs = _sitStandTimes.reduce((a, b) => a < b ? a : b);
-    return bestTimeInMs / 1000.0;
-  }
-
   Future<void> _onStartTest(
       StartTestEvent event, Emitter<SitToStandState> emit) async {
-    if (!state.isTestRunning &&
-        state.currentRepetition < Constants.totalRepetitions) {
-      emit(state.copyWith(
-        isTestRunning: true,
-        status: SitToStandStatus.start,
-        currentRepetition: state.currentRepetition + 1,
-        progress: (state.currentRepetition + 1) / Constants.totalRepetitions,
-        buttonsVisible: true,
-      ));
-
-      _startTimer();
+    emit(state.copyWith(
+        isTestRunning: true, currentRepetition: 0, isTestFinished: false));
+    final Stopwatch stopwatch = Stopwatch()..start();
+    var lastEventTime = DateTime.now();
+    await for (final event in accelerometerEvents) {
+      if (state.isTestFinished) {
+        break;
+      }
+      final currentTime = DateTime.now();
+      final elapsedTime = currentTime.difference(lastEventTime).inMilliseconds;
+      if (elapsedTime < Constants.debounceDuration) {
+        continue;
+      }
+      lastEventTime = currentTime;
+      log('Z = ${event.z}');
+      log('X = ${event.x}');
+      if (state.isTestRunning) {
+        if (state.currentRepetition == Constants.totalRepetitions) {
+          final bestTime = _result.findBestTime(whenEmpty: state.bestTime);
+          final bestVelocity =
+              _result.findBestVelocity(whenEmpty: state.bestVelocity);
+          emit(state.copyWith(
+            isTestRunning: false,
+            isTestFinished: true,
+            progress: 1.0,
+            bestTime: bestTime,
+            bestVelocity: bestVelocity,
+          ));
+          break;
+        } else {
+          if (!_isStanding && event.z < Constants.standingPosition) {
+            /* Detect stand-up movement */
+            _isStanding = true;
+            stopwatch.stop();
+            final standDuration = stopwatch.elapsed.inMilliseconds / 1000.0;
+            stopwatch.reset();
+            if (standDuration > 0) {
+              final velocity = 1.0 / standDuration;
+              _result.add(ResultDataEntity(
+                resultTime: standDuration,
+                velocity: velocity,
+              ));
+              final progress =
+                  (state.currentRepetition + 1) / Constants.totalRepetitions;
+              emit(state.copyWith(
+                progress: progress,
+                currentRepetition: state.currentRepetition + 1,
+              ));
+            }
+          } else if (_isStanding && event.z > Constants.sittingPosition ||
+              event.x > Constants.sittingPosition ||
+              event.x < -Constants.sittingPosition) {
+            /* Detect sit-down movement */
+            _isStanding = false;
+            stopwatch.start();
+          }
+        }
+      }
     }
   }
 
   Future<void> _onStopTest(
       StopTestEvent event, Emitter<SitToStandState> emit) async {
     if (state.isTestRunning) {
-      _stopTimer();
-
-      final bestSitToStandResult = _calculateBestSitToStandResult();
+      final bestTime = _result.findBestTime(whenEmpty: state.bestTime);
       final bestVelocity =
-          bestSitToStandResult > 0 ? 1.0 / bestSitToStandResult : 0.0;
-
+          _result.findBestVelocity(whenEmpty: state.bestVelocity);
+      _result.clear();
       emit(state.copyWith(
         isTestRunning: false,
+        isTestFinished: true,
         status: SitToStandStatus.stop,
-        buttonsVisible: false,
-        bestTime: bestSitToStandResult,
+        bestTime: bestTime,
         bestVelocity: bestVelocity,
       ));
     }
   }
 
-  Future<void> _onCompleteRepetition(
-      CompleteRepetitionEvent event, Emitter<SitToStandState> emit) async {
-    if (state.currentRepetition < Constants.totalRepetitions) {
+  Future<void> _onGetTestResult(
+      GetTestResultEvent event, Emitter<SitToStandState> emit) async {
+    emit(state.copyWith(status: SitToStandStatus.start));
+    try {
+      final testResults =
+          await sitToStandRepository.getTestResult(userId: event.userId);
+
       emit(state.copyWith(
-        currentRepetition: state.currentRepetition + 1,
-        progress: (state.currentRepetition + 1) / Constants.totalRepetitions,
+        status: SitToStandStatus.stop,
+        testResults: testResults,
       ));
-    } else {
+    } catch (e) {
       emit(state.copyWith(
-        isTestRunning: false,
-        buttonsVisible: false,
+        status: SitToStandStatus.failure,
+        error: e.toString(),
       ));
     }
-  }
-
-  Future<void> _onStartNewRepetition(
-      StartNewRepetitionEvent event, Emitter<SitToStandState> emit) async {
-    if (!state.isTestRunning && !state.isTestFinished) {
-      emit(state.copyWith(
-        currentRepetition: state.currentRepetition + 1,
-        progress: (state.currentRepetition + 1) / Constants.totalRepetitions,
-      ));
-    }
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      _elapsedTime = timer.tick;
-      emit(state.copyWith(
-        avgTime: _elapsedTime.toDouble(),
-      ));
-    });
-  }
-
-  void _stopTimer() {
-    _timer?.cancel();
-    _sitStandTimes.add(_elapsedTime);
   }
 
   Future<void> _onSaveTestResult(
       SaveTestResultEvent event, Emitter<SitToStandState> emit) async {
-    if (state.currentRepetition == Constants.totalRepetitions) {
-      final bestTime = _sitStandTimes.isNotEmpty
-          ? _sitStandTimes.reduce((a, b) => a < b ? a : b).toDouble()
-          : 0.0;
-
-      final bestVelocity = bestTime > 0 ? 1.0 / bestTime : 0.0;
-
-      try {
-        await sitToStandRepository.saveTestResult(
-          entity:
-              ResultDataEntity(resultTime: bestTime, velocity: bestVelocity),
-        );
-
-        emit(state.copyWith(
-          bestTime: bestTime / 1000.0,
-          bestVelocity: bestVelocity,
-          status: SitToStandStatus.save,
-        ));
-      } catch (e) {
-        emit(state.copyWith(
-            status: SitToStandStatus.failure, error: e.toString()));
-      }
+    if (state.currentRepetition != Constants.totalRepetitions) {
+      return;
+    }
+    try {
+      emit(state.copyWith(status: SitToStandStatus.loading));
+      final resultEntity = ResultDataEntity(
+        resultTime: state.bestTime,
+        velocity: state.bestVelocity,
+      );
+      await sitToStandRepository.saveTestResult(entity: resultEntity);
+      emit(state.copyWith(status: SitToStandStatus.save));
+    } catch (e) {
+      emit(state.copyWith(
+          status: SitToStandStatus.failure, error: e.toString()));
     }
   }
 }

@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -8,11 +11,16 @@ import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/result_data_entity.dart';
-import '../../../gen/assets.gen.dart';
+import '../../../generated/l10n.dart';
 import '../../../l10n/localizations_utils.dart';
+import '../../sit_to_stand/bloc/sit_to_stand_bloc.dart';
+import '../../sit_to_stand/bloc/sit_to_stand_event.dart';
+import '../../sit_to_stand/bloc/sit_to_stand_state.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../widgets/info_widget.dart';
 import '../widgets/titles_widget.dart';
+import 'tabs/sit_to_stand_tab.dart';
+import 'tabs/six_minute_walk_tab.dart';
 
 @RoutePage()
 class SitToStandResultScreen extends StatefulWidget {
@@ -24,6 +32,13 @@ class SitToStandResultScreen extends StatefulWidget {
 
 class _SitToStandResultScreenState extends State<SitToStandResultScreen> {
   @override
+  void initState() {
+    super.initState();
+    final String userId = FirebaseAuth.instance.currentUser!.uid;
+    context.read<SitToStandBloc>().add(GetTestResultEvent(userId: userId));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return const SitToStandResultContent();
   }
@@ -34,175 +49,77 @@ class SitToStandResultContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<ResultDataEntity> resultDataEntities = [
-      ResultDataEntity(
-        date: DateTime.now(),
-        resultTime: 837.0,
-        velocity: 0.32,
-      ),
-      ResultDataEntity(
-          date: DateTime.now().subtract(const Duration(days: 1)),
-          resultTime: 837.0,
-          velocity: 0.32),
-      ResultDataEntity(
-        date: DateTime.now().subtract(const Duration(days: 2)),
-        resultTime: 937.0,
-        velocity: 0.52,
-      ),
-    ];
-
-    resultDataEntities.sort((a, b) {
-      return a.date!.compareTo(b.date!);
-    });
-
     return Scaffold(
-      appBar: const SimpleAppBarWidget(
+      appBar: SimpleAppBarWidget(
         showBackButton: true,
+        title: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: appLocalizations.lblAct,
+                style:
+                    body5.copyWith(color: ColorScheme.of(context).onSecondary),
+              ),
+              TextSpan(text: appLocalizations.lblOn, style: body5),
+            ],
+          ),
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Gaps.larger.spaceVertical,
-            Container(
-              height: Constants.featureTestHeaderHeight,
-              decoration: BoxDecoration(
-                color: ColorScheme.of(context).primary,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ColorFiltered(
-                    colorFilter: ColorFilter.mode(
-                        ColorScheme.of(context).onPrimary, BlendMode.srcIn),
-                    child: Assets.icons.iconSitDownTest.svg(),
-                  ),
-                  Text(
-                    appLocalizations.lblsitToStandTestTitleText.toUpperCase(),
-                    style: header3.copyWith(
-                      color: ColorScheme.of(context).onPrimary,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: Gaps.larger.paddingHorizontal + Gaps.largest.paddingTop,
+      body: BlocBuilder<SitToStandBloc, SitToStandState>(
+        builder: (context, state) {
+          if (state.status == SitToStandStatus.failure) {
+            return Center(child: Text('Failed to get data: ${state.error}'));
+          }
+
+          if (state.testResults != null && state.testResults!.isNotEmpty) {
+            final resultDataEntities =
+                List<ResultDataEntity>.from(state.testResults!);
+            resultDataEntities.sort((a, b) => a.date!.compareTo(b.date!));
+
+            return DefaultTabController(
+              length: 2,
               child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      appLocalizations.menuResultsText.toUpperCase(),
-                      style: body1,
-                    ),
-                  ),
-                  Gaps.largest.spaceVertical,
-                  SizedBox(
-                    height: Constants.chartHeight,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: SizedBox(
-                        width: resultDataEntities.length * 60,
-                        child: BarChart(
-                          BarChartData(
-                            gridData: const FlGridData(show: false),
-                            titlesData: FlTitlesData(
-                              bottomTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                                  showTitles: true,
-                                  getTitlesWidget: (value, meta) {
-                                    if (value >= 0 &&
-                                        value < resultDataEntities.length) {
-                                      final date =
-                                          resultDataEntities[value.toInt()]
-                                              .date
-                                              ?.toIso8601String();
-                                      return Text(
-                                        date ?? '',
-                                        style: body2.copyWith(
-                                          fontSize: 10,
-                                          color: darkGrey,
-                                        ),
-                                      );
-                                    }
-                                    return const SizedBox();
-                                  },
-                                ),
-                              ),
-                              topTitles: AxisTitles(
-                                sideTitles: SideTitles(
-                                  showTitles: true,
-                                  getTitlesWidget: (value, meta) {
-                                    if (value >= 0 &&
-                                        value < resultDataEntities.length) {
-                                      return Text(
-                                        '${resultDataEntities[value.toInt()].resultTime} ms',
-                                        style: body2.copyWith(
-                                          fontSize: 10,
-                                          color: darkGrey,
-                                        ),
-                                      );
-                                    }
-                                    return const SizedBox();
-                                  },
-                                ),
-                              ),
-                              leftTitles: const AxisTitles(),
-                              rightTitles: const AxisTitles(),
-                            ),
-                            borderData: FlBorderData(
-                              show: true,
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: darkGrey,
-                                  width: Constants.flBorderDataWidth,
-                                ),
-                              ),
-                            ),
-                            barGroups: resultDataEntities.map((data) {
-                              final time = double.tryParse(
-                                  data.resultTime?.toString() ?? '');
-                              return BarChartGroupData(
-                                x: resultDataEntities.indexOf(data),
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: time == null ? 0 : time / 1000,
-                                    color: darkGrey,
-                                    width: Constants.barChartRodDataWidth,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              );
-                            }).toList(),
-                            barTouchData: BarTouchData(
-                              enabled: false,
-                            ),
-                          ),
+                  TabBar(
+                    labelColor: Theme.of(context).colorScheme.onSurface,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: Theme.of(context).colorScheme.onSurface,
+                    dividerColor: Colors.transparent,
+                    overlayColor:
+                        const WidgetStatePropertyAll(Colors.transparent),
+                    labelPadding: Gaps.medium.paddingAll,
+                    tabs: [
+                      Text(
+                        S.current.sitToStandTestTitleText,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
+                      Text(
+                        S.current.walkTestTitleText,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: TabBarView(
+                      children: [
+                        SitToStandTab(resultDataEntities: resultDataEntities),
+                        const SixMinuteWalkTab(),
+                      ],
                     ),
                   ),
                 ],
               ),
-            ),
-            Gaps.larger.spaceVertical,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TitlesWidget(title: appLocalizations.lblDate),
-                TitlesWidget(title: appLocalizations.lblTime),
-                TitlesWidget(title: appLocalizations.lblVelocity),
-              ],
-            ),
-            ...resultDataEntities.map((data) {
-              return InfoWidget(
-                date: data.date?.toIso8601String() ?? '',
-                time: '${data.resultTime} ms',
-                velocity: '${data.velocity} m/s',
-              );
-            }),
-          ],
-        ),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }

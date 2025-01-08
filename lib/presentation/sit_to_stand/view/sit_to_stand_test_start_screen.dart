@@ -6,6 +6,7 @@ import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../di/service_locator.dart';
 import '../../../domain/repositories/sit_to_stand_repository.dart';
@@ -53,10 +54,14 @@ class SitToStandTestStartContent extends StatelessWidget {
           if (state.status == SitToStandStatus.failure) {
             context.showSnackBarMessage(state.error ?? '');
           }
+          if (state.status == SitToStandStatus.save) {
+            context.router.replaceAll([const HomeRoute()]);
+          }
         },
         builder: (context, state) {
           return SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Gaps.large.spaceVertical,
                 FeatureTestHeader(
@@ -64,9 +69,10 @@ class SitToStandTestStartContent extends StatelessWidget {
                   leading: Assets.icons.iconSitDownTest,
                 ),
                 (Gaps.largest + Gaps.large).spaceVertical,
-                if (state.isTestFinished || state.currentRepetition == 5)
+                if (state.isTestFinished)
                   Text(
                     S.current.lblTestFinished.toUpperCase(),
+                    textAlign: TextAlign.center,
                     style: header2.copyWith(
                         color: Theme.of(context).colorScheme.primary),
                   ),
@@ -74,51 +80,39 @@ class SitToStandTestStartContent extends StatelessWidget {
                 Padding(
                   padding: Gaps.larger.paddingHorizontal,
                   child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      S.current.lblSitToStandRepetitions.toUpperCase(),
-                      style: body1,
-                    ),
-                  ),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        S.current.lblSitToStandRepetitions.toUpperCase(),
+                        style: body1,
+                      )),
                 ),
                 Gaps.largest.spaceVertical,
                 RepetitionCounter(
                   repetition: state.currentRepetition,
                   totalRepetitions: Constants.totalRepetitions,
                   progress: state.progress,
-                  bestTime: state.bestTime,
+                  bestTime: 0,
                 ),
-                if (state.currentRepetition < Constants.totalRepetitions)
+                if (!state.isTestFinished)
                   Padding(
                     padding: Gaps.larger.paddingAll.copyWith(top: Gaps.largest),
                     child: SubmitButton(
-                      isValid:
-                          state.currentRepetition < Constants.totalRepetitions,
-                      onPressed: () {
-                        if (state.isTestRunning) {
-                          context
-                              .read<SitToStandBloc>()
-                              .add(const StopTestEvent());
-                        } else {
-                          context
-                              .read<SitToStandBloc>()
-                              .add(const StartTestEvent());
-                        }
-                      },
-                      title: state.isTestRunning
-                          ? S.current.btnTestStopText.toUpperCase()
-                          : S.current.btnTestStartText.toUpperCase(),
+                      isValid: state.isTestRunning,
+                      onPressed: () => context
+                          .read<SitToStandBloc>()
+                          .add(const StopTestEvent()),
+                      title: S.current.btnTestStopText.toUpperCase(),
                       backgroundColor: Theme.of(context).colorScheme.secondary,
                       titleColor: Theme.of(context).colorScheme.onSecondary,
                     ),
                   ),
-                if (state.currentRepetition == Constants.totalRepetitions) ...[
+                Gaps.largest.spaceVertical,
+                if (state.isTestFinished) ...[
                   Padding(
                     padding: Gaps.larger.paddingHorizontal,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Gaps.large.spaceVertical,
                         Align(
                           alignment: Alignment.topLeft,
                           child: Text(S.current.lblBestSitToStandResult),
@@ -130,52 +124,35 @@ class SitToStandTestStartContent extends StatelessWidget {
                             Column(
                               children: [
                                 Text(S.current.lblTime, style: body1),
-                                Text(
-                                  '${state.bestTime.toStringAsFixed(3)} s',
-                                  style: body1.copyWith(fontSize: 28),
-                                ),
+                                Text('${state.bestTime.toStringAsFixed(3)} ms',
+                                    style: body1.copyWith(fontSize: 28)),
                               ],
                             ),
                             Column(
                               children: [
                                 Text(S.current.lblVelocity, style: body1),
                                 Text(
-                                  '${state.bestVelocity.toStringAsFixed(2)} m/s',
-                                  style: body1.copyWith(fontSize: 28),
-                                ),
+                                    '${state.bestVelocity.toStringAsFixed(2)} m/s',
+                                    style: body1.copyWith(fontSize: 28)),
                               ],
                             ),
                           ],
                         ),
                         Gaps.largest.spaceVertical,
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorScheme.of(context).primary,
-                          ).copyWith(
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    Constants.containerBorderRadius),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {
-                            context
-                                .read<SitToStandBloc>()
-                                .add(const SaveTestResultEvent());
-                          },
-                          child: Text(
-                            S.current.lblSaveResults,
-                            style: body1.copyWith(
-                              fontWeight: FontWeight.w500,
-                              color: ColorScheme.of(context).onPrimary,
-                            ),
-                          ),
+                        SubmitButton(
+                          onPressed: () => context
+                              .read<SitToStandBloc>()
+                              .add(const SaveTestResultEvent()),
+                          title: S.current.lblSaveResults,
+                          isLoading: state.status == SitToStandStatus.loading,
+                          backgroundColor: ColorScheme.of(context).primary,
+                          titleColor: Theme.of(context).colorScheme.onPrimary,
                         ),
+                        Gaps.largest.spaceVertical,
                       ],
                     ),
                   ),
-                ],
+                ]
               ],
             ),
           );
