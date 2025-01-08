@@ -82,6 +82,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("your password"),
         "hintrepeatPassword":
             MessageLookupByLibrary.simpleMessage("repeat your password"),
+        "lblAct": MessageLookupByLibrary.simpleMessage("Act-"),
         "lblAnd": MessageLookupByLibrary.simpleMessage(" and  "),
         "lblAppName": MessageLookupByLibrary.simpleMessage("Ul Fs Health"),
         "lblAverageSpeed": MessageLookupByLibrary.simpleMessage("AVG. Speed"),
@@ -105,6 +106,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblLoginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
         "lblNotYetRegistered": MessageLookupByLibrary.simpleMessage(
             "Not yet registered? Sign up with your email"),
+        "lblOn": MessageLookupByLibrary.simpleMessage("On"),
         "lblOr": MessageLookupByLibrary.simpleMessage("or"),
         "lblPasswordDontMatch":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),

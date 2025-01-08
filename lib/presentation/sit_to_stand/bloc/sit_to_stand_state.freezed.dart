@@ -24,9 +24,11 @@ mixin _$SitToStandState {
   double get bestTime => throw _privateConstructorUsedError;
   double get bestVelocity => throw _privateConstructorUsedError;
   double get bestPower => throw _privateConstructorUsedError;
+  bool get buttonsVisible => throw _privateConstructorUsedError;
   double get progress => throw _privateConstructorUsedError;
   SitToStandStatus get status => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  List<ResultDataEntity>? get testResults => throw _privateConstructorUsedError;
 
   /// Create a copy of SitToStandState
   /// with the given fields replaced by the non-null parameter values.
@@ -50,9 +52,11 @@ abstract class $SitToStandStateCopyWith<$Res> {
       double bestTime,
       double bestVelocity,
       double bestPower,
+      bool buttonsVisible,
       double progress,
       SitToStandStatus status,
-      String? error});
+      String? error,
+      List<ResultDataEntity>? testResults});
 }
 
 /// @nodoc
@@ -78,9 +82,11 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
     Object? bestTime = null,
     Object? bestVelocity = null,
     Object? bestPower = null,
+    Object? buttonsVisible = null,
     Object? progress = null,
     Object? status = null,
     Object? error = freezed,
+    Object? testResults = freezed,
   }) {
     return _then(_value.copyWith(
       isTestRunning: null == isTestRunning
@@ -115,6 +121,10 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.bestPower
           : bestPower // ignore: cast_nullable_to_non_nullable
               as double,
+      buttonsVisible: null == buttonsVisible
+          ? _value.buttonsVisible
+          : buttonsVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -127,6 +137,10 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      testResults: freezed == testResults
+          ? _value.testResults
+          : testResults // ignore: cast_nullable_to_non_nullable
+              as List<ResultDataEntity>?,
     ) as $Val);
   }
 }
@@ -148,9 +162,11 @@ abstract class _$$SitToStandStateImplCopyWith<$Res>
       double bestTime,
       double bestVelocity,
       double bestPower,
+      bool buttonsVisible,
       double progress,
       SitToStandStatus status,
-      String? error});
+      String? error,
+      List<ResultDataEntity>? testResults});
 }
 
 /// @nodoc
@@ -174,9 +190,11 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
     Object? bestTime = null,
     Object? bestVelocity = null,
     Object? bestPower = null,
+    Object? buttonsVisible = null,
     Object? progress = null,
     Object? status = null,
     Object? error = freezed,
+    Object? testResults = freezed,
   }) {
     return _then(_$SitToStandStateImpl(
       isTestRunning: null == isTestRunning
@@ -211,6 +229,10 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.bestPower
           : bestPower // ignore: cast_nullable_to_non_nullable
               as double,
+      buttonsVisible: null == buttonsVisible
+          ? _value.buttonsVisible
+          : buttonsVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -223,6 +245,10 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      testResults: freezed == testResults
+          ? _value._testResults
+          : testResults // ignore: cast_nullable_to_non_nullable
+              as List<ResultDataEntity>?,
     ));
   }
 }
@@ -235,13 +261,16 @@ class _$SitToStandStateImpl implements _SitToStandState {
       this.isTestFinished = false,
       this.avgTime = 0.0,
       this.avgVelocity = 0.0,
-      this.currentRepetition = 1,
+      this.currentRepetition = 0,
       this.bestTime = 0.0,
       this.bestVelocity = 0.0,
       this.bestPower = 0.0,
+      this.buttonsVisible = false,
       this.progress = 0.0,
       this.status = SitToStandStatus.initial,
-      this.error});
+      this.error,
+      final List<ResultDataEntity>? testResults})
+      : _testResults = testResults;
 
   @override
   @JsonKey()
@@ -269,16 +298,28 @@ class _$SitToStandStateImpl implements _SitToStandState {
   final double bestPower;
   @override
   @JsonKey()
+  final bool buttonsVisible;
+  @override
+  @JsonKey()
   final double progress;
   @override
   @JsonKey()
   final SitToStandStatus status;
   @override
   final String? error;
+  final List<ResultDataEntity>? _testResults;
+  @override
+  List<ResultDataEntity>? get testResults {
+    final value = _testResults;
+    if (value == null) return null;
+    if (_testResults is EqualUnmodifiableListView) return _testResults;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'SitToStandState(isTestRunning: $isTestRunning, isTestFinished: $isTestFinished, avgTime: $avgTime, avgVelocity: $avgVelocity, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, progress: $progress, status: $status, error: $error)';
+    return 'SitToStandState(isTestRunning: $isTestRunning, isTestFinished: $isTestFinished, avgTime: $avgTime, avgVelocity: $avgVelocity, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, buttonsVisible: $buttonsVisible, progress: $progress, status: $status, error: $error, testResults: $testResults)';
   }
 
   @override
@@ -301,10 +342,14 @@ class _$SitToStandStateImpl implements _SitToStandState {
                 other.bestVelocity == bestVelocity) &&
             (identical(other.bestPower, bestPower) ||
                 other.bestPower == bestPower) &&
+            (identical(other.buttonsVisible, buttonsVisible) ||
+                other.buttonsVisible == buttonsVisible) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            const DeepCollectionEquality()
+                .equals(other._testResults, _testResults));
   }
 
   @override
@@ -318,9 +363,11 @@ class _$SitToStandStateImpl implements _SitToStandState {
       bestTime,
       bestVelocity,
       bestPower,
+      buttonsVisible,
       progress,
       status,
-      error);
+      error,
+      const DeepCollectionEquality().hash(_testResults));
 
   /// Create a copy of SitToStandState
   /// with the given fields replaced by the non-null parameter values.
@@ -342,9 +389,11 @@ abstract class _SitToStandState implements SitToStandState {
       final double bestTime,
       final double bestVelocity,
       final double bestPower,
+      final bool buttonsVisible,
       final double progress,
       final SitToStandStatus status,
-      final String? error}) = _$SitToStandStateImpl;
+      final String? error,
+      final List<ResultDataEntity>? testResults}) = _$SitToStandStateImpl;
 
   @override
   bool get isTestRunning;
@@ -363,11 +412,15 @@ abstract class _SitToStandState implements SitToStandState {
   @override
   double get bestPower;
   @override
+  bool get buttonsVisible;
+  @override
   double get progress;
   @override
   SitToStandStatus get status;
   @override
   String? get error;
+  @override
+  List<ResultDataEntity>? get testResults;
 
   /// Create a copy of SitToStandState
   /// with the given fields replaced by the non-null parameter values.

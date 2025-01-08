@@ -41,8 +41,15 @@ TextStyle get body3 => GoogleFonts.inter(
     );
 
 TextStyle get body4 => GoogleFonts.roboto(
-    fontWeight: FontWeight.w400,
-    fontSize: 16,
-    height: 0.875,
-    letterSpacing: 0.5,
-    color: defaultTextColor);
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      height: 0.875,
+      letterSpacing: 0.5,
+      color: defaultTextColor,
+    );
+
+TextStyle get body5 => GoogleFonts.inter(
+      fontWeight: FontWeight.w500,
+      fontSize: 20,
+      color: const Color.fromRGBO(180, 58, 32, 1),
+    );

@@ -21,7 +21,7 @@ mixin _$SitToStandEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function(String userId) getTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$SitToStandEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function(String userId)? getTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$SitToStandEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function(String userId)? getTestResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ mixin _$SitToStandEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(GetTestResultEvent value) getTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +54,7 @@ mixin _$SitToStandEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(GetTestResultEvent value)? getTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$SitToStandEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(GetTestResultEvent value)? getTestResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,7 +133,7 @@ class _$StartTestEventImpl implements StartTestEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function(String userId) getTestResult,
   }) {
     return startTest();
   }
@@ -144,7 +144,7 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function(String userId)? getTestResult,
   }) {
     return startTest?.call();
   }
@@ -155,7 +155,7 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function(String userId)? getTestResult,
     required TResult orElse(),
   }) {
     if (startTest != null) {
@@ -170,7 +170,7 @@ class _$StartTestEventImpl implements StartTestEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(GetTestResultEvent value) getTestResult,
   }) {
     return startTest(this);
   }
@@ -181,7 +181,7 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(GetTestResultEvent value)? getTestResult,
   }) {
     return startTest?.call(this);
   }
@@ -192,7 +192,7 @@ class _$StartTestEventImpl implements StartTestEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(GetTestResultEvent value)? getTestResult,
     required TResult orElse(),
   }) {
     if (startTest != null) {
@@ -250,7 +250,7 @@ class _$StopTestEventImpl implements StopTestEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function(String userId) getTestResult,
   }) {
     return stopTest();
   }
@@ -261,7 +261,7 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function(String userId)? getTestResult,
   }) {
     return stopTest?.call();
   }
@@ -272,7 +272,7 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function(String userId)? getTestResult,
     required TResult orElse(),
   }) {
     if (stopTest != null) {
@@ -287,7 +287,7 @@ class _$StopTestEventImpl implements StopTestEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(GetTestResultEvent value) getTestResult,
   }) {
     return stopTest(this);
   }
@@ -298,7 +298,7 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(GetTestResultEvent value)? getTestResult,
   }) {
     return stopTest?.call(this);
   }
@@ -309,7 +309,7 @@ class _$StopTestEventImpl implements StopTestEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(GetTestResultEvent value)? getTestResult,
     required TResult orElse(),
   }) {
     if (stopTest != null) {
@@ -368,7 +368,7 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function(String userId) getTestResult,
   }) {
     return saveTestResult();
   }
@@ -379,7 +379,7 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function(String userId)? getTestResult,
   }) {
     return saveTestResult?.call();
   }
@@ -390,7 +390,7 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function(String userId)? getTestResult,
     required TResult orElse(),
   }) {
     if (saveTestResult != null) {
@@ -405,7 +405,7 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(GetTestResultEvent value) getTestResult,
   }) {
     return saveTestResult(this);
   }
@@ -416,7 +416,7 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(GetTestResultEvent value)? getTestResult,
   }) {
     return saveTestResult?.call(this);
   }
@@ -427,7 +427,7 @@ class _$SaveTestResultEventImpl implements SaveTestResultEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(GetTestResultEvent value)? getTestResult,
     required TResult orElse(),
   }) {
     if (saveTestResult != null) {
@@ -442,20 +442,20 @@ abstract class SaveTestResultEvent implements SitToStandEvent {
 }
 
 /// @nodoc
-abstract class _$$UpdateTestReadyEventImplCopyWith<$Res> {
-  factory _$$UpdateTestReadyEventImplCopyWith(_$UpdateTestReadyEventImpl value,
-          $Res Function(_$UpdateTestReadyEventImpl) then) =
-      __$$UpdateTestReadyEventImplCopyWithImpl<$Res>;
+abstract class _$$GetTestResultEventImplCopyWith<$Res> {
+  factory _$$GetTestResultEventImplCopyWith(_$GetTestResultEventImpl value,
+          $Res Function(_$GetTestResultEventImpl) then) =
+      __$$GetTestResultEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({double avgTime});
+  $Res call({String userId});
 }
 
 /// @nodoc
-class __$$UpdateTestReadyEventImplCopyWithImpl<$Res>
-    extends _$SitToStandEventCopyWithImpl<$Res, _$UpdateTestReadyEventImpl>
-    implements _$$UpdateTestReadyEventImplCopyWith<$Res> {
-  __$$UpdateTestReadyEventImplCopyWithImpl(_$UpdateTestReadyEventImpl _value,
-      $Res Function(_$UpdateTestReadyEventImpl) _then)
+class __$$GetTestResultEventImplCopyWithImpl<$Res>
+    extends _$SitToStandEventCopyWithImpl<$Res, _$GetTestResultEventImpl>
+    implements _$$GetTestResultEventImplCopyWith<$Res> {
+  __$$GetTestResultEventImplCopyWithImpl(_$GetTestResultEventImpl _value,
+      $Res Function(_$GetTestResultEventImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SitToStandEvent
@@ -463,50 +463,49 @@ class __$$UpdateTestReadyEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? avgTime = null,
+    Object? userId = null,
   }) {
-    return _then(_$UpdateTestReadyEventImpl(
-      avgTime: null == avgTime
-          ? _value.avgTime
-          : avgTime // ignore: cast_nullable_to_non_nullable
-              as double,
+    return _then(_$GetTestResultEventImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
-  const _$UpdateTestReadyEventImpl({required this.avgTime});
+class _$GetTestResultEventImpl implements GetTestResultEvent {
+  const _$GetTestResultEventImpl({required this.userId});
 
   @override
-  final double avgTime;
+  final String userId;
 
   @override
   String toString() {
-    return 'SitToStandEvent.updateTestReady(avgTime: $avgTime)';
+    return 'SitToStandEvent.getTestResult(userId: $userId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateTestReadyEventImpl &&
-            (identical(other.avgTime, avgTime) || other.avgTime == avgTime));
+            other is _$GetTestResultEventImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, avgTime);
+  int get hashCode => Object.hash(runtimeType, userId);
 
   /// Create a copy of SitToStandEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateTestReadyEventImplCopyWith<_$UpdateTestReadyEventImpl>
-      get copyWith =>
-          __$$UpdateTestReadyEventImplCopyWithImpl<_$UpdateTestReadyEventImpl>(
-              this, _$identity);
+  _$$GetTestResultEventImplCopyWith<_$GetTestResultEventImpl> get copyWith =>
+      __$$GetTestResultEventImplCopyWithImpl<_$GetTestResultEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -514,9 +513,9 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     required TResult Function() startTest,
     required TResult Function() stopTest,
     required TResult Function() saveTestResult,
-    required TResult Function(double avgTime) updateTestReady,
+    required TResult Function(String userId) getTestResult,
   }) {
-    return updateTestReady(avgTime);
+    return getTestResult(userId);
   }
 
   @override
@@ -525,9 +524,9 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult? Function()? startTest,
     TResult? Function()? stopTest,
     TResult? Function()? saveTestResult,
-    TResult? Function(double avgTime)? updateTestReady,
+    TResult? Function(String userId)? getTestResult,
   }) {
-    return updateTestReady?.call(avgTime);
+    return getTestResult?.call(userId);
   }
 
   @override
@@ -536,11 +535,11 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult Function()? startTest,
     TResult Function()? stopTest,
     TResult Function()? saveTestResult,
-    TResult Function(double avgTime)? updateTestReady,
+    TResult Function(String userId)? getTestResult,
     required TResult orElse(),
   }) {
-    if (updateTestReady != null) {
-      return updateTestReady(avgTime);
+    if (getTestResult != null) {
+      return getTestResult(userId);
     }
     return orElse();
   }
@@ -551,9 +550,9 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     required TResult Function(StartTestEvent value) startTest,
     required TResult Function(StopTestEvent value) stopTest,
     required TResult Function(SaveTestResultEvent value) saveTestResult,
-    required TResult Function(UpdateTestReadyEvent value) updateTestReady,
+    required TResult Function(GetTestResultEvent value) getTestResult,
   }) {
-    return updateTestReady(this);
+    return getTestResult(this);
   }
 
   @override
@@ -562,9 +561,9 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult? Function(StartTestEvent value)? startTest,
     TResult? Function(StopTestEvent value)? stopTest,
     TResult? Function(SaveTestResultEvent value)? saveTestResult,
-    TResult? Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult? Function(GetTestResultEvent value)? getTestResult,
   }) {
-    return updateTestReady?.call(this);
+    return getTestResult?.call(this);
   }
 
   @override
@@ -573,25 +572,25 @@ class _$UpdateTestReadyEventImpl implements UpdateTestReadyEvent {
     TResult Function(StartTestEvent value)? startTest,
     TResult Function(StopTestEvent value)? stopTest,
     TResult Function(SaveTestResultEvent value)? saveTestResult,
-    TResult Function(UpdateTestReadyEvent value)? updateTestReady,
+    TResult Function(GetTestResultEvent value)? getTestResult,
     required TResult orElse(),
   }) {
-    if (updateTestReady != null) {
-      return updateTestReady(this);
+    if (getTestResult != null) {
+      return getTestResult(this);
     }
     return orElse();
   }
 }
 
-abstract class UpdateTestReadyEvent implements SitToStandEvent {
-  const factory UpdateTestReadyEvent({required final double avgTime}) =
-      _$UpdateTestReadyEventImpl;
+abstract class GetTestResultEvent implements SitToStandEvent {
+  const factory GetTestResultEvent({required final String userId}) =
+      _$GetTestResultEventImpl;
 
-  double get avgTime;
+  String get userId;
 
   /// Create a copy of SitToStandEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateTestReadyEventImplCopyWith<_$UpdateTestReadyEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$GetTestResultEventImplCopyWith<_$GetTestResultEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

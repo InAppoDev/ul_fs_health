@@ -7,4 +7,6 @@ class SitToStandEvent with _$SitToStandEvent {
   const factory SitToStandEvent.startTest() = StartTestEvent;
   const factory SitToStandEvent.stopTest() = StopTestEvent;
   const factory SitToStandEvent.saveTestResult() = SaveTestResultEvent;
+  const factory SitToStandEvent.getTestResult({required String userId}) =
+      GetTestResultEvent;
 }

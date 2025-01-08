@@ -1169,6 +1169,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Act-`
+  String get lblAct {
+    return Intl.message(
+      'Act-',
+      name: 'lblAct',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `On`
+  String get lblOn {
+    return Intl.message(
+      'On',
+      name: 'lblOn',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

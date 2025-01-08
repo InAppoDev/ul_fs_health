@@ -53,6 +53,9 @@ class SitToStandTestStartContent extends StatelessWidget {
           if (state.status == SitToStandStatus.failure) {
             context.showSnackBarMessage(state.error ?? '');
           }
+          if (state.status == SitToStandStatus.save) {
+            context.showSnackBarMessage('Saved successfully');
+          }
         },
         builder: (context, state) {
           return Column(
@@ -142,7 +145,11 @@ class SitToStandTestStartContent extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          context
+                              .read<SitToStandBloc>()
+                              .add(const SaveTestResultEvent());
+                        },
                         child: Text(
                           S.current.lblSaveResults,
                           style: body1.copyWith(

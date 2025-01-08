@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import '../../../core/constants/constants.dart';
@@ -14,14 +13,16 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
     on<StartTestEvent>(_onStartTest);
     on<StopTestEvent>(_onStopTest);
     on<SaveTestResultEvent>(_onSaveTestResult);
+    on<GetTestResultEvent>(_onGetTestResult);
   }
 
   final SitToStandRepository sitToStandRepository;
 
   StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
   final List<DateTime> _timestamps = [];
+  final List<double> _times = [];
+  final List<double> _velocities = [];
   final List<ResultDataEntity> _result = [];
-  var _isStanding = false;
 
   @override
   Future<void> close() {
@@ -31,50 +32,102 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
 
   Future<void> _onStartTest(
       StartTestEvent event, Emitter<SitToStandState> emit) async {
-    emit(state.copyWith(isTestRunning: true));
+    emit(state.copyWith(
+        isTestRunning: true, currentRepetition: 1, isTestFinished: false));
+
     await _accelerometerSubscription?.cancel();
+
+    final Stopwatch stopwatch = Stopwatch();
+    bool isSitting = true;
+    bool hasStarted = false;
+    int sitToStandCycles = 0;
+    const double sittingPosition = 3.0;
+    const double standingPosition = 7.0;
+    const int debounceDuration = 100;
+    const double distance = 1.0;
+
+    DateTime lastEventTime = DateTime.now();
+
     await for (final event in accelerometerEvents) {
+      final currentTime = DateTime.now();
+      final elapsedTime = currentTime.difference(lastEventTime).inMilliseconds;
+
+      if (elapsedTime < debounceDuration) {
+        continue;
+      }
+
+      lastEventTime = currentTime;
+
       if (state.isTestRunning) {
-        log('Z = ${event.z}');
-        log('X = ${event.x}');
-        log('Y = ${event.y}');
-        if (!_isStanding && event.z < 3) {
-          // Detect stand-up movement
-          _isStanding = true;
+        if (sitToStandCycles >= 5) {
           emit(state.copyWith(
-            // isTestRunning: false,
-            currentRepetition: state.currentRepetition + 1,
-            // avgTime: avgTime,
-            // bestTime: bestTime,
-            // bestVelocity: bestVelocity,
-            // progress: progress,
-          ));
-          if (_timestamps.isNotEmpty) {
-            // final endTime = DateTime.now();
-            // final startTime = _timestamps.last;
-            // final duration =
-            //     endTime.difference(startTime).inMilliseconds / 1000.0;
-            // _result.add(const ResultDataEntity());
-            // _result.last = _result.last.copyWith();
+              isTestRunning: false, isTestFinished: true, progress: 1.0));
+          break;
+        }
 
-            // final avgTime = _times.reduce((a, b) => a + b) / _times.length;
-            // _isSitting = true;
-            // _velocities.add(avgVelocity);
+        if (!hasStarted && event.z < sittingPosition) {
+          hasStarted = true;
+        }
 
-            // final bestTime = _times.isNotEmpty
-            //     ? _times.reduce((a, b) => a < b ? a : b)
-            //     : state.bestTime;
+        if (isSitting && event.z < sittingPosition) {
+          isSitting = false;
+          stopwatch.start();
+        }
 
-            // final bestVelocity = _velocities.isNotEmpty
-            //     ? _velocities.reduce((a, b) => a > b ? a : b)
-            //     : state.bestVelocity;
+        if (!isSitting && event.z > standingPosition) {
+          isSitting = true;
+          stopwatch.stop();
 
-            // final double progress =
-            //     state.currentRepetition / Constants.totalRepetitions;
+          final sitDuration = stopwatch.elapsed.inMilliseconds / 1000.0;
+
+          stopwatch.reset();
+
+          if (sitDuration > 0) {
+            _times.add(sitDuration);
+
+            if (_times.length > 5) {
+              _times.removeAt(0);
+            }
+
+            final velocity = distance / sitDuration;
+
+            _result.add(ResultDataEntity(
+              resultTime: sitDuration,
+              velocity: velocity,
+            ));
+
+            _velocities.add(velocity);
+            if (_velocities.length > 5) {
+              _velocities.removeAt(0);
+            }
+
+            final avgTime = _times.isNotEmpty
+                ? _times.reduce((a, b) => a + b) / _times.length
+                : state.avgTime;
+
+            final bestTime = _times.isNotEmpty
+                ? _times.reduce((a, b) => a < b ? a : b)
+                : state.bestTime;
+
+            final bestVelocity = _velocities.isNotEmpty
+                ? _velocities.reduce((a, b) => a > b ? a : b)
+                : state.bestVelocity;
+
+            final double progress = sitToStandCycles / 5.0;
+
+            emit(state.copyWith(
+              avgTime: avgTime,
+              bestTime: bestTime,
+              bestVelocity: bestVelocity,
+              progress: progress,
+            ));
+
+            sitToStandCycles++;
+
+            emit(state.copyWith(
+              currentRepetition: sitToStandCycles,
+            ));
           }
-        } else if (_isStanding && event.z > 7 || event.x > 7 || event.x < -7) {
-          // Detect sit-down movement and count repetition
-          _isStanding = false;
         }
       }
     }
@@ -89,18 +142,52 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
     }
   }
 
-  Future<void> _onSaveTestResult(
-      SaveTestResultEvent event, Emitter<SitToStandState> emit) async {
+  Future<void> _onGetTestResult(
+      GetTestResultEvent event, Emitter<SitToStandState> emit) async {
+    emit(state.copyWith(status: SitToStandStatus.start));
     try {
-      final avgVelocity = state.avgTime > 0 ? 1.0 / state.avgTime : 0.0;
-      await sitToStandRepository.saveTestResult(
-        entity:
-            ResultDataEntity(resultTime: state.avgTime, velocity: avgVelocity),
-      );
-      emit(const SitToStandState(status: SitToStandStatus.save));
+      final testResults =
+          await sitToStandRepository.getTestResult(userId: event.userId);
+
+      emit(state.copyWith(
+        status: SitToStandStatus.stop,
+        testResults: testResults,
+      ));
     } catch (e) {
       emit(state.copyWith(
-          status: SitToStandStatus.failure, error: e.toString()));
+        status: SitToStandStatus.failure,
+        error: e.toString(),
+      ));
+    }
+  }
+
+  Future<void> _onSaveTestResult(
+      SaveTestResultEvent event, Emitter<SitToStandState> emit) async {
+    if (state.currentRepetition == Constants.totalRepetitions) {
+      final bestTime =
+          _times.isNotEmpty ? _times.reduce((a, b) => a < b ? a : b) : 0.0;
+
+      final bestVelocity = _times.isNotEmpty
+          ? _times.map((time) => 1.0 / time).reduce((a, b) => a > b ? a : b)
+          : 0.0;
+
+      try {
+        final resultEntity = ResultDataEntity(
+          resultTime: bestTime,
+          velocity: bestVelocity,
+        );
+
+        await sitToStandRepository.saveTestResult(entity: resultEntity);
+
+        emit(state.copyWith(
+          bestTime: bestTime / 1000.0,
+          bestVelocity: bestVelocity,
+          status: SitToStandStatus.save,
+        ));
+      } catch (e) {
+        emit(state.copyWith(
+            status: SitToStandStatus.failure, error: e.toString()));
+      }
     }
   }
 }
