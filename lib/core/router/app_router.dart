@@ -1,38 +1,25 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 
-import '../../presentation/nested_view/questionnaire/navigator/questionnaire_navigator_screen.dart';
-import '../../presentation/simple_view/auth/view/login_screen.dart';
-import '../../presentation/simple_view/auth/view/signup_screen.dart';
-import '../../presentation/simple_view/dashboard_menu/view/dashboard_menu_screen.dart';
-import '../../presentation/simple_view/home/view/home_screen.dart';
-import '../../presentation/simple_view/profile/view/profile_screen.dart';
-import '../../presentation/simple_view/sit_to_stand/view/sit_to_stand_screen.dart';
-import '../../presentation/simple_view/sit_to_stand/view/sit_to_stand_test_start_screen.dart';
-import '../../presentation/simple_view/sit_to_stand_result/view/sit_to_stand_result_screen.dart';
-import '../../presentation/simple_view/splash/view/splash_screen.dart';
-import 'questionnaire_router.dart';
-import 'walk_test_router.dart';
-
+import '../../presentation/auth/view/login_screen.dart';
+import '../../presentation/auth/view/signup_screen.dart';
+import '../../presentation/dashboard_menu/view/dashboard_menu_screen.dart';
+import '../../presentation/home/view/home_screen.dart';
+import '../../presentation/profile/view/profile_screen.dart';
+import '../../presentation/questionnaire/view/questionnaire_screen.dart';
+import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';
+import '../../presentation/sit_to_stand/view/sit_to_stand_test_start_screen.dart';
+import '../../presentation/sit_to_stand_result/view/sit_to_stand_result_screen.dart';
+import '../../presentation/splash/view/splash_screen.dart';
+import '../../presentation/walk_test/view/walk_test_initial_screen.dart';
+import '../../presentation/walk_test/view/walk_test_screen.dart';
+import '../../presentation/walk_test_navigator/view/walk_test_navigator_screen.dart';
+import '../../presentation/walk_test_result/view/walk_test_result_screen.dart';
+import '../../presentation/walk_test_start/view/walk_test_start_screen.dart';
 
 part 'app_router.gr.dart';
 
-@AutoRouterConfig(
-    replaceInRouteName: 'Screen|Page,Route',
-    generateForDir: [
-      'lib/presentation/simple_view',
-      'lib/presentation/nested_view/questionnaire/navigator'
-    ]
-)
+@AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
-  final WalkTestRouter walkTestRouter;
-  final QuestionnaireRouter questionnaireRouter;
-
-  AppRouter({
-    required this.walkTestRouter,
-    required this.questionnaireRouter}) : super();
-
-
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
@@ -45,9 +32,8 @@ class AppRouter extends RootStackRouter {
           page: LoginRoute.page,
         ),
         AutoRoute(
-          path: '/questionnaire_navigator',
-          page: QuestionnaireNavigatorRoute.page,
-          children: questionnaireRouter.routes
+          path: '/questionnaire',
+          page: QuestionnaireRoute.page,
         ),
         AutoRoute(
           path: '/dashboard_navigation',
@@ -57,11 +43,25 @@ class AppRouter extends RootStackRouter {
           path: '/signup',
           page: SignupRoute.page,
         ),
-        AutoRoute(
-          path: '/walk_test_navigator',
-          page: WalkTestNavigatorRoute.page,
-          children: walkTestRouter.routes
-        ),
+        AutoRoute(path: '/walk_test_initial', page: WalkTestNavigatorRoute.page, children: [
+          AutoRoute(
+            path: 'walk_test',
+            page: WalkTestRoute.page,
+          ),
+          AutoRoute(
+            path: 'walk_test_start',
+            page: WalkTestStartRoute.page,
+          ),
+          AutoRoute(
+            initial: true,
+            path: 'walk_test_initial',
+            page: WalkTestInitialRoute.page,
+          ),
+          AutoRoute(
+            path: 'walk_test_result',
+            page: WalkTestResultRoute.page,
+          )
+        ]),
         AutoRoute(
           path: '/home',
           page: HomeRoute.page,

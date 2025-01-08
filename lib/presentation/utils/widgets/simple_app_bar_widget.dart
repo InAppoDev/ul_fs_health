@@ -33,19 +33,7 @@ class SimpleAppBarWidget extends StatelessWidget
             icon: Icon(Icons.info_outline_rounded,
                 color: ColorScheme.of(context).primary))
       ],
-      title: RichText(text: TextSpan(
-        children: [
-          TextSpan(
-              text: appLocalizations.lblAppNamePart1,
-              style: header1
-            ),
-          TextSpan(text: '-', style: header1),
-          TextSpan(
-            text: appLocalizations.lblAppNamePart2,
-            style: header1.copyWith(color: ColorScheme.of(context).primary)
-          )
-        ]
-      )),
+      title: Text(appLocalizations.lblAppName, style: header1),
       leading: showBackButton
           ? const AutoLeadingButton()
           : IconButton(
