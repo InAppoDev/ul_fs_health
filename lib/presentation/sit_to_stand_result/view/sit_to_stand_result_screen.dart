@@ -1,14 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
-import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
-import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/result_data_entity.dart';
 import '../../../generated/l10n.dart';
@@ -17,8 +13,6 @@ import '../../sit_to_stand/bloc/sit_to_stand_bloc.dart';
 import '../../sit_to_stand/bloc/sit_to_stand_event.dart';
 import '../../sit_to_stand/bloc/sit_to_stand_state.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
-import '../widgets/info_widget.dart';
-import '../widgets/titles_widget.dart';
 import 'tabs/sit_to_stand_tab.dart';
 import 'tabs/six_minute_walk_tab.dart';
 
