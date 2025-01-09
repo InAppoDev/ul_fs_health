@@ -7,6 +7,7 @@ import '../../presentation/auth/view/signup_screen.dart';
 import '../../presentation/dashboard_menu/view/dashboard_menu_screen.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/profile/view/profile_screen.dart';
+import '../../presentation/questionnaire/bloc/questionnaire_bloc.dart';
 import '../../presentation/questionnaire/view/gpaq/gpaq_initial_screen.dart';
 import '../../presentation/questionnaire/view/lefs/lefs_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_initial_screen.dart';

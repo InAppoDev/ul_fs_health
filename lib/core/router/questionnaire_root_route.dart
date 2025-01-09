@@ -9,7 +9,7 @@ abstract class QuestionnaireRootRoute {
             settings: page,
             fullscreenDialog: page.fullscreenDialog,
             pageBuilder: (context, animation, secondaryAnimation) => BlocProvider(
-              create: (_)=> WalkTestBloc(),
+              create: (_)=> QuestionnaireBloc(),
               child: child,
             ));
       },
