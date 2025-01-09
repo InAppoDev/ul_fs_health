@@ -29,6 +29,53 @@ class DashboardMenuRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GPAQInitialScreen]
+class GPAQInitialRoute extends PageRouteInfo<GPAQInitialRouteArgs> {
+  GPAQInitialRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQInitialRoute.name,
+          args: GPAQInitialRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQInitialRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQInitialRouteArgs>(
+          orElse: () => const GPAQInitialRouteArgs());
+      return GPAQInitialScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQInitialRouteArgs {
+  const GPAQInitialRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQInitialRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -45,6 +92,53 @@ class HomeRoute extends PageRouteInfo<void> {
       return const HomeScreen();
     },
   );
+}
+
+/// generated route for
+/// [LEFSScreen]
+class LEFSRoute extends PageRouteInfo<LEFSRouteArgs> {
+  LEFSRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LEFSRoute.name,
+          args: LEFSRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'LEFSRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<LEFSRouteArgs>(orElse: () => const LEFSRouteArgs());
+      return LEFSScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class LEFSRouteArgs {
+  const LEFSRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'LEFSRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
 }
 
 /// generated route for
@@ -86,22 +180,51 @@ class ProfileRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [QuestionnaireScreen]
-class QuestionnaireRoute extends PageRouteInfo<void> {
-  const QuestionnaireRoute({List<PageRouteInfo>? children})
-      : super(
-          QuestionnaireRoute.name,
+/// [QuestionnaireInitialScreen]
+class QuestionnaireInitialRoute
+    extends PageRouteInfo<QuestionnaireInitialRouteArgs> {
+  QuestionnaireInitialRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          QuestionnaireInitialRoute.name,
+          args: QuestionnaireInitialRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'QuestionnaireRoute';
+  static const String name = 'QuestionnaireInitialRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const QuestionnaireScreen();
+      final args = data.argsAs<QuestionnaireInitialRouteArgs>(
+          orElse: () => const QuestionnaireInitialRouteArgs());
+      return QuestionnaireInitialScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
     },
   );
+}
+
+class QuestionnaireInitialRouteArgs {
+  const QuestionnaireInitialRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'QuestionnaireInitialRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
 }
 
 /// generated route for
