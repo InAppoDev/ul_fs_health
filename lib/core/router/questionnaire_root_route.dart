@@ -3,7 +3,7 @@ part of 'app_router.dart';
 abstract class QuestionnaireRootRoute {
   static AutoRoute get route => CustomRoute<QuestionnaireInitialRoute>(
       path: '/questionnaire',
-      page: QuestionnaireInitialRoute.page,
+      page: const PageInfo.emptyShell('/questionnaire'),
       customRouteBuilder: <T>(context, child, page) {
         return PageRouteBuilder(
             settings: page,
@@ -25,6 +25,7 @@ abstract class QuestionnaireRootRoute {
         CustomRoute<QuestionnaireInitialRoute>(
           path: 'questionnaire',
           page: QuestionnaireInitialRoute.page,
+          initial: true
         )
       ]
   );
