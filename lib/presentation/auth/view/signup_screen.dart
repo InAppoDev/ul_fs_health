@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/context_extension.dart';
 import '../../../core/extensions/number_extension.dart';
+import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../di/service_locator.dart';
 import '../../../domain/entities/user_entity.dart';
@@ -54,7 +55,7 @@ class SignupContent extends StatelessWidget {
         child: BlocListener<UserBloc, UserState>(
           listener: (context, state) {
             if (state.status == UserStatus.saved) {
-              context.router.pushNamed('/home');
+              context.router.push(QuestionnaireInitialRoute());
             } else if (state.status == UserStatus.failure) {
               context.showSnackBarMessage(state.errorMessage ?? '');
             }

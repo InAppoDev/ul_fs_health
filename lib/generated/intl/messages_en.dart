@@ -40,6 +40,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have increased blood sugar?"),
         "bloodSugarStatusRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("The field must be filled"),
+        "btnActionFinishText": MessageLookupByLibrary.simpleMessage("Finish"),
+        "btnActionNo": MessageLookupByLibrary.simpleMessage("No"),
+        "btnActionYes": MessageLookupByLibrary.simpleMessage("Yes"),
         "btnBackActionText": MessageLookupByLibrary.simpleMessage("Back"),
         "btnContinue": MessageLookupByLibrary.simpleMessage("Continue"),
         "btnCreateAccount":
@@ -83,6 +86,25 @@ class MessageLookup extends MessageLookupByLibrary {
             "In answering the following questions \'vigorous-intensity activities\' are activities that require hard physical effort and cause large increases in breathing or heart rate, \'moderate-intensity activities\' are activities that require moderate physical effort and cause small increases in breathing or heart rate."),
         "gpaqInitialHeaderText":
             MessageLookupByLibrary.simpleMessage("Physical Activity"),
+        "gpaqRequiredChoice": MessageLookupByLibrary.simpleMessage(
+            "Please select one of choices"),
+        "gpaqTravelDescription": MessageLookupByLibrary.simpleMessage(
+            "The next questions exclude the physical activities at work that you have already mentioned."),
+        "gpaqTravelDescription2": MessageLookupByLibrary.simpleMessage(
+            "Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship."),
+        "gpaqTravelHeaderText":
+            MessageLookupByLibrary.simpleMessage("Travel to and from places"),
+        "gpaqWorkDaysErrorText": MessageLookupByLibrary.simpleMessage(
+            "Please select number of days"),
+        "gpaqWorkDaysHintText":
+            MessageLookupByLibrary.simpleMessage("Select number of days"),
+        "gpaqWorkDescription": MessageLookupByLibrary.simpleMessage(
+            "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?"),
+        "gpaqWorkDescription2": MessageLookupByLibrary.simpleMessage(
+            "In a typical week, on how many days do you do moderate-intensity activities as part of your work?"),
+        "gpaqWorkDescription3": MessageLookupByLibrary.simpleMessage(
+            "How much time do you spend doing moderate-intensity activities at work on a typical day?"),
+        "gpaqWorkHeaderText": MessageLookupByLibrary.simpleMessage("Work"),
         "heightPlaceHolder": MessageLookupByLibrary.simpleMessage(
             "Enter your height (in centimeters)"),
         "heightRequiredErrorText":
@@ -117,8 +139,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter your email and password to create \n an account. Confirmation mail will be sent to \n your email."),
         "lblForgottenPassword":
             MessageLookupByLibrary.simpleMessage("Forgotten password?"),
+        "lblHourText": MessageLookupByLibrary.simpleMessage("Hours"),
         "lblLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "lblLoginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
+        "lblMinuteText": MessageLookupByLibrary.simpleMessage("Minutes"),
         "lblNoResultsFound":
             MessageLookupByLibrary.simpleMessage("No Results Found"),
         "lblNotYetRegistered": MessageLookupByLibrary.simpleMessage(

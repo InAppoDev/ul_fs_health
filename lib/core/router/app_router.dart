@@ -9,6 +9,8 @@ import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/profile/view/profile_screen.dart';
 import '../../presentation/questionnaire/bloc/questionnaire_bloc.dart';
 import '../../presentation/questionnaire/view/gpaq/gpaq_initial_screen.dart';
+import '../../presentation/questionnaire/view/gpaq/gpaq_travel_screen.dart';
+import '../../presentation/questionnaire/view/gpaq/gpaq_work_screen.dart';
 import '../../presentation/questionnaire/view/lefs/lefs_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_initial_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';

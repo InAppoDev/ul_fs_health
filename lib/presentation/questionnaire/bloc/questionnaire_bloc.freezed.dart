@@ -19,32 +19,54 @@ mixin _$QuestionnaireEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onSubmit,
+    required TResult Function(bool isModerateActivity) selectModerateActivity,
+    required TResult Function(int? daysInWeek, bool shouldValidate)
+        selectWorkDaysInWeek,
+    required TResult Function() validateWorkScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onSubmit,
+    TResult? Function(bool isModerateActivity)? selectModerateActivity,
+    TResult? Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult? Function()? validateWorkScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onSubmit,
+    TResult Function(bool isModerateActivity)? selectModerateActivity,
+    TResult Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult Function()? validateWorkScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionnaireSubmit value) onSubmit,
+    required TResult Function(_SelectModerateActivity value)
+        selectModerateActivity,
+    required TResult Function(_SelectWorkDaysInWeek value) selectWorkDaysInWeek,
+    required TResult Function(_ValidateWorkScreen value) validateWorkScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionnaireSubmit value)? onSubmit,
+    TResult? Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult? Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult? Function(_ValidateWorkScreen value)? validateWorkScreen,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionnaireSubmit value)? onSubmit,
+    TResult Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult Function(_ValidateWorkScreen value)? validateWorkScreen,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +136,10 @@ class _$QuestionnaireSubmitImpl implements QuestionnaireSubmit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() onSubmit,
+    required TResult Function(bool isModerateActivity) selectModerateActivity,
+    required TResult Function(int? daysInWeek, bool shouldValidate)
+        selectWorkDaysInWeek,
+    required TResult Function() validateWorkScreen,
   }) {
     return onSubmit();
   }
@@ -122,6 +148,10 @@ class _$QuestionnaireSubmitImpl implements QuestionnaireSubmit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? onSubmit,
+    TResult? Function(bool isModerateActivity)? selectModerateActivity,
+    TResult? Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult? Function()? validateWorkScreen,
   }) {
     return onSubmit?.call();
   }
@@ -130,6 +160,10 @@ class _$QuestionnaireSubmitImpl implements QuestionnaireSubmit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? onSubmit,
+    TResult Function(bool isModerateActivity)? selectModerateActivity,
+    TResult Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult Function()? validateWorkScreen,
     required TResult orElse(),
   }) {
     if (onSubmit != null) {
@@ -142,6 +176,10 @@ class _$QuestionnaireSubmitImpl implements QuestionnaireSubmit {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(QuestionnaireSubmit value) onSubmit,
+    required TResult Function(_SelectModerateActivity value)
+        selectModerateActivity,
+    required TResult Function(_SelectWorkDaysInWeek value) selectWorkDaysInWeek,
+    required TResult Function(_ValidateWorkScreen value) validateWorkScreen,
   }) {
     return onSubmit(this);
   }
@@ -150,6 +188,9 @@ class _$QuestionnaireSubmitImpl implements QuestionnaireSubmit {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(QuestionnaireSubmit value)? onSubmit,
+    TResult? Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult? Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult? Function(_ValidateWorkScreen value)? validateWorkScreen,
   }) {
     return onSubmit?.call(this);
   }
@@ -158,6 +199,9 @@ class _$QuestionnaireSubmitImpl implements QuestionnaireSubmit {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(QuestionnaireSubmit value)? onSubmit,
+    TResult Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult Function(_ValidateWorkScreen value)? validateWorkScreen,
     required TResult orElse(),
   }) {
     if (onSubmit != null) {
@@ -172,21 +216,488 @@ abstract class QuestionnaireSubmit implements QuestionnaireEvent {
 }
 
 /// @nodoc
-mixin _$QuestionnaireState {
-  QuestionnaireStatus get status => throw _privateConstructorUsedError;
+abstract class _$$SelectModerateActivityImplCopyWith<$Res> {
+  factory _$$SelectModerateActivityImplCopyWith(
+          _$SelectModerateActivityImpl value,
+          $Res Function(_$SelectModerateActivityImpl) then) =
+      __$$SelectModerateActivityImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isModerateActivity});
+}
+
+/// @nodoc
+class __$$SelectModerateActivityImplCopyWithImpl<$Res>
+    extends _$QuestionnaireEventCopyWithImpl<$Res, _$SelectModerateActivityImpl>
+    implements _$$SelectModerateActivityImplCopyWith<$Res> {
+  __$$SelectModerateActivityImplCopyWithImpl(
+      _$SelectModerateActivityImpl _value,
+      $Res Function(_$SelectModerateActivityImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isModerateActivity = null,
+  }) {
+    return _then(_$SelectModerateActivityImpl(
+      null == isModerateActivity
+          ? _value.isModerateActivity
+          : isModerateActivity // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectModerateActivityImpl implements _SelectModerateActivity {
+  _$SelectModerateActivityImpl(this.isModerateActivity);
+
+  @override
+  final bool isModerateActivity;
+
+  @override
+  String toString() {
+    return 'QuestionnaireEvent.selectModerateActivity(isModerateActivity: $isModerateActivity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectModerateActivityImpl &&
+            (identical(other.isModerateActivity, isModerateActivity) ||
+                other.isModerateActivity == isModerateActivity));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isModerateActivity);
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectModerateActivityImplCopyWith<_$SelectModerateActivityImpl>
+      get copyWith => __$$SelectModerateActivityImplCopyWithImpl<
+          _$SelectModerateActivityImpl>(this, _$identity);
+
+  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireStatus status) initial,
+    required TResult Function() onSubmit,
+    required TResult Function(bool isModerateActivity) selectModerateActivity,
+    required TResult Function(int? daysInWeek, bool shouldValidate)
+        selectWorkDaysInWeek,
+    required TResult Function() validateWorkScreen,
+  }) {
+    return selectModerateActivity(isModerateActivity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onSubmit,
+    TResult? Function(bool isModerateActivity)? selectModerateActivity,
+    TResult? Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult? Function()? validateWorkScreen,
+  }) {
+    return selectModerateActivity?.call(isModerateActivity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onSubmit,
+    TResult Function(bool isModerateActivity)? selectModerateActivity,
+    TResult Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult Function()? validateWorkScreen,
+    required TResult orElse(),
+  }) {
+    if (selectModerateActivity != null) {
+      return selectModerateActivity(isModerateActivity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(QuestionnaireSubmit value) onSubmit,
+    required TResult Function(_SelectModerateActivity value)
+        selectModerateActivity,
+    required TResult Function(_SelectWorkDaysInWeek value) selectWorkDaysInWeek,
+    required TResult Function(_ValidateWorkScreen value) validateWorkScreen,
+  }) {
+    return selectModerateActivity(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionnaireSubmit value)? onSubmit,
+    TResult? Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult? Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult? Function(_ValidateWorkScreen value)? validateWorkScreen,
+  }) {
+    return selectModerateActivity?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionnaireSubmit value)? onSubmit,
+    TResult Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult Function(_ValidateWorkScreen value)? validateWorkScreen,
+    required TResult orElse(),
+  }) {
+    if (selectModerateActivity != null) {
+      return selectModerateActivity(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectModerateActivity implements QuestionnaireEvent {
+  factory _SelectModerateActivity(final bool isModerateActivity) =
+      _$SelectModerateActivityImpl;
+
+  bool get isModerateActivity;
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectModerateActivityImplCopyWith<_$SelectModerateActivityImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectWorkDaysInWeekImplCopyWith<$Res> {
+  factory _$$SelectWorkDaysInWeekImplCopyWith(_$SelectWorkDaysInWeekImpl value,
+          $Res Function(_$SelectWorkDaysInWeekImpl) then) =
+      __$$SelectWorkDaysInWeekImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? daysInWeek, bool shouldValidate});
+}
+
+/// @nodoc
+class __$$SelectWorkDaysInWeekImplCopyWithImpl<$Res>
+    extends _$QuestionnaireEventCopyWithImpl<$Res, _$SelectWorkDaysInWeekImpl>
+    implements _$$SelectWorkDaysInWeekImplCopyWith<$Res> {
+  __$$SelectWorkDaysInWeekImplCopyWithImpl(_$SelectWorkDaysInWeekImpl _value,
+      $Res Function(_$SelectWorkDaysInWeekImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? daysInWeek = freezed,
+    Object? shouldValidate = null,
+  }) {
+    return _then(_$SelectWorkDaysInWeekImpl(
+      daysInWeek: freezed == daysInWeek
+          ? _value.daysInWeek
+          : daysInWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
+      shouldValidate: null == shouldValidate
+          ? _value.shouldValidate
+          : shouldValidate // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectWorkDaysInWeekImpl implements _SelectWorkDaysInWeek {
+  _$SelectWorkDaysInWeekImpl({this.daysInWeek, required this.shouldValidate});
+
+  @override
+  final int? daysInWeek;
+  @override
+  final bool shouldValidate;
+
+  @override
+  String toString() {
+    return 'QuestionnaireEvent.selectWorkDaysInWeek(daysInWeek: $daysInWeek, shouldValidate: $shouldValidate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectWorkDaysInWeekImpl &&
+            (identical(other.daysInWeek, daysInWeek) ||
+                other.daysInWeek == daysInWeek) &&
+            (identical(other.shouldValidate, shouldValidate) ||
+                other.shouldValidate == shouldValidate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, daysInWeek, shouldValidate);
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectWorkDaysInWeekImplCopyWith<_$SelectWorkDaysInWeekImpl>
+      get copyWith =>
+          __$$SelectWorkDaysInWeekImplCopyWithImpl<_$SelectWorkDaysInWeekImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onSubmit,
+    required TResult Function(bool isModerateActivity) selectModerateActivity,
+    required TResult Function(int? daysInWeek, bool shouldValidate)
+        selectWorkDaysInWeek,
+    required TResult Function() validateWorkScreen,
+  }) {
+    return selectWorkDaysInWeek(daysInWeek, shouldValidate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onSubmit,
+    TResult? Function(bool isModerateActivity)? selectModerateActivity,
+    TResult? Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult? Function()? validateWorkScreen,
+  }) {
+    return selectWorkDaysInWeek?.call(daysInWeek, shouldValidate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onSubmit,
+    TResult Function(bool isModerateActivity)? selectModerateActivity,
+    TResult Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult Function()? validateWorkScreen,
+    required TResult orElse(),
+  }) {
+    if (selectWorkDaysInWeek != null) {
+      return selectWorkDaysInWeek(daysInWeek, shouldValidate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(QuestionnaireSubmit value) onSubmit,
+    required TResult Function(_SelectModerateActivity value)
+        selectModerateActivity,
+    required TResult Function(_SelectWorkDaysInWeek value) selectWorkDaysInWeek,
+    required TResult Function(_ValidateWorkScreen value) validateWorkScreen,
+  }) {
+    return selectWorkDaysInWeek(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionnaireSubmit value)? onSubmit,
+    TResult? Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult? Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult? Function(_ValidateWorkScreen value)? validateWorkScreen,
+  }) {
+    return selectWorkDaysInWeek?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionnaireSubmit value)? onSubmit,
+    TResult Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult Function(_ValidateWorkScreen value)? validateWorkScreen,
+    required TResult orElse(),
+  }) {
+    if (selectWorkDaysInWeek != null) {
+      return selectWorkDaysInWeek(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectWorkDaysInWeek implements QuestionnaireEvent {
+  factory _SelectWorkDaysInWeek(
+      {final int? daysInWeek,
+      required final bool shouldValidate}) = _$SelectWorkDaysInWeekImpl;
+
+  int? get daysInWeek;
+  bool get shouldValidate;
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectWorkDaysInWeekImplCopyWith<_$SelectWorkDaysInWeekImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ValidateWorkScreenImplCopyWith<$Res> {
+  factory _$$ValidateWorkScreenImplCopyWith(_$ValidateWorkScreenImpl value,
+          $Res Function(_$ValidateWorkScreenImpl) then) =
+      __$$ValidateWorkScreenImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ValidateWorkScreenImplCopyWithImpl<$Res>
+    extends _$QuestionnaireEventCopyWithImpl<$Res, _$ValidateWorkScreenImpl>
+    implements _$$ValidateWorkScreenImplCopyWith<$Res> {
+  __$$ValidateWorkScreenImplCopyWithImpl(_$ValidateWorkScreenImpl _value,
+      $Res Function(_$ValidateWorkScreenImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ValidateWorkScreenImpl implements _ValidateWorkScreen {
+  _$ValidateWorkScreenImpl();
+
+  @override
+  String toString() {
+    return 'QuestionnaireEvent.validateWorkScreen()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ValidateWorkScreenImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() onSubmit,
+    required TResult Function(bool isModerateActivity) selectModerateActivity,
+    required TResult Function(int? daysInWeek, bool shouldValidate)
+        selectWorkDaysInWeek,
+    required TResult Function() validateWorkScreen,
+  }) {
+    return validateWorkScreen();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? onSubmit,
+    TResult? Function(bool isModerateActivity)? selectModerateActivity,
+    TResult? Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult? Function()? validateWorkScreen,
+  }) {
+    return validateWorkScreen?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? onSubmit,
+    TResult Function(bool isModerateActivity)? selectModerateActivity,
+    TResult Function(int? daysInWeek, bool shouldValidate)?
+        selectWorkDaysInWeek,
+    TResult Function()? validateWorkScreen,
+    required TResult orElse(),
+  }) {
+    if (validateWorkScreen != null) {
+      return validateWorkScreen();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(QuestionnaireSubmit value) onSubmit,
+    required TResult Function(_SelectModerateActivity value)
+        selectModerateActivity,
+    required TResult Function(_SelectWorkDaysInWeek value) selectWorkDaysInWeek,
+    required TResult Function(_ValidateWorkScreen value) validateWorkScreen,
+  }) {
+    return validateWorkScreen(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(QuestionnaireSubmit value)? onSubmit,
+    TResult? Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult? Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult? Function(_ValidateWorkScreen value)? validateWorkScreen,
+  }) {
+    return validateWorkScreen?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(QuestionnaireSubmit value)? onSubmit,
+    TResult Function(_SelectModerateActivity value)? selectModerateActivity,
+    TResult Function(_SelectWorkDaysInWeek value)? selectWorkDaysInWeek,
+    TResult Function(_ValidateWorkScreen value)? validateWorkScreen,
+    required TResult orElse(),
+  }) {
+    if (validateWorkScreen != null) {
+      return validateWorkScreen(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ValidateWorkScreen implements QuestionnaireEvent {
+  factory _ValidateWorkScreen() = _$ValidateWorkScreenImpl;
+}
+
+/// @nodoc
+mixin _$QuestionnaireState {
+  QuestionnaireStatus get status => throw _privateConstructorUsedError;
+  bool? get isModerateActivity => throw _privateConstructorUsedError;
+  int? get workDaysInWeek => throw _privateConstructorUsedError;
+  String get workDaysError => throw _privateConstructorUsedError;
+  bool get isNextValid => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            QuestionnaireStatus status,
+            bool? isModerateActivity,
+            int? workDaysInWeek,
+            String workDaysError,
+            bool isNextValid)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireStatus status)? initial,
+    TResult? Function(QuestionnaireStatus status, bool? isModerateActivity,
+            int? workDaysInWeek, String workDaysError, bool isNextValid)?
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireStatus status)? initial,
+    TResult Function(QuestionnaireStatus status, bool? isModerateActivity,
+            int? workDaysInWeek, String workDaysError, bool isNextValid)?
+        initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -220,7 +731,12 @@ abstract class $QuestionnaireStateCopyWith<$Res> {
           QuestionnaireState value, $Res Function(QuestionnaireState) then) =
       _$QuestionnaireStateCopyWithImpl<$Res, QuestionnaireState>;
   @useResult
-  $Res call({QuestionnaireStatus status});
+  $Res call(
+      {QuestionnaireStatus status,
+      bool? isModerateActivity,
+      int? workDaysInWeek,
+      String workDaysError,
+      bool isNextValid});
 }
 
 /// @nodoc
@@ -239,12 +755,32 @@ class _$QuestionnaireStateCopyWithImpl<$Res, $Val extends QuestionnaireState>
   @override
   $Res call({
     Object? status = null,
+    Object? isModerateActivity = freezed,
+    Object? workDaysInWeek = freezed,
+    Object? workDaysError = null,
+    Object? isNextValid = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as QuestionnaireStatus,
+      isModerateActivity: freezed == isModerateActivity
+          ? _value.isModerateActivity
+          : isModerateActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      workDaysInWeek: freezed == workDaysInWeek
+          ? _value.workDaysInWeek
+          : workDaysInWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
+      workDaysError: null == workDaysError
+          ? _value.workDaysError
+          : workDaysError // ignore: cast_nullable_to_non_nullable
+              as String,
+      isNextValid: null == isNextValid
+          ? _value.isNextValid
+          : isNextValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -258,7 +794,12 @@ abstract class _$$QuestionnaireStateInitialImplCopyWith<$Res>
       __$$QuestionnaireStateInitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({QuestionnaireStatus status});
+  $Res call(
+      {QuestionnaireStatus status,
+      bool? isModerateActivity,
+      int? workDaysInWeek,
+      String workDaysError,
+      bool isNextValid});
 }
 
 /// @nodoc
@@ -277,12 +818,32 @@ class __$$QuestionnaireStateInitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? isModerateActivity = freezed,
+    Object? workDaysInWeek = freezed,
+    Object? workDaysError = null,
+    Object? isNextValid = null,
   }) {
     return _then(_$QuestionnaireStateInitialImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as QuestionnaireStatus,
+      isModerateActivity: freezed == isModerateActivity
+          ? _value.isModerateActivity
+          : isModerateActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      workDaysInWeek: freezed == workDaysInWeek
+          ? _value.workDaysInWeek
+          : workDaysInWeek // ignore: cast_nullable_to_non_nullable
+              as int?,
+      workDaysError: null == workDaysError
+          ? _value.workDaysError
+          : workDaysError // ignore: cast_nullable_to_non_nullable
+              as String,
+      isNextValid: null == isNextValid
+          ? _value.isNextValid
+          : isNextValid // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -290,15 +851,30 @@ class __$$QuestionnaireStateInitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
-  _$QuestionnaireStateInitialImpl({this.status = QuestionnaireStatus.initial});
+  _$QuestionnaireStateInitialImpl(
+      {this.status = QuestionnaireStatus.initial,
+      this.isModerateActivity,
+      this.workDaysInWeek,
+      this.workDaysError = '',
+      this.isNextValid = false});
 
   @override
   @JsonKey()
   final QuestionnaireStatus status;
+  @override
+  final bool? isModerateActivity;
+  @override
+  final int? workDaysInWeek;
+  @override
+  @JsonKey()
+  final String workDaysError;
+  @override
+  @JsonKey()
+  final bool isNextValid;
 
   @override
   String toString() {
-    return 'QuestionnaireState.initial(status: $status)';
+    return 'QuestionnaireState.initial(status: $status, isModerateActivity: $isModerateActivity, workDaysInWeek: $workDaysInWeek, workDaysError: $workDaysError, isNextValid: $isNextValid)';
   }
 
   @override
@@ -306,11 +882,20 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionnaireStateInitialImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.isModerateActivity, isModerateActivity) ||
+                other.isModerateActivity == isModerateActivity) &&
+            (identical(other.workDaysInWeek, workDaysInWeek) ||
+                other.workDaysInWeek == workDaysInWeek) &&
+            (identical(other.workDaysError, workDaysError) ||
+                other.workDaysError == workDaysError) &&
+            (identical(other.isNextValid, isNextValid) ||
+                other.isNextValid == isNextValid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode => Object.hash(runtimeType, status, isModerateActivity,
+      workDaysInWeek, workDaysError, isNextValid);
 
   /// Create a copy of QuestionnaireState
   /// with the given fields replaced by the non-null parameter values.
@@ -324,27 +909,40 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireStatus status) initial,
+    required TResult Function(
+            QuestionnaireStatus status,
+            bool? isModerateActivity,
+            int? workDaysInWeek,
+            String workDaysError,
+            bool isNextValid)
+        initial,
   }) {
-    return initial(status);
+    return initial(
+        status, isModerateActivity, workDaysInWeek, workDaysError, isNextValid);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireStatus status)? initial,
+    TResult? Function(QuestionnaireStatus status, bool? isModerateActivity,
+            int? workDaysInWeek, String workDaysError, bool isNextValid)?
+        initial,
   }) {
-    return initial?.call(status);
+    return initial?.call(
+        status, isModerateActivity, workDaysInWeek, workDaysError, isNextValid);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireStatus status)? initial,
+    TResult Function(QuestionnaireStatus status, bool? isModerateActivity,
+            int? workDaysInWeek, String workDaysError, bool isNextValid)?
+        initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(status);
+      return initial(status, isModerateActivity, workDaysInWeek, workDaysError,
+          isNextValid);
     }
     return orElse();
   }
@@ -379,11 +977,23 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
 }
 
 abstract class _QuestionnaireStateInitial implements QuestionnaireState {
-  factory _QuestionnaireStateInitial({final QuestionnaireStatus status}) =
-      _$QuestionnaireStateInitialImpl;
+  factory _QuestionnaireStateInitial(
+      {final QuestionnaireStatus status,
+      final bool? isModerateActivity,
+      final int? workDaysInWeek,
+      final String workDaysError,
+      final bool isNextValid}) = _$QuestionnaireStateInitialImpl;
 
   @override
   QuestionnaireStatus get status;
+  @override
+  bool? get isModerateActivity;
+  @override
+  int? get workDaysInWeek;
+  @override
+  String get workDaysError;
+  @override
+  bool get isNextValid;
 
   /// Create a copy of QuestionnaireState
   /// with the given fields replaced by the non-null parameter values.

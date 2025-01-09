@@ -13,6 +13,7 @@ class TextInputWidget extends StatelessWidget {
     this.errorText,
     this.inputFormatters,
     this.onFocusChange,
+    this.centerText = false,
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.validator,
@@ -21,6 +22,7 @@ class TextInputWidget extends StatelessWidget {
 
   final TextEditingController controller;
   final String hintText;
+  final bool centerText;
   final bool obscureText;
   final String? errorText;
   final List<TextInputFormatter>? inputFormatters;
@@ -37,6 +39,7 @@ class TextInputWidget extends StatelessWidget {
         Focus(
           onFocusChange: onFocusChange,
           child: TextFormField(
+            textAlign: centerText ? TextAlign.center : TextAlign.start,
             inputFormatters: inputFormatters,
             controller: controller,
             obscureText: obscureText,

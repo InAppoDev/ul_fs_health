@@ -161,5 +161,20 @@
   "lefsDescription7": " have any difficulty at all with:",
   "lblAct": "Act-",
   "lblOn": "On",
-  "lblNoResultsFound" : "No Results Found"
+  "lblNoResultsFound" : "No Results Found",
+  "gpaqTravelHeaderText": "Travel to and from places",
+  "gpaqTravelDescription": "The next questions exclude the physical activities at work that you have already mentioned.",
+  "gpaqTravelDescription2": "Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship.",
+  "gpaqWorkHeaderText": "Work",
+  "gpaqWorkDescription": "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?",
+  "gpaqWorkDescription2": "In a typical week, on how many days do you do moderate-intensity activities as part of your work?",
+  "gpaqWorkDescription3": "How much time do you spend doing moderate-intensity activities at work on a typical day?",
+  "gpaqWorkDaysHintText": "Select number of days",
+  "btnActionYes": "Yes",
+  "btnActionNo": "No",
+  "btnActionFinishText": "Finish",
+  "lblHourText": "Hours",
+  "lblMinuteText": "Minutes",
+  "gpaqWorkDaysErrorText": "Please select number of days",
+  "gpaqRequiredChoice": "Please select one of choices"
 }

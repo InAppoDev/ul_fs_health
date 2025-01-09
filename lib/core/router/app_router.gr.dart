@@ -76,6 +76,100 @@ class GPAQInitialRouteArgs {
 }
 
 /// generated route for
+/// [GPAQTravelScreen]
+class GPAQTravelRoute extends PageRouteInfo<GPAQTravelRouteArgs> {
+  GPAQTravelRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQTravelRoute.name,
+          args: GPAQTravelRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQTravelRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQTravelRouteArgs>(
+          orElse: () => const GPAQTravelRouteArgs());
+      return GPAQTravelScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQTravelRouteArgs {
+  const GPAQTravelRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQTravelRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQWorkScreen]
+class GPAQWorkRoute extends PageRouteInfo<GPAQWorkRouteArgs> {
+  GPAQWorkRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQWorkRoute.name,
+          args: GPAQWorkRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQWorkRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQWorkRouteArgs>(
+          orElse: () => const GPAQWorkRouteArgs());
+      return GPAQWorkScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQWorkRouteArgs {
+  const GPAQWorkRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQWorkRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

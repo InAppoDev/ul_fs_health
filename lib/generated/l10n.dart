@@ -1409,6 +1409,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Travel to and from places`
+  String get gpaqTravelHeaderText {
+    return Intl.message(
+      'Travel to and from places',
+      name: 'gpaqTravelHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The next questions exclude the physical activities at work that you have already mentioned.`
+  String get gpaqTravelDescription {
+    return Intl.message(
+      'The next questions exclude the physical activities at work that you have already mentioned.',
+      name: 'gpaqTravelDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship.`
+  String get gpaqTravelDescription2 {
+    return Intl.message(
+      'Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship.',
+      name: 'gpaqTravelDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work`
+  String get gpaqWorkHeaderText {
+    return Intl.message(
+      'Work',
+      name: 'gpaqWorkHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?`
+  String get gpaqWorkDescription {
+    return Intl.message(
+      'Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?',
+      name: 'gpaqWorkDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In a typical week, on how many days do you do moderate-intensity activities as part of your work?`
+  String get gpaqWorkDescription2 {
+    return Intl.message(
+      'In a typical week, on how many days do you do moderate-intensity activities as part of your work?',
+      name: 'gpaqWorkDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much time do you spend doing moderate-intensity activities at work on a typical day?`
+  String get gpaqWorkDescription3 {
+    return Intl.message(
+      'How much time do you spend doing moderate-intensity activities at work on a typical day?',
+      name: 'gpaqWorkDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select number of days`
+  String get gpaqWorkDaysHintText {
+    return Intl.message(
+      'Select number of days',
+      name: 'gpaqWorkDaysHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get btnActionYes {
+    return Intl.message(
+      'Yes',
+      name: 'btnActionYes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get btnActionNo {
+    return Intl.message(
+      'No',
+      name: 'btnActionNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finish`
+  String get btnActionFinishText {
+    return Intl.message(
+      'Finish',
+      name: 'btnActionFinishText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hours`
+  String get lblHourText {
+    return Intl.message(
+      'Hours',
+      name: 'lblHourText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minutes`
+  String get lblMinuteText {
+    return Intl.message(
+      'Minutes',
+      name: 'lblMinuteText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select number of days`
+  String get gpaqWorkDaysErrorText {
+    return Intl.message(
+      'Please select number of days',
+      name: 'gpaqWorkDaysErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select one of choices`
+  String get gpaqRequiredChoice {
+    return Intl.message(
+      'Please select one of choices',
+      name: 'gpaqRequiredChoice',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

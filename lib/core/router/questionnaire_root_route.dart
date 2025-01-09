@@ -18,6 +18,14 @@ abstract class QuestionnaireRootRoute {
           path: 'gpaq_initial',
           page: GPAQInitialRoute.page,
         ),
+        CustomRoute<GPAQInitialRoute>(
+          path: 'gpaq_initial',
+          page: GPAQTravelRoute.page,
+        ),
+        CustomRoute<GPAQWorkRoute>(
+          path: 'gpaq_work',
+          page: GPAQWorkRoute.page,
+        ),
         CustomRoute<LEFSRoute>(
           path: 'lefs',
           page: LEFSRoute.page,
