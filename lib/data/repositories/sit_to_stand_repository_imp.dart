@@ -25,20 +25,14 @@ class SitToStandRepositoryImp implements SitToStandRepository {
 
   @override
   Future<List<ResultDataEntity>> getTestResult({required String userId}) async {
-    try {
-      final querySnapshot = await firebaseService.sitToStandCollectionReference
-          .where('userRef',
-              isEqualTo: firebaseService.getDocument(
-                  firebaseService.userCollectionReference, userId))
-          .get();
-
-      final results = querySnapshot.docs.map((doc) {
-        return ResultDataModel.fromJson(doc.data()).toEntity();
-      }).toList();
-
-      return results;
-    } catch (e) {
-      throw Exception('Failed to get test results: $e');
-    }
+    final querySnapshot = await firebaseService.sitToStandCollectionReference
+        .where('userRef',
+            isEqualTo: firebaseService.getDocument(
+                firebaseService.userCollectionReference, userId))
+        .get();
+    final results = querySnapshot.docs.map((doc) {
+      return ResultDataModel.fromJson(doc.data()).toEntity();
+    }).toList();
+    return results;
   }
 }
