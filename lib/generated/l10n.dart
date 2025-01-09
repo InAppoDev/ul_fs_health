@@ -330,21 +330,31 @@ class S {
     );
   }
 
-  /// `Fill this questionarre`
+  /// `Questionnaire`
   String get questHeaderTitle {
     return Intl.message(
-      'Fill this questionarre',
+      'Questionnaire',
       name: 'questHeaderTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `In order to give the best results, our app needs detailed information about your personal and medical conditions.`
-  String get questHeaderSubTitle {
+  /// `In order to give the best results, our app needs detailed information about your physical activity and health.`
+  String get questInitialHeaderDescription {
     return Intl.message(
-      'In order to give the best results, our app needs detailed information about your personal and medical conditions.',
-      name: 'questHeaderSubTitle',
+      'In order to give the best results, our app needs detailed information about your physical activity and health.',
+      name: 'questInitialHeaderDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For this purpose, please fill out the following questionnaires:`
+  String get questInitialHeaderDescription2 {
+    return Intl.message(
+      'For this purpose, please fill out the following questionnaires:',
+      name: 'questInitialHeaderDescription2',
       desc: '',
       args: [],
     );
@@ -1170,6 +1180,206 @@ class S {
     );
   }
 
+  /// `Global Physical Activity Questionnaire (GPAQ)`
+  String get gpaqHeaderText {
+    return Intl.message(
+      'Global Physical Activity Questionnaire (GPAQ)',
+      name: 'gpaqHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This questionnaire will consist of questions about your physical activity in a normal week. Please answer these questions even if you do not consider yourself to be a physically active person.`
+  String get gpaqDescription {
+    return Intl.message(
+      'This questionnaire will consist of questions about your physical activity in a normal week. Please answer these questions even if you do not consider yourself to be a physically active person.',
+      name: 'gpaqDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lower Extremity Functional Scale (LEFS)`
+  String get lefsHeaderText {
+    return Intl.message(
+      'Lower Extremity Functional Scale (LEFS)',
+      name: 'lefsHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This questionnaire will consist of 20 questions about a person’s ability to perform everyday tasks.`
+  String get lefsDescription {
+    return Intl.message(
+      'This questionnaire will consist of 20 questions about a person’s ability to perform everyday tasks.',
+      name: 'lefsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `*this questionnaire is `
+  String get questionnaireInfoTextPart {
+    return Intl.message(
+      '*this questionnaire is ',
+      name: 'questionnaireInfoTextPart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `mandatory`
+  String get mandatoryText {
+    return Intl.message(
+      'mandatory',
+      name: 'mandatoryText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `optional`
+  String get optionalText {
+    return Intl.message(
+      'optional',
+      name: 'optionalText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `start`
+  String get btnStartText {
+    return Intl.message(
+      'start',
+      name: 'btnStartText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Physical Activity`
+  String get gpaqInitialHeaderText {
+    return Intl.message(
+      'Physical Activity',
+      name: 'gpaqInitialHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Following questions will be about the time you spend doing different types of physical activity in a typical week. Please answer these questions even if you do not consider yourself to be a physically active person.`
+  String get gpaqInitialDescription1 {
+    return Intl.message(
+      'Following questions will be about the time you spend doing different types of physical activity in a typical week. Please answer these questions even if you do not consider yourself to be a physically active person.',
+      name: 'gpaqInitialDescription1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Think first about the time you spend doing work. Think of work as the things that you have to do such as paid or unpaid work, study/training, household chores, harvesting food/crops, fishing or hunting for food, seeking employment.`
+  String get gpaqInitialDescription2 {
+    return Intl.message(
+      'Think first about the time you spend doing work. Think of work as the things that you have to do such as paid or unpaid work, study/training, household chores, harvesting food/crops, fishing or hunting for food, seeking employment.',
+      name: 'gpaqInitialDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In answering the following questions 'vigorous-intensity activities' are activities that require hard physical effort and cause large increases in breathing or heart rate, 'moderate-intensity activities' are activities that require moderate physical effort and cause small increases in breathing or heart rate.`
+  String get gpaqInitialDescription3 {
+    return Intl.message(
+      'In answering the following questions \'vigorous-intensity activities\' are activities that require hard physical effort and cause large increases in breathing or heart rate, \'moderate-intensity activities\' are activities that require moderate physical effort and cause small increases in breathing or heart rate.',
+      name: 'gpaqInitialDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get btnBackActionText {
+    return Intl.message(
+      'Back',
+      name: 'btnBackActionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get btnNextActionText {
+    return Intl.message(
+      'Next',
+      name: 'btnNextActionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We are interested in knowing whether you are having any difficulty at all with the activities listed below because of your lower limb problem for which you are currently seeking attention. Please provide an answer for each activity.`
+  String get lefsDescription2 {
+    return Intl.message(
+      'We are interested in knowing whether you are having any difficulty at all with the activities listed below because of your lower limb problem for which you are currently seeking attention. Please provide an answer for each activity.',
+      name: 'lefsDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today, `
+  String get lefsDescription3 {
+    return Intl.message(
+      'Today, ',
+      name: 'lefsDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `do you`
+  String get lefsDescription4 {
+    return Intl.message(
+      'do you',
+      name: 'lefsDescription4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` or `
+  String get lefsDescription5 {
+    return Intl.message(
+      ' or ',
+      name: 'lefsDescription5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `would you`
+  String get lefsDescription6 {
+    return Intl.message(
+      'would you',
+      name: 'lefsDescription6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` have any difficulty at all with:`
+  String get lefsDescription7 {
+    return Intl.message(
+      ' have any difficulty at all with:',
+      name: 'lefsDescription7',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Act-`
   String get lblAct {
     return Intl.message(
@@ -1185,6 +1395,16 @@ class S {
     return Intl.message(
       'On',
       name: 'lblOn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Results Found`
+  String get lblNoResultsFound {
+    return Intl.message(
+      'No Results Found',
+      name: 'lblNoResultsFound',
       desc: '',
       args: [],
     );

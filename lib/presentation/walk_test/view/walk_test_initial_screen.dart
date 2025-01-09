@@ -14,7 +14,6 @@ import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/test_layout_widget.dart';
 import '../../utils/widgets/text_builder_widget.dart';
 import '../bloc/walk_test_bloc.dart';
-import '../mock/meter_length_values.dart';
 
 @RoutePage()
 class WalkTestInitialScreen extends StatelessWidget {
@@ -22,13 +21,14 @@ class WalkTestInitialScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const WalkTestInitialContent();
+    return WalkTestInitialContent();
   }
 }
 
 class WalkTestInitialContent extends StatelessWidget {
-  const WalkTestInitialContent({super.key});
+  WalkTestInitialContent({super.key});
 
+  final List<double> meterLengths = [15, 20, 30, 40, 400];
   @override
   Widget build(BuildContext context) {
     return TestLayoutWidget(
@@ -56,7 +56,7 @@ class WalkTestInitialContent extends StatelessWidget {
                 onChanged: (value) {
                   context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(selectedLength: value, shouldValidate: false));
                 },
-                values: mockMeterLengths),
+                values: meterLengths),
           ),
           Gaps.largest.spaceVertical,
           SubmitButton(

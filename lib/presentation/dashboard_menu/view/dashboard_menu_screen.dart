@@ -72,7 +72,7 @@ class DashboardMenuScreen extends StatelessWidget {
                 ListTile(
                     visualDensity: VisualDensity.compact,
                     onTap: () {
-                      context.router.push(const QuestionnaireRoute());
+                      context.router.push(QuestionnaireInitialRoute(shouldAuthenticate: true));
                     },
                     leading: Assets.icons.iconQuestionnaire.svg(),
                     title: Text(

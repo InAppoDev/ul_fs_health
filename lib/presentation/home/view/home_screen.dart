@@ -82,7 +82,7 @@ class HomeContent extends StatelessWidget {
                     _audioPlayer
                       ..setAsset('assets/sounds/signal.mp3')
                       ..play();
-                    context.router.push(const WalkTestNavigatorRoute(children: [WalkTestStartRoute()]));
+                    context.router.push(const WalkTestStartRoute());
                   },
                   title: appLocalizations.btnTestStartText,
                   backgroundColor: ColorScheme.of(context).primary,
@@ -90,7 +90,7 @@ class HomeContent extends StatelessWidget {
               Constants.sizedBoxHeightSmall.spaceVertical,
               SubmitButton(
                   onPressed: () {
-                    context.router.push(const WalkTestNavigatorRoute());
+                    context.router.push(const WalkTestInitialRoute());
                   },
                   title: appLocalizations.btnTestInstructionsText,
                   backgroundColor: defaultBtnInactiveBackground,

@@ -22,8 +22,6 @@ mixin _$SitToStandState {
   int get currentRepetition => throw _privateConstructorUsedError;
   double get bestTime => throw _privateConstructorUsedError;
   double get bestVelocity => throw _privateConstructorUsedError;
-  double get bestPower => throw _privateConstructorUsedError;
-  bool get buttonsVisible => throw _privateConstructorUsedError;
   double get progress => throw _privateConstructorUsedError;
   SitToStandStatus get status => throw _privateConstructorUsedError;
   List<int> get times => throw _privateConstructorUsedError;
@@ -50,8 +48,6 @@ abstract class $SitToStandStateCopyWith<$Res> {
       int currentRepetition,
       double bestTime,
       double bestVelocity,
-      double bestPower,
-      bool buttonsVisible,
       double progress,
       SitToStandStatus status,
       List<int> times,
@@ -80,8 +76,6 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
     Object? currentRepetition = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
-    Object? bestPower = null,
-    Object? buttonsVisible = null,
     Object? progress = null,
     Object? status = null,
     Object? times = null,
@@ -113,14 +107,6 @@ class _$SitToStandStateCopyWithImpl<$Res, $Val extends SitToStandState>
           ? _value.bestVelocity
           : bestVelocity // ignore: cast_nullable_to_non_nullable
               as double,
-      bestPower: null == bestPower
-          ? _value.bestPower
-          : bestPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      buttonsVisible: null == buttonsVisible
-          ? _value.buttonsVisible
-          : buttonsVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -160,8 +146,6 @@ abstract class _$$SitToStandStateImplCopyWith<$Res>
       int currentRepetition,
       double bestTime,
       double bestVelocity,
-      double bestPower,
-      bool buttonsVisible,
       double progress,
       SitToStandStatus status,
       List<int> times,
@@ -188,8 +172,6 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
     Object? currentRepetition = null,
     Object? bestTime = null,
     Object? bestVelocity = null,
-    Object? bestPower = null,
-    Object? buttonsVisible = null,
     Object? progress = null,
     Object? status = null,
     Object? times = null,
@@ -221,14 +203,6 @@ class __$$SitToStandStateImplCopyWithImpl<$Res>
           ? _value.bestVelocity
           : bestVelocity // ignore: cast_nullable_to_non_nullable
               as double,
-      bestPower: null == bestPower
-          ? _value.bestPower
-          : bestPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      buttonsVisible: null == buttonsVisible
-          ? _value.buttonsVisible
-          : buttonsVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -263,8 +237,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
       this.currentRepetition = 0,
       this.bestTime = 0.0,
       this.bestVelocity = 0.0,
-      this.bestPower = 0.0,
-      this.buttonsVisible = false,
       this.progress = 0.0,
       this.status = SitToStandStatus.initial,
       final List<int> times = const [],
@@ -291,12 +263,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
   @override
   @JsonKey()
   final double bestVelocity;
-  @override
-  @JsonKey()
-  final double bestPower;
-  @override
-  @JsonKey()
-  final bool buttonsVisible;
   @override
   @JsonKey()
   final double progress;
@@ -326,7 +292,7 @@ class _$SitToStandStateImpl implements _SitToStandState {
 
   @override
   String toString() {
-    return 'SitToStandState(isTestRunning: $isTestRunning, isTestReady: $isTestReady, isTestFinished: $isTestFinished, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, bestPower: $bestPower, buttonsVisible: $buttonsVisible, progress: $progress, status: $status, times: $times, error: $error, testResults: $testResults)';
+    return 'SitToStandState(isTestRunning: $isTestRunning, isTestReady: $isTestReady, isTestFinished: $isTestFinished, currentRepetition: $currentRepetition, bestTime: $bestTime, bestVelocity: $bestVelocity, progress: $progress, status: $status, times: $times, error: $error, testResults: $testResults)';
   }
 
   @override
@@ -346,10 +312,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
                 other.bestTime == bestTime) &&
             (identical(other.bestVelocity, bestVelocity) ||
                 other.bestVelocity == bestVelocity) &&
-            (identical(other.bestPower, bestPower) ||
-                other.bestPower == bestPower) &&
-            (identical(other.buttonsVisible, buttonsVisible) ||
-                other.buttonsVisible == buttonsVisible) &&
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
             (identical(other.status, status) || other.status == status) &&
@@ -368,8 +330,6 @@ class _$SitToStandStateImpl implements _SitToStandState {
       currentRepetition,
       bestTime,
       bestVelocity,
-      bestPower,
-      buttonsVisible,
       progress,
       status,
       const DeepCollectionEquality().hash(_times),
@@ -394,8 +354,6 @@ abstract class _SitToStandState implements SitToStandState {
       final int currentRepetition,
       final double bestTime,
       final double bestVelocity,
-      final double bestPower,
-      final bool buttonsVisible,
       final double progress,
       final SitToStandStatus status,
       final List<int> times,
@@ -414,10 +372,6 @@ abstract class _SitToStandState implements SitToStandState {
   double get bestTime;
   @override
   double get bestVelocity;
-  @override
-  double get bestPower;
-  @override
-  bool get buttonsVisible;
   @override
   double get progress;
   @override

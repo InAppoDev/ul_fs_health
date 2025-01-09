@@ -5,6 +5,7 @@ import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
+import 'app_header_text_widget.dart';
 
 class SimpleAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -41,11 +42,7 @@ class SimpleAppBarWidget extends StatelessWidget
           ),
         ),
       ],
-      title: title ??
-          Text(
-            appLocalizations.lblAppName,
-            style: header1.copyWith(fontSize: 20, fontWeight: FontWeight.w500),
-          ),
+      title: title ?? const AppHeaderTextWidget(),
       leading: showBackButton
           ? const AutoLeadingButton()
           : IconButton(
