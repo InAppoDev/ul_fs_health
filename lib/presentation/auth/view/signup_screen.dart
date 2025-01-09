@@ -13,6 +13,7 @@ import '../../../domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../../generated/l10n.dart';
 import '../../logic/user/user_bloc.dart';
+import '../../utils/widgets/app_header_text_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/text_input_widget.dart';
 import '../bloc/auth/auth_bloc.dart';
@@ -79,7 +80,7 @@ class SignupContent extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(S.current.lblAppName, style: header1),
+                      const AppHeaderTextWidget(),
                       Gaps.larger.spaceVertical,
                       Text(
                         S.current.lblSignUp,
