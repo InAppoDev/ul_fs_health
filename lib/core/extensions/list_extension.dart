@@ -13,3 +13,7 @@ extension ListResultDataEntityExtension on List<ResultDataEntity> {
 extension ListExtension<T> on List<T> {
   Iterable<R> mapIndexed<R>(R Function(int index, T element) callback) => indexed.map((e)=> callback(e.$1, e.$2));
 }
+
+extension NullableListExtension<T> on List<T>? {
+  bool get isNullOrEmpty => this == null || this?.isEmpty == true;
+}

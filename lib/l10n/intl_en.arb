@@ -162,6 +162,8 @@
   "lblAct": "Act-",
   "lblOn": "On",
   "lblNoResultsFound" : "No Results Found",
+  "lblMyResults": "My Results:",
+  "lblNoDataFound" : "No data found",
   "gpaqTravelHeaderText": "Travel to and from places",
   "gpaqTravelDescription": "The next questions exclude the physical activities at work that you have already mentioned.",
   "gpaqTravelDescription2": "Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship.",

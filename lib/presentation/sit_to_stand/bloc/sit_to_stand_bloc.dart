@@ -115,18 +115,23 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       GetTestResultEvent event, Emitter<SitToStandState> emit) async {
     emit(state.copyWith(status: SitToStandStatus.start));
     try {
+      emit(state.copyWith(status: SitToStandStatus.loading));
       final testResults =
           await sitToStandRepository.getTestResult(userId: event.userId);
-
+        
+      final sortedResults = List<ResultDataEntity>.from(testResults)
+        ..sort((a, b) => a.date!.compareTo(b.date!));
       emit(state.copyWith(
         status: SitToStandStatus.stop,
-        testResults: testResults,
+        testResults: sortedResults,
       ));
     } catch (e) {
-      emit(state.copyWith(
-        status: SitToStandStatus.failure,
-        error: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          status: SitToStandStatus.failure,
+          error: e.toString(),
+        ),
+      );
     }
   }
 

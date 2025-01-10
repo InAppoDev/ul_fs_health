@@ -16,47 +16,45 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WalkTestEvent {
-  double? get selectedLength => throw _privateConstructorUsedError;
-  bool get shouldValidate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(double? selectedLength, bool shouldValidate)
         selectLength,
+    required TResult Function(String userId) getWalkTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double? selectedLength, bool shouldValidate)?
         selectLength,
+    TResult? Function(String userId)? getWalkTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double? selectedLength, bool shouldValidate)? selectLength,
+    TResult Function(String userId)? getWalkTestResult,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WalkTestSelect value) selectLength,
+    required TResult Function(GetWalkTestResultEvent value) getWalkTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_WalkTestSelect value)? selectLength,
+    TResult? Function(GetWalkTestResultEvent value)? getWalkTestResult,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WalkTestSelect value)? selectLength,
+    TResult Function(GetWalkTestResultEvent value)? getWalkTestResult,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of WalkTestEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WalkTestEventCopyWith<WalkTestEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -65,8 +63,6 @@ abstract class $WalkTestEventCopyWith<$Res> {
   factory $WalkTestEventCopyWith(
           WalkTestEvent value, $Res Function(WalkTestEvent) then) =
       _$WalkTestEventCopyWithImpl<$Res, WalkTestEvent>;
-  @useResult
-  $Res call({double? selectedLength, bool shouldValidate});
 }
 
 /// @nodoc
@@ -81,32 +77,13 @@ class _$WalkTestEventCopyWithImpl<$Res, $Val extends WalkTestEvent>
 
   /// Create a copy of WalkTestEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? selectedLength = freezed,
-    Object? shouldValidate = null,
-  }) {
-    return _then(_value.copyWith(
-      selectedLength: freezed == selectedLength
-          ? _value.selectedLength
-          : selectedLength // ignore: cast_nullable_to_non_nullable
-              as double?,
-      shouldValidate: null == shouldValidate
-          ? _value.shouldValidate
-          : shouldValidate // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$WalkTestSelectImplCopyWith<$Res>
-    implements $WalkTestEventCopyWith<$Res> {
+abstract class _$$WalkTestSelectImplCopyWith<$Res> {
   factory _$$WalkTestSelectImplCopyWith(_$WalkTestSelectImpl value,
           $Res Function(_$WalkTestSelectImpl) then) =
       __$$WalkTestSelectImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({double? selectedLength, bool shouldValidate});
 }
@@ -184,6 +161,7 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   TResult when<TResult extends Object?>({
     required TResult Function(double? selectedLength, bool shouldValidate)
         selectLength,
+    required TResult Function(String userId) getWalkTestResult,
   }) {
     return selectLength(selectedLength, shouldValidate);
   }
@@ -193,6 +171,7 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(double? selectedLength, bool shouldValidate)?
         selectLength,
+    TResult? Function(String userId)? getWalkTestResult,
   }) {
     return selectLength?.call(selectedLength, shouldValidate);
   }
@@ -201,6 +180,7 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double? selectedLength, bool shouldValidate)? selectLength,
+    TResult Function(String userId)? getWalkTestResult,
     required TResult orElse(),
   }) {
     if (selectLength != null) {
@@ -213,6 +193,7 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WalkTestSelect value) selectLength,
+    required TResult Function(GetWalkTestResultEvent value) getWalkTestResult,
   }) {
     return selectLength(this);
   }
@@ -221,6 +202,7 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_WalkTestSelect value)? selectLength,
+    TResult? Function(GetWalkTestResultEvent value)? getWalkTestResult,
   }) {
     return selectLength?.call(this);
   }
@@ -229,6 +211,7 @@ class _$WalkTestSelectImpl implements _WalkTestSelect {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WalkTestSelect value)? selectLength,
+    TResult Function(GetWalkTestResultEvent value)? getWalkTestResult,
     required TResult orElse(),
   }) {
     if (selectLength != null) {
@@ -243,17 +226,160 @@ abstract class _WalkTestSelect implements WalkTestEvent {
       {final double? selectedLength,
       final bool shouldValidate}) = _$WalkTestSelectImpl;
 
-  @override
   double? get selectedLength;
-  @override
   bool get shouldValidate;
 
   /// Create a copy of WalkTestEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WalkTestSelectImplCopyWith<_$WalkTestSelectImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetWalkTestResultEventImplCopyWith<$Res> {
+  factory _$$GetWalkTestResultEventImplCopyWith(
+          _$GetWalkTestResultEventImpl value,
+          $Res Function(_$GetWalkTestResultEventImpl) then) =
+      __$$GetWalkTestResultEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$$GetWalkTestResultEventImplCopyWithImpl<$Res>
+    extends _$WalkTestEventCopyWithImpl<$Res, _$GetWalkTestResultEventImpl>
+    implements _$$GetWalkTestResultEventImplCopyWith<$Res> {
+  __$$GetWalkTestResultEventImplCopyWithImpl(
+      _$GetWalkTestResultEventImpl _value,
+      $Res Function(_$GetWalkTestResultEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of WalkTestEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$GetWalkTestResultEventImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetWalkTestResultEventImpl implements GetWalkTestResultEvent {
+  const _$GetWalkTestResultEventImpl({required this.userId});
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'WalkTestEvent.getWalkTestResult(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetWalkTestResultEventImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  /// Create a copy of WalkTestEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetWalkTestResultEventImplCopyWith<_$GetWalkTestResultEventImpl>
+      get copyWith => __$$GetWalkTestResultEventImplCopyWithImpl<
+          _$GetWalkTestResultEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(double? selectedLength, bool shouldValidate)
+        selectLength,
+    required TResult Function(String userId) getWalkTestResult,
+  }) {
+    return getWalkTestResult(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(double? selectedLength, bool shouldValidate)?
+        selectLength,
+    TResult? Function(String userId)? getWalkTestResult,
+  }) {
+    return getWalkTestResult?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double? selectedLength, bool shouldValidate)? selectLength,
+    TResult Function(String userId)? getWalkTestResult,
+    required TResult orElse(),
+  }) {
+    if (getWalkTestResult != null) {
+      return getWalkTestResult(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_WalkTestSelect value) selectLength,
+    required TResult Function(GetWalkTestResultEvent value) getWalkTestResult,
+  }) {
+    return getWalkTestResult(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_WalkTestSelect value)? selectLength,
+    TResult? Function(GetWalkTestResultEvent value)? getWalkTestResult,
+  }) {
+    return getWalkTestResult?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_WalkTestSelect value)? selectLength,
+    TResult Function(GetWalkTestResultEvent value)? getWalkTestResult,
+    required TResult orElse(),
+  }) {
+    if (getWalkTestResult != null) {
+      return getWalkTestResult(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetWalkTestResultEvent implements WalkTestEvent {
+  const factory GetWalkTestResultEvent({required final String userId}) =
+      _$GetWalkTestResultEventImpl;
+
+  String get userId;
+
+  /// Create a copy of WalkTestEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetWalkTestResultEventImplCopyWith<_$GetWalkTestResultEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -262,6 +388,7 @@ mixin _$WalkTestState {
   double? get selectedLength => throw _privateConstructorUsedError;
   String? get errorText => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
+  List<WalkResultEntity>? get walkResults => throw _privateConstructorUsedError;
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.
@@ -280,7 +407,8 @@ abstract class $WalkTestStateCopyWith<$Res> {
       {WalkTestStatus status,
       double? selectedLength,
       String? errorText,
-      bool isValid});
+      bool isValid,
+      List<WalkResultEntity>? walkResults});
 }
 
 /// @nodoc
@@ -302,6 +430,7 @@ class _$WalkTestStateCopyWithImpl<$Res, $Val extends WalkTestState>
     Object? selectedLength = freezed,
     Object? errorText = freezed,
     Object? isValid = null,
+    Object? walkResults = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -320,6 +449,10 @@ class _$WalkTestStateCopyWithImpl<$Res, $Val extends WalkTestState>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      walkResults: freezed == walkResults
+          ? _value.walkResults
+          : walkResults // ignore: cast_nullable_to_non_nullable
+              as List<WalkResultEntity>?,
     ) as $Val);
   }
 }
@@ -336,7 +469,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       {WalkTestStatus status,
       double? selectedLength,
       String? errorText,
-      bool isValid});
+      bool isValid,
+      List<WalkResultEntity>? walkResults});
 }
 
 /// @nodoc
@@ -356,6 +490,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? selectedLength = freezed,
     Object? errorText = freezed,
     Object? isValid = null,
+    Object? walkResults = freezed,
   }) {
     return _then(_$InitialImpl(
       status: null == status
@@ -374,6 +509,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      walkResults: freezed == walkResults
+          ? _value._walkResults
+          : walkResults // ignore: cast_nullable_to_non_nullable
+              as List<WalkResultEntity>?,
     ));
   }
 }
@@ -385,7 +524,9 @@ class _$InitialImpl implements _Initial {
       {this.status = WalkTestStatus.initial,
       this.selectedLength,
       this.errorText,
-      this.isValid = false});
+      this.isValid = false,
+      final List<WalkResultEntity>? walkResults})
+      : _walkResults = walkResults;
 
   @override
   @JsonKey()
@@ -397,10 +538,19 @@ class _$InitialImpl implements _Initial {
   @override
   @JsonKey()
   final bool isValid;
+  final List<WalkResultEntity>? _walkResults;
+  @override
+  List<WalkResultEntity>? get walkResults {
+    final value = _walkResults;
+    if (value == null) return null;
+    if (_walkResults is EqualUnmodifiableListView) return _walkResults;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'WalkTestState(status: $status, selectedLength: $selectedLength, errorText: $errorText, isValid: $isValid)';
+    return 'WalkTestState(status: $status, selectedLength: $selectedLength, errorText: $errorText, isValid: $isValid, walkResults: $walkResults)';
   }
 
   @override
@@ -413,12 +563,14 @@ class _$InitialImpl implements _Initial {
                 other.selectedLength == selectedLength) &&
             (identical(other.errorText, errorText) ||
                 other.errorText == errorText) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+            (identical(other.isValid, isValid) || other.isValid == isValid) &&
+            const DeepCollectionEquality()
+                .equals(other._walkResults, _walkResults));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, selectedLength, errorText, isValid);
+  int get hashCode => Object.hash(runtimeType, status, selectedLength,
+      errorText, isValid, const DeepCollectionEquality().hash(_walkResults));
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.
@@ -434,7 +586,8 @@ abstract class _Initial implements WalkTestState {
       {final WalkTestStatus status,
       final double? selectedLength,
       final String? errorText,
-      final bool isValid}) = _$InitialImpl;
+      final bool isValid,
+      final List<WalkResultEntity>? walkResults}) = _$InitialImpl;
 
   @override
   WalkTestStatus get status;
@@ -444,6 +597,8 @@ abstract class _Initial implements WalkTestState {
   String? get errorText;
   @override
   bool get isValid;
+  @override
+  List<WalkResultEntity>? get walkResults;
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.

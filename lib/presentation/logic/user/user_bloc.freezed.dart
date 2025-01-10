@@ -629,7 +629,7 @@ abstract class _UserLogout implements UserEvent {
 /// @nodoc
 mixin _$UserState {
   UserStatus get status => throw _privateConstructorUsedError;
-  UserEntity? get model => throw _privateConstructorUsedError;
+  UserEntity? get user => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of UserState
@@ -644,9 +644,9 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({UserStatus status, UserEntity? model, String? errorMessage});
+  $Res call({UserStatus status, UserEntity? user, String? errorMessage});
 
-  $UserEntityCopyWith<$Res>? get model;
+  $UserEntityCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -665,7 +665,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   @override
   $Res call({
     Object? status = null,
-    Object? model = freezed,
+    Object? user = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -673,9 +673,9 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as UserStatus,
-      model: freezed == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
@@ -688,13 +688,13 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res>? get model {
-    if (_value.model == null) {
+  $UserEntityCopyWith<$Res>? get user {
+    if (_value.user == null) {
       return null;
     }
 
-    return $UserEntityCopyWith<$Res>(_value.model!, (value) {
-      return _then(_value.copyWith(model: value) as $Val);
+    return $UserEntityCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -707,10 +707,10 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserStatus status, UserEntity? model, String? errorMessage});
+  $Res call({UserStatus status, UserEntity? user, String? errorMessage});
 
   @override
-  $UserEntityCopyWith<$Res>? get model;
+  $UserEntityCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -727,7 +727,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? model = freezed,
+    Object? user = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$InitialImpl(
@@ -735,9 +735,9 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as UserStatus,
-      model: freezed == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
@@ -751,19 +751,19 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 class _$InitialImpl implements _Initial {
   const _$InitialImpl(
-      {this.status = UserStatus.inital, this.model, this.errorMessage});
+      {this.status = UserStatus.inital, this.user, this.errorMessage});
 
   @override
   @JsonKey()
   final UserStatus status;
   @override
-  final UserEntity? model;
+  final UserEntity? user;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'UserState(status: $status, model: $model, errorMessage: $errorMessage)';
+    return 'UserState(status: $status, user: $user, errorMessage: $errorMessage)';
   }
 
   @override
@@ -772,13 +772,13 @@ class _$InitialImpl implements _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.model, model) || other.model == model) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, model, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status, user, errorMessage);
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -792,13 +792,13 @@ class _$InitialImpl implements _Initial {
 abstract class _Initial implements UserState {
   const factory _Initial(
       {final UserStatus status,
-      final UserEntity? model,
+      final UserEntity? user,
       final String? errorMessage}) = _$InitialImpl;
 
   @override
   UserStatus get status;
   @override
-  UserEntity? get model;
+  UserEntity? get user;
   @override
   String? get errorMessage;
 
