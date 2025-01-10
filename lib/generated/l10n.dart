@@ -1409,6 +1409,26 @@ class S {
       args: [],
     );
   }
+
+  /// `My Results:`
+  String get lblMyResults {
+    return Intl.message(
+      'My Results:',
+      name: 'lblMyResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No data found`
+  String get lblNoDataFound {
+    return Intl.message(
+      'No data found',
+      name: 'lblNoDataFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

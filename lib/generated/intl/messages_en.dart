@@ -119,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgotten password?"),
         "lblLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "lblLoginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
+        "lblMyResults": MessageLookupByLibrary.simpleMessage("My Results:"),
+        "lblNoDataFound": MessageLookupByLibrary.simpleMessage("No data found"),
         "lblNoResultsFound":
             MessageLookupByLibrary.simpleMessage("No Results Found"),
         "lblNotYetRegistered": MessageLookupByLibrary.simpleMessage(

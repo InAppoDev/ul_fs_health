@@ -17,8 +17,8 @@ import '../../../domain/repositories/user_repository.dart';
 import '../../../domain/repositories/walk_repository.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
-import '../../sit_to_stand_result/widgets/info_widget.dart';
-import '../../sit_to_stand_result/widgets/titles_widget.dart';
+import '../../history/widgets/info_widget.dart';
+import '../../history/widgets/titles_widget.dart';
 import '../../utils/widgets/test_layout_widget.dart';
 import '../../walk_test_start/bloc/result_bloc.dart';
 

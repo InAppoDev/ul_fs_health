@@ -8,7 +8,7 @@ abstract class WalkRootRoute {
               settings: page,
               fullscreenDialog: page.fullscreenDialog,
               pageBuilder: (pageContext, animation, secondaryAnimation) => BlocProvider(
-                    create: (_) => WalkTestBloc(),
+                    create: (_) => WalkTestBloc(walkRepository: getIt<WalkRepository>()),
                     child: child,
                   )),
           children: [

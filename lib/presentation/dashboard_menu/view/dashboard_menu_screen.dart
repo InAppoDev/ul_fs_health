@@ -61,7 +61,7 @@ class DashboardMenuScreen extends StatelessWidget {
                 ListTile(
                     visualDensity: VisualDensity.compact,
                     onTap: () {
-                      context.router.push(const SitToStandResultRoute());
+                      context.router.push(const HistoryRoute());
                     },
                     leading: Assets.icons.iconResults.svg(),
                     title:

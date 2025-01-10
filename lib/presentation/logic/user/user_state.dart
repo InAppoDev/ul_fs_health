@@ -4,7 +4,7 @@ part of 'user_bloc.dart';
 class UserState with _$UserState {
   const factory UserState({
     @Default(UserStatus.inital) UserStatus status,
-    UserEntity? model,
+    UserEntity? user,
     String? errorMessage,
   }) = _Initial;
 }

@@ -22,7 +22,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     try {
       emit(state.copyWith(status: UserStatus.loading));
       await userRepository.saveUserData(event.entity);
-      emit(state.copyWith(model: event.entity, status: event.successStatus));
+      emit(state.copyWith(user: event.entity, status: event.successStatus));
     } catch (e) {
       emit(state.copyWith(
           status: UserStatus.failure, errorMessage: e.toString()));
@@ -36,7 +36,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final user = await userRepository.getLoggedInUser();
       final status =
           user == null ? UserStatus.unauthenticated : UserStatus.authenticated;
-      emit(UserState(status: status, model: user));
+      emit(UserState(status: status, user: user));
     } catch (e) {
       emit(state.copyWith(
           status: UserStatus.failure, errorMessage: e.toString()));

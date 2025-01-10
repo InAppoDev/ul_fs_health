@@ -76,6 +76,25 @@ class GPAQInitialRouteArgs {
 }
 
 /// generated route for
+/// [HistoryScreen]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute({List<PageRouteInfo>? children})
+      : super(
+          HistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HistoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HistoryScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -242,25 +261,6 @@ class SignupRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const SignupScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [SitToStandResultScreen]
-class SitToStandResultRoute extends PageRouteInfo<void> {
-  const SitToStandResultRoute({List<PageRouteInfo>? children})
-      : super(
-          SitToStandResultRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SitToStandResultRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const SitToStandResultScreen();
     },
   );
 }

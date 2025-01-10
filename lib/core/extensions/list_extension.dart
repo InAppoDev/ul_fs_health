@@ -13,3 +13,7 @@ extension ListResultDataEntityExtension on List<ResultDataEntity> {
               .velocity ??
           0.0;
 }
+
+extension NullableListExtension<T> on List<T>? {
+  bool get isNullOrEmpty => this == null || this?.isEmpty == true;
+}

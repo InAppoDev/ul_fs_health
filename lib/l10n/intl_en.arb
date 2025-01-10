@@ -161,5 +161,7 @@
   "lefsDescription7": " have any difficulty at all with:",
   "lblAct": "Act-",
   "lblOn": "On",
-  "lblNoResultsFound" : "No Results Found"
+  "lblNoResultsFound" : "No Results Found",
+  "lblMyResults": "My Results:",
+  "lblNoDataFound" : "No data found"
 }
