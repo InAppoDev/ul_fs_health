@@ -115,9 +115,13 @@ class LEFSContentState extends State<LEFSContent> {
                                         selectedValue: state.lefsData[(index + 1).toString()],
                                         values: DifficultyLevel.values.reversed.toList(),
                                         onChanged: (value) {
-                                          final Map<String, DifficultyLevel> data = Map.from(state.lefsData);
-                                          data[(index + 1).toString()] = value ?? DifficultyLevel.none;
-                                          context.read<QuestionnaireBloc>().add(QuestionnaireEvent.lefsInitial(data));
+                                          final Map<String, DifficultyLevel> data =
+                                              Map.from(state.lefsData);
+                                          data[(index + 1).toString()] =
+                                              value ?? DifficultyLevel.none;
+                                          context
+                                              .read<QuestionnaireBloc>()
+                                              .add(QuestionnaireEvent.lefsInitial(data));
                                         },
                                         onGenerateLabel: (e) => e.label,
                                         expandedPadding: (Gaps.largest + Gaps.small).paddingLeft,
@@ -127,7 +131,10 @@ class LEFSContentState extends State<LEFSContent> {
                             ),
                           )),
                       SubmitButton(
-                          onPressed: () => context.router.popUntilRoot(),
+                          onPressed: () {
+                            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+                            context.router.popUntilRoot();
+                          },
                           title: appLocalizations.btnSaveContinueActionText,
                           backgroundColor: ColorScheme.of(context).primary,
                           titleColor: ColorScheme.of(context).onPrimary),

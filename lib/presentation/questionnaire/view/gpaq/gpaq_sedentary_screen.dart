@@ -62,7 +62,10 @@ class GPAQSedentaryContentState extends State<GPAQSedentaryContent> {
           leftTitle: appLocalizations.btnBackActionText,
           rightTitle: appLocalizations.btnNextActionText,
           onLeftPress: () => context.router.maybePop(),
-          onRightPress: () => context.router.popUntilRoot(),
+          onRightPress: () {
+            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+            context.router.popUntilRoot();
+          },
           leftTitleColor: ColorScheme.of(context).onSecondary,
           rightTitleColor: ColorScheme.of(context).onPrimary,
           leftBackgroundColor: ColorScheme.of(context).secondary,

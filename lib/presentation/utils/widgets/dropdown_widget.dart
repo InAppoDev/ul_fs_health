@@ -75,7 +75,7 @@ class DropdownWidget<T> extends StatelessWidget {
             ),
           ),
           enableSearch: false,
-          errorText: errorText,
+          errorText: errorText != null && errorText!.isNotEmpty ? errorText : null,
           requestFocusOnTap: true,
           initialSelection: selectedValue,
           expandedInsets: expandedPadding ?? EdgeInsets.zero,

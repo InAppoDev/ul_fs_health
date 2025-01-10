@@ -33,6 +33,7 @@ mixin _$QuestionnaireEvent {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,6 +50,7 @@ mixin _$QuestionnaireEvent {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +66,7 @@ mixin _$QuestionnaireEvent {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +79,7 @@ mixin _$QuestionnaireEvent {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +91,7 @@ mixin _$QuestionnaireEvent {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,6 +103,7 @@ mixin _$QuestionnaireEvent {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -209,6 +215,7 @@ class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return onSubmit(fillStatus);
   }
@@ -228,6 +235,7 @@ class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return onSubmit?.call(fillStatus);
   }
@@ -246,6 +254,7 @@ class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (onSubmit != null) {
@@ -264,6 +273,7 @@ class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return onSubmit(this);
   }
@@ -278,6 +288,7 @@ class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return onSubmit?.call(this);
   }
@@ -292,6 +303,7 @@ class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (onSubmit != null) {
@@ -408,6 +420,7 @@ class _$SelectActivityImpl implements _SelectActivity {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return selectActivity(hasActivity, fillStatus);
   }
@@ -427,6 +440,7 @@ class _$SelectActivityImpl implements _SelectActivity {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return selectActivity?.call(hasActivity, fillStatus);
   }
@@ -445,6 +459,7 @@ class _$SelectActivityImpl implements _SelectActivity {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (selectActivity != null) {
@@ -463,6 +478,7 @@ class _$SelectActivityImpl implements _SelectActivity {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return selectActivity(this);
   }
@@ -477,6 +493,7 @@ class _$SelectActivityImpl implements _SelectActivity {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return selectActivity?.call(this);
   }
@@ -491,6 +508,7 @@ class _$SelectActivityImpl implements _SelectActivity {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (selectActivity != null) {
@@ -626,6 +644,7 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return selectDaysInWeek(daysInWeek, shouldValidate, fillStatus);
   }
@@ -645,6 +664,7 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return selectDaysInWeek?.call(daysInWeek, shouldValidate, fillStatus);
   }
@@ -663,6 +683,7 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (selectDaysInWeek != null) {
@@ -681,6 +702,7 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return selectDaysInWeek(this);
   }
@@ -695,6 +717,7 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return selectDaysInWeek?.call(this);
   }
@@ -709,6 +732,7 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (selectDaysInWeek != null) {
@@ -828,6 +852,7 @@ class _$SelectHoursImpl implements _SelectHours {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return selectHour(hours, fillStatus);
   }
@@ -847,6 +872,7 @@ class _$SelectHoursImpl implements _SelectHours {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return selectHour?.call(hours, fillStatus);
   }
@@ -865,6 +891,7 @@ class _$SelectHoursImpl implements _SelectHours {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (selectHour != null) {
@@ -883,6 +910,7 @@ class _$SelectHoursImpl implements _SelectHours {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return selectHour(this);
   }
@@ -897,6 +925,7 @@ class _$SelectHoursImpl implements _SelectHours {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return selectHour?.call(this);
   }
@@ -911,6 +940,7 @@ class _$SelectHoursImpl implements _SelectHours {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (selectHour != null) {
@@ -1027,6 +1057,7 @@ class _$SelectMinutesImpl implements _SelectMinutes {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return selectMinutes(minutes, fillStatus);
   }
@@ -1046,6 +1077,7 @@ class _$SelectMinutesImpl implements _SelectMinutes {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return selectMinutes?.call(minutes, fillStatus);
   }
@@ -1064,6 +1096,7 @@ class _$SelectMinutesImpl implements _SelectMinutes {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (selectMinutes != null) {
@@ -1082,6 +1115,7 @@ class _$SelectMinutesImpl implements _SelectMinutes {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return selectMinutes(this);
   }
@@ -1096,6 +1130,7 @@ class _$SelectMinutesImpl implements _SelectMinutes {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return selectMinutes?.call(this);
   }
@@ -1110,6 +1145,7 @@ class _$SelectMinutesImpl implements _SelectMinutes {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (selectMinutes != null) {
@@ -1219,6 +1255,7 @@ class _$ValidateScreenImpl implements _ValidateScreen {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return validateScreen(fillStatus);
   }
@@ -1238,6 +1275,7 @@ class _$ValidateScreenImpl implements _ValidateScreen {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return validateScreen?.call(fillStatus);
   }
@@ -1256,6 +1294,7 @@ class _$ValidateScreenImpl implements _ValidateScreen {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (validateScreen != null) {
@@ -1274,6 +1313,7 @@ class _$ValidateScreenImpl implements _ValidateScreen {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return validateScreen(this);
   }
@@ -1288,6 +1328,7 @@ class _$ValidateScreenImpl implements _ValidateScreen {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return validateScreen?.call(this);
   }
@@ -1302,6 +1343,7 @@ class _$ValidateScreenImpl implements _ValidateScreen {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (validateScreen != null) {
@@ -1415,6 +1457,7 @@ class _$LEFSInitialImpl implements _LEFSInitial {
         validateScreen,
     required TResult Function(Map<String, DifficultyLevel> initialData)
         lefsInitial,
+    required TResult Function() resetErrors,
   }) {
     return lefsInitial(initialData);
   }
@@ -1434,6 +1477,7 @@ class _$LEFSInitialImpl implements _LEFSInitial {
         selectMinutes,
     TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
   }) {
     return lefsInitial?.call(initialData);
   }
@@ -1452,6 +1496,7 @@ class _$LEFSInitialImpl implements _LEFSInitial {
         selectMinutes,
     TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
     TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
     required TResult orElse(),
   }) {
     if (lefsInitial != null) {
@@ -1470,6 +1515,7 @@ class _$LEFSInitialImpl implements _LEFSInitial {
     required TResult Function(_SelectMinutes value) selectMinutes,
     required TResult Function(_ValidateScreen value) validateScreen,
     required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
   }) {
     return lefsInitial(this);
   }
@@ -1484,6 +1530,7 @@ class _$LEFSInitialImpl implements _LEFSInitial {
     TResult? Function(_SelectMinutes value)? selectMinutes,
     TResult? Function(_ValidateScreen value)? validateScreen,
     TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
   }) {
     return lefsInitial?.call(this);
   }
@@ -1498,6 +1545,7 @@ class _$LEFSInitialImpl implements _LEFSInitial {
     TResult Function(_SelectMinutes value)? selectMinutes,
     TResult Function(_ValidateScreen value)? validateScreen,
     TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
     required TResult orElse(),
   }) {
     if (lefsInitial != null) {
@@ -1518,6 +1566,164 @@ abstract class _LEFSInitial implements QuestionnaireEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LEFSInitialImplCopyWith<_$LEFSInitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetErrorsImplCopyWith<$Res> {
+  factory _$$ResetErrorsImplCopyWith(
+          _$ResetErrorsImpl value, $Res Function(_$ResetErrorsImpl) then) =
+      __$$ResetErrorsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetErrorsImplCopyWithImpl<$Res>
+    extends _$QuestionnaireEventCopyWithImpl<$Res, _$ResetErrorsImpl>
+    implements _$$ResetErrorsImplCopyWith<$Res> {
+  __$$ResetErrorsImplCopyWithImpl(
+      _$ResetErrorsImpl _value, $Res Function(_$ResetErrorsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of QuestionnaireEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ResetErrorsImpl implements _ResetErrors {
+  _$ResetErrorsImpl();
+
+  @override
+  String toString() {
+    return 'QuestionnaireEvent.resetErrors()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetErrorsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
+    required TResult Function(
+            bool hasActivity, QuestionnaireFillStatus fillStatus)
+        selectActivity,
+    required TResult Function(int? daysInWeek, bool shouldValidate,
+            QuestionnaireFillStatus fillStatus)
+        selectDaysInWeek,
+    required TResult Function(int hours, QuestionnaireFillStatus fillStatus)
+        selectHour,
+    required TResult Function(int minutes, QuestionnaireFillStatus fillStatus)
+        selectMinutes,
+    required TResult Function(QuestionnaireFillStatus fillStatus)
+        validateScreen,
+    required TResult Function(Map<String, DifficultyLevel> initialData)
+        lefsInitial,
+    required TResult Function() resetErrors,
+  }) {
+    return resetErrors();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
+    TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
+        selectActivity,
+    TResult? Function(int? daysInWeek, bool shouldValidate,
+            QuestionnaireFillStatus fillStatus)?
+        selectDaysInWeek,
+    TResult? Function(int hours, QuestionnaireFillStatus fillStatus)?
+        selectHour,
+    TResult? Function(int minutes, QuestionnaireFillStatus fillStatus)?
+        selectMinutes,
+    TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
+    TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult? Function()? resetErrors,
+  }) {
+    return resetErrors?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
+    TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
+        selectActivity,
+    TResult Function(int? daysInWeek, bool shouldValidate,
+            QuestionnaireFillStatus fillStatus)?
+        selectDaysInWeek,
+    TResult Function(int hours, QuestionnaireFillStatus fillStatus)? selectHour,
+    TResult Function(int minutes, QuestionnaireFillStatus fillStatus)?
+        selectMinutes,
+    TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
+    TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
+    TResult Function()? resetErrors,
+    required TResult orElse(),
+  }) {
+    if (resetErrors != null) {
+      return resetErrors();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_QuestionnaireSubmit value) onSubmit,
+    required TResult Function(_SelectActivity value) selectActivity,
+    required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
+    required TResult Function(_SelectHours value) selectHour,
+    required TResult Function(_SelectMinutes value) selectMinutes,
+    required TResult Function(_ValidateScreen value) validateScreen,
+    required TResult Function(_LEFSInitial value) lefsInitial,
+    required TResult Function(_ResetErrors value) resetErrors,
+  }) {
+    return resetErrors(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
+    TResult? Function(_SelectActivity value)? selectActivity,
+    TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
+    TResult? Function(_SelectHours value)? selectHour,
+    TResult? Function(_SelectMinutes value)? selectMinutes,
+    TResult? Function(_ValidateScreen value)? validateScreen,
+    TResult? Function(_LEFSInitial value)? lefsInitial,
+    TResult? Function(_ResetErrors value)? resetErrors,
+  }) {
+    return resetErrors?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_QuestionnaireSubmit value)? onSubmit,
+    TResult Function(_SelectActivity value)? selectActivity,
+    TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
+    TResult Function(_SelectHours value)? selectHour,
+    TResult Function(_SelectMinutes value)? selectMinutes,
+    TResult Function(_ValidateScreen value)? validateScreen,
+    TResult Function(_LEFSInitial value)? lefsInitial,
+    TResult Function(_ResetErrors value)? resetErrors,
+    required TResult orElse(),
+  }) {
+    if (resetErrors != null) {
+      return resetErrors(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ResetErrors implements QuestionnaireEvent {
+  factory _ResetErrors() = _$ResetErrorsImpl;
 }
 
 /// @nodoc

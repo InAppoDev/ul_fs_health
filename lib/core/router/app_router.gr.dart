@@ -76,25 +76,6 @@ class GPAQInitialRouteArgs {
 }
 
 /// generated route for
-/// [HistoryScreen]
-class HistoryRoute extends PageRouteInfo<void> {
-  const HistoryRoute({List<PageRouteInfo>? children})
-      : super(
-          HistoryRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HistoryRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const HistoryScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [GPAQRecreationInitialScreen]
 class GPAQRecreationInitialRoute
     extends PageRouteInfo<GPAQRecreationInitialRouteArgs> {
@@ -470,6 +451,25 @@ class GPAQWorkRouteArgs {
   String toString() {
     return 'GPAQWorkRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
   }
+}
+
+/// generated route for
+/// [HistoryScreen]
+class HistoryRoute extends PageRouteInfo<void> {
+  const HistoryRoute({List<PageRouteInfo>? children})
+      : super(
+          HistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HistoryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HistoryScreen();
+    },
+  );
 }
 
 /// generated route for

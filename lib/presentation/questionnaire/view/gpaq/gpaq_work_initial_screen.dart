@@ -39,7 +39,10 @@ class GPAQWorkInitialContent extends StatelessWidget {
           leftTitle: appLocalizations.btnBackActionText,
           rightTitle: appLocalizations.btnNextActionText,
           onLeftPress: () => context.router.maybePop(),
-          onRightPress: () => context.router.push(GPAQWorkRoute(shouldAuthenticate: shouldAuthenticate)),
+          onRightPress: () {
+            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+            context.router.push(GPAQWorkRoute(shouldAuthenticate: shouldAuthenticate));
+          },
           leftTitleColor: ColorScheme.of(context).onSecondary,
           rightTitleColor: ColorScheme.of(context).onPrimary,
           leftBackgroundColor: ColorScheme.of(context).secondary,

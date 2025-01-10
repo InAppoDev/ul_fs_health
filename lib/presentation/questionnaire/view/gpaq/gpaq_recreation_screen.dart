@@ -67,7 +67,10 @@ class GPAQRecreationContentContentState extends State<GPAQRecreationContent> {
           leftTitle: appLocalizations.btnBackActionText,
           rightTitle: appLocalizations.btnNextActionText,
           onLeftPress: () => context.router.maybePop(),
-          onRightPress: () => context.router.push(GPAQSedentaryInitialRoute(shouldAuthenticate: widget.shouldAuthenticate)),
+          onRightPress: () {
+            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+            context.router.push(GPAQSedentaryInitialRoute(shouldAuthenticate: widget.shouldAuthenticate));
+          },
           leftTitleColor: ColorScheme.of(context).onSecondary,
           rightTitleColor: ColorScheme.of(context).onPrimary,
           leftBackgroundColor: ColorScheme.of(context).secondary,
@@ -141,7 +144,7 @@ class GPAQRecreationContentContentState extends State<GPAQRecreationContent> {
                           onChanged: (e) => context.read<QuestionnaireBloc>().add(
                               QuestionnaireEvent.selectDaysInWeek(
                                   daysInWeek: e,
-                                  shouldValidate: true,
+                                  shouldValidate: false,
                                   fillStatus: QuestionnaireFillStatus.recreation)),
                           onFocusChange: (hasFocus) => context.read<QuestionnaireBloc>().add(
                               QuestionnaireEvent.selectDaysInWeek(

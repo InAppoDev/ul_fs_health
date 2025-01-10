@@ -25,6 +25,7 @@ class QuestionnaireEvent with _$QuestionnaireEvent {
       _ValidateScreen;
 
   factory QuestionnaireEvent.lefsInitial(Map<String, DifficultyLevel> initialData) = _LEFSInitial;
+  factory QuestionnaireEvent.resetErrors() = _ResetErrors;
 }
 
 enum QuestionnaireFillStatus {initial, work, travel, sedentary, recreation, workInitial}

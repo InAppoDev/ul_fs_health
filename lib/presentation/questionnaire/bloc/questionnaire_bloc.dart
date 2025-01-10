@@ -21,6 +21,7 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
     on<_SelectHours>(_onSelectWorkHours);
     on<_SelectMinutes>(_onSelectWorkMinutes);
     on<_LEFSInitial>(_onLEFSInitial);
+    on<_ResetErrors>(_onResetErrors);
   }
 
   void _onQuestionnaireSubmit(_QuestionnaireSubmit event, Emitter<QuestionnaireState> emit) {}
@@ -139,5 +140,9 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
       case QuestionnaireFillStatus.initial:
       case QuestionnaireFillStatus.workInitial:
     }
+  }
+
+  void _onResetErrors(_ResetErrors event, Emitter<QuestionnaireState> emit) {
+    emit(state.copyWith(daysError: ''));
   }
 }
