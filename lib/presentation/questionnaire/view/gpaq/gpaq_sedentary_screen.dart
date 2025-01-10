@@ -7,37 +7,34 @@ import '../../../../../core/constants/gaps.dart';
 import '../../../../../core/extensions/number_extension.dart';
 import '../../../../../core/themes/app_text_styles.dart';
 import '../../../../../l10n/localizations_utils.dart';
-import '../../../../core/router/app_router.dart';
 import '../../../auth/widgets/auth_guard_widget.dart';
-import '../../../utils/widgets/dropdown_widget.dart';
 import '../../../utils/widgets/row_actions_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
 import '../../../utils/widgets/text_input_widget.dart';
 import '../../bloc/questionnaire_bloc.dart';
 
 @RoutePage()
-class GPAQTravelScreen extends StatelessWidget {
-  const GPAQTravelScreen({super.key, this.shouldAuthenticate = false});
+class GPAQSedentaryScreen extends StatelessWidget {
+  const GPAQSedentaryScreen({super.key, this.shouldAuthenticate = false});
 
   final bool shouldAuthenticate;
 
   @override
   Widget build(BuildContext context) {
-    context.read<QuestionnaireBloc>().add(QuestionnaireEvent.validateScreen(QuestionnaireFillStatus.travel));
-    return GPAQTravelContent(shouldAuthenticate: shouldAuthenticate);
+    return GPAQSedentaryContent(shouldAuthenticate: shouldAuthenticate);
   }
 }
 
-class GPAQTravelContent extends StatefulWidget {
-  const GPAQTravelContent({super.key, required this.shouldAuthenticate});
+class GPAQSedentaryContent extends StatefulWidget {
+  const GPAQSedentaryContent({super.key, required this.shouldAuthenticate});
 
   final bool shouldAuthenticate;
 
   @override
-  State<GPAQTravelContent> createState() => GPAQTravelContentState();
+  State<GPAQSedentaryContent> createState() => GPAQSedentaryContentState();
 }
 
-class GPAQTravelContentState extends State<GPAQTravelContent> {
+class GPAQSedentaryContentState extends State<GPAQSedentaryContent> {
   final TextEditingController _hourController = TextEditingController();
   final TextEditingController _minuteController = TextEditingController();
 
@@ -46,15 +43,13 @@ class GPAQTravelContentState extends State<GPAQTravelContent> {
     super.initState();
     _hourController.addListener(() {
       final int hours = _hourController.text.isEmpty ? 0 : int.parse(_hourController.text);
-      context
-          .read<QuestionnaireBloc>()
-          .add(QuestionnaireEvent.selectHour(hours: hours, fillStatus: QuestionnaireFillStatus.travel));
+      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.selectHour(
+          hours: hours, fillStatus: QuestionnaireFillStatus.sedentary));
     });
     _minuteController.addListener(() {
       final int minutes = _minuteController.text.isEmpty ? 0 : int.parse(_minuteController.text);
-      context
-          .read<QuestionnaireBloc>()
-          .add(QuestionnaireEvent.selectMinutes(minutes: minutes, fillStatus: QuestionnaireFillStatus.travel));
+      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.selectMinutes(
+          minutes: minutes, fillStatus: QuestionnaireFillStatus.sedentary));
     });
   }
 
@@ -67,7 +62,7 @@ class GPAQTravelContentState extends State<GPAQTravelContent> {
           leftTitle: appLocalizations.btnBackActionText,
           rightTitle: appLocalizations.btnNextActionText,
           onLeftPress: () => context.router.maybePop(),
-          onRightPress: () => context.router.push(GPAQRecreationInitialRoute(shouldAuthenticate: widget.shouldAuthenticate)),
+          onRightPress: () => context.router.popUntilRoot(),
           leftTitleColor: ColorScheme.of(context).onSecondary,
           rightTitleColor: ColorScheme.of(context).onPrimary,
           leftBackgroundColor: ColorScheme.of(context).secondary,
@@ -87,7 +82,7 @@ class GPAQTravelContentState extends State<GPAQTravelContent> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Gaps.large.spaceVertical,
-                      Text(appLocalizations.gpaqTravelHeaderText,
+                      Text(appLocalizations.gpaqSedentaryHeaderText,
                           style: header1.copyWith(
                               decoration: TextDecoration.underline,
                               fontSize: 20,
@@ -95,61 +90,7 @@ class GPAQTravelContentState extends State<GPAQTravelContent> {
                               height: 1.4,
                               letterSpacing: -2)),
                       Gaps.larger.spaceVertical,
-                      Text(appLocalizations.gpaqTravelDescription3,
-                          style: body1, textAlign: TextAlign.justify),
-                      Gaps.medium.spaceVertical,
-                      RowActionsWidget(
-                          leftTitle: appLocalizations.btnActionYes,
-                          rightTitle: appLocalizations.btnActionNo,
-                          onLeftPress: () => context
-                              .read<QuestionnaireBloc>()
-                              .add(QuestionnaireEvent.selectActivity(hasActivity: true, fillStatus: QuestionnaireFillStatus.travel)),
-                          onRightPress: () => context
-                              .read<QuestionnaireBloc>()
-                              .add(QuestionnaireEvent.selectActivity(hasActivity: false, fillStatus: QuestionnaireFillStatus.travel)),
-                          leftTitleColor:
-                          context.watch<QuestionnaireBloc>().state.travelData.hasActivity == true
-                              ? ColorScheme.of(context).onPrimary
-                              : ColorScheme.of(context).onSecondary,
-                          rightTitleColor:
-                          context.watch<QuestionnaireBloc>().state.travelData.hasActivity == false
-                              ? ColorScheme.of(context).onPrimary
-                              : ColorScheme.of(context).onSecondary,
-                          leftBackgroundColor:
-                          context.watch<QuestionnaireBloc>().state.travelData.hasActivity == true
-                              ? ColorScheme.of(context).primary
-                              : ColorScheme.of(context).secondary,
-                          rightBackgroundColor:
-                          context.watch<QuestionnaireBloc>().state.travelData.hasActivity == false
-                              ? ColorScheme.of(context).primary
-                              : ColorScheme.of(context).secondary),
-                      if (context.watch<QuestionnaireBloc>().state.travelData.hasActivity == null) ...[
-                        Gaps.medium.spaceVertical,
-                        Text(appLocalizations.gpaqRequiredChoice,
-                            style: body1.copyWith(color: ColorScheme.of(context).error)),
-                        Gaps.medium.spaceVertical,
-                      ],
-                      Gaps.medium.spaceVertical,
-                      Text(appLocalizations.gpaqTravelDescription4,
-                          style: body1, textAlign: TextAlign.justify),
-                      Gaps.medium.spaceVertical,
-                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => DropdownWidget<int>(
-                          selectedValue: state.travelData.daysInWeek,
-                          values: List.generate(7, (index) => index + 1),
-                          onChanged: (e) => context.read<QuestionnaireBloc>().add(
-                              QuestionnaireEvent.selectDaysInWeek(
-                                  daysInWeek: e, shouldValidate: true, fillStatus: QuestionnaireFillStatus.travel)),
-                          onFocusChange: (hasFocus) => context.read<QuestionnaireBloc>().add(
-                              QuestionnaireEvent.selectDaysInWeek(
-                                  daysInWeek: state.travelData.daysInWeek, shouldValidate: !hasFocus, fillStatus: QuestionnaireFillStatus.travel, )),
-                          hintText: appLocalizations.gpaqDaysHintText,
-                          onGenerateLabel: (days) => appLocalizations.textFromDays(days),
-                          errorText: state.daysError,
-                        ),
-                      ),
-                      Gaps.medium.spaceVertical,
-                      Text(appLocalizations.gpaqTravelDescription5,
+                      Text(appLocalizations.gpaqSedentaryDescription1,
                           style: body1, textAlign: TextAlign.justify),
                       Gaps.medium.spaceVertical,
                       Row(

@@ -22,13 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(count) => "After ${count} repetitions, ";
 
-  static String m1(value) => "${value} meter";
+  static String m1(value) => "${value} days";
 
-  static String m2(text) => "${text}\n";
+  static String m2(value) => "${value} meter";
 
-  static String m3(minute) => "${minute} minutes pass, ";
+  static String m3(text) => "${text}\n";
 
-  static String m4(appName) => "Welcome to ${appName}!";
+  static String m4(minute) => "${minute} minutes pass, ";
+
+  static String m5(appName) => "Welcome to ${appName}!";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -52,6 +54,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Save and continue"),
         "btnSaveChangesText":
             MessageLookupByLibrary.simpleMessage("Save changes"),
+        "btnSaveContinueActionText":
+            MessageLookupByLibrary.simpleMessage("Save and continue"),
         "btnSaveResultsText":
             MessageLookupByLibrary.simpleMessage("save results"),
         "btnStartText": MessageLookupByLibrary.simpleMessage("start"),
@@ -74,6 +78,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select your gender"),
         "genderRequiredErrorText":
             MessageLookupByLibrary.simpleMessage("Please select your gender"),
+        "gpaqDaysErrorText": MessageLookupByLibrary.simpleMessage(
+            "Please select number of days"),
+        "gpaqDaysHintText":
+            MessageLookupByLibrary.simpleMessage("Select number of days"),
         "gpaqDescription": MessageLookupByLibrary.simpleMessage(
             "This questionnaire will consist of questions about your physical activity in a normal week. Please answer these questions even if you do not consider yourself to be a physically active person."),
         "gpaqHeaderText": MessageLookupByLibrary.simpleMessage(
@@ -86,18 +94,44 @@ class MessageLookup extends MessageLookupByLibrary {
             "In answering the following questions \'vigorous-intensity activities\' are activities that require hard physical effort and cause large increases in breathing or heart rate, \'moderate-intensity activities\' are activities that require moderate physical effort and cause small increases in breathing or heart rate."),
         "gpaqInitialHeaderText":
             MessageLookupByLibrary.simpleMessage("Physical Activity"),
+        "gpaqRecreationDescription": MessageLookupByLibrary.simpleMessage(
+            "The next questions exclude the work and transport activities that you have already mentioned."),
+        "gpaqRecreationDescription2": MessageLookupByLibrary.simpleMessage(
+            "Following questions will be about sports, fitness and recreational activities (leisure)."),
+        "gpaqRecreationDescription3": MessageLookupByLibrary.simpleMessage(
+            "Do you do any vigorous-intensity sports, fitness or recreational (leisure) activities that cause large increases in breathing or heart rate like [running or football] for at least 10 minutes continuously?"),
+        "gpaqRecreationDescription4": MessageLookupByLibrary.simpleMessage(
+            "In a typical week, on how many days do you do vigorous-intensity sports, fitness or recreational (leisure) activities?"),
+        "gpaqRecreationDescription5": MessageLookupByLibrary.simpleMessage(
+            "How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day?"),
+        "gpaqRecreationDescription6": MessageLookupByLibrary.simpleMessage(
+            "Do you do any moderate-intensity sports, fitness or recreational (leisure) activities that cause a small increase in breathing or heart rate such as brisk walking (or cycling, swimming, volleyball) for at least 10 minutes continuously?"),
+        "gpaqRecreationDescription7": MessageLookupByLibrary.simpleMessage(
+            "In a typical week, on how many days do you do moderate-intensity sports, fitness or recreational (leisure) activities?"),
+        "gpaqRecreationDescription8": MessageLookupByLibrary.simpleMessage(
+            "How much time do you spend doing moderate-intensity sports, fitness or recreational activities on a typical day?"),
+        "gpaqRecreationHeaderText":
+            MessageLookupByLibrary.simpleMessage("Recreational activities"),
         "gpaqRequiredChoice": MessageLookupByLibrary.simpleMessage(
             "Please select one of choices"),
+        "gpaqSedentaryDescription": MessageLookupByLibrary.simpleMessage(
+            "The following question is about sitting or reclining at work, at home, getting to and from places, or with friends including time spent sitting at a desk, sitting with friends, traveling in car, bus, train, reading, playing cards or watching television, but do not include time spent sleeping."),
+        "gpaqSedentaryDescription1": MessageLookupByLibrary.simpleMessage(
+            "How much time do you usually spend sitting or reclining on a typical day?"),
+        "gpaqSedentaryHeaderText":
+            MessageLookupByLibrary.simpleMessage("Sedentary behaviour"),
         "gpaqTravelDescription": MessageLookupByLibrary.simpleMessage(
             "The next questions exclude the physical activities at work that you have already mentioned."),
         "gpaqTravelDescription2": MessageLookupByLibrary.simpleMessage(
             "Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship."),
+        "gpaqTravelDescription3": MessageLookupByLibrary.simpleMessage(
+            "Do you walk or use a bicycle (pedal cycle) for at least 10 minutes continuously to get to and from places?"),
+        "gpaqTravelDescription4": MessageLookupByLibrary.simpleMessage(
+            "In a typical week, on how many days do you walk or bicycle for at least 10 minutes continuously to get to and from places?"),
+        "gpaqTravelDescription5": MessageLookupByLibrary.simpleMessage(
+            "How much time do you spend walking or bicycling for travel on a typical day?"),
         "gpaqTravelHeaderText":
             MessageLookupByLibrary.simpleMessage("Travel to and from places"),
-        "gpaqWorkDaysErrorText": MessageLookupByLibrary.simpleMessage(
-            "Please select number of days"),
-        "gpaqWorkDaysHintText":
-            MessageLookupByLibrary.simpleMessage("Select number of days"),
         "gpaqWorkDescription": MessageLookupByLibrary.simpleMessage(
             "Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?"),
         "gpaqWorkDescription2": MessageLookupByLibrary.simpleMessage(
@@ -198,8 +232,56 @@ class MessageLookup extends MessageLookupByLibrary {
         "lefsDescription6": MessageLookupByLibrary.simpleMessage("would you"),
         "lefsDescription7": MessageLookupByLibrary.simpleMessage(
             " have any difficulty at all with:"),
+        "lefsDifficultyLevelText1": MessageLookupByLibrary.simpleMessage(
+            "Extreme difficulty or unable to perform activity"),
+        "lefsDifficultyLevelText2":
+            MessageLookupByLibrary.simpleMessage("Quite a bit of difficulty"),
+        "lefsDifficultyLevelText3":
+            MessageLookupByLibrary.simpleMessage("Moderate difficulty"),
+        "lefsDifficultyLevelText4":
+            MessageLookupByLibrary.simpleMessage("A little bit of difficulty"),
+        "lefsDifficultyLevelText5":
+            MessageLookupByLibrary.simpleMessage("No difficulty"),
         "lefsHeaderText": MessageLookupByLibrary.simpleMessage(
             "Lower Extremity Functional Scale (LEFS)"),
+        "lefsQuestionText1": MessageLookupByLibrary.simpleMessage(
+            "Any of your usual work, housework or school activities."),
+        "lefsQuestionText10": MessageLookupByLibrary.simpleMessage(
+            "Getting into or out of a car."),
+        "lefsQuestionText11":
+            MessageLookupByLibrary.simpleMessage("Walking 2 blocks."),
+        "lefsQuestionText12":
+            MessageLookupByLibrary.simpleMessage("Walking a mile"),
+        "lefsQuestionText13": MessageLookupByLibrary.simpleMessage(
+            "Going up or down 10 stairs (about 1 flight of stairs)."),
+        "lefsQuestionText14":
+            MessageLookupByLibrary.simpleMessage("Standing for 1 hour."),
+        "lefsQuestionText15":
+            MessageLookupByLibrary.simpleMessage("Sitting for 1 hour."),
+        "lefsQuestionText16":
+            MessageLookupByLibrary.simpleMessage("Running on even ground."),
+        "lefsQuestionText17":
+            MessageLookupByLibrary.simpleMessage("Running on uneven ground."),
+        "lefsQuestionText18": MessageLookupByLibrary.simpleMessage(
+            "Making sharp turns while running fast."),
+        "lefsQuestionText19": MessageLookupByLibrary.simpleMessage("Hopping."),
+        "lefsQuestionText2": MessageLookupByLibrary.simpleMessage(
+            "Your usual hobbies, recreational or sporting activities."),
+        "lefsQuestionText20":
+            MessageLookupByLibrary.simpleMessage("Rolling over in bed."),
+        "lefsQuestionText3": MessageLookupByLibrary.simpleMessage(
+            "Getting into or out of the bath."),
+        "lefsQuestionText4":
+            MessageLookupByLibrary.simpleMessage("Walking between rooms."),
+        "lefsQuestionText5": MessageLookupByLibrary.simpleMessage(
+            "Putting on your shoes or socks."),
+        "lefsQuestionText6": MessageLookupByLibrary.simpleMessage("Squatting."),
+        "lefsQuestionText7": MessageLookupByLibrary.simpleMessage(
+            "Lifting an object, like a bag of groceries from the floor."),
+        "lefsQuestionText8": MessageLookupByLibrary.simpleMessage(
+            "Performing light activities around your home."),
+        "lefsQuestionText9": MessageLookupByLibrary.simpleMessage(
+            "Performing heavy activities around your home."),
         "mandatoryText": MessageLookupByLibrary.simpleMessage("mandatory"),
         "menuDashboardText": MessageLookupByLibrary.simpleMessage("Dashboard"),
         "menuLogoutText": MessageLookupByLibrary.simpleMessage("Log out"),
@@ -255,8 +337,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "testInstructionWalkThirdPart": MessageLookupByLibrary.simpleMessage(
             " will let you know when you can start walking."),
         "testStartText": MessageLookupByLibrary.simpleMessage("START TEST"),
-        "textFromMeter": m1,
-        "textWithNewLine": m2,
+        "textFromDays": m1,
+        "textFromMeter": m2,
+        "textWithNewLine": m3,
         "walkSelectLengthErrorText":
             MessageLookupByLibrary.simpleMessage("Please select meter length"),
         "walkTestAdditionalInfoFirstPartText": MessageLookupByLibrary.simpleMessage(
@@ -266,7 +349,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 " and resume with the test when you are feeling better."),
         "walkTestAverageSpeedText":
             MessageLookupByLibrary.simpleMessage("average speed:"),
-        "walkTestDelayText": m3,
+        "walkTestDelayText": m4,
         "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
             "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
         "walkTestDistanceText":
@@ -287,6 +370,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please type your weight"),
         "welcomeAppDescriptionText": MessageLookupByLibrary.simpleMessage(
             "In order to give the best results, our app needs detailed information about your personal and medical conditions."),
-        "welcomeAppNameText": m4
+        "welcomeAppNameText": m5
       };
 }

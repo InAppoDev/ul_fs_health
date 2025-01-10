@@ -7,8 +7,8 @@ import '../../../../../core/constants/gaps.dart';
 import '../../../../../core/extensions/number_extension.dart';
 import '../../../../../core/themes/app_text_styles.dart';
 import '../../../../../l10n/localizations_utils.dart';
+import '../../../../core/router/app_router.dart';
 import '../../../auth/widgets/auth_guard_widget.dart';
-import '../../../utils/formatters/number_pad_start_formatter.dart';
 import '../../../utils/widgets/dropdown_widget.dart';
 import '../../../utils/widgets/row_actions_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
@@ -23,17 +23,40 @@ class GPAQWorkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<QuestionnaireBloc>().add(QuestionnaireEvent.validateWorkScreen());
+    context
+        .read<QuestionnaireBloc>()
+        .add(QuestionnaireEvent.validateScreen(QuestionnaireFillStatus.work));
     return GPAQWorkContent(shouldAuthenticate: shouldAuthenticate);
   }
 }
 
-class GPAQWorkContent extends StatelessWidget {
-  GPAQWorkContent({super.key, required this.shouldAuthenticate});
+class GPAQWorkContent extends StatefulWidget {
+  const GPAQWorkContent({super.key, required this.shouldAuthenticate});
 
   final bool shouldAuthenticate;
+
+  @override
+  State<StatefulWidget> createState() => GPAQWorkContentState();
+}
+
+class GPAQWorkContentState extends State<GPAQWorkContent> {
   final TextEditingController _hourController = TextEditingController();
   final TextEditingController _minuteController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _hourController.addListener(() {
+      final int hours = _hourController.text.isEmpty ? 0 : int.parse(_hourController.text);
+      context.read<QuestionnaireBloc>().add(
+          QuestionnaireEvent.selectHour(hours: hours, fillStatus: QuestionnaireFillStatus.work));
+    });
+    _minuteController.addListener(() {
+      final int minutes = _minuteController.text.isEmpty ? 0 : int.parse(_minuteController.text);
+      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.selectMinutes(
+          minutes: minutes, fillStatus: QuestionnaireFillStatus.work));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +67,19 @@ class GPAQWorkContent extends StatelessWidget {
           leftTitle: appLocalizations.btnBackActionText,
           rightTitle: appLocalizations.btnNextActionText,
           onLeftPress: () => context.router.maybePop(),
-          onRightPress: () {},
+          onRightPress: () => context.router.push(GPAQTravelInitialRoute(shouldAuthenticate: widget.shouldAuthenticate)),
           leftTitleColor: ColorScheme.of(context).onSecondary,
           rightTitleColor: ColorScheme.of(context).onPrimary,
           leftBackgroundColor: ColorScheme.of(context).secondary,
           rightBackgroundColor: ColorScheme.of(context).primary),
       appBar: SimpleAppBarWidget(
-        showBackButton: shouldAuthenticate,
+        showBackButton: widget.shouldAuthenticate,
         onInfoPress: () {},
       ),
       body: SingleChildScrollView(
         child: Center(
           child: AuthGuardWidget(
-              isAuthRoute: !shouldAuthenticate,
+              isAuthRoute: !widget.shouldAuthenticate,
               child: Center(
                 child: Padding(
                   padding: (Gaps.largest + Gaps.small).paddingHorizontal,
@@ -78,31 +101,33 @@ class GPAQWorkContent extends StatelessWidget {
                       RowActionsWidget(
                           leftTitle: appLocalizations.btnActionYes,
                           rightTitle: appLocalizations.btnActionNo,
-                          onLeftPress: () => context
-                              .read<QuestionnaireBloc>()
-                              .add(QuestionnaireEvent.selectModerateActivity(true)),
-                          onRightPress: () => context
-                              .read<QuestionnaireBloc>()
-                              .add(QuestionnaireEvent.selectModerateActivity(false)),
+                          onLeftPress: () => context.read<QuestionnaireBloc>().add(
+                              QuestionnaireEvent.selectActivity(
+                                  hasActivity: true, fillStatus: QuestionnaireFillStatus.work)),
+                          onRightPress: () => context.read<QuestionnaireBloc>().add(
+                              QuestionnaireEvent.selectActivity(
+                                  hasActivity: false, fillStatus: QuestionnaireFillStatus.work)),
                           leftTitleColor:
-                              context.watch<QuestionnaireBloc>().state.isModerateActivity == true
+                              context.watch<QuestionnaireBloc>().state.workData.hasActivity == true
                                   ? ColorScheme.of(context).onPrimary
                                   : ColorScheme.of(context).onSecondary,
                           rightTitleColor:
-                              context.watch<QuestionnaireBloc>().state.isModerateActivity == false
+                              context.watch<QuestionnaireBloc>().state.workData.hasActivity == false
                                   ? ColorScheme.of(context).onPrimary
                                   : ColorScheme.of(context).onSecondary,
                           leftBackgroundColor:
-                              context.watch<QuestionnaireBloc>().state.isModerateActivity == true
+                              context.watch<QuestionnaireBloc>().state.workData.hasActivity == true
                                   ? ColorScheme.of(context).primary
                                   : ColorScheme.of(context).secondary,
                           rightBackgroundColor:
-                              context.watch<QuestionnaireBloc>().state.isModerateActivity == false
+                              context.watch<QuestionnaireBloc>().state.workData.hasActivity == false
                                   ? ColorScheme.of(context).primary
                                   : ColorScheme.of(context).secondary),
-                      if (context.watch<QuestionnaireBloc>().state.isModerateActivity == null) ...[
+                      if (context.watch<QuestionnaireBloc>().state.workData.hasActivity ==
+                          null) ...[
                         Gaps.medium.spaceVertical,
-                        Text(appLocalizations.gpaqRequiredChoice, style: body1.copyWith(color: ColorScheme.of(context).error)),
+                        Text(appLocalizations.gpaqRequiredChoice,
+                            style: body1.copyWith(color: ColorScheme.of(context).error)),
                         Gaps.medium.spaceVertical,
                       ],
                       Gaps.medium.spaceVertical,
@@ -111,17 +136,21 @@ class GPAQWorkContent extends StatelessWidget {
                       Gaps.medium.spaceVertical,
                       BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
                         builder: (context, state) => DropdownWidget<int>(
-                          selectedValue: state.workDaysInWeek,
+                          selectedValue: state.workData.daysInWeek,
                           values: List.generate(7, (index) => index + 1),
-                          onChanged: (e) => context
-                              .read<QuestionnaireBloc>()
-                              .add(QuestionnaireEvent.selectWorkDaysInWeek(daysInWeek: e, shouldValidate: true)),
-                          onFocusChange: (hasFocus) => context
-                              .read<QuestionnaireBloc>()
-                              .add(QuestionnaireEvent.selectWorkDaysInWeek(daysInWeek: state.workDaysInWeek, shouldValidate: !hasFocus)),
-                          hintText: appLocalizations.gpaqWorkDaysHintText,
-                          onGenerateLabel: (e) => '$e days',
-                          errorText: state.workDaysError,
+                          onChanged: (e) => context.read<QuestionnaireBloc>().add(
+                              QuestionnaireEvent.selectDaysInWeek(
+                                  daysInWeek: e,
+                                  shouldValidate: true,
+                                  fillStatus: QuestionnaireFillStatus.work)),
+                          onFocusChange: (hasFocus) => context.read<QuestionnaireBloc>().add(
+                              QuestionnaireEvent.selectDaysInWeek(
+                                  daysInWeek: state.workData.daysInWeek,
+                                  shouldValidate: !hasFocus,
+                                  fillStatus: QuestionnaireFillStatus.work)),
+                          hintText: appLocalizations.gpaqDaysHintText,
+                          onGenerateLabel: (days) => appLocalizations.textFromDays(days),
+                          errorText: state.daysError,
                         ),
                       ),
                       Gaps.medium.spaceVertical,
@@ -132,38 +161,51 @@ class GPAQWorkContent extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
+                              width: 64,
+                              child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                                builder: (context, state) => TextInputWidget(
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly,
+                                      LengthLimitingTextInputFormatter(2)
+                                    ],
+                                    onFocusChange: (hasFocus) {
+                                      if (!hasFocus) {
+                                        final minutes = _hourController.text;
+                                        final formattedText = minutes.padLeft(2, '0');
+                                        if (formattedText != minutes) {
+                                          _hourController.text = formattedText;
+                                        }
+                                      }
+                                    },
+                                    keyboardType: TextInputType.number,
+                                    centerText: true,
+                                    controller: _hourController,
+                                    hintText: '00'),
+                              )),
+                          Gaps.small.spaceHorizontal,
+                          Text(':', style: body1.copyWith(fontSize: 20)),
+                          Gaps.small.spaceHorizontal,
+                          SizedBox(
                             width: 64,
                             child: TextInputWidget(
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                                LengthLimitingTextInputFormatter(2)
-                              ],
-                              onFocusChange: (hasFocus) {
-
-                              },
-                              keyboardType: TextInputType.number,
-                              centerText: true,
-                              controller: _hourController,
-                              hintText: "00"),
+                                onFocusChange: (hasFocus) {
+                                  if (!hasFocus) {
+                                    final minutes = _minuteController.text;
+                                    final formattedText = minutes.padLeft(2, '0');
+                                    if (formattedText != minutes) {
+                                      _minuteController.text = formattedText;
+                                    }
+                                  }
+                                },
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  LengthLimitingTextInputFormatter(2)
+                                ],
+                                keyboardType: TextInputType.number,
+                                centerText: true,
+                                controller: _minuteController,
+                                hintText: '00'),
                           ),
-                            Gaps.small.spaceHorizontal,
-                            Text(":"),
-                            Gaps.small.spaceHorizontal,
-                            SizedBox(
-                              width: 64,
-                              child: TextInputWidget(
-                                  onFocusChange: (hasFocus) {
-
-                                  },
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly,
-                                    LengthLimitingTextInputFormatter(2)
-                                  ],
-                                  keyboardType: TextInputType.number,
-                                  centerText: true,
-                                  controller: _minuteController,
-                                  hintText: '00'),
-                            ),
                         ],
                       )
                     ],

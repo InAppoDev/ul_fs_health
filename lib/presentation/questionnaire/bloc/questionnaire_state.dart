@@ -4,9 +4,13 @@ part of 'questionnaire_bloc.dart';
 class QuestionnaireState with _$QuestionnaireState {
   factory QuestionnaireState.initial(
       {@Default(QuestionnaireStatus.initial) QuestionnaireStatus status,
-        bool? isModerateActivity,
-        int? workDaysInWeek,
-        @Default('') String workDaysError,
+        @Default(QuestionnaireModel.from()) QuestionnaireModel travelData,
+        @Default(QuestionnaireModel.from()) QuestionnaireModel workData,
+        @Default(SedentaryModel.from()) SedentaryModel sedentaryData,
+        @Default(QuestionnaireModel.from()) QuestionnaireModel recreationData,
+        bool? hasWorkInitialActivity,
+        @Default({}) Map<String, DifficultyLevel> lefsData,
+        @Default('') String daysError,
         @Default(false) bool isNextValid
       }) = _QuestionnaireStateInitial;
 }
