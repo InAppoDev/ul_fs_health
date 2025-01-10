@@ -6,5 +6,4 @@ abstract class PermissionService {
   Future<bool> isServiceEnabled();
   Future<LocationPermission> handlePermission();
   Future<void> openSettings();
-
 }
