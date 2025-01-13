@@ -11,19 +11,19 @@ import '../../../utils/widgets/row_actions_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
 
 @RoutePage()
-class GPAQInitialScreen extends StatelessWidget {
-  const GPAQInitialScreen({super.key, this.shouldAuthenticate = false});
+class GPAQSedentaryInitialScreen extends StatelessWidget {
+  const GPAQSedentaryInitialScreen({super.key, this.shouldAuthenticate = false});
 
 
   final bool shouldAuthenticate;
   @override
   Widget build(BuildContext context) {
-    return GPAQInitialContent(shouldAuthenticate: shouldAuthenticate);
+    return GPAQSedentaryInitialContent(shouldAuthenticate: shouldAuthenticate);
   }
 }
 
-class GPAQInitialContent extends StatelessWidget {
-  const GPAQInitialContent({super.key, required this.shouldAuthenticate});
+class GPAQSedentaryInitialContent extends StatelessWidget {
+  const GPAQSedentaryInitialContent({super.key, required this.shouldAuthenticate});
 
   final bool shouldAuthenticate;
 
@@ -31,15 +31,15 @@ class GPAQInitialContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: RowActionsWidget(
-            contentPadding: Gaps.largest.paddingAll,
-            leftTitle: appLocalizations.btnBackActionText,
-            rightTitle: appLocalizations.btnNextActionText,
-            onLeftPress: () => context.router.maybePop(),
-            onRightPress: () => context.router.push(GPAQWorkInitialRoute(shouldAuthenticate: shouldAuthenticate)),
-            leftTitleColor: ColorScheme.of(context).onSecondary,
-            rightTitleColor: ColorScheme.of(context).onPrimary,
-            leftBackgroundColor: ColorScheme.of(context).secondary,
-            rightBackgroundColor: ColorScheme.of(context).primary),
+          contentPadding: Gaps.largest.paddingAll,
+          leftTitle: appLocalizations.btnBackActionText,
+          rightTitle: appLocalizations.btnNextActionText,
+          onLeftPress: () => context.router.maybePop(),
+          onRightPress: () => context.router.push(GPAQSedentaryRoute(shouldAuthenticate: shouldAuthenticate)),
+          leftTitleColor: ColorScheme.of(context).onSecondary,
+          rightTitleColor: ColorScheme.of(context).onPrimary,
+          leftBackgroundColor: ColorScheme.of(context).secondary,
+          rightBackgroundColor: ColorScheme.of(context).primary),
       appBar: SimpleAppBarWidget(
         showBackButton: shouldAuthenticate,
         onInfoPress: () {},
@@ -54,17 +54,12 @@ class GPAQInitialContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Gaps.large.spaceVertical,
-                    Text(appLocalizations.gpaqInitialHeaderText, style: header1.copyWith(
+                    Text(appLocalizations.gpaqSedentaryHeaderText, style: header1.copyWith(
                         decoration: TextDecoration.underline,
                         fontSize: 20, fontWeight: FontWeight.w700, height: 1.4, letterSpacing: -2
-                    ),),
+                    )),
                     Gaps.larger.spaceVertical,
-                    Text(appLocalizations.gpaqInitialDescription1,style: body1, textAlign: TextAlign.justify),
-                    Gaps.medium.spaceVertical,
-                    Text(appLocalizations.gpaqInitialDescription2,style: body1, textAlign: TextAlign.justify),
-                    Gaps.medium.spaceVertical,
-                    Text(appLocalizations.gpaqInitialDescription3,style: body1, textAlign: TextAlign.justify),
-                    Gaps.medium.spaceVertical,
+                    Text(appLocalizations.gpaqSedentaryDescription,style: body1, textAlign: TextAlign.justify),
                   ],
                 ),
               ),

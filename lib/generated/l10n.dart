@@ -1429,6 +1429,576 @@ class S {
       args: [],
     );
   }
+
+  /// `Travel to and from places`
+  String get gpaqTravelHeaderText {
+    return Intl.message(
+      'Travel to and from places',
+      name: 'gpaqTravelHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The next questions exclude the physical activities at work that you have already mentioned.`
+  String get gpaqTravelDescription {
+    return Intl.message(
+      'The next questions exclude the physical activities at work that you have already mentioned.',
+      name: 'gpaqTravelDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship.`
+  String get gpaqTravelDescription2 {
+    return Intl.message(
+      'Following questions will be about the usual way you travel to and from places. For example to work, for shopping, to market, to place of worship.',
+      name: 'gpaqTravelDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work`
+  String get gpaqWorkHeaderText {
+    return Intl.message(
+      'Work',
+      name: 'gpaqWorkHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?`
+  String get gpaqWorkDescription {
+    return Intl.message(
+      'Does your work involve moderate-intensity activity, that causes small increases in breathing or heart rate such as brisk walking (or carrying light loads) for at least 10 minutes continuously?',
+      name: 'gpaqWorkDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In a typical week, on how many days do you do moderate-intensity activities as part of your work?`
+  String get gpaqWorkDescription2 {
+    return Intl.message(
+      'In a typical week, on how many days do you do moderate-intensity activities as part of your work?',
+      name: 'gpaqWorkDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much time do you spend doing moderate-intensity activities at work on a typical day?`
+  String get gpaqWorkDescription3 {
+    return Intl.message(
+      'How much time do you spend doing moderate-intensity activities at work on a typical day?',
+      name: 'gpaqWorkDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select number of days`
+  String get gpaqDaysHintText {
+    return Intl.message(
+      'Select number of days',
+      name: 'gpaqDaysHintText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you walk or use a bicycle (pedal cycle) for at least 10 minutes continuously to get to and from places?`
+  String get gpaqTravelDescription3 {
+    return Intl.message(
+      'Do you walk or use a bicycle (pedal cycle) for at least 10 minutes continuously to get to and from places?',
+      name: 'gpaqTravelDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In a typical week, on how many days do you walk or bicycle for at least 10 minutes continuously to get to and from places?`
+  String get gpaqTravelDescription4 {
+    return Intl.message(
+      'In a typical week, on how many days do you walk or bicycle for at least 10 minutes continuously to get to and from places?',
+      name: 'gpaqTravelDescription4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much time do you spend walking or bicycling for travel on a typical day?`
+  String get gpaqTravelDescription5 {
+    return Intl.message(
+      'How much time do you spend walking or bicycling for travel on a typical day?',
+      name: 'gpaqTravelDescription5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The next questions exclude the work and transport activities that you have already mentioned.`
+  String get gpaqRecreationDescription {
+    return Intl.message(
+      'The next questions exclude the work and transport activities that you have already mentioned.',
+      name: 'gpaqRecreationDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Following questions will be about sports, fitness and recreational activities (leisure).`
+  String get gpaqRecreationDescription2 {
+    return Intl.message(
+      'Following questions will be about sports, fitness and recreational activities (leisure).',
+      name: 'gpaqRecreationDescription2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you do any vigorous-intensity sports, fitness or recreational (leisure) activities that cause large increases in breathing or heart rate like [running or football] for at least 10 minutes continuously?`
+  String get gpaqRecreationDescription3 {
+    return Intl.message(
+      'Do you do any vigorous-intensity sports, fitness or recreational (leisure) activities that cause large increases in breathing or heart rate like [running or football] for at least 10 minutes continuously?',
+      name: 'gpaqRecreationDescription3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In a typical week, on how many days do you do vigorous-intensity sports, fitness or recreational (leisure) activities?`
+  String get gpaqRecreationDescription4 {
+    return Intl.message(
+      'In a typical week, on how many days do you do vigorous-intensity sports, fitness or recreational (leisure) activities?',
+      name: 'gpaqRecreationDescription4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day?`
+  String get gpaqRecreationDescription5 {
+    return Intl.message(
+      'How much time do you spend doing vigorous-intensity sports, fitness or recreational activities on a typical day?',
+      name: 'gpaqRecreationDescription5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you do any moderate-intensity sports, fitness or recreational (leisure) activities that cause a small increase in breathing or heart rate such as brisk walking (or cycling, swimming, volleyball) for at least 10 minutes continuously?`
+  String get gpaqRecreationDescription6 {
+    return Intl.message(
+      'Do you do any moderate-intensity sports, fitness or recreational (leisure) activities that cause a small increase in breathing or heart rate such as brisk walking (or cycling, swimming, volleyball) for at least 10 minutes continuously?',
+      name: 'gpaqRecreationDescription6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In a typical week, on how many days do you do moderate-intensity sports, fitness or recreational (leisure) activities?`
+  String get gpaqRecreationDescription7 {
+    return Intl.message(
+      'In a typical week, on how many days do you do moderate-intensity sports, fitness or recreational (leisure) activities?',
+      name: 'gpaqRecreationDescription7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much time do you spend doing moderate-intensity sports, fitness or recreational activities on a typical day?`
+  String get gpaqRecreationDescription8 {
+    return Intl.message(
+      'How much time do you spend doing moderate-intensity sports, fitness or recreational activities on a typical day?',
+      name: 'gpaqRecreationDescription8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The following question is about sitting or reclining at work, at home, getting to and from places, or with friends including time spent sitting at a desk, sitting with friends, traveling in car, bus, train, reading, playing cards or watching television, but do not include time spent sleeping.`
+  String get gpaqSedentaryDescription {
+    return Intl.message(
+      'The following question is about sitting or reclining at work, at home, getting to and from places, or with friends including time spent sitting at a desk, sitting with friends, traveling in car, bus, train, reading, playing cards or watching television, but do not include time spent sleeping.',
+      name: 'gpaqSedentaryDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How much time do you usually spend sitting or reclining on a typical day?`
+  String get gpaqSedentaryDescription1 {
+    return Intl.message(
+      'How much time do you usually spend sitting or reclining on a typical day?',
+      name: 'gpaqSedentaryDescription1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sedentary behaviour`
+  String get gpaqSedentaryHeaderText {
+    return Intl.message(
+      'Sedentary behaviour',
+      name: 'gpaqSedentaryHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recreational activities`
+  String get gpaqRecreationHeaderText {
+    return Intl.message(
+      'Recreational activities',
+      name: 'gpaqRecreationHeaderText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get btnActionYes {
+    return Intl.message(
+      'Yes',
+      name: 'btnActionYes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get btnActionNo {
+    return Intl.message(
+      'No',
+      name: 'btnActionNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finish`
+  String get btnActionFinishText {
+    return Intl.message(
+      'Finish',
+      name: 'btnActionFinishText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hours`
+  String get lblHourText {
+    return Intl.message(
+      'Hours',
+      name: 'lblHourText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minutes`
+  String get lblMinuteText {
+    return Intl.message(
+      'Minutes',
+      name: 'lblMinuteText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select number of days`
+  String get gpaqDaysErrorText {
+    return Intl.message(
+      'Please select number of days',
+      name: 'gpaqDaysErrorText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select one of choices`
+  String get gpaqRequiredChoice {
+    return Intl.message(
+      'Please select one of choices',
+      name: 'gpaqRequiredChoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{value} days`
+  String textFromDays(int value) {
+    return Intl.message(
+      '$value days',
+      name: 'textFromDays',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Any of your usual work, housework or school activities.`
+  String get lefsQuestionText1 {
+    return Intl.message(
+      'Any of your usual work, housework or school activities.',
+      name: 'lefsQuestionText1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your usual hobbies, recreational or sporting activities.`
+  String get lefsQuestionText2 {
+    return Intl.message(
+      'Your usual hobbies, recreational or sporting activities.',
+      name: 'lefsQuestionText2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Getting into or out of the bath.`
+  String get lefsQuestionText3 {
+    return Intl.message(
+      'Getting into or out of the bath.',
+      name: 'lefsQuestionText3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Walking between rooms.`
+  String get lefsQuestionText4 {
+    return Intl.message(
+      'Walking between rooms.',
+      name: 'lefsQuestionText4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Putting on your shoes or socks.`
+  String get lefsQuestionText5 {
+    return Intl.message(
+      'Putting on your shoes or socks.',
+      name: 'lefsQuestionText5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Squatting.`
+  String get lefsQuestionText6 {
+    return Intl.message(
+      'Squatting.',
+      name: 'lefsQuestionText6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lifting an object, like a bag of groceries from the floor.`
+  String get lefsQuestionText7 {
+    return Intl.message(
+      'Lifting an object, like a bag of groceries from the floor.',
+      name: 'lefsQuestionText7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Performing light activities around your home.`
+  String get lefsQuestionText8 {
+    return Intl.message(
+      'Performing light activities around your home.',
+      name: 'lefsQuestionText8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Performing heavy activities around your home.`
+  String get lefsQuestionText9 {
+    return Intl.message(
+      'Performing heavy activities around your home.',
+      name: 'lefsQuestionText9',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Getting into or out of a car.`
+  String get lefsQuestionText10 {
+    return Intl.message(
+      'Getting into or out of a car.',
+      name: 'lefsQuestionText10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Walking 2 blocks.`
+  String get lefsQuestionText11 {
+    return Intl.message(
+      'Walking 2 blocks.',
+      name: 'lefsQuestionText11',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Walking a mile`
+  String get lefsQuestionText12 {
+    return Intl.message(
+      'Walking a mile',
+      name: 'lefsQuestionText12',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Going up or down 10 stairs (about 1 flight of stairs).`
+  String get lefsQuestionText13 {
+    return Intl.message(
+      'Going up or down 10 stairs (about 1 flight of stairs).',
+      name: 'lefsQuestionText13',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Standing for 1 hour.`
+  String get lefsQuestionText14 {
+    return Intl.message(
+      'Standing for 1 hour.',
+      name: 'lefsQuestionText14',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sitting for 1 hour.`
+  String get lefsQuestionText15 {
+    return Intl.message(
+      'Sitting for 1 hour.',
+      name: 'lefsQuestionText15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Running on even ground.`
+  String get lefsQuestionText16 {
+    return Intl.message(
+      'Running on even ground.',
+      name: 'lefsQuestionText16',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Running on uneven ground.`
+  String get lefsQuestionText17 {
+    return Intl.message(
+      'Running on uneven ground.',
+      name: 'lefsQuestionText17',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Making sharp turns while running fast.`
+  String get lefsQuestionText18 {
+    return Intl.message(
+      'Making sharp turns while running fast.',
+      name: 'lefsQuestionText18',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hopping.`
+  String get lefsQuestionText19 {
+    return Intl.message(
+      'Hopping.',
+      name: 'lefsQuestionText19',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rolling over in bed.`
+  String get lefsQuestionText20 {
+    return Intl.message(
+      'Rolling over in bed.',
+      name: 'lefsQuestionText20',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extreme difficulty or unable to perform activity`
+  String get lefsDifficultyLevelText1 {
+    return Intl.message(
+      'Extreme difficulty or unable to perform activity',
+      name: 'lefsDifficultyLevelText1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quite a bit of difficulty`
+  String get lefsDifficultyLevelText2 {
+    return Intl.message(
+      'Quite a bit of difficulty',
+      name: 'lefsDifficultyLevelText2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Moderate difficulty`
+  String get lefsDifficultyLevelText3 {
+    return Intl.message(
+      'Moderate difficulty',
+      name: 'lefsDifficultyLevelText3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A little bit of difficulty`
+  String get lefsDifficultyLevelText4 {
+    return Intl.message(
+      'A little bit of difficulty',
+      name: 'lefsDifficultyLevelText4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No difficulty`
+  String get lefsDifficultyLevelText5 {
+    return Intl.message(
+      'No difficulty',
+      name: 'lefsDifficultyLevelText5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save and continue`
+  String get btnSaveContinueActionText {
+    return Intl.message(
+      'Save and continue',
+      name: 'btnSaveContinueActionText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

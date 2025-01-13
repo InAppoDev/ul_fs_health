@@ -15,6 +15,7 @@ class DropdownWidget<T> extends StatelessWidget {
       this.onChanged,
       this.onGenerateLabel,
       this.hintText,
+      this.expandedPadding,
       this.hintStyle,
       this.onTap,
       this.onFocusChange,
@@ -27,11 +28,14 @@ class DropdownWidget<T> extends StatelessWidget {
   final String Function(T)? onGenerateLabel;
   final String placeholder;
   final String? hintText;
+  final EdgeInsets? expandedPadding;
   final TextStyle? hintStyle;
   final void Function(bool)? onFocusChange;
   final VoidCallback? onTap;
   final void Function(T?)? onChanged;
   final FocusNode focusNode = FocusNode();
+
+  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +45,9 @@ class DropdownWidget<T> extends StatelessWidget {
         focusNode: focusNode,
         onFocusChange: onFocusChange,
         child: DropdownMenu<T>(
+          menuStyle: const MenuStyle(
+            alignment: Alignment.bottomCenter
+          ),
           hintText: hintText,
           keyboardType: TextInputType.none,
           inputDecorationTheme: InputDecorationTheme(
@@ -68,10 +75,10 @@ class DropdownWidget<T> extends StatelessWidget {
             ),
           ),
           enableSearch: false,
-          errorText: errorText,
+          errorText: errorText != null && errorText!.isNotEmpty ? errorText : null,
           requestFocusOnTap: true,
           initialSelection: selectedValue,
-          expandedInsets: EdgeInsets.zero,
+          expandedInsets: expandedPadding ?? EdgeInsets.zero,
           onSelected: onChanged,
           dropdownMenuEntries: UnmodifiableListView<DropdownMenuEntry<T>>(
             values.map<DropdownMenuEntry<T>>((T value) => DropdownMenuEntry<T>(

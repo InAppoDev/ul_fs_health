@@ -76,6 +76,384 @@ class GPAQInitialRouteArgs {
 }
 
 /// generated route for
+/// [GPAQRecreationInitialScreen]
+class GPAQRecreationInitialRoute
+    extends PageRouteInfo<GPAQRecreationInitialRouteArgs> {
+  GPAQRecreationInitialRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQRecreationInitialRoute.name,
+          args: GPAQRecreationInitialRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQRecreationInitialRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQRecreationInitialRouteArgs>(
+          orElse: () => const GPAQRecreationInitialRouteArgs());
+      return GPAQRecreationInitialScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQRecreationInitialRouteArgs {
+  const GPAQRecreationInitialRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQRecreationInitialRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQRecreationScreen]
+class GPAQRecreationRoute extends PageRouteInfo<GPAQRecreationRouteArgs> {
+  GPAQRecreationRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQRecreationRoute.name,
+          args: GPAQRecreationRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQRecreationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQRecreationRouteArgs>(
+          orElse: () => const GPAQRecreationRouteArgs());
+      return GPAQRecreationScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQRecreationRouteArgs {
+  const GPAQRecreationRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQRecreationRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQSedentaryInitialScreen]
+class GPAQSedentaryInitialRoute
+    extends PageRouteInfo<GPAQSedentaryInitialRouteArgs> {
+  GPAQSedentaryInitialRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQSedentaryInitialRoute.name,
+          args: GPAQSedentaryInitialRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQSedentaryInitialRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQSedentaryInitialRouteArgs>(
+          orElse: () => const GPAQSedentaryInitialRouteArgs());
+      return GPAQSedentaryInitialScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQSedentaryInitialRouteArgs {
+  const GPAQSedentaryInitialRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQSedentaryInitialRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQSedentaryScreen]
+class GPAQSedentaryRoute extends PageRouteInfo<GPAQSedentaryRouteArgs> {
+  GPAQSedentaryRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQSedentaryRoute.name,
+          args: GPAQSedentaryRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQSedentaryRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQSedentaryRouteArgs>(
+          orElse: () => const GPAQSedentaryRouteArgs());
+      return GPAQSedentaryScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQSedentaryRouteArgs {
+  const GPAQSedentaryRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQSedentaryRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQTravelInitialScreen]
+class GPAQTravelInitialRoute extends PageRouteInfo<GPAQTravelInitialRouteArgs> {
+  GPAQTravelInitialRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQTravelInitialRoute.name,
+          args: GPAQTravelInitialRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQTravelInitialRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQTravelInitialRouteArgs>(
+          orElse: () => const GPAQTravelInitialRouteArgs());
+      return GPAQTravelInitialScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQTravelInitialRouteArgs {
+  const GPAQTravelInitialRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQTravelInitialRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQTravelScreen]
+class GPAQTravelRoute extends PageRouteInfo<GPAQTravelRouteArgs> {
+  GPAQTravelRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQTravelRoute.name,
+          args: GPAQTravelRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQTravelRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQTravelRouteArgs>(
+          orElse: () => const GPAQTravelRouteArgs());
+      return GPAQTravelScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQTravelRouteArgs {
+  const GPAQTravelRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQTravelRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQWorkInitialScreen]
+class GPAQWorkInitialRoute extends PageRouteInfo<GPAQWorkInitialRouteArgs> {
+  GPAQWorkInitialRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQWorkInitialRoute.name,
+          args: GPAQWorkInitialRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQWorkInitialRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQWorkInitialRouteArgs>(
+          orElse: () => const GPAQWorkInitialRouteArgs());
+      return GPAQWorkInitialScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQWorkInitialRouteArgs {
+  const GPAQWorkInitialRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQWorkInitialRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
+/// [GPAQWorkScreen]
+class GPAQWorkRoute extends PageRouteInfo<GPAQWorkRouteArgs> {
+  GPAQWorkRoute({
+    Key? key,
+    bool shouldAuthenticate = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GPAQWorkRoute.name,
+          args: GPAQWorkRouteArgs(
+            key: key,
+            shouldAuthenticate: shouldAuthenticate,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GPAQWorkRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GPAQWorkRouteArgs>(
+          orElse: () => const GPAQWorkRouteArgs());
+      return GPAQWorkScreen(
+        key: args.key,
+        shouldAuthenticate: args.shouldAuthenticate,
+      );
+    },
+  );
+}
+
+class GPAQWorkRouteArgs {
+  const GPAQWorkRouteArgs({
+    this.key,
+    this.shouldAuthenticate = false,
+  });
+
+  final Key? key;
+
+  final bool shouldAuthenticate;
+
+  @override
+  String toString() {
+    return 'GPAQWorkRouteArgs{key: $key, shouldAuthenticate: $shouldAuthenticate}';
+  }
+}
+
+/// generated route for
 /// [HistoryScreen]
 class HistoryRoute extends PageRouteInfo<void> {
   const HistoryRoute({List<PageRouteInfo>? children})
