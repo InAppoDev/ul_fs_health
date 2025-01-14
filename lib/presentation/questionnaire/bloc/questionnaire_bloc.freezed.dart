@@ -1738,6 +1738,7 @@ mixin _$QuestionnaireState {
       throw _privateConstructorUsedError;
   String get daysError => throw _privateConstructorUsedError;
   bool get isNextValid => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -1749,7 +1750,8 @@ mixin _$QuestionnaireState {
             bool? hasWorkInitialActivity,
             Map<String, DifficultyLevel> lefsData,
             String daysError,
-            bool isNextValid)
+            bool isNextValid,
+            String? errorMessage)
         initial,
   }) =>
       throw _privateConstructorUsedError;
@@ -1764,7 +1766,8 @@ mixin _$QuestionnaireState {
             bool? hasWorkInitialActivity,
             Map<String, DifficultyLevel> lefsData,
             String daysError,
-            bool isNextValid)?
+            bool isNextValid,
+            String? errorMessage)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
@@ -1779,7 +1782,8 @@ mixin _$QuestionnaireState {
             bool? hasWorkInitialActivity,
             Map<String, DifficultyLevel> lefsData,
             String daysError,
-            bool isNextValid)?
+            bool isNextValid,
+            String? errorMessage)?
         initial,
     required TResult orElse(),
   }) =>
@@ -1823,7 +1827,8 @@ abstract class $QuestionnaireStateCopyWith<$Res> {
       bool? hasWorkInitialActivity,
       Map<String, DifficultyLevel> lefsData,
       String daysError,
-      bool isNextValid});
+      bool isNextValid,
+      String? errorMessage});
 
   $QuestionnaireModelCopyWith<$Res> get travelData;
   $QuestionnaireModelCopyWith<$Res> get workData;
@@ -1855,6 +1860,7 @@ class _$QuestionnaireStateCopyWithImpl<$Res, $Val extends QuestionnaireState>
     Object? lefsData = null,
     Object? daysError = null,
     Object? isNextValid = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -1893,6 +1899,10 @@ class _$QuestionnaireStateCopyWithImpl<$Res, $Val extends QuestionnaireState>
           ? _value.isNextValid
           : isNextValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -1955,7 +1965,8 @@ abstract class _$$QuestionnaireStateInitialImplCopyWith<$Res>
       bool? hasWorkInitialActivity,
       Map<String, DifficultyLevel> lefsData,
       String daysError,
-      bool isNextValid});
+      bool isNextValid,
+      String? errorMessage});
 
   @override
   $QuestionnaireModelCopyWith<$Res> get travelData;
@@ -1991,6 +2002,7 @@ class __$$QuestionnaireStateInitialImplCopyWithImpl<$Res>
     Object? lefsData = null,
     Object? daysError = null,
     Object? isNextValid = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$QuestionnaireStateInitialImpl(
       status: null == status
@@ -2029,6 +2041,10 @@ class __$$QuestionnaireStateInitialImplCopyWithImpl<$Res>
           ? _value.isNextValid
           : isNextValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -2045,7 +2061,8 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
       this.hasWorkInitialActivity,
       final Map<String, DifficultyLevel> lefsData = const {},
       this.daysError = '',
-      this.isNextValid = false})
+      this.isNextValid = false,
+      this.errorMessage})
       : _lefsData = lefsData;
 
   @override
@@ -2080,10 +2097,12 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
   @override
   @JsonKey()
   final bool isNextValid;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'QuestionnaireState.initial(status: $status, travelData: $travelData, workData: $workData, sedentaryData: $sedentaryData, recreationData: $recreationData, hasWorkInitialActivity: $hasWorkInitialActivity, lefsData: $lefsData, daysError: $daysError, isNextValid: $isNextValid)';
+    return 'QuestionnaireState.initial(status: $status, travelData: $travelData, workData: $workData, sedentaryData: $sedentaryData, recreationData: $recreationData, hasWorkInitialActivity: $hasWorkInitialActivity, lefsData: $lefsData, daysError: $daysError, isNextValid: $isNextValid, errorMessage: $errorMessage)';
   }
 
   @override
@@ -2106,7 +2125,9 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
             (identical(other.daysError, daysError) ||
                 other.daysError == daysError) &&
             (identical(other.isNextValid, isNextValid) ||
-                other.isNextValid == isNextValid));
+                other.isNextValid == isNextValid) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
@@ -2120,7 +2141,8 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
       hasWorkInitialActivity,
       const DeepCollectionEquality().hash(_lefsData),
       daysError,
-      isNextValid);
+      isNextValid,
+      errorMessage);
 
   /// Create a copy of QuestionnaireState
   /// with the given fields replaced by the non-null parameter values.
@@ -2143,11 +2165,12 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
             bool? hasWorkInitialActivity,
             Map<String, DifficultyLevel> lefsData,
             String daysError,
-            bool isNextValid)
+            bool isNextValid,
+            String? errorMessage)
         initial,
   }) {
     return initial(status, travelData, workData, sedentaryData, recreationData,
-        hasWorkInitialActivity, lefsData, daysError, isNextValid);
+        hasWorkInitialActivity, lefsData, daysError, isNextValid, errorMessage);
   }
 
   @override
@@ -2162,7 +2185,8 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
             bool? hasWorkInitialActivity,
             Map<String, DifficultyLevel> lefsData,
             String daysError,
-            bool isNextValid)?
+            bool isNextValid,
+            String? errorMessage)?
         initial,
   }) {
     return initial?.call(
@@ -2174,7 +2198,8 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
         hasWorkInitialActivity,
         lefsData,
         daysError,
-        isNextValid);
+        isNextValid,
+        errorMessage);
   }
 
   @override
@@ -2189,7 +2214,8 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
             bool? hasWorkInitialActivity,
             Map<String, DifficultyLevel> lefsData,
             String daysError,
-            bool isNextValid)?
+            bool isNextValid,
+            String? errorMessage)?
         initial,
     required TResult orElse(),
   }) {
@@ -2203,7 +2229,8 @@ class _$QuestionnaireStateInitialImpl implements _QuestionnaireStateInitial {
           hasWorkInitialActivity,
           lefsData,
           daysError,
-          isNextValid);
+          isNextValid,
+          errorMessage);
     }
     return orElse();
   }
@@ -2247,7 +2274,8 @@ abstract class _QuestionnaireStateInitial implements QuestionnaireState {
       final bool? hasWorkInitialActivity,
       final Map<String, DifficultyLevel> lefsData,
       final String daysError,
-      final bool isNextValid}) = _$QuestionnaireStateInitialImpl;
+      final bool isNextValid,
+      final String? errorMessage}) = _$QuestionnaireStateInitialImpl;
 
   @override
   QuestionnaireStatus get status;
@@ -2267,6 +2295,8 @@ abstract class _QuestionnaireStateInitial implements QuestionnaireState {
   String get daysError;
   @override
   bool get isNextValid;
+  @override
+  String? get errorMessage;
 
   /// Create a copy of QuestionnaireState
   /// with the given fields replaced by the non-null parameter values.

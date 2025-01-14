@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 
 import '../data/repositories/auth_repository_imp.dart';
 import '../data/repositories/profile_repository_imp.dart';
+import '../data/repositories/questionnaire_repository_imp.dart';
 import '../data/repositories/sit_to_stand_repository_imp.dart';
 import '../data/repositories/user_repository_imp.dart';
 import '../data/repositories/walk_repository_imp.dart';
@@ -15,6 +16,7 @@ import '../data/services/permission/gps_permission_service.dart';
 import '../data/services/permission/permission_service.dart';
 import '../domain/repositories/auth_repository.dart';
 import '../domain/repositories/profile_repository.dart';
+import '../domain/repositories/questionnaire_repository.dart';
 import '../domain/repositories/sit_to_stand_repository.dart';
 import '../domain/repositories/user_repository.dart';
 import '../domain/repositories/walk_repository.dart';
@@ -52,7 +54,9 @@ void _configureRepositories() {
     ..registerLazySingleton<SitToStandRepository>(() =>
         SitToStandRepositoryImp(firebaseService: getIt<FirebaseService>()))
     ..registerLazySingleton<WalkRepository>(
-        () => WalkRepositoryImp(firebaseService: getIt<FirebaseService>()));
+        () => WalkRepositoryImp(firebaseService: getIt<FirebaseService>()))
+    ..registerLazySingleton<QuestionnaireRepository>(
+        () => QuestionnaireRepositoryImp(firebaseService: getIt<FirebaseService>()));
 }
 
 void _configureUseCases() {

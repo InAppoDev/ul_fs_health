@@ -12,7 +12,9 @@ import '../../../utils/widgets/dropdown_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
 import '../../../utils/widgets/submit_button.dart';
 import '../../bloc/questionnaire_bloc.dart';
+import '../../bloc/submitter/questionnaire_submitter_bloc.dart';
 import '../../utils/difficulty_level.dart';
+import '../questionnaire_widget.dart';
 
 @RoutePage()
 class LEFSScreen extends StatelessWidget {
@@ -76,73 +78,84 @@ class LEFSContentState extends State<LEFSContent> {
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: AuthGuardWidget(
-              isAuthRoute: !widget.shouldAuthenticate,
-              child: Center(
-                child: Padding(
-                  padding: (Gaps.largest + Gaps.small).paddingHorizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Gaps.medium.spaceVertical,
-                      Text(appLocalizations.lefsHeaderText,
-                          style: header1.copyWith(fontSize: 16, height: 1.5)),
-                      (Gaps.medium + Gaps.smaller).spaceVertical,
-                      RichText(
-                          text: TextSpan(children: [
-                        TextSpan(text: '${appLocalizations.lefsDescription2}\n\n', style: body1),
-                        TextSpan(text: appLocalizations.lefsDescription3, style: body1),
-                        TextSpan(
-                            text: appLocalizations.lefsDescription4,
-                            style: body1.copyWith(fontWeight: FontWeight.w700)),
-                        TextSpan(text: appLocalizations.lefsDescription5, style: body1),
-                        TextSpan(
-                            text: appLocalizations.lefsDescription6,
-                            style: body1.copyWith(fontWeight: FontWeight.w700)),
-                        TextSpan(text: appLocalizations.lefsDescription7, style: body1),
-                      ])),
-                      (Gaps.medium + Gaps.smaller).spaceVertical,
-                      ..._questions.mapIndexed((index, elem) => Padding(
-                            padding: (Gaps.medium + Gaps.smaller).paddingBottom,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(flex: 5, child: Text('${index + 1}. $elem', style: body1)),
-                                Expanded(
-                                    flex: 3,
-                                    child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                                      builder: (context, state) => DropdownWidget<DifficultyLevel>(
-                                        selectedValue: state.lefsData[(index + 1).toString()],
-                                        values: DifficultyLevel.values.reversed.toList(),
-                                        onChanged: (value) {
-                                          final Map<String, DifficultyLevel> data =
-                                              Map.from(state.lefsData);
-                                          data[(index + 1).toString()] =
-                                              value ?? DifficultyLevel.none;
-                                          context
-                                              .read<QuestionnaireBloc>()
-                                              .add(QuestionnaireEvent.lefsInitial(data));
-                                        },
-                                        onGenerateLabel: (e) => e.label,
-                                        expandedPadding: (Gaps.largest + Gaps.small).paddingLeft,
-                                      ),
-                                    ))
-                              ],
-                            ),
-                          )),
-                      SubmitButton(
-                          onPressed: () {
-                            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
-                            context.router.popUntilRoot();
-                          },
-                          title: appLocalizations.btnSaveContinueActionText,
-                          backgroundColor: ColorScheme.of(context).primary,
-                          titleColor: ColorScheme.of(context).onPrimary),
-                      Gaps.large.spaceVertical
-                    ],
+          child: QuestionnaireWidget(
+            onNavigate: (context) {
+              context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+              context.router.popUntilRoot();
+            },
+            child: AuthGuardWidget(
+                isAuthRoute: !widget.shouldAuthenticate,
+                child: Center(
+                  child: Padding(
+                    padding: (Gaps.largest + Gaps.small).paddingHorizontal,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Gaps.medium.spaceVertical,
+                        Text(appLocalizations.lefsHeaderText,
+                            style: header1.copyWith(fontSize: 16, height: 1.5)),
+                        (Gaps.medium + Gaps.smaller).spaceVertical,
+                        RichText(
+                            text: TextSpan(children: [
+                          TextSpan(text: '${appLocalizations.lefsDescription2}\n\n', style: body1),
+                          TextSpan(text: appLocalizations.lefsDescription3, style: body1),
+                          TextSpan(
+                              text: appLocalizations.lefsDescription4,
+                              style: body1.copyWith(fontWeight: FontWeight.w700)),
+                          TextSpan(text: appLocalizations.lefsDescription5, style: body1),
+                          TextSpan(
+                              text: appLocalizations.lefsDescription6,
+                              style: body1.copyWith(fontWeight: FontWeight.w700)),
+                          TextSpan(text: appLocalizations.lefsDescription7, style: body1),
+                        ])),
+                        (Gaps.medium + Gaps.smaller).spaceVertical,
+                        ..._questions.mapIndexed((index, elem) => Padding(
+                              padding: (Gaps.medium + Gaps.smaller).paddingBottom,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 5, child: Text('${index + 1}. $elem', style: body1)),
+                                  Expanded(
+                                      flex: 3,
+                                      child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                                        builder: (context, state) =>
+                                            DropdownWidget<DifficultyLevel>(
+                                          selectedValue: state.lefsData[(index + 1).toString()],
+                                          values: DifficultyLevel.values.reversed.toList(),
+                                          onChanged: (value) {
+                                            final Map<String, DifficultyLevel> data =
+                                                Map.from(state.lefsData);
+                                            data[(index + 1).toString()] =
+                                                value ?? DifficultyLevel.none;
+                                            context
+                                                .read<QuestionnaireBloc>()
+                                                .add(QuestionnaireEvent.lefsInitial(data));
+                                          },
+                                          onGenerateLabel: (e) => e.label,
+                                          expandedPadding: (Gaps.largest + Gaps.small).paddingLeft,
+                                        ),
+                                      ))
+                                ],
+                              ),
+                            )),
+                        BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                            builder: (context, state) => SubmitButton(
+                                isLoading:
+                                    context.watch<QuestionnaireSubmitterBloc>().state.status ==
+                                        QuestionnaireSubmitterStatus.loading,
+                                onPressed: () => context.read<QuestionnaireSubmitterBloc>().add(
+                                    QuestionnaireSubmitterEvent.submitLEFS(
+                                        lefsData: state.lefsData)),
+                                title: appLocalizations.btnSaveContinueActionText,
+                                backgroundColor: ColorScheme.of(context).primary,
+                                titleColor: ColorScheme.of(context).onPrimary)),
+                        Gaps.large.spaceVertical
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+          ),
         ),
       ),
     );

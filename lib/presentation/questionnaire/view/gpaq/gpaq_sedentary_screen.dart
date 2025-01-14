@@ -12,6 +12,9 @@ import '../../../utils/widgets/row_actions_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
 import '../../../utils/widgets/text_input_widget.dart';
 import '../../bloc/questionnaire_bloc.dart';
+import '../../bloc/submitter/questionnaire_submitter_bloc.dart';
+import '../../model/sedentary_model.dart';
+import '../questionnaire_widget.dart';
 
 @RoutePage()
 class GPAQSedentaryScreen extends StatelessWidget {
@@ -55,102 +58,114 @@ class GPAQSedentaryContentState extends State<GPAQSedentaryContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: RowActionsWidget(
-          isRightValid: context.watch<QuestionnaireBloc>().state.isNextValid,
-          contentPadding: Gaps.largest.paddingAll,
-          leftTitle: appLocalizations.btnBackActionText,
-          rightTitle: appLocalizations.btnNextActionText,
-          onLeftPress: () => context.router.maybePop(),
-          onRightPress: () {
-            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
-            context.router.popUntilRoot();
-          },
-          leftTitleColor: ColorScheme.of(context).onSecondary,
-          rightTitleColor: ColorScheme.of(context).onPrimary,
-          leftBackgroundColor: ColorScheme.of(context).secondary,
-          rightBackgroundColor: ColorScheme.of(context).primary),
-      appBar: SimpleAppBarWidget(
-        showBackButton: widget.shouldAuthenticate,
-        onInfoPress: () {},
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: AuthGuardWidget(
-              isAuthRoute: !widget.shouldAuthenticate,
-              child: Center(
-                child: Padding(
-                  padding: (Gaps.largest + Gaps.small).paddingHorizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Gaps.large.spaceVertical,
-                      Text(appLocalizations.gpaqSedentaryHeaderText,
-                          style: header1.copyWith(
-                              decoration: TextDecoration.underline,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              height: 1.4,
-                              letterSpacing: -2)),
-                      Gaps.larger.spaceVertical,
-                      Text(appLocalizations.gpaqSedentaryDescription1,
-                          style: body1, textAlign: TextAlign.justify),
-                      Gaps.medium.spaceVertical,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                              width: 64,
-                              child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                                builder: (context, state) => TextInputWidget(
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                      LengthLimitingTextInputFormatter(2)
-                                    ],
-                                    onFocusChange: (hasFocus) {
-                                      if (!hasFocus) {
-                                        final minutes = _hourController.text;
-                                        final formattedText = minutes.padLeft(2, '0');
-                                        if (formattedText != minutes) {
-                                          _hourController.text = formattedText;
+    return QuestionnaireWidget(
+      onNavigate: (context) {
+        context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+        context.router.popUntilRoot();
+      },
+      child: Scaffold(
+        bottomNavigationBar: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+            builder: (context, state) => RowActionsWidget(
+                isRightValid: state.isNextValid,
+                isRightLoading: context.watch<QuestionnaireSubmitterBloc>().state.status ==
+                    QuestionnaireSubmitterStatus.loading,
+                contentPadding: Gaps.largest.paddingAll,
+                leftTitle: appLocalizations.btnBackActionText,
+                rightTitle: appLocalizations.btnNextActionText,
+                onLeftPress: () => context.router.maybePop(),
+                onRightPress: () {
+                  context.read<QuestionnaireSubmitterBloc>().add(
+                      QuestionnaireSubmitterEvent.submitSedentary(
+                          sedentaryData: SedentaryModel.from(
+                              hours: state.sedentaryData.hours,
+                              minutes: state.sedentaryData.minutes)));
+                },
+                leftTitleColor: ColorScheme.of(context).onSecondary,
+                rightTitleColor: ColorScheme.of(context).onPrimary,
+                leftBackgroundColor: ColorScheme.of(context).secondary,
+                rightBackgroundColor: ColorScheme.of(context).primary)),
+        appBar: SimpleAppBarWidget(
+          showBackButton: widget.shouldAuthenticate,
+          onInfoPress: () {},
+        ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: AuthGuardWidget(
+                isAuthRoute: !widget.shouldAuthenticate,
+                child: Center(
+                  child: Padding(
+                    padding: (Gaps.largest + Gaps.small).paddingHorizontal,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Gaps.large.spaceVertical,
+                        Text(appLocalizations.gpaqSedentaryHeaderText,
+                            style: header1.copyWith(
+                                decoration: TextDecoration.underline,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                height: 1.4,
+                                letterSpacing: -2)),
+                        Gaps.larger.spaceVertical,
+                        Text(appLocalizations.gpaqSedentaryDescription1,
+                            style: body1, textAlign: TextAlign.justify),
+                        Gaps.medium.spaceVertical,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                width: 64,
+                                child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                                  builder: (context, state) => TextInputWidget(
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        LengthLimitingTextInputFormatter(2)
+                                      ],
+                                      onFocusChange: (hasFocus) {
+                                        if (!hasFocus) {
+                                          final minutes = _hourController.text;
+                                          final formattedText = minutes.padLeft(2, '0');
+                                          if (formattedText != minutes) {
+                                            _hourController.text = formattedText;
+                                          }
                                         }
+                                      },
+                                      keyboardType: TextInputType.number,
+                                      centerText: true,
+                                      controller: _hourController,
+                                      hintText: '00'),
+                                )),
+                            Gaps.small.spaceHorizontal,
+                            Text(':', style: body1.copyWith(fontSize: 20)),
+                            Gaps.small.spaceHorizontal,
+                            SizedBox(
+                              width: 64,
+                              child: TextInputWidget(
+                                  onFocusChange: (hasFocus) {
+                                    if (!hasFocus) {
+                                      final minutes = _minuteController.text;
+                                      final formattedText = minutes.padLeft(2, '0');
+                                      if (formattedText != minutes) {
+                                        _minuteController.text = formattedText;
                                       }
-                                    },
-                                    keyboardType: TextInputType.number,
-                                    centerText: true,
-                                    controller: _hourController,
-                                    hintText: '00'),
-                              )),
-                          Gaps.small.spaceHorizontal,
-                          Text(':', style: body1.copyWith(fontSize: 20)),
-                          Gaps.small.spaceHorizontal,
-                          SizedBox(
-                            width: 64,
-                            child: TextInputWidget(
-                                onFocusChange: (hasFocus) {
-                                  if (!hasFocus) {
-                                    final minutes = _minuteController.text;
-                                    final formattedText = minutes.padLeft(2, '0');
-                                    if (formattedText != minutes) {
-                                      _minuteController.text = formattedText;
                                     }
-                                  }
-                                },
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  LengthLimitingTextInputFormatter(2)
-                                ],
-                                keyboardType: TextInputType.number,
-                                centerText: true,
-                                controller: _minuteController,
-                                hintText: '00'),
-                          ),
-                        ],
-                      )
-                    ],
+                                  },
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    LengthLimitingTextInputFormatter(2)
+                                  ],
+                                  keyboardType: TextInputType.number,
+                                  centerText: true,
+                                  controller: _minuteController,
+                                  hintText: '00'),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )),
+                )),
+          ),
         ),
       ),
     );
