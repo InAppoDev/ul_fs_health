@@ -71,18 +71,18 @@ class LEFSContentState extends State<LEFSContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SimpleAppBarWidget(
-        showBackButton: widget.shouldAuthenticate,
-        onInfoPress: () {},
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: QuestionnaireWidget(
-            onNavigate: (context) {
-              context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
-              context.router.popUntilRoot();
-            },
+    return QuestionnaireWidget(
+      onNavigate: (context) {
+        context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+        context.router.popUntilRoot();
+      },
+      child: Scaffold(
+        appBar: SimpleAppBarWidget(
+          showBackButton: widget.shouldAuthenticate,
+          onInfoPress: () {},
+        ),
+        body: SingleChildScrollView(
+          child: Center(
             child: AuthGuardWidget(
                 isAuthRoute: !widget.shouldAuthenticate,
                 child: Center(
