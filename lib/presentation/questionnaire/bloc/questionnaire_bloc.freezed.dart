@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$QuestionnaireEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -38,7 +37,6 @@ mixin _$QuestionnaireEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -55,7 +53,6 @@ mixin _$QuestionnaireEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -72,7 +69,6 @@ mixin _$QuestionnaireEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -84,7 +80,6 @@ mixin _$QuestionnaireEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -96,7 +91,6 @@ mixin _$QuestionnaireEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -128,202 +122,6 @@ class _$QuestionnaireEventCopyWithImpl<$Res, $Val extends QuestionnaireEvent>
 
   /// Create a copy of QuestionnaireEvent
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$QuestionnaireSubmitImplCopyWith<$Res> {
-  factory _$$QuestionnaireSubmitImplCopyWith(_$QuestionnaireSubmitImpl value,
-          $Res Function(_$QuestionnaireSubmitImpl) then) =
-      __$$QuestionnaireSubmitImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({QuestionnaireFillStatus fillStatus});
-}
-
-/// @nodoc
-class __$$QuestionnaireSubmitImplCopyWithImpl<$Res>
-    extends _$QuestionnaireEventCopyWithImpl<$Res, _$QuestionnaireSubmitImpl>
-    implements _$$QuestionnaireSubmitImplCopyWith<$Res> {
-  __$$QuestionnaireSubmitImplCopyWithImpl(_$QuestionnaireSubmitImpl _value,
-      $Res Function(_$QuestionnaireSubmitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of QuestionnaireEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fillStatus = null,
-  }) {
-    return _then(_$QuestionnaireSubmitImpl(
-      null == fillStatus
-          ? _value.fillStatus
-          : fillStatus // ignore: cast_nullable_to_non_nullable
-              as QuestionnaireFillStatus,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$QuestionnaireSubmitImpl implements _QuestionnaireSubmit {
-  _$QuestionnaireSubmitImpl(this.fillStatus);
-
-  @override
-  final QuestionnaireFillStatus fillStatus;
-
-  @override
-  String toString() {
-    return 'QuestionnaireEvent.onSubmit(fillStatus: $fillStatus)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$QuestionnaireSubmitImpl &&
-            (identical(other.fillStatus, fillStatus) ||
-                other.fillStatus == fillStatus));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, fillStatus);
-
-  /// Create a copy of QuestionnaireEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$QuestionnaireSubmitImplCopyWith<_$QuestionnaireSubmitImpl> get copyWith =>
-      __$$QuestionnaireSubmitImplCopyWithImpl<_$QuestionnaireSubmitImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
-    required TResult Function(
-            bool hasActivity, QuestionnaireFillStatus fillStatus)
-        selectActivity,
-    required TResult Function(int? daysInWeek, bool shouldValidate,
-            QuestionnaireFillStatus fillStatus)
-        selectDaysInWeek,
-    required TResult Function(int hours, QuestionnaireFillStatus fillStatus)
-        selectHour,
-    required TResult Function(int minutes, QuestionnaireFillStatus fillStatus)
-        selectMinutes,
-    required TResult Function(QuestionnaireFillStatus fillStatus)
-        validateScreen,
-    required TResult Function(Map<String, DifficultyLevel> initialData)
-        lefsInitial,
-    required TResult Function() resetErrors,
-  }) {
-    return onSubmit(fillStatus);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
-    TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
-        selectActivity,
-    TResult? Function(int? daysInWeek, bool shouldValidate,
-            QuestionnaireFillStatus fillStatus)?
-        selectDaysInWeek,
-    TResult? Function(int hours, QuestionnaireFillStatus fillStatus)?
-        selectHour,
-    TResult? Function(int minutes, QuestionnaireFillStatus fillStatus)?
-        selectMinutes,
-    TResult? Function(QuestionnaireFillStatus fillStatus)? validateScreen,
-    TResult? Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
-    TResult? Function()? resetErrors,
-  }) {
-    return onSubmit?.call(fillStatus);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
-    TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
-        selectActivity,
-    TResult Function(int? daysInWeek, bool shouldValidate,
-            QuestionnaireFillStatus fillStatus)?
-        selectDaysInWeek,
-    TResult Function(int hours, QuestionnaireFillStatus fillStatus)? selectHour,
-    TResult Function(int minutes, QuestionnaireFillStatus fillStatus)?
-        selectMinutes,
-    TResult Function(QuestionnaireFillStatus fillStatus)? validateScreen,
-    TResult Function(Map<String, DifficultyLevel> initialData)? lefsInitial,
-    TResult Function()? resetErrors,
-    required TResult orElse(),
-  }) {
-    if (onSubmit != null) {
-      return onSubmit(fillStatus);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
-    required TResult Function(_SelectActivity value) selectActivity,
-    required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
-    required TResult Function(_SelectHours value) selectHour,
-    required TResult Function(_SelectMinutes value) selectMinutes,
-    required TResult Function(_ValidateScreen value) validateScreen,
-    required TResult Function(_LEFSInitial value) lefsInitial,
-    required TResult Function(_ResetErrors value) resetErrors,
-  }) {
-    return onSubmit(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
-    TResult? Function(_SelectActivity value)? selectActivity,
-    TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
-    TResult? Function(_SelectHours value)? selectHour,
-    TResult? Function(_SelectMinutes value)? selectMinutes,
-    TResult? Function(_ValidateScreen value)? validateScreen,
-    TResult? Function(_LEFSInitial value)? lefsInitial,
-    TResult? Function(_ResetErrors value)? resetErrors,
-  }) {
-    return onSubmit?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
-    TResult Function(_SelectActivity value)? selectActivity,
-    TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
-    TResult Function(_SelectHours value)? selectHour,
-    TResult Function(_SelectMinutes value)? selectMinutes,
-    TResult Function(_ValidateScreen value)? validateScreen,
-    TResult Function(_LEFSInitial value)? lefsInitial,
-    TResult Function(_ResetErrors value)? resetErrors,
-    required TResult orElse(),
-  }) {
-    if (onSubmit != null) {
-      return onSubmit(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _QuestionnaireSubmit implements QuestionnaireEvent {
-  factory _QuestionnaireSubmit(final QuestionnaireFillStatus fillStatus) =
-      _$QuestionnaireSubmitImpl;
-
-  QuestionnaireFillStatus get fillStatus;
-
-  /// Create a copy of QuestionnaireEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$QuestionnaireSubmitImplCopyWith<_$QuestionnaireSubmitImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -405,7 +203,6 @@ class _$SelectActivityImpl implements _SelectActivity {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -428,7 +225,6 @@ class _$SelectActivityImpl implements _SelectActivity {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -448,7 +244,6 @@ class _$SelectActivityImpl implements _SelectActivity {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -471,7 +266,6 @@ class _$SelectActivityImpl implements _SelectActivity {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -486,7 +280,6 @@ class _$SelectActivityImpl implements _SelectActivity {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -501,7 +294,6 @@ class _$SelectActivityImpl implements _SelectActivity {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -629,7 +421,6 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -652,7 +443,6 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -672,7 +462,6 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -695,7 +484,6 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -710,7 +498,6 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -725,7 +512,6 @@ class _$SelectDaysInWeekImpl implements _SelectDaysInWeek {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -837,7 +623,6 @@ class _$SelectHoursImpl implements _SelectHours {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -860,7 +645,6 @@ class _$SelectHoursImpl implements _SelectHours {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -880,7 +664,6 @@ class _$SelectHoursImpl implements _SelectHours {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -903,7 +686,6 @@ class _$SelectHoursImpl implements _SelectHours {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -918,7 +700,6 @@ class _$SelectHoursImpl implements _SelectHours {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -933,7 +714,6 @@ class _$SelectHoursImpl implements _SelectHours {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -1042,7 +822,6 @@ class _$SelectMinutesImpl implements _SelectMinutes {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -1065,7 +844,6 @@ class _$SelectMinutesImpl implements _SelectMinutes {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -1085,7 +863,6 @@ class _$SelectMinutesImpl implements _SelectMinutes {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -1108,7 +885,6 @@ class _$SelectMinutesImpl implements _SelectMinutes {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -1123,7 +899,6 @@ class _$SelectMinutesImpl implements _SelectMinutes {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -1138,7 +913,6 @@ class _$SelectMinutesImpl implements _SelectMinutes {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -1240,7 +1014,6 @@ class _$ValidateScreenImpl implements _ValidateScreen {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -1263,7 +1036,6 @@ class _$ValidateScreenImpl implements _ValidateScreen {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -1283,7 +1055,6 @@ class _$ValidateScreenImpl implements _ValidateScreen {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -1306,7 +1077,6 @@ class _$ValidateScreenImpl implements _ValidateScreen {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -1321,7 +1091,6 @@ class _$ValidateScreenImpl implements _ValidateScreen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -1336,7 +1105,6 @@ class _$ValidateScreenImpl implements _ValidateScreen {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -1442,7 +1210,6 @@ class _$LEFSInitialImpl implements _LEFSInitial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -1465,7 +1232,6 @@ class _$LEFSInitialImpl implements _LEFSInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -1485,7 +1251,6 @@ class _$LEFSInitialImpl implements _LEFSInitial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -1508,7 +1273,6 @@ class _$LEFSInitialImpl implements _LEFSInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -1523,7 +1287,6 @@ class _$LEFSInitialImpl implements _LEFSInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -1538,7 +1301,6 @@ class _$LEFSInitialImpl implements _LEFSInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
@@ -1609,7 +1371,6 @@ class _$ResetErrorsImpl implements _ResetErrors {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(QuestionnaireFillStatus fillStatus) onSubmit,
     required TResult Function(
             bool hasActivity, QuestionnaireFillStatus fillStatus)
         selectActivity,
@@ -1632,7 +1393,6 @@ class _$ResetErrorsImpl implements _ResetErrors {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult? Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult? Function(int? daysInWeek, bool shouldValidate,
@@ -1652,7 +1412,6 @@ class _$ResetErrorsImpl implements _ResetErrors {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(QuestionnaireFillStatus fillStatus)? onSubmit,
     TResult Function(bool hasActivity, QuestionnaireFillStatus fillStatus)?
         selectActivity,
     TResult Function(int? daysInWeek, bool shouldValidate,
@@ -1675,7 +1434,6 @@ class _$ResetErrorsImpl implements _ResetErrors {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_QuestionnaireSubmit value) onSubmit,
     required TResult Function(_SelectActivity value) selectActivity,
     required TResult Function(_SelectDaysInWeek value) selectDaysInWeek,
     required TResult Function(_SelectHours value) selectHour,
@@ -1690,7 +1448,6 @@ class _$ResetErrorsImpl implements _ResetErrors {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_QuestionnaireSubmit value)? onSubmit,
     TResult? Function(_SelectActivity value)? selectActivity,
     TResult? Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult? Function(_SelectHours value)? selectHour,
@@ -1705,7 +1462,6 @@ class _$ResetErrorsImpl implements _ResetErrors {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_QuestionnaireSubmit value)? onSubmit,
     TResult Function(_SelectActivity value)? selectActivity,
     TResult Function(_SelectDaysInWeek value)? selectDaysInWeek,
     TResult Function(_SelectHours value)? selectHour,
