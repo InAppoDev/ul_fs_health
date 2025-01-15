@@ -6,6 +6,5 @@ class WorkDataEntity with _$WorkDataEntity {
       int? daysInWeek,
       int? hours,
       int? minutes,
-      bool? hasActivity,
-      bool? isVigorousActivity}) = _WorkDataEntity;
+      bool? hasActivity}) = _WorkDataEntity;
 }

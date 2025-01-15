@@ -29,6 +29,7 @@ mixin _$QuestionnaireModel {
       throw _privateConstructorUsedError;
   SedentaryDataModel? get sedentaryData => throw _privateConstructorUsedError;
   LEFSDataModel? get lefsData => throw _privateConstructorUsedError;
+  bool? get isVigorousActivity => throw _privateConstructorUsedError;
 
   /// Create a copy of QuestionnaireModel
   /// with the given fields replaced by the non-null parameter values.
@@ -50,7 +51,8 @@ abstract class $QuestionnaireModelCopyWith<$Res> {
       QuestionnaireDataModel? travelData,
       QuestionnaireDataModel? recreateData,
       SedentaryDataModel? sedentaryData,
-      LEFSDataModel? lefsData});
+      LEFSDataModel? lefsData,
+      bool? isVigorousActivity});
 
   $WorkDataModelCopyWith<$Res>? get workData;
   $QuestionnaireDataModelCopyWith<$Res>? get travelData;
@@ -80,6 +82,7 @@ class _$QuestionnaireModelCopyWithImpl<$Res, $Val extends QuestionnaireModel>
     Object? recreateData = freezed,
     Object? sedentaryData = freezed,
     Object? lefsData = freezed,
+    Object? isVigorousActivity = freezed,
   }) {
     return _then(_value.copyWith(
       userRef: freezed == userRef
@@ -106,6 +109,10 @@ class _$QuestionnaireModelCopyWithImpl<$Res, $Val extends QuestionnaireModel>
           ? _value.lefsData
           : lefsData // ignore: cast_nullable_to_non_nullable
               as LEFSDataModel?,
+      isVigorousActivity: freezed == isVigorousActivity
+          ? _value.isVigorousActivity
+          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -195,7 +202,8 @@ abstract class _$$QuestionnaireModelImplCopyWith<$Res>
       QuestionnaireDataModel? travelData,
       QuestionnaireDataModel? recreateData,
       SedentaryDataModel? sedentaryData,
-      LEFSDataModel? lefsData});
+      LEFSDataModel? lefsData,
+      bool? isVigorousActivity});
 
   @override
   $WorkDataModelCopyWith<$Res>? get workData;
@@ -228,6 +236,7 @@ class __$$QuestionnaireModelImplCopyWithImpl<$Res>
     Object? recreateData = freezed,
     Object? sedentaryData = freezed,
     Object? lefsData = freezed,
+    Object? isVigorousActivity = freezed,
   }) {
     return _then(_$QuestionnaireModelImpl(
       userRef: freezed == userRef
@@ -254,6 +263,10 @@ class __$$QuestionnaireModelImplCopyWithImpl<$Res>
           ? _value.lefsData
           : lefsData // ignore: cast_nullable_to_non_nullable
               as LEFSDataModel?,
+      isVigorousActivity: freezed == isVigorousActivity
+          ? _value.isVigorousActivity
+          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -267,7 +280,8 @@ class _$QuestionnaireModelImpl extends _QuestionnaireModel {
       required this.travelData,
       required this.recreateData,
       required this.sedentaryData,
-      required this.lefsData})
+      required this.lefsData,
+      required this.isVigorousActivity})
       : super._();
 
   factory _$QuestionnaireModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -286,10 +300,12 @@ class _$QuestionnaireModelImpl extends _QuestionnaireModel {
   final SedentaryDataModel? sedentaryData;
   @override
   final LEFSDataModel? lefsData;
+  @override
+  final bool? isVigorousActivity;
 
   @override
   String toString() {
-    return 'QuestionnaireModel(userRef: $userRef, workData: $workData, travelData: $travelData, recreateData: $recreateData, sedentaryData: $sedentaryData, lefsData: $lefsData)';
+    return 'QuestionnaireModel(userRef: $userRef, workData: $workData, travelData: $travelData, recreateData: $recreateData, sedentaryData: $sedentaryData, lefsData: $lefsData, isVigorousActivity: $isVigorousActivity)';
   }
 
   @override
@@ -307,13 +323,15 @@ class _$QuestionnaireModelImpl extends _QuestionnaireModel {
             (identical(other.sedentaryData, sedentaryData) ||
                 other.sedentaryData == sedentaryData) &&
             (identical(other.lefsData, lefsData) ||
-                other.lefsData == lefsData));
+                other.lefsData == lefsData) &&
+            (identical(other.isVigorousActivity, isVigorousActivity) ||
+                other.isVigorousActivity == isVigorousActivity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, userRef, workData, travelData,
-      recreateData, sedentaryData, lefsData);
+      recreateData, sedentaryData, lefsData, isVigorousActivity);
 
   /// Create a copy of QuestionnaireModel
   /// with the given fields replaced by the non-null parameter values.
@@ -333,7 +351,8 @@ abstract class _QuestionnaireModel extends QuestionnaireModel {
       required final QuestionnaireDataModel? travelData,
       required final QuestionnaireDataModel? recreateData,
       required final SedentaryDataModel? sedentaryData,
-      required final LEFSDataModel? lefsData}) = _$QuestionnaireModelImpl;
+      required final LEFSDataModel? lefsData,
+      required final bool? isVigorousActivity}) = _$QuestionnaireModelImpl;
   const _QuestionnaireModel._() : super._();
 
   factory _QuestionnaireModel.fromJson(Map<String, dynamic> json) =
@@ -352,6 +371,8 @@ abstract class _QuestionnaireModel extends QuestionnaireModel {
   SedentaryDataModel? get sedentaryData;
   @override
   LEFSDataModel? get lefsData;
+  @override
+  bool? get isVigorousActivity;
 
   /// Create a copy of QuestionnaireModel
   /// with the given fields replaced by the non-null parameter values.
@@ -371,7 +392,6 @@ mixin _$WorkDataModel {
   int? get hours => throw _privateConstructorUsedError;
   int? get minutes => throw _privateConstructorUsedError;
   bool? get hasActivity => throw _privateConstructorUsedError;
-  bool? get isVigorousActivity => throw _privateConstructorUsedError;
 
   /// Serializes this WorkDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -389,12 +409,7 @@ abstract class $WorkDataModelCopyWith<$Res> {
           WorkDataModel value, $Res Function(WorkDataModel) then) =
       _$WorkDataModelCopyWithImpl<$Res, WorkDataModel>;
   @useResult
-  $Res call(
-      {int? daysInWeek,
-      int? hours,
-      int? minutes,
-      bool? hasActivity,
-      bool? isVigorousActivity});
+  $Res call({int? daysInWeek, int? hours, int? minutes, bool? hasActivity});
 }
 
 /// @nodoc
@@ -416,7 +431,6 @@ class _$WorkDataModelCopyWithImpl<$Res, $Val extends WorkDataModel>
     Object? hours = freezed,
     Object? minutes = freezed,
     Object? hasActivity = freezed,
-    Object? isVigorousActivity = freezed,
   }) {
     return _then(_value.copyWith(
       daysInWeek: freezed == daysInWeek
@@ -435,10 +449,6 @@ class _$WorkDataModelCopyWithImpl<$Res, $Val extends WorkDataModel>
           ? _value.hasActivity
           : hasActivity // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isVigorousActivity: freezed == isVigorousActivity
-          ? _value.isVigorousActivity
-          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 }
@@ -451,12 +461,7 @@ abstract class _$$WorkDataModelImplCopyWith<$Res>
       __$$WorkDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? daysInWeek,
-      int? hours,
-      int? minutes,
-      bool? hasActivity,
-      bool? isVigorousActivity});
+  $Res call({int? daysInWeek, int? hours, int? minutes, bool? hasActivity});
 }
 
 /// @nodoc
@@ -476,7 +481,6 @@ class __$$WorkDataModelImplCopyWithImpl<$Res>
     Object? hours = freezed,
     Object? minutes = freezed,
     Object? hasActivity = freezed,
-    Object? isVigorousActivity = freezed,
   }) {
     return _then(_$WorkDataModelImpl(
       daysInWeek: freezed == daysInWeek
@@ -495,10 +499,6 @@ class __$$WorkDataModelImplCopyWithImpl<$Res>
           ? _value.hasActivity
           : hasActivity // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isVigorousActivity: freezed == isVigorousActivity
-          ? _value.isVigorousActivity
-          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -507,11 +507,7 @@ class __$$WorkDataModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WorkDataModelImpl extends _WorkDataModel {
   const _$WorkDataModelImpl(
-      {this.daysInWeek,
-      this.hours,
-      this.minutes,
-      this.hasActivity,
-      this.isVigorousActivity})
+      {this.daysInWeek, this.hours, this.minutes, this.hasActivity})
       : super._();
 
   factory _$WorkDataModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -525,12 +521,10 @@ class _$WorkDataModelImpl extends _WorkDataModel {
   final int? minutes;
   @override
   final bool? hasActivity;
-  @override
-  final bool? isVigorousActivity;
 
   @override
   String toString() {
-    return 'WorkDataModel(daysInWeek: $daysInWeek, hours: $hours, minutes: $minutes, hasActivity: $hasActivity, isVigorousActivity: $isVigorousActivity)';
+    return 'WorkDataModel(daysInWeek: $daysInWeek, hours: $hours, minutes: $minutes, hasActivity: $hasActivity)';
   }
 
   @override
@@ -543,15 +537,13 @@ class _$WorkDataModelImpl extends _WorkDataModel {
             (identical(other.hours, hours) || other.hours == hours) &&
             (identical(other.minutes, minutes) || other.minutes == minutes) &&
             (identical(other.hasActivity, hasActivity) ||
-                other.hasActivity == hasActivity) &&
-            (identical(other.isVigorousActivity, isVigorousActivity) ||
-                other.isVigorousActivity == isVigorousActivity));
+                other.hasActivity == hasActivity));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, daysInWeek, hours, minutes, hasActivity, isVigorousActivity);
+  int get hashCode =>
+      Object.hash(runtimeType, daysInWeek, hours, minutes, hasActivity);
 
   /// Create a copy of WorkDataModel
   /// with the given fields replaced by the non-null parameter values.
@@ -574,8 +566,7 @@ abstract class _WorkDataModel extends WorkDataModel {
       {final int? daysInWeek,
       final int? hours,
       final int? minutes,
-      final bool? hasActivity,
-      final bool? isVigorousActivity}) = _$WorkDataModelImpl;
+      final bool? hasActivity}) = _$WorkDataModelImpl;
   const _WorkDataModel._() : super._();
 
   factory _WorkDataModel.fromJson(Map<String, dynamic> json) =
@@ -589,8 +580,6 @@ abstract class _WorkDataModel extends WorkDataModel {
   int? get minutes;
   @override
   bool? get hasActivity;
-  @override
-  bool? get isVigorousActivity;
 
   /// Create a copy of WorkDataModel
   /// with the given fields replaced by the non-null parameter values.

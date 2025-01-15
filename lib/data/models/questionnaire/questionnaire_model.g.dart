@@ -30,6 +30,7 @@ _$QuestionnaireModelImpl _$$QuestionnaireModelImplFromJson(
       lefsData: json['lefsData'] == null
           ? null
           : LEFSDataModel.fromJson(json['lefsData'] as Map<String, dynamic>),
+      isVigorousActivity: json['isVigorousActivity'] as bool?,
     );
 
 Value? _$JsonConverterFromJson<Json, Value>(
@@ -44,7 +45,6 @@ _$WorkDataModelImpl _$$WorkDataModelImplFromJson(Map<String, dynamic> json) =>
       hours: (json['hours'] as num?)?.toInt(),
       minutes: (json['minutes'] as num?)?.toInt(),
       hasActivity: json['hasActivity'] as bool?,
-      isVigorousActivity: json['isVigorousActivity'] as bool?,
     );
 
 Map<String, dynamic> _$$WorkDataModelImplToJson(_$WorkDataModelImpl instance) =>
@@ -53,7 +53,6 @@ Map<String, dynamic> _$$WorkDataModelImplToJson(_$WorkDataModelImpl instance) =>
       'hours': instance.hours,
       'minutes': instance.minutes,
       'hasActivity': instance.hasActivity,
-      'isVigorousActivity': instance.isVigorousActivity,
     };
 
 _$QuestionnaireDataModelImpl _$$QuestionnaireDataModelImplFromJson(

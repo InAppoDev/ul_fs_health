@@ -25,6 +25,7 @@ mixin _$QuestionnaireEntity {
       throw _privateConstructorUsedError;
   QuestionnaireDataEntity? get travelData => throw _privateConstructorUsedError;
   LEFSDataEntity? get lefsData => throw _privateConstructorUsedError;
+  bool? get isVigorousActivity => throw _privateConstructorUsedError;
 
   /// Create a copy of QuestionnaireEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +47,8 @@ abstract class $QuestionnaireEntityCopyWith<$Res> {
       SedentaryDataEntity? sedentaryData,
       QuestionnaireDataEntity? recreateData,
       QuestionnaireDataEntity? travelData,
-      LEFSDataEntity? lefsData});
+      LEFSDataEntity? lefsData,
+      bool? isVigorousActivity});
 
   $WorkDataEntityCopyWith<$Res>? get workData;
   $SedentaryDataEntityCopyWith<$Res>? get sedentaryData;
@@ -76,6 +78,7 @@ class _$QuestionnaireEntityCopyWithImpl<$Res, $Val extends QuestionnaireEntity>
     Object? recreateData = freezed,
     Object? travelData = freezed,
     Object? lefsData = freezed,
+    Object? isVigorousActivity = freezed,
   }) {
     return _then(_value.copyWith(
       userRef: freezed == userRef
@@ -102,6 +105,10 @@ class _$QuestionnaireEntityCopyWithImpl<$Res, $Val extends QuestionnaireEntity>
           ? _value.lefsData
           : lefsData // ignore: cast_nullable_to_non_nullable
               as LEFSDataEntity?,
+      isVigorousActivity: freezed == isVigorousActivity
+          ? _value.isVigorousActivity
+          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -192,7 +199,8 @@ abstract class _$$QuestionnaireEntityImplCopyWith<$Res>
       SedentaryDataEntity? sedentaryData,
       QuestionnaireDataEntity? recreateData,
       QuestionnaireDataEntity? travelData,
-      LEFSDataEntity? lefsData});
+      LEFSDataEntity? lefsData,
+      bool? isVigorousActivity});
 
   @override
   $WorkDataEntityCopyWith<$Res>? get workData;
@@ -225,6 +233,7 @@ class __$$QuestionnaireEntityImplCopyWithImpl<$Res>
     Object? recreateData = freezed,
     Object? travelData = freezed,
     Object? lefsData = freezed,
+    Object? isVigorousActivity = freezed,
   }) {
     return _then(_$QuestionnaireEntityImpl(
       userRef: freezed == userRef
@@ -251,6 +260,10 @@ class __$$QuestionnaireEntityImplCopyWithImpl<$Res>
           ? _value.lefsData
           : lefsData // ignore: cast_nullable_to_non_nullable
               as LEFSDataEntity?,
+      isVigorousActivity: freezed == isVigorousActivity
+          ? _value.isVigorousActivity
+          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -264,7 +277,8 @@ class _$QuestionnaireEntityImpl implements _QuestionnaireEntity {
       this.sedentaryData,
       this.recreateData,
       this.travelData,
-      this.lefsData});
+      this.lefsData,
+      this.isVigorousActivity});
 
   @override
   @DocumentReferenceConverter()
@@ -279,10 +293,12 @@ class _$QuestionnaireEntityImpl implements _QuestionnaireEntity {
   final QuestionnaireDataEntity? travelData;
   @override
   final LEFSDataEntity? lefsData;
+  @override
+  final bool? isVigorousActivity;
 
   @override
   String toString() {
-    return 'QuestionnaireEntity(userRef: $userRef, workData: $workData, sedentaryData: $sedentaryData, recreateData: $recreateData, travelData: $travelData, lefsData: $lefsData)';
+    return 'QuestionnaireEntity(userRef: $userRef, workData: $workData, sedentaryData: $sedentaryData, recreateData: $recreateData, travelData: $travelData, lefsData: $lefsData, isVigorousActivity: $isVigorousActivity)';
   }
 
   @override
@@ -300,12 +316,14 @@ class _$QuestionnaireEntityImpl implements _QuestionnaireEntity {
             (identical(other.travelData, travelData) ||
                 other.travelData == travelData) &&
             (identical(other.lefsData, lefsData) ||
-                other.lefsData == lefsData));
+                other.lefsData == lefsData) &&
+            (identical(other.isVigorousActivity, isVigorousActivity) ||
+                other.isVigorousActivity == isVigorousActivity));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, userRef, workData, sedentaryData,
-      recreateData, travelData, lefsData);
+      recreateData, travelData, lefsData, isVigorousActivity);
 
   /// Create a copy of QuestionnaireEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -325,7 +343,8 @@ abstract class _QuestionnaireEntity implements QuestionnaireEntity {
       final SedentaryDataEntity? sedentaryData,
       final QuestionnaireDataEntity? recreateData,
       final QuestionnaireDataEntity? travelData,
-      final LEFSDataEntity? lefsData}) = _$QuestionnaireEntityImpl;
+      final LEFSDataEntity? lefsData,
+      final bool? isVigorousActivity}) = _$QuestionnaireEntityImpl;
 
   @override
   @DocumentReferenceConverter()
@@ -340,6 +359,8 @@ abstract class _QuestionnaireEntity implements QuestionnaireEntity {
   QuestionnaireDataEntity? get travelData;
   @override
   LEFSDataEntity? get lefsData;
+  @override
+  bool? get isVigorousActivity;
 
   /// Create a copy of QuestionnaireEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -832,7 +853,6 @@ mixin _$WorkDataEntity {
   int? get hours => throw _privateConstructorUsedError;
   int? get minutes => throw _privateConstructorUsedError;
   bool? get hasActivity => throw _privateConstructorUsedError;
-  bool? get isVigorousActivity => throw _privateConstructorUsedError;
 
   /// Create a copy of WorkDataEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -847,12 +867,7 @@ abstract class $WorkDataEntityCopyWith<$Res> {
           WorkDataEntity value, $Res Function(WorkDataEntity) then) =
       _$WorkDataEntityCopyWithImpl<$Res, WorkDataEntity>;
   @useResult
-  $Res call(
-      {int? daysInWeek,
-      int? hours,
-      int? minutes,
-      bool? hasActivity,
-      bool? isVigorousActivity});
+  $Res call({int? daysInWeek, int? hours, int? minutes, bool? hasActivity});
 }
 
 /// @nodoc
@@ -874,7 +889,6 @@ class _$WorkDataEntityCopyWithImpl<$Res, $Val extends WorkDataEntity>
     Object? hours = freezed,
     Object? minutes = freezed,
     Object? hasActivity = freezed,
-    Object? isVigorousActivity = freezed,
   }) {
     return _then(_value.copyWith(
       daysInWeek: freezed == daysInWeek
@@ -893,10 +907,6 @@ class _$WorkDataEntityCopyWithImpl<$Res, $Val extends WorkDataEntity>
           ? _value.hasActivity
           : hasActivity // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isVigorousActivity: freezed == isVigorousActivity
-          ? _value.isVigorousActivity
-          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 }
@@ -909,12 +919,7 @@ abstract class _$$WorkDataEntityImplCopyWith<$Res>
       __$$WorkDataEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int? daysInWeek,
-      int? hours,
-      int? minutes,
-      bool? hasActivity,
-      bool? isVigorousActivity});
+  $Res call({int? daysInWeek, int? hours, int? minutes, bool? hasActivity});
 }
 
 /// @nodoc
@@ -934,7 +939,6 @@ class __$$WorkDataEntityImplCopyWithImpl<$Res>
     Object? hours = freezed,
     Object? minutes = freezed,
     Object? hasActivity = freezed,
-    Object? isVigorousActivity = freezed,
   }) {
     return _then(_$WorkDataEntityImpl(
       daysInWeek: freezed == daysInWeek
@@ -953,10 +957,6 @@ class __$$WorkDataEntityImplCopyWithImpl<$Res>
           ? _value.hasActivity
           : hasActivity // ignore: cast_nullable_to_non_nullable
               as bool?,
-      isVigorousActivity: freezed == isVigorousActivity
-          ? _value.isVigorousActivity
-          : isVigorousActivity // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -965,11 +965,7 @@ class __$$WorkDataEntityImplCopyWithImpl<$Res>
 
 class _$WorkDataEntityImpl implements _WorkDataEntity {
   const _$WorkDataEntityImpl(
-      {this.daysInWeek,
-      this.hours,
-      this.minutes,
-      this.hasActivity,
-      this.isVigorousActivity});
+      {this.daysInWeek, this.hours, this.minutes, this.hasActivity});
 
   @override
   final int? daysInWeek;
@@ -979,12 +975,10 @@ class _$WorkDataEntityImpl implements _WorkDataEntity {
   final int? minutes;
   @override
   final bool? hasActivity;
-  @override
-  final bool? isVigorousActivity;
 
   @override
   String toString() {
-    return 'WorkDataEntity(daysInWeek: $daysInWeek, hours: $hours, minutes: $minutes, hasActivity: $hasActivity, isVigorousActivity: $isVigorousActivity)';
+    return 'WorkDataEntity(daysInWeek: $daysInWeek, hours: $hours, minutes: $minutes, hasActivity: $hasActivity)';
   }
 
   @override
@@ -997,14 +991,12 @@ class _$WorkDataEntityImpl implements _WorkDataEntity {
             (identical(other.hours, hours) || other.hours == hours) &&
             (identical(other.minutes, minutes) || other.minutes == minutes) &&
             (identical(other.hasActivity, hasActivity) ||
-                other.hasActivity == hasActivity) &&
-            (identical(other.isVigorousActivity, isVigorousActivity) ||
-                other.isVigorousActivity == isVigorousActivity));
+                other.hasActivity == hasActivity));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, daysInWeek, hours, minutes, hasActivity, isVigorousActivity);
+  int get hashCode =>
+      Object.hash(runtimeType, daysInWeek, hours, minutes, hasActivity);
 
   /// Create a copy of WorkDataEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -1021,8 +1013,7 @@ abstract class _WorkDataEntity implements WorkDataEntity {
       {final int? daysInWeek,
       final int? hours,
       final int? minutes,
-      final bool? hasActivity,
-      final bool? isVigorousActivity}) = _$WorkDataEntityImpl;
+      final bool? hasActivity}) = _$WorkDataEntityImpl;
 
   @override
   int? get daysInWeek;
@@ -1032,8 +1023,6 @@ abstract class _WorkDataEntity implements WorkDataEntity {
   int? get minutes;
   @override
   bool? get hasActivity;
-  @override
-  bool? get isVigorousActivity;
 
   /// Create a copy of WorkDataEntity
   /// with the given fields replaced by the non-null parameter values.

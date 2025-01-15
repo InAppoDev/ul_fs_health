@@ -7,6 +7,7 @@ import '../../../../../core/extensions/number_extension.dart';
 import '../../../../../core/themes/app_text_styles.dart';
 import '../../../../../l10n/localizations_utils.dart';
 import '../../../../core/extensions/list_extension.dart';
+import '../../../../core/router/app_router.dart';
 import '../../../auth/widgets/auth_guard_widget.dart';
 import '../../../utils/widgets/dropdown_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
@@ -74,7 +75,7 @@ class LEFSContentState extends State<LEFSContent> {
     return QuestionnaireWidget(
       onNavigate: (context) {
         context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
-        context.router.popUntilRoot();
+        context.router.replaceAll([QuestionnaireInitialRoute(shouldAuthenticate: widget.shouldAuthenticate)]);
       },
       child: Scaffold(
         appBar: SimpleAppBarWidget(

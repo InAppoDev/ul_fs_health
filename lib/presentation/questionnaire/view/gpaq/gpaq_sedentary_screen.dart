@@ -7,6 +7,7 @@ import '../../../../../core/constants/gaps.dart';
 import '../../../../../core/extensions/number_extension.dart';
 import '../../../../../core/themes/app_text_styles.dart';
 import '../../../../../l10n/localizations_utils.dart';
+import '../../../../core/router/app_router.dart';
 import '../../../auth/widgets/auth_guard_widget.dart';
 import '../../../utils/widgets/row_actions_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
@@ -61,7 +62,7 @@ class GPAQSedentaryContentState extends State<GPAQSedentaryContent> {
     return QuestionnaireWidget(
       onNavigate: (context) {
         context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
-        context.router.popUntilRoot();
+        context.router.replaceAll([QuestionnaireInitialRoute(shouldAuthenticate: widget.shouldAuthenticate)]);
       },
       child: Scaffold(
         bottomNavigationBar: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(

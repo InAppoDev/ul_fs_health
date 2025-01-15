@@ -22,6 +22,7 @@ class QuestionnaireEntity with _$QuestionnaireEntity {
     SedentaryDataEntity? sedentaryData,
     QuestionnaireDataEntity? recreateData,
     QuestionnaireDataEntity? travelData,
-    LEFSDataEntity? lefsData
+    LEFSDataEntity? lefsData,
+    bool? isVigorousActivity
   }) = _QuestionnaireEntity;
 }

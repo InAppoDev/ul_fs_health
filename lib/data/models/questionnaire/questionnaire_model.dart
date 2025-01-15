@@ -23,6 +23,7 @@ class QuestionnaireModel with _$QuestionnaireModel {
     required QuestionnaireDataModel? recreateData,
     required SedentaryDataModel? sedentaryData,
     required LEFSDataModel? lefsData,
+    required bool? isVigorousActivity
   }) = _QuestionnaireModel;
 
   factory QuestionnaireModel.fromEntity(QuestionnaireEntity entity) =>
@@ -32,7 +33,8 @@ class QuestionnaireModel with _$QuestionnaireModel {
           travelData: entity.travelData != null ? QuestionnaireDataModel.fromEntity(entity.travelData!) : null,
           recreateData: entity.recreateData != null ? QuestionnaireDataModel.fromEntity(entity.recreateData!) : null,
           sedentaryData: entity.sedentaryData != null ? SedentaryDataModel.fromEntity(entity.sedentaryData!) : null,
-          lefsData: entity.lefsData != null ? LEFSDataModel.fromEntity(entity.lefsData!) : null
+          lefsData: entity.lefsData != null ? LEFSDataModel.fromEntity(entity.lefsData!) : null,
+          isVigorousActivity: entity.isVigorousActivity
       );
 
   const QuestionnaireModel._();
@@ -43,11 +45,12 @@ class QuestionnaireModel with _$QuestionnaireModel {
   Map<String, dynamic> toJson() {
     return {
       'userRef': userRef,
-      'workData': workData?.toJson(),
-      'travelData': travelData?.toJson(),
-      'recreateData': recreateData?.toJson(),
-      'sedentaryData': sedentaryData?.toJson(),
-      'lefsData': lefsData?.toJson()
+      if (workData != null) 'workData': workData?.toJson(),
+      if (travelData != null) 'travelData': travelData?.toJson(),
+      if (recreateData != null) 'recreateData': recreateData?.toJson(),
+      if (sedentaryData != null) 'sedentaryData': sedentaryData?.toJson(),
+      if (lefsData != null) 'lefsData': lefsData?.toJson(),
+      if (isVigorousActivity != null) 'isVigorousActivity': isVigorousActivity
     };
   }
 

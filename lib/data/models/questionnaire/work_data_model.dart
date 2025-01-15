@@ -6,8 +6,7 @@ class WorkDataModel with _$WorkDataModel {
     int? daysInWeek,
     int? hours,
     int? minutes,
-    bool? hasActivity,
-    bool? isVigorousActivity}) = _WorkDataModel;
+    bool? hasActivity}) = _WorkDataModel;
 
   factory WorkDataModel.fromJson(Map<String, dynamic> json) =>
       _$WorkDataModelFromJson(json);
@@ -17,8 +16,7 @@ class WorkDataModel with _$WorkDataModel {
           daysInWeek: entity.daysInWeek,
           hours: entity.hours,
           hasActivity: entity.hasActivity,
-          minutes: entity.minutes,
-          isVigorousActivity: entity.isVigorousActivity);
+          minutes: entity.minutes);
 
   const WorkDataModel._();
 
@@ -28,7 +26,6 @@ class WorkDataModel with _$WorkDataModel {
         hours: hours,
         hasActivity: hasActivity,
         minutes: minutes,
-        isVigorousActivity: isVigorousActivity
     );
   }
 }

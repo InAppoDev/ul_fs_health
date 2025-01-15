@@ -16,7 +16,7 @@ class QuestionnaireRepositoryImp implements QuestionnaireRepository {
     if (userId != null) {
       final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
       final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
+      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
           SetOptions(merge: true));
     }
   }
@@ -27,7 +27,7 @@ class QuestionnaireRepositoryImp implements QuestionnaireRepository {
     if (userId != null) {
       final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
       final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
+      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
           SetOptions(merge: true));
     }
   }
@@ -38,7 +38,7 @@ class QuestionnaireRepositoryImp implements QuestionnaireRepository {
     if (userId != null) {
       final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
       final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
+      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
           SetOptions(merge: true));
     }
   }
@@ -60,7 +60,7 @@ class QuestionnaireRepositoryImp implements QuestionnaireRepository {
     if (userId != null) {
       final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
       final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
+      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
           SetOptions(merge: true));
     }
   }

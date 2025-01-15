@@ -54,11 +54,9 @@ class QuestionnaireSubmitterBloc
     try {
       await questionnaireRepository.storeGPAQWorkData(
           entity:
-              QuestionnaireEntity(workData: WorkDataEntity(isVigorousActivity: event.hasActivity)));
+              QuestionnaireEntity(isVigorousActivity: event.hasActivity));
 
       emit(state.copyWith(status: QuestionnaireSubmitterStatus.success));
-      print("JJJJJ");
-
     } catch (e) {
       emit(
           state.copyWith(status: QuestionnaireSubmitterStatus.failure, errorMessage: e.toString()));
@@ -69,7 +67,7 @@ class QuestionnaireSubmitterBloc
       _SubmitTravel event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQWorkData(
+      await questionnaireRepository.storeGPAQTravelData(
           entity: QuestionnaireEntity(
               recreateData: QuestionnaireDataEntity(
                   daysInWeek: event.travelData.daysInWeek ?? 0,
@@ -87,7 +85,7 @@ class QuestionnaireSubmitterBloc
       _SubmitRecreation event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQWorkData(
+      await questionnaireRepository.storeGPAQRecreationData(
           entity: QuestionnaireEntity(
               recreateData: QuestionnaireDataEntity(
                   daysInWeek: event.recreationData.daysInWeek ?? 0,
