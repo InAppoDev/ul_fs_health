@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di/service_locator.dart';
+import '../../domain/repositories/questionnaire_repository.dart';
 import '../../domain/repositories/walk_repository.dart';
 import '../../presentation/auth/view/login_screen.dart';
 import '../../presentation/auth/view/signup_screen.dart';
@@ -11,6 +12,7 @@ import '../../presentation/history/view/history_screen.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/profile/view/profile_screen.dart';
 import '../../presentation/questionnaire/bloc/questionnaire_bloc.dart';
+import '../../presentation/questionnaire/bloc/submitter/questionnaire_submitter_bloc.dart';
 import '../../presentation/questionnaire/view/gpaq/gpaq_initial_screen.dart';
 import '../../presentation/questionnaire/view/gpaq/gpaq_recreation_initial_screen.dart';
 import '../../presentation/questionnaire/view/gpaq/gpaq_recreation_screen.dart';

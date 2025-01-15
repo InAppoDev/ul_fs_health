@@ -52,9 +52,10 @@ class GPSServiceImp with GPSMixin implements GPSService {
       _distanceTraveled += distance;
       _speed = position.speed;
     }
-
-    _lastPosition = position;
-    _positionController.add(position);
+    if (!_positionController.isClosed) {
+      _lastPosition = position;
+      _positionController.add(position);
+    }
   }
 
   @override

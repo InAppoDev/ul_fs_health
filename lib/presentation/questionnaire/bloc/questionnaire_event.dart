@@ -2,8 +2,6 @@ part of 'questionnaire_bloc.dart';
 
 @freezed
 class QuestionnaireEvent with _$QuestionnaireEvent {
-  factory QuestionnaireEvent.onSubmit(QuestionnaireFillStatus fillStatus) =
-      _QuestionnaireSubmit;
 
   factory QuestionnaireEvent.selectActivity(
       {required bool hasActivity,

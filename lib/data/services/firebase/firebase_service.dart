@@ -12,4 +12,5 @@ abstract interface class FirebaseService {
   FCollectionReference get userCollectionReference;
   FCollectionReference get sitToStandCollectionReference;
   FCollectionReference get resultCollectionReference;
+  FCollectionReference get questionnaireCollectionReference;
 }

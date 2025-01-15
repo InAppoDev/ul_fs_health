@@ -11,7 +11,8 @@ class QuestionnaireState with _$QuestionnaireState {
         bool? hasWorkInitialActivity,
         @Default({}) Map<String, DifficultyLevel> lefsData,
         @Default('') String daysError,
-        @Default(false) bool isNextValid
+        @Default(false) bool isNextValid,
+        String? errorMessage
       }) = _QuestionnaireStateInitial;
 }
 
