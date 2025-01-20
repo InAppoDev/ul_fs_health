@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'di/service_locator.dart';
 import 'firebase_options.dart';
 import 'my_app.dart';
+import 'services/preferences/preferences_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,5 +11,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   configureDependencies();
-  runApp(const MyApp());
+  final language = await getIt<PreferencesService>().getCurrentLanguage();
+  runApp(MyApp(initalLanguageCode: language));
 }

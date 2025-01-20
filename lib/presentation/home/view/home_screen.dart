@@ -9,8 +9,11 @@ import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../gen/assets.gen.dart';
+import '../../../generated/l10n.dart';
 import '../../../l10n/localizations_utils.dart';
+import '../../../my_app.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
+import '../../utils/widgets/simple_drop_down_button.dart';
 import '../../utils/widgets/submit_button.dart';
 
 @RoutePage()
@@ -32,9 +35,16 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleAppBarWidget(
-        onInfoPress: () {
-          // TODO Hovsep: implement info press
-        },
+        actions: [
+          SimpleDropDownButton(
+            items: S.delegate.supportedLocales,
+            selectedItem: MyApp.getLocale(context),
+            width: MediaQuery.sizeOf(context).width / 3,
+            onChanged:  (value) async {
+              MyApp.setLocale(context, value ?? MyApp.getLocale(context));
+            },
+          ),
+        ],
         onLeadingPress: () {
           context.router.push(const DashboardMenuRoute());
         },
