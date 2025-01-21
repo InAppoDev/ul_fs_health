@@ -10,30 +10,45 @@ import '../../widgets/result_chart_widget.dart';
 import '../../widgets/titles_widget.dart';
 
 class SixMinuteWalkTab extends StatelessWidget {
-  const SixMinuteWalkTab({super.key, required this.walkDataEntities});
+  const SixMinuteWalkTab(
+      {super.key,
+      required this.walkDataEntities,
+      this.padding = EdgeInsets.zero,
+      this.paddingLeft = EdgeInsets.zero});
   final List<WalkResultEntity> walkDataEntities;
+  final EdgeInsets padding;
+  final EdgeInsets paddingLeft;
 
   @override
   Widget build(BuildContext context) {
-    final worstDistanceData = walkDataEntities
-        .reduce((a, b) => (a.distance ?? 0) > (b.distance ?? 0) ? a : b);
-    final worstAverageSpeedData = walkDataEntities.reduce(
-        (a, b) => (a.averageSpeed ?? 0) > (b.averageSpeed ?? 0) ? a : b);
-    final worstValue = (worstDistanceData.distance ?? 0) >
-            (worstAverageSpeedData.averageSpeed ?? 0)
-        ? worstDistanceData
-        : worstAverageSpeedData;
+    final worstDistanceData = walkDataEntities.isNotEmpty
+        ? walkDataEntities
+            .reduce((a, b) => (a.distance ?? 0) > (b.distance ?? 0) ? a : b)
+        : null;
+
+    final worstAverageSpeedData = walkDataEntities.isNotEmpty
+        ? walkDataEntities.reduce(
+            (a, b) => (a.averageSpeed ?? 0) > (b.averageSpeed ?? 0) ? a : b)
+        : null;
+
+    final worstValue =
+        worstDistanceData != null && worstAverageSpeedData != null
+            ? (worstDistanceData.distance ?? 0) >
+                    (worstAverageSpeedData.averageSpeed ?? 0)
+                ? worstDistanceData
+                : worstAverageSpeedData
+            : null;
 
     return SingleChildScrollView(
       child: Column(
         children: [
           Center(
             child: Padding(
-              padding: Gaps.largest.paddingTop,
+              padding: padding,
               child: Column(
                 children: [
                   Padding(
-                    padding: Gaps.largest.paddingLeft,
+                    padding: paddingLeft,
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(

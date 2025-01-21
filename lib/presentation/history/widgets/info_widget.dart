@@ -65,7 +65,7 @@ class InfoWidget extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: Gaps.larger.paddingHorizontal,
+          padding: Gaps.large.paddingHorizontal,
           child: Divider(
             color: Theme.of(context).colorScheme.tertiary,
           ),

@@ -122,6 +122,8 @@ class HistoryContent extends StatelessWidget {
                         );
                       }
                       return SitToStandTab(
+                        padding: Gaps.larger.paddingHorizontal +
+                            Gaps.largest.paddingTop,
                         resultDataEntities: state.testResults ?? [],
                       );
                     },
@@ -142,6 +144,8 @@ class HistoryContent extends StatelessWidget {
                         );
                       }
                       return SixMinuteWalkTab(
+                        padding: Gaps.largest.paddingTop,
+                        paddingLeft: Gaps.largest.paddingLeft,
                         walkDataEntities: walkState.walkResults ?? [],
                       );
                     },

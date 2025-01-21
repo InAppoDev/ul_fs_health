@@ -9,26 +9,37 @@ import '../../widgets/result_chart_widget.dart';
 import '../../widgets/titles_widget.dart';
 
 class SitToStandTab extends StatelessWidget {
-  const SitToStandTab({super.key, required this.resultDataEntities});
+  const SitToStandTab(
+      {super.key,
+      required this.resultDataEntities,
+      this.padding = EdgeInsets.zero});
 
   final List<ResultDataEntity> resultDataEntities;
+  final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
-    final worstTimeData = resultDataEntities
-        .reduce((a, b) => (a.resultTime ?? 0) > (b.resultTime ?? 0) ? a : b);
-    final worstVelocityData = resultDataEntities
-        .reduce((a, b) => (a.velocity ?? 0) > (b.velocity ?? 0) ? a : b);
-    final worstValue =
-        (worstTimeData.resultTime ?? 0) > (worstVelocityData.velocity ?? 0)
+    final worstTimeData = resultDataEntities.isNotEmpty
+        ? resultDataEntities
+            .reduce((a, b) => (a.resultTime ?? 0) > (b.resultTime ?? 0) ? a : b)
+        : null;
+
+    final worstVelocityData = resultDataEntities.isNotEmpty
+        ? resultDataEntities
+            .reduce((a, b) => (a.velocity ?? 0) > (b.velocity ?? 0) ? a : b)
+        : null;
+
+    final worstValue = worstTimeData != null && worstVelocityData != null
+        ? (worstTimeData.resultTime ?? 0) > (worstVelocityData.velocity ?? 0)
             ? worstTimeData
-            : worstVelocityData;
+            : worstVelocityData
+        : null;
 
     return SingleChildScrollView(
       child: Column(
         children: [
           Padding(
-            padding: Gaps.larger.paddingHorizontal + Gaps.largest.paddingTop,
+            padding: padding,
             child: Column(
               children: [
                 Align(

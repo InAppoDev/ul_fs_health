@@ -55,7 +55,7 @@ class SignupContent extends StatelessWidget {
         child: BlocListener<UserBloc, UserState>(
           listener: (context, state) {
             if (state.status == UserStatus.saved) {
-              context.router.push(QuestionnaireInitialRoute());
+              context.router.push(const HomeRoute());
             } else if (state.status == UserStatus.failure) {
               context.showSnackBarMessage(state.errorMessage ?? '');
             }
@@ -81,7 +81,16 @@ class SignupContent extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const AppHeaderTextWidget(),
+                      AppHeaderTextWidget(
+                        lblActStyle: body3.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 32,
+                            color: ColorScheme.of(context).onSecondary),
+                        lblOnStyle: body3.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 32,
+                            color: ColorScheme.of(context).primary),
+                      ),
                       Gaps.larger.spaceVertical,
                       Text(
                         S.current.lblSignUp,

@@ -165,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please confirm your password"),
         "lblDate": MessageLookupByLibrary.simpleMessage("DATE"),
         "lblDistance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "lblEditLoginData": MessageLookupByLibrary.simpleMessage(
+            "Here you can edit your login data and create your new password."),
         "lblEmailPassword": MessageLookupByLibrary.simpleMessage(
             "Enter your email and password to enter app."),
         "lblEmailRequire":
@@ -174,7 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lblForgottenPassword":
             MessageLookupByLibrary.simpleMessage("Forgotten password?"),
         "lblHourText": MessageLookupByLibrary.simpleMessage("Hours"),
-        "lblLogin": MessageLookupByLibrary.simpleMessage("Login"),
+        "lblLogin": MessageLookupByLibrary.simpleMessage("Log in"),
         "lblLoginFailed": MessageLookupByLibrary.simpleMessage("Login failed"),
         "lblMinuteText": MessageLookupByLibrary.simpleMessage("Minutes"),
         "lblMyResults": MessageLookupByLibrary.simpleMessage("My Results:"),
@@ -289,7 +291,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuLogoutText": MessageLookupByLibrary.simpleMessage("Log out"),
         "menuProfileText": MessageLookupByLibrary.simpleMessage("My profile"),
         "menuQuestionnaireText":
-            MessageLookupByLibrary.simpleMessage("Questionairre"),
+            MessageLookupByLibrary.simpleMessage("Questionairres"),
         "menuResultsText": MessageLookupByLibrary.simpleMessage("My Results"),
         "optionalText": MessageLookupByLibrary.simpleMessage("optional"),
         "pauseTestUpperText":
@@ -353,11 +355,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("average speed:"),
         "walkTestDelayText": m4,
         "walkTestDescriptionText": MessageLookupByLibrary.simpleMessage(
-            "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally."),
+            "Simple 6 minute walk test, which you can do anywhere. All you need is flat surface for walking (sport hall, running track, stadium), min. 15 meters long."),
         "walkTestDistanceText":
             MessageLookupByLibrary.simpleMessage("distance:"),
         "walkTestInitialLblText":
-            MessageLookupByLibrary.simpleMessage("Select length:"),
+            MessageLookupByLibrary.simpleMessage("Select length"),
         "walkTestInitialText": MessageLookupByLibrary.simpleMessage(
             "Great, you are all set to start the test!"),
         "walkTestInstruction": MessageLookupByLibrary.simpleMessage(
