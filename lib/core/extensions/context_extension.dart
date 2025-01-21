@@ -8,10 +8,10 @@ extension ContextExtension on BuildContext {
   }
 
   void showSideBar() {
-      Scaffold.of(this).openDrawer();
+    findAncestorStateOfType<ScaffoldState>()?.openDrawer();
   }
 
   void hideSideBar() {
-    Scaffold.of(this).closeDrawer();
+    findAncestorStateOfType<ScaffoldState>()?.closeDrawer();
   }
 }

@@ -83,13 +83,15 @@ class HomeContent extends StatelessWidget {
             },
           ),
         ],
-        onLeadingPress: () {
+        onLeadingPress: (context) {
           context.showSideBar();
         },
       ),
-      drawer: SideBarWidget(
-        selectedRouteName: context.router.current.name,
-        items: _buildMenuItems(context),
+      drawer: Builder(
+        builder: (context) => SideBarWidget(
+          selectedRouteName: context.router.current.name,
+          items: _buildMenuItems(context),
+        ),
       ),
       body: Center(
         child: Padding(
@@ -174,7 +176,6 @@ class HomeContent extends StatelessWidget {
                   title: appLocalizations.btnTestInstructionsText,
                   backgroundColor: defaultBtnInactiveBackground,
                   titleColor: defaultTextColor),
-              // Gaps.larger.spaceVertical
             ],
           ),
         ),
