@@ -14,6 +14,9 @@ import '../../../utils/widgets/row_actions_widget.dart';
 import '../../../utils/widgets/simple_app_bar_widget.dart';
 import '../../../utils/widgets/text_input_widget.dart';
 import '../../bloc/questionnaire_bloc.dart';
+import '../../bloc/submitter/questionnaire_submitter_bloc.dart';
+import '../../model/questionnaire_model.dart';
+import '../questionnaire_widget.dart';
 
 @RoutePage()
 class GPAQRecreationScreen extends StatelessWidget {
@@ -48,8 +51,8 @@ class GPAQRecreationContentContentState extends State<GPAQRecreationContent> {
     super.initState();
     _hourController.addListener(() {
       final int hours = _hourController.text.isEmpty ? 0 : int.parse(_hourController.text);
-      context.read<QuestionnaireBloc>().add(
-          QuestionnaireEvent.selectHour(hours: hours, fillStatus: QuestionnaireFillStatus.recreation));
+      context.read<QuestionnaireBloc>().add(QuestionnaireEvent.selectHour(
+          hours: hours, fillStatus: QuestionnaireFillStatus.recreation));
     });
     _minuteController.addListener(() {
       final int minutes = _minuteController.text.isEmpty ? 0 : int.parse(_minuteController.text);
@@ -60,163 +63,181 @@ class GPAQRecreationContentContentState extends State<GPAQRecreationContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: RowActionsWidget(
-          isRightValid: context.watch<QuestionnaireBloc>().state.isNextValid,
-          contentPadding: Gaps.largest.paddingAll,
-          leftTitle: appLocalizations.btnBackActionText,
-          rightTitle: appLocalizations.btnNextActionText,
-          onLeftPress: () => context.router.maybePop(),
-          onRightPress: () {
-            context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
-            context.router.push(GPAQSedentaryInitialRoute(shouldAuthenticate: widget.shouldAuthenticate));
-          },
-          leftTitleColor: ColorScheme.of(context).onSecondary,
-          rightTitleColor: ColorScheme.of(context).onPrimary,
-          leftBackgroundColor: ColorScheme.of(context).secondary,
-          rightBackgroundColor: ColorScheme.of(context).primary),
-      appBar: SimpleAppBarWidget(
-        showBackButton: widget.shouldAuthenticate,
-        onInfoPress: () {},
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: AuthGuardWidget(
-              isAuthRoute: !widget.shouldAuthenticate,
-              child: Center(
-                child: Padding(
-                  padding: (Gaps.largest + Gaps.small).paddingHorizontal,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Gaps.large.spaceVertical,
-                      Text(appLocalizations.gpaqRecreationHeaderText,
-                          style: header1.copyWith(
-                              decoration: TextDecoration.underline,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              height: 1.4,
-                              letterSpacing: -2)),
-                      Gaps.larger.spaceVertical,
-                      Text(appLocalizations.gpaqRecreationDescription3,
-                          style: body1, textAlign: TextAlign.justify),
-                      Gaps.medium.spaceVertical,
-                      RowActionsWidget(
-                          leftTitle: appLocalizations.btnActionYes,
-                          rightTitle: appLocalizations.btnActionNo,
-                          onLeftPress: () => context.read<QuestionnaireBloc>().add(
-                              QuestionnaireEvent.selectActivity(
-                                  hasActivity: true, fillStatus: QuestionnaireFillStatus.recreation)),
-                          onRightPress: () => context.read<QuestionnaireBloc>().add(
-                              QuestionnaireEvent.selectActivity(
-                                  hasActivity: false, fillStatus: QuestionnaireFillStatus.recreation)),
-                          leftTitleColor:
-                          context.watch<QuestionnaireBloc>().state.recreationData.hasActivity == true
-                              ? ColorScheme.of(context).onPrimary
-                              : ColorScheme.of(context).onSecondary,
-                          rightTitleColor:
-                          context.watch<QuestionnaireBloc>().state.recreationData.hasActivity == false
-                              ? ColorScheme.of(context).onPrimary
-                              : ColorScheme.of(context).onSecondary,
-                          leftBackgroundColor:
-                          context.watch<QuestionnaireBloc>().state.recreationData.hasActivity == true
-                              ? ColorScheme.of(context).primary
-                              : ColorScheme.of(context).secondary,
-                          rightBackgroundColor:
-                          context.watch<QuestionnaireBloc>().state.recreationData.hasActivity == false
-                              ? ColorScheme.of(context).primary
-                              : ColorScheme.of(context).secondary),
-                      if (context.watch<QuestionnaireBloc>().state.recreationData.hasActivity ==
-                          null) ...[
-                        Gaps.medium.spaceVertical,
-                        Text(appLocalizations.gpaqRequiredChoice,
-                            style: body1.copyWith(color: ColorScheme.of(context).error)),
-                        Gaps.medium.spaceVertical,
-                      ],
-                      Gaps.medium.spaceVertical,
-                      Text(appLocalizations.gpaqRecreationDescription4,
-                          style: body1, textAlign: TextAlign.justify),
-                      Gaps.medium.spaceVertical,
-                      BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                        builder: (context, state) => DropdownWidget<int>(
-                          selectedValue: state.recreationData.daysInWeek,
-                          values: List.generate(7, (index) => index + 1),
-                          onChanged: (e) => context.read<QuestionnaireBloc>().add(
-                              QuestionnaireEvent.selectDaysInWeek(
-                                  daysInWeek: e,
-                                  shouldValidate: false,
-                                  fillStatus: QuestionnaireFillStatus.recreation)),
-                          onFocusChange: (hasFocus) => context.read<QuestionnaireBloc>().add(
-                              QuestionnaireEvent.selectDaysInWeek(
-                                  daysInWeek: state.recreationData.daysInWeek,
-                                  shouldValidate: !hasFocus,
-                                  fillStatus: QuestionnaireFillStatus.recreation)),
-                          hintText: appLocalizations.gpaqDaysHintText,
-                          onGenerateLabel: (days) => appLocalizations.textFromDays(days),
-                          errorText: state.daysError,
-                        ),
-                      ),
-                      Gaps.medium.spaceVertical,
-                      Text(appLocalizations.gpaqRecreationDescription5,
-                          style: body1, textAlign: TextAlign.justify),
-                      Gaps.medium.spaceVertical,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+    return QuestionnaireWidget(
+        onNavigate: (context) {
+          context.read<QuestionnaireBloc>().add(QuestionnaireEvent.resetErrors());
+          context.router
+              .push(GPAQSedentaryInitialRoute(shouldAuthenticate: widget.shouldAuthenticate));
+        },
+        child: Scaffold(
+          bottomNavigationBar: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+              builder: (context, state) => RowActionsWidget(
+                  isRightValid: state.isNextValid,
+                  isRightLoading: context.watch<QuestionnaireSubmitterBloc>().state.status ==
+                      QuestionnaireSubmitterStatus.loading,
+                  contentPadding: Gaps.largest.paddingAll,
+                  leftTitle: appLocalizations.btnBackActionText,
+                  rightTitle: appLocalizations.btnNextActionText,
+                  onLeftPress: () => context.router.maybePop(),
+                  onRightPress: () {
+                    context.read<QuestionnaireSubmitterBloc>().add(
+                        QuestionnaireSubmitterEvent.submitRecreation(
+                            recreationData: QuestionnaireModel.from(
+                                daysInWeek: state.recreationData.daysInWeek,
+                                hasActivity: state.recreationData.hasActivity,
+                                hours: state.recreationData.hours,
+                                minutes: state.recreationData.minutes)));
+                  },
+                  leftTitleColor: ColorScheme.of(context).onSecondary,
+                  rightTitleColor: ColorScheme.of(context).onPrimary,
+                  leftBackgroundColor: ColorScheme.of(context).secondary,
+                  rightBackgroundColor: ColorScheme.of(context).primary)),
+          appBar: SimpleAppBarWidget(
+            showBackButton: widget.shouldAuthenticate,
+            onInfoPress: () {},
+          ),
+          body: SingleChildScrollView(
+            child: Center(
+              child: AuthGuardWidget(
+                  isAuthRoute: !widget.shouldAuthenticate,
+                  child: Center(
+                    child: Padding(
+                      padding: (Gaps.largest + Gaps.small).paddingHorizontal,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                              width: 64,
-                              child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
-                                builder: (context, state) => TextInputWidget(
+                          Gaps.large.spaceVertical,
+                          Text(appLocalizations.gpaqRecreationHeaderText,
+                              style: header1.copyWith(
+                                  decoration: TextDecoration.underline,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  height: 1.4,
+                                  letterSpacing: -2)),
+                          Gaps.larger.spaceVertical,
+                          Text(appLocalizations.gpaqRecreationDescription3,
+                              style: body1, textAlign: TextAlign.justify),
+                          Gaps.medium.spaceVertical,
+                          RowActionsWidget(
+                              leftTitle: appLocalizations.btnActionYes,
+                              rightTitle: appLocalizations.btnActionNo,
+                              onLeftPress: () => context.read<QuestionnaireBloc>().add(
+                                  QuestionnaireEvent.selectActivity(
+                                      hasActivity: true,
+                                      fillStatus: QuestionnaireFillStatus.recreation)),
+                              onRightPress: () => context.read<QuestionnaireBloc>().add(
+                                  QuestionnaireEvent.selectActivity(
+                                      hasActivity: false,
+                                      fillStatus: QuestionnaireFillStatus.recreation)),
+                              leftTitleColor:
+                                  context.watch<QuestionnaireBloc>().state.recreationData.hasActivity == true
+                                      ? ColorScheme.of(context).onPrimary
+                                      : ColorScheme.of(context).onSecondary,
+                              rightTitleColor:
+                                  context.watch<QuestionnaireBloc>().state.recreationData.hasActivity ==
+                                          false
+                                      ? ColorScheme.of(context).onPrimary
+                                      : ColorScheme.of(context).onSecondary,
+                              leftBackgroundColor:
+                                  context.watch<QuestionnaireBloc>().state.recreationData.hasActivity == true
+                                      ? ColorScheme.of(context).primary
+                                      : ColorScheme.of(context).secondary,
+                              rightBackgroundColor:
+                                  context.watch<QuestionnaireBloc>().state.recreationData.hasActivity ==
+                                          false
+                                      ? ColorScheme.of(context).primary
+                                      : ColorScheme.of(context).secondary),
+                          if (context.watch<QuestionnaireBloc>().state.recreationData.hasActivity ==
+                              null) ...[
+                            Gaps.medium.spaceVertical,
+                            Text(appLocalizations.gpaqRequiredChoice,
+                                style: body1.copyWith(color: ColorScheme.of(context).error)),
+                            Gaps.medium.spaceVertical,
+                          ],
+                          Gaps.medium.spaceVertical,
+                          Text(appLocalizations.gpaqRecreationDescription4,
+                              style: body1, textAlign: TextAlign.justify),
+                          Gaps.medium.spaceVertical,
+                          BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                            builder: (context, state) => DropdownWidget<int>(
+                              selectedValue: state.recreationData.daysInWeek,
+                              values: List.generate(7, (index) => index + 1),
+                              onChanged: (e) => context.read<QuestionnaireBloc>().add(
+                                  QuestionnaireEvent.selectDaysInWeek(
+                                      daysInWeek: e,
+                                      shouldValidate: false,
+                                      fillStatus: QuestionnaireFillStatus.recreation)),
+                              onFocusChange: (hasFocus) => context.read<QuestionnaireBloc>().add(
+                                  QuestionnaireEvent.selectDaysInWeek(
+                                      daysInWeek: state.recreationData.daysInWeek,
+                                      shouldValidate: !hasFocus,
+                                      fillStatus: QuestionnaireFillStatus.recreation)),
+                              hintText: appLocalizations.gpaqDaysHintText,
+                              onGenerateLabel: (days) => appLocalizations.textFromDays(days),
+                              errorText: state.daysError,
+                            ),
+                          ),
+                          Gaps.medium.spaceVertical,
+                          Text(appLocalizations.gpaqRecreationDescription5,
+                              style: body1, textAlign: TextAlign.justify),
+                          Gaps.medium.spaceVertical,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width: 64,
+                                  child: BlocBuilder<QuestionnaireBloc, QuestionnaireState>(
+                                    builder: (context, state) => TextInputWidget(
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          LengthLimitingTextInputFormatter(2)
+                                        ],
+                                        onFocusChange: (hasFocus) {
+                                          if (!hasFocus) {
+                                            final minutes = _hourController.text;
+                                            final formattedText = minutes.padLeft(2, '0');
+                                            if (formattedText != minutes) {
+                                              _hourController.text = formattedText;
+                                            }
+                                          }
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        centerText: true,
+                                        controller: _hourController,
+                                        hintText: '00'),
+                                  )),
+                              Gaps.small.spaceHorizontal,
+                              Text(':', style: body1.copyWith(fontSize: 20)),
+                              Gaps.small.spaceHorizontal,
+                              SizedBox(
+                                width: 64,
+                                child: TextInputWidget(
+                                    onFocusChange: (hasFocus) {
+                                      if (!hasFocus) {
+                                        final minutes = _minuteController.text;
+                                        final formattedText = minutes.padLeft(2, '0');
+                                        if (formattedText != minutes) {
+                                          _minuteController.text = formattedText;
+                                        }
+                                      }
+                                    },
                                     inputFormatters: [
                                       FilteringTextInputFormatter.digitsOnly,
                                       LengthLimitingTextInputFormatter(2)
                                     ],
-                                    onFocusChange: (hasFocus) {
-                                      if (!hasFocus) {
-                                        final minutes = _hourController.text;
-                                        final formattedText = minutes.padLeft(2, '0');
-                                        if (formattedText != minutes) {
-                                          _hourController.text = formattedText;
-                                        }
-                                      }
-                                    },
                                     keyboardType: TextInputType.number,
                                     centerText: true,
-                                    controller: _hourController,
+                                    controller: _minuteController,
                                     hintText: '00'),
-                              )),
-                          Gaps.small.spaceHorizontal,
-                          Text(':', style: body1.copyWith(fontSize: 20)),
-                          Gaps.small.spaceHorizontal,
-                          SizedBox(
-                            width: 64,
-                            child: TextInputWidget(
-                                onFocusChange: (hasFocus) {
-                                  if (!hasFocus) {
-                                    final minutes = _minuteController.text;
-                                    final formattedText = minutes.padLeft(2, '0');
-                                    if (formattedText != minutes) {
-                                      _minuteController.text = formattedText;
-                                    }
-                                  }
-                                },
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  LengthLimitingTextInputFormatter(2)
-                                ],
-                                keyboardType: TextInputType.number,
-                                centerText: true,
-                                controller: _minuteController,
-                                hintText: '00'),
-                          ),
+                              ),
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  ),
-                ),
-              )),
-        ),
-      ),
-    );
+                      ),
+                    ),
+                  )),
+            ),
+          ),
+        ));
   }
 }

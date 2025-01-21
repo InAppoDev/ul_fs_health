@@ -14,7 +14,6 @@ part 'questionnaire_state.dart';
 
 class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
   QuestionnaireBloc() : super(QuestionnaireState.initial()) {
-    on<_QuestionnaireSubmit>(_onQuestionnaireSubmit);
     on<_SelectActivity>(_onSelectActivity);
     on<_SelectDaysInWeek>(_onSelectWorkDaysInWeek);
     on<_ValidateScreen>(_onValidateWorkScreen);
@@ -23,8 +22,6 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
     on<_LEFSInitial>(_onLEFSInitial);
     on<_ResetErrors>(_onResetErrors);
   }
-
-  void _onQuestionnaireSubmit(_QuestionnaireSubmit event, Emitter<QuestionnaireState> emit) {}
 
   void _onLEFSInitial(_LEFSInitial event, Emitter<QuestionnaireState> emit) {
     emit(state.copyWith(lefsData: event.initialData));
@@ -97,10 +94,8 @@ class QuestionnaireBloc extends Bloc<QuestionnaireEvent, QuestionnaireState> {
             isNextValid: isValid));
       case QuestionnaireFillStatus.sedentary:
       case QuestionnaireFillStatus.initial:
-      case QuestionnaireFillStatus.workInitial:;
-      emit(state.copyWith(
-          hasWorkInitialActivity: event.hasActivity,
-          isNextValid: true));
+      case QuestionnaireFillStatus.workInitial:
+        emit(state.copyWith(hasWorkInitialActivity: event.hasActivity, isNextValid: true));
     }
   }
 

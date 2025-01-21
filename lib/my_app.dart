@@ -4,14 +4,19 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/bloc_providers.dart';
 import 'core/router/app_router.dart';
 import 'core/themes/app_themes.dart';
+import 'di/service_locator.dart';
 import 'generated/l10n.dart';
+import 'services/preferences/preferences_service.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.initalLanguageCode});
+
+  final String initalLanguageCode;
 
   static void setLocale(BuildContext context, Locale newLocale) {
     final _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.locale = newLocale;
+    getIt<PreferencesService>().saveCurrentLanguage(newLocale.languageCode);
   }
 
   static Locale getLocale(BuildContext context) {
@@ -34,7 +39,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _locale = const Locale('en');
+  Locale? _locale;
   var _themeMode = ThemeMode.light;
   final _appRouter = AppRouter();
 
@@ -44,7 +49,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  Locale get locale => _locale;
+  Locale get locale => _locale ?? Locale(widget.initalLanguageCode);
 
   set theme(ThemeMode themeMode) {
     setState(() {
@@ -53,6 +58,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   ThemeMode get theme => _themeMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _locale = Locale(widget.initalLanguageCode);
+  }
 
   @override
   Widget build(BuildContext context) {

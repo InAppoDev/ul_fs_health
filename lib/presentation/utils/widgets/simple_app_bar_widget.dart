@@ -10,6 +10,7 @@ class SimpleAppBarWidget extends StatelessWidget
   const SimpleAppBarWidget({
     super.key,
     this.showBackButton = false,
+    this.actions,
     this.onInfoPress,
     this.contentPadding,
     this.toolBarHeight = kToolbarHeight,
@@ -22,22 +23,24 @@ class SimpleAppBarWidget extends StatelessWidget
   final double toolBarHeight;
   final VoidCallback? onLeadingPress;
   final VoidCallback? onInfoPress;
-  final Widget? title; // Changed to accept Widget instead of String
+  final Widget? title;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       surfaceTintColor: white,
       centerTitle: true,
-      actions: [
-        IconButton(
-          onPressed: onInfoPress,
-          icon: Icon(
-            Icons.info_outline_rounded,
-            color: ColorScheme.of(context).primary,
-          ),
-        ),
-      ],
+      actions: actions ??
+          [
+            IconButton(
+              onPressed: onInfoPress,
+              icon: Icon(
+                Icons.info_outline_rounded,
+                color: ColorScheme.of(context).primary,
+              ),
+            ),
+          ],
       title: title ?? const AppHeaderTextWidget(),
       leading: showBackButton
           ? const AutoLeadingButton()

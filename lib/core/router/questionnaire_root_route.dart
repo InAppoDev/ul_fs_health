@@ -8,8 +8,11 @@ abstract class QuestionnaireRootRoute {
         return PageRouteBuilder(
             settings: page,
             fullscreenDialog: page.fullscreenDialog,
-            pageBuilder: (context, animation, secondaryAnimation) => BlocProvider(
-              create: (_)=> QuestionnaireBloc(),
+            pageBuilder: (context, animation, secondaryAnimation) => MultiBlocProvider(
+              providers: [
+                BlocProvider(create: (_) => QuestionnaireSubmitterBloc(getIt<QuestionnaireRepository>())),
+                BlocProvider(create: (_)=> QuestionnaireBloc())
+              ],
               child: child,
             ));
       },
