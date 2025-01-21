@@ -34,12 +34,17 @@ class _WalkTestResultScreenState extends State<WalkTestResultScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => ResultBloc(getIt<UserRepository>(), getIt<WalkRepository>())..add(const ResultEvent.getResults()),
-        child: Builder(builder: (context) {
+      create: (_) =>
+          ResultBloc(getIt<UserRepository>(), getIt<WalkRepository>())
+            ..add(const ResultEvent.getResults()),
+      child: Builder(
+        builder: (context) {
           return WalkTestResultContent(
             resultDataEntities: context.watch<ResultBloc>().state.results,
           );
-        }));
+        },
+      ),
+    );
   }
 }
 
@@ -49,7 +54,6 @@ class WalkTestResultContent extends StatelessWidget {
   final List<WalkResultEntity> resultDataEntities;
   @override
   Widget build(BuildContext context) {
-
     return BlocListener<ResultBloc, ResultState>(
       listener: (context, state) {
         if (state.status == ResultStatus.failure) {
@@ -85,9 +89,13 @@ class WalkTestResultContent extends StatelessWidget {
                         sideTitles: SideTitles(
                           showTitles: true,
                           getTitlesWidget: (value, meta) {
-                            if (value >= 0 && value < resultDataEntities.length) {
+                            if (value >= 0 &&
+                                value < resultDataEntities.length) {
                               final formatted =
-                                  resultDataEntities[value.toInt()].date?.formattedDateShort ?? '';
+                                  resultDataEntities[value.toInt()]
+                                          .date
+                                          ?.formattedDateShort ??
+                                      '';
                               return Text(
                                 '$formatted.',
                                 style: body2.copyWith(
@@ -104,9 +112,13 @@ class WalkTestResultContent extends StatelessWidget {
                         sideTitles: SideTitles(
                           showTitles: true,
                           getTitlesWidget: (value, meta) {
-                            if (value >= 0 && value < resultDataEntities.length) {
+                            if (value >= 0 &&
+                                value < resultDataEntities.length) {
                               return Text(
-                                resultDataEntities[value.toInt()].distance?.formattedDistanceMRounded ?? '',
+                                resultDataEntities[value.toInt()]
+                                        .distance
+                                        ?.formattedDistanceMRounded ??
+                                    '',
                                 style: body2.copyWith(
                                   fontSize: 10,
                                   color: darkGrey,
@@ -136,7 +148,9 @@ class WalkTestResultContent extends StatelessWidget {
                         barRods: [
                           BarChartRodData(
                             toY: distance / 1000,
-                            color: (data.date?.isToday == true) ? ColorScheme.of(context).primary : darkGrey,
+                            color: (data.date?.isToday == true)
+                                ? ColorScheme.of(context).primary
+                                : darkGrey,
                             width: Constants.barChartRodDataWidth,
                             borderRadius: BorderRadius.zero,
                           ),
@@ -163,10 +177,12 @@ class WalkTestResultContent extends StatelessWidget {
           ),
           ...resultDataEntities.map((data) {
             return InfoWidget(
-              color: data.date?.isToday == true ? ColorScheme.of(context).primary : defaultTextColor,
+              color: data.date?.isToday == true
+                  ? ColorScheme.of(context).primary
+                  : defaultTextColor,
               date: data.date?.formattedDate ?? '',
               time: data.distance?.formattedDistanceMReplaced ?? '',
-              velocity: data.averageSpeed?.formattedSpeedKmhReplaced ?? '',
+              avgSpeed: data.averageSpeed?.formattedSpeedKmhReplaced ?? '',
             );
           }),
         ],

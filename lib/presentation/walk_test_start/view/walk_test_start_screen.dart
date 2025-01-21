@@ -34,13 +34,22 @@ class WalkTestStartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => ResultBloc(getIt<UserRepository>(), getIt<WalkRepository>())),
-          BlocProvider(create: (_) => TimerBloc()..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration))),
-          BlocProvider(create: (_) => GPSBloc(getIt<GpsUseCase>())..add(const GPSEvent.startTracking())),
+          BlocProvider(
+              create: (_) =>
+                  ResultBloc(getIt<UserRepository>(), getIt<WalkRepository>())),
+          BlocProvider(
+              create: (_) => TimerBloc()
+                ..add(TimerEvent.startTimer(
+                    CalculationConstants.defaultTimerDuration))),
+          BlocProvider(
+              create: (_) => GPSBloc(getIt<GpsUseCase>())
+                ..add(const GPSEvent.startTracking())),
         ],
         child: Builder(builder: (context) {
           return WalkTestStartContent(
-              goalDistance: context.watch<WalkTestBloc>().state.selectedLength ?? CalculationConstants.defaultDistanceUnit);
+              goalDistance:
+                  context.watch<WalkTestBloc>().state.selectedLength ??
+                      CalculationConstants.defaultDistanceUnit);
         }));
   }
 }
@@ -57,13 +66,15 @@ class WalkTestStartContent extends StatelessWidget {
         BlocListener<TimerBloc, TimerState>(listener: (context, state) {
           if (state.status == TimerStatus.completed) {
             context.read<GPSBloc>().add(const GPSEvent.updatePosition());
-            context
-                .read<GPSBloc>()
-                .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
+            context.read<GPSBloc>().add(GPSEvent.stopTracking(
+                duration: CalculationConstants.defaultTimerDuration));
           } else if (state.status == TimerStatus.running) {
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
-                duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
-            context.read<GPSBloc>().add(GPSEvent.reachGoal(goalDistance: goalDistance));
+                duration: CalculationConstants.defaultTimerDuration -
+                    state.remainingTime));
+            context
+                .read<GPSBloc>()
+                .add(GPSEvent.reachGoal(goalDistance: goalDistance));
           }
         }),
         BlocListener<ResultBloc, ResultState>(listener: (context, state) {
@@ -82,62 +93,82 @@ class WalkTestStartContent extends StatelessWidget {
           if (context.watch<TimerBloc>().state.status == TimerStatus.completed)
             Align(
               child: Text(
-                appLocalizations.testFinishedText,
-                style: header3.copyWith(
-                    fontWeight: FontWeight.w600, color: ColorScheme.of(context).primary),
+                appLocalizations.testFinishedText.toUpperCase(),
+                style: header1.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                    color: ColorScheme.of(context).primary),
                 textAlign: TextAlign.center,
               ),
             ),
           Gaps.larger.spaceVertical,
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(appLocalizations.remainingTimeText.toUpperCase(), style: body1),
+            child: Text(appLocalizations.remainingTimeText.toUpperCase(),
+                style: body1),
           ),
           Gaps.large.spaceVertical,
           const TimerWidget(),
           BlocBuilder<TimerBloc, TimerState>(
               builder: (context, state) => state.status != TimerStatus.completed
                   ? Padding(
-                      padding: Gaps.larger.paddingHorizontal.copyWith(top: Gaps.largest),
+                      padding: Gaps.larger.paddingHorizontal
+                          .copyWith(top: Gaps.largest),
                       child: SubmitButton(
                         onPressed: () async {
                           if (state.status == TimerStatus.running) {
                             context.read<TimerBloc>().add(TimerEvent.pauseTimer(
-                                duration: CalculationConstants.defaultTimerDuration,
+                                duration:
+                                    CalculationConstants.defaultTimerDuration,
                                 remainingTime: state.remainingTime));
-                            context.read<GPSBloc>().add(const GPSEvent.updatePosition());
+                            context
+                                .read<GPSBloc>()
+                                .add(const GPSEvent.updatePosition());
                             context.read<GPSBloc>().add(GPSEvent.stopTracking(
-                                duration: CalculationConstants.defaultTimerDuration -
-                                    state.remainingTime));
+                                duration:
+                                    CalculationConstants.defaultTimerDuration -
+                                        state.remainingTime));
                           } else if (state.status == TimerStatus.paused) {
-                            context.read<GPSBloc>().add(const GPSEvent.startTracking());
-                            context.read<TimerBloc>().add(const TimerEvent.resumeTimer());
-                            context.read<TimerBloc>().add(TimerEvent.updateTimer(
-                                duration: CalculationConstants.defaultTimerDuration,
-                                remainingTime: state.remainingTime));
+                            context
+                                .read<GPSBloc>()
+                                .add(const GPSEvent.startTracking());
+                            context
+                                .read<TimerBloc>()
+                                .add(const TimerEvent.resumeTimer());
+                            context.read<TimerBloc>().add(
+                                TimerEvent.updateTimer(
+                                    duration: CalculationConstants
+                                        .defaultTimerDuration,
+                                    remainingTime: state.remainingTime));
                           }
                         },
-                        title: context.watch<TimerBloc>().state.status == TimerStatus.paused
+                        title: context.watch<TimerBloc>().state.status ==
+                                TimerStatus.paused
                             ? appLocalizations.btnTestResumeText.toUpperCase()
                             : appLocalizations.btnTestPauseText.toUpperCase(),
                         backgroundColor:
-                            context.watch<TimerBloc>().state.status == TimerStatus.paused
+                            context.watch<TimerBloc>().state.status ==
+                                    TimerStatus.paused
                                 ? Theme.of(context).colorScheme.primary
                                 : Theme.of(context).colorScheme.secondary,
-                        titleColor: context.watch<TimerBloc>().state.status == TimerStatus.paused
+                        titleColor: context.watch<TimerBloc>().state.status ==
+                                TimerStatus.paused
                             ? white
                             : Theme.of(context).colorScheme.onSecondary,
                       ))
                   : const SizedBox.shrink()),
           Gaps.largest.spaceVertical,
-          if (context.watch<TimerBloc>().state.status != TimerStatus.completed) ...[
+          if (context.watch<TimerBloc>().state.status !=
+              TimerStatus.completed) ...[
             WalkTestNoteWidget(boldText: appLocalizations.pauseTestUpperText),
             Gaps.largest.spaceVertical,
           ],
-          if (context.watch<TimerBloc>().state.status == TimerStatus.completed) ...[
+          if (context.watch<TimerBloc>().state.status ==
+              TimerStatus.completed) ...[
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(appLocalizations.walkTestResultsText.toUpperCase(), style: body1),
+              child: Text(appLocalizations.walkTestResultsText.toUpperCase(),
+                  style: body1),
             ),
             Gaps.large.spaceVertical,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -151,7 +182,11 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.distanceTraveled.formattedDistanceMReplaced,
+                      context
+                          .watch<GPSBloc>()
+                          .state
+                          .distanceTraveled
+                          .formattedDistanceMReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],
@@ -167,7 +202,11 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.averageSpeed.formattedSpeedKmhReplaced,
+                      context
+                          .watch<GPSBloc>()
+                          .state
+                          .averageSpeed
+                          .formattedSpeedKmhReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],
@@ -183,9 +222,12 @@ class WalkTestStartContent extends StatelessWidget {
                       distance: state.distanceTraveled,
                       averageSpeed: state.averageSpeed));
                 },
-                isLoading: context.watch<ResultBloc>().state.status == ResultStatus.loading ||
-                    context.watch<GPSBloc>().state.status == GPSStatus.loading ||
-                    context.watch<UserBloc>().state.status == UserStatus.loading,
+                isLoading: context.watch<ResultBloc>().state.status ==
+                        ResultStatus.loading ||
+                    context.watch<GPSBloc>().state.status ==
+                        GPSStatus.loading ||
+                    context.watch<UserBloc>().state.status ==
+                        UserStatus.loading,
                 title: appLocalizations.btnSaveResultsText.toUpperCase(),
                 backgroundColor: Theme.of(context).colorScheme.primary,
                 titleColor: Theme.of(context).colorScheme.onPrimary,

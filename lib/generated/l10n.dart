@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Login`
+  /// `Log in`
   String get lblLogin {
     return Intl.message(
-      'Login',
+      'Log in',
       name: 'lblLogin',
       desc: '',
       args: [],
@@ -570,10 +570,10 @@ class S {
     );
   }
 
-  /// `Questionairre`
+  /// `Questionairres`
   String get menuQuestionnaireText {
     return Intl.message(
-      'Questionairre',
+      'Questionairres',
       name: 'menuQuestionnaireText',
       desc: '',
       args: [],
@@ -630,10 +630,10 @@ class S {
     );
   }
 
-  /// `Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.`
+  /// `Simple 6 minute walk test, which you can do anywhere. All you need is flat surface for walking (sport hall, running track, stadium), min. 15 meters long.`
   String get walkTestDescriptionText {
     return Intl.message(
-      'Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.',
+      'Simple 6 minute walk test, which you can do anywhere. All you need is flat surface for walking (sport hall, running track, stadium), min. 15 meters long.',
       name: 'walkTestDescriptionText',
       desc: '',
       args: [],
@@ -1140,10 +1140,10 @@ class S {
     );
   }
 
-  /// `Select length:`
+  /// `Select length`
   String get walkTestInitialLblText {
     return Intl.message(
-      'Select length:',
+      'Select length',
       name: 'walkTestInitialLblText',
       desc: '',
       args: [],
@@ -1995,6 +1995,16 @@ class S {
     return Intl.message(
       'Save and continue',
       name: 'btnSaveContinueActionText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here you can edit your login data and create your new password.`
+  String get lblEditLoginData {
+    return Intl.message(
+      'Here you can edit your login data and create your new password.',
+      name: 'lblEditLoginData',
       desc: '',
       args: [],
     );

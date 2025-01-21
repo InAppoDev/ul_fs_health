@@ -106,7 +106,7 @@ class HomeContent extends StatelessWidget {
                         Text(appLocalizations.sitToStandTestTitleText,
                             style: header2),
                         Gaps.smaller.spaceVertical,
-                        Text(appLocalizations.walkTestDescriptionText,
+                        Text(appLocalizations.sitToStandTestDescriptionText,
                             style: body3),
                       ],
                     ),

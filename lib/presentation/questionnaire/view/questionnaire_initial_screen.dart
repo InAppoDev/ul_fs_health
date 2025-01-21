@@ -14,8 +14,8 @@ import '../../utils/widgets/submit_button.dart';
 
 @RoutePage()
 class QuestionnaireInitialScreen extends StatelessWidget {
-  const QuestionnaireInitialScreen({super.key, this.shouldAuthenticate = false});
-
+  const QuestionnaireInitialScreen(
+      {super.key, this.shouldAuthenticate = false});
 
   final bool shouldAuthenticate;
   @override
@@ -25,7 +25,8 @@ class QuestionnaireInitialScreen extends StatelessWidget {
 }
 
 class QuestionnaireInitialContent extends StatelessWidget {
-  const QuestionnaireInitialContent({super.key, required this.shouldAuthenticate});
+  const QuestionnaireInitialContent(
+      {super.key, required this.shouldAuthenticate});
 
   final bool shouldAuthenticate;
 
@@ -38,74 +39,94 @@ class QuestionnaireInitialContent extends StatelessWidget {
       ),
       body: Center(
         child: AuthGuardWidget(
-          isAuthRoute: !shouldAuthenticate,
-          child: Center(
-            child: Padding(
-              padding: (Gaps.largest + Gaps.small).paddingHorizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Gaps.medium.spaceVertical,
-                  Align(
-                    child: Text(appLocalizations.questHeaderTitle, style: header1.copyWith(fontSize: 16, height: 1.5))
-                  ),
-                  (Gaps.medium + Gaps.smaller).spaceVertical,
-                  Text(appLocalizations.questInitialHeaderDescription, style: body1, textAlign: TextAlign.justify),
-                  Gaps.large.spaceVertical,
-                  Text(appLocalizations.questInitialHeaderDescription2, style: body1, textAlign: TextAlign.justify),
-                  (Gaps.larger + Gaps.smaller).spaceVertical,
-                  Padding(
-                    padding: Gaps.larger.paddingHorizontal,
-                      child: Text(appLocalizations.gpaqHeaderText,
+            isAuthRoute: !shouldAuthenticate,
+            child: Center(
+              child: Padding(
+                padding: (Gaps.largest + Gaps.small).paddingHorizontal,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Gaps.medium.spaceVertical,
+                    Align(
+                        child: Text(appLocalizations.questHeaderTitle,
+                            style:
+                                header1.copyWith(fontSize: 16, height: 1.5))),
+                    (Gaps.medium + Gaps.smaller).spaceVertical,
+                    Text(appLocalizations.questInitialHeaderDescription,
+                        style: body1, textAlign: TextAlign.justify),
+                    Gaps.large.spaceVertical,
+                    Text(appLocalizations.questInitialHeaderDescription2,
+                        style: body1, textAlign: TextAlign.justify),
+                    (Gaps.larger + Gaps.smaller).spaceVertical,
+                    Padding(
+                        padding: Gaps.larger.paddingHorizontal,
+                        child: Text(
+                          appLocalizations.gpaqHeaderText,
                           style: header1.copyWith(fontSize: 16, height: 1.5),
                           textAlign: TextAlign.center,
-                      )
-                  ),
-                  (Gaps.medium + Gaps.small).spaceVertical,
-                  Text(appLocalizations.gpaqDescription, style: body1, textAlign: TextAlign.justify),
-                  Gaps.large.spaceVertical,
-                  SubmitButton(
-                      onPressed: () {
-                        context.router.push(GPAQInitialRoute(shouldAuthenticate: shouldAuthenticate));
-                      },
-                      title: appLocalizations.btnStartText.capitalized,
-                      backgroundColor: ColorScheme.of(context).primary,
-                      titleColor: ColorScheme.of(context).onPrimary),
-                  (Gaps.medium + Gaps.small).spaceVertical,
-                  RichText(text: TextSpan(
-                    children: [
-                      TextSpan(text: appLocalizations.questionnaireInfoTextPart, style: body1.copyWith(fontSize: 12, color: ColorScheme.of(context).primary)),
-                      TextSpan(text: appLocalizations.mandatoryText, style: body1.copyWith(fontSize: 12, fontWeight: FontWeight.w700, color: ColorScheme.of(context).primary))
-                    ]
-                  )),
-                  Gaps.large.spaceVertical,
-                  Align(
-                      child: Text(appLocalizations.lefsHeaderText, style: header1.copyWith(fontSize: 16, height: 1.5))
-                  ),
-                  (Gaps.medium + Gaps.smaller).spaceVertical,
-                  Text(appLocalizations.lefsDescription, style: body1),
-                  (Gaps.medium + Gaps.small).spaceVertical,
-                  SubmitButton(
-                      onPressed: () {
-                        context.router.push(LEFSRoute(shouldAuthenticate: shouldAuthenticate));
-                      },
-                      title: appLocalizations.btnStartText.capitalized,
-                      backgroundColor: ColorScheme.of(context).primary,
-                      titleColor: ColorScheme.of(context).onPrimary),
-                  (Gaps.medium + Gaps.smaller).spaceVertical,
-                  RichText(text: TextSpan(
-                      children: [
-                        TextSpan(text: appLocalizations.questionnaireInfoTextPart, style: body1.copyWith(color: darkGrey)),
-                        TextSpan(text: appLocalizations.optionalText, style: body1.copyWith(fontSize: 12, fontWeight: FontWeight.w700, color: lighterGrey))
-                      ]
-                  )),
-                  (Gaps.medium + Gaps.smaller).spaceVertical,
-                ],
+                        )),
+                    (Gaps.medium + Gaps.small).spaceVertical,
+                    Text(appLocalizations.gpaqDescription,
+                        style: body1, textAlign: TextAlign.justify),
+                    Gaps.large.spaceVertical,
+                    SubmitButton(
+                        onPressed: () {
+                          context.router.push(GPAQInitialRoute(
+                              shouldAuthenticate: shouldAuthenticate));
+                        },
+                        title: appLocalizations.btnStartText.capitalized,
+                        backgroundColor: ColorScheme.of(context).primary,
+                        titleColor: ColorScheme.of(context).onPrimary),
+                    (Gaps.medium + Gaps.small).spaceVertical,
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: appLocalizations.questionnaireInfoTextPart,
+                          style: body1.copyWith(
+                              fontSize: 12,
+                              color: ColorScheme.of(context).primary)),
+                      TextSpan(
+                          text: appLocalizations.mandatoryText,
+                          style: body1.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: ColorScheme.of(context).primary))
+                    ])),
+                    Gaps.large.spaceVertical,
+                    Align(
+                        child: Text(appLocalizations.lefsHeaderText,
+                            style:
+                                header1.copyWith(fontSize: 16, height: 1.5))),
+                    (Gaps.medium + Gaps.smaller).spaceVertical,
+                    Text(appLocalizations.lefsDescription, style: body1),
+                    (Gaps.medium + Gaps.small).spaceVertical,
+                    SubmitButton(
+                        onPressed: () {
+                          context.router.push(LEFSRoute(
+                              shouldAuthenticate: shouldAuthenticate));
+                        },
+                        title: appLocalizations.btnStartText.capitalized,
+                        backgroundColor: ColorScheme.of(context).primary,
+                        titleColor: ColorScheme.of(context).onPrimary),
+                    (Gaps.medium + Gaps.smaller).spaceVertical,
+                    RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: appLocalizations.questionnaireInfoTextPart,
+                          style: body1.copyWith(color: darkGrey)),
+                      TextSpan(
+                          text: appLocalizations.optionalText,
+                          style: body1.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              color: lighterGrey))
+                    ])),
+                    (Gaps.medium + Gaps.smaller).spaceVertical,
+                  ],
+                ),
               ),
-            ),
-          )
-          ),
-        ),
+            )),
+      ),
     );
   }
 }

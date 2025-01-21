@@ -57,7 +57,8 @@ class LoginContent extends StatelessWidget {
                 context.router.replaceAll([const HomeRoute()]);
                 context.read<UserBloc>().add(const UserEvent.getUserData());
               } else if (state.status == AuthStatus.failure) {
-                context.showSnackBarMessage(state.error ?? S.current.lblLoginFailed);
+                context.showSnackBarMessage(
+                    state.error ?? S.current.lblLoginFailed);
               }
             },
             child: Padding(
@@ -68,7 +69,16 @@ class LoginContent extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const AppHeaderTextWidget(),
+                      AppHeaderTextWidget(
+                        lblActStyle: body3.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 32,
+                            color: ColorScheme.of(context).onSecondary),
+                        lblOnStyle: body3.copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 32,
+                            color: ColorScheme.of(context).primary),
+                      ),
                       Gaps.extraLarge.spaceVertical,
                       Text(
                         S.current.lblLogin,

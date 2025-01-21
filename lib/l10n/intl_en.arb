@@ -1,5 +1,5 @@
 {
-  "lblLogin": "Login",
+  "lblLogin": "Log in",
   "lblSignUp": "Sign up",
   "btnCreateAccount": "Create account",
   "lblOr": "or",
@@ -51,7 +51,7 @@
   "bloodSugarStatusRequiredErrorText": "The field must be filled",
   "menuDashboardText": "Dashboard",
   "menuResultsText": "My Results",
-  "menuQuestionnaireText": "Questionairre",
+  "menuQuestionnaireText": "Questionairres",
   "menuProfileText": "My profile",
   "menuLogoutText": "Log out",
   "welcomeAppNameText": "Welcome to {appName}!",
@@ -65,7 +65,7 @@
   },
   "welcomeAppDescriptionText": "In order to give the best results, our app needs detailed information about your personal and medical conditions.",
   "walkTestTitleText": "6 Minute Walk Test",
-  "walkTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
+  "walkTestDescriptionText": "Simple 6 minute walk test, which you can do anywhere. All you need is flat surface for walking (sport hall, running track, stadium), min. 15 meters long.",
   "sitToStandTestTitleText": "Sit-to-Stand Test",
   "sitToStandTestDescriptionText": "Simple “Sit-to-Stand” test, which you can do anywhere. All you need is an ordinary chair or similar surface, you can sit on normally.",
   "btnTestStartText": "Start Test",
@@ -128,7 +128,7 @@
   "lblSaveResults": "SAVE RESULTS",
   "walkSelectLengthErrorText": "Please select meter length",
   "btnSaveResultsText": "save results",
-  "walkTestInitialLblText": "Select length:",
+  "walkTestInitialLblText": "Select length",
   "textFromMeter": "{value} meter",
   "@textFromMeter": {
     "placeholders": {
@@ -227,5 +227,6 @@
   "lefsDifficultyLevelText3": "Moderate difficulty",
   "lefsDifficultyLevelText4": "A little bit of difficulty",
   "lefsDifficultyLevelText5": "No difficulty",
-  "btnSaveContinueActionText": "Save and continue"
+  "btnSaveContinueActionText": "Save and continue",
+  "lblEditLoginData" : "Here you can edit your login data and create your new password."
 }

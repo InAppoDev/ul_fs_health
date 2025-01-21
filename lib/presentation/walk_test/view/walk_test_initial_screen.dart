@@ -35,11 +35,12 @@ class WalkTestInitialContent extends StatelessWidget {
         headerIcon: Assets.icons.iconWalkTest,
         headerText: appLocalizations.walkTestTitleText,
         children: [
-          const TextBuilderWidget(),
+          Text(appLocalizations.walkTestInstruction, style: body1),
           Gaps.largest.spaceVertical,
           Align(
               alignment: Alignment.centerLeft,
-              child: Text(appLocalizations.walkTestInitialLblText, style: body1)),
+              child:
+                  Text(appLocalizations.walkTestInitialLblText, style: body1)),
           Gaps.largest.spaceVertical,
           BlocBuilder<WalkTestBloc, WalkTestState>(
             builder: (context, state) => DropdownWidget<double>(
@@ -47,21 +48,24 @@ class WalkTestInitialContent extends StatelessWidget {
                 hintStyle: body1,
                 errorText: state.errorText,
                 onFocusChange: (hasFocus) {
-                  context
-                      .read<WalkTestBloc>()
-                      .add(WalkTestEvent.selectLength(selectedLength: state.selectedLength, shouldValidate: !hasFocus));
+                  context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(
+                      selectedLength: state.selectedLength,
+                      shouldValidate: !hasFocus));
                 },
-                onGenerateLabel: (value) => appLocalizations.textFromMeter(value.round()),
+                onGenerateLabel: (value) =>
+                    appLocalizations.textFromMeter(value.round()),
                 selectedValue: state.selectedLength,
                 onChanged: (value) {
-                  context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(selectedLength: value, shouldValidate: false));
+                  context.read<WalkTestBloc>().add(WalkTestEvent.selectLength(
+                      selectedLength: value, shouldValidate: false));
                 },
                 values: meterLengths),
           ),
           Gaps.largest.spaceVertical,
           SubmitButton(
               isValid: context.watch<WalkTestBloc>().state.isValid,
-              isLoading: context.watch<WalkTestBloc>().state.status == WalkTestStatus.loading,
+              isLoading: context.watch<WalkTestBloc>().state.status ==
+                  WalkTestStatus.loading,
               onPressed: () {
                 context.router.push(const WalkTestRoute());
               },

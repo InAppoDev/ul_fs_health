@@ -27,10 +27,9 @@ class ProfileScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ProfileBloc(
-            getIt<ProfileRepository>(),
-            getIt<AuthRepository>()
-          )..add(const ProfileEvent.getProfile()),
+          create: (context) =>
+              ProfileBloc(getIt<ProfileRepository>(), getIt<AuthRepository>())
+                ..add(const ProfileEvent.getProfile()),
         ),
       ],
       child: const ProfileContent(),
@@ -55,7 +54,8 @@ class ProfileContentState extends State<ProfileContent> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _emailController.text = context.watch<ProfileBloc>().state.currentUser?.email ?? '';
+    _emailController.text =
+        context.watch<ProfileBloc>().state.currentUser?.email ?? '';
   }
 
   @override
@@ -73,7 +73,9 @@ class ProfileContentState extends State<ProfileContent> {
                 context.showSnackBarMessage(state.error ?? '');
               } else if (state.status == ProfileStatus.loaded) {
                 _emailController.text = state.currentUser?.email ?? '';
-                context.read<ProfileBloc>().add(const ProfileEvent.resetStatus());
+                context
+                    .read<ProfileBloc>()
+                    .add(const ProfileEvent.resetStatus());
               } else if (state.status == ProfileStatus.success) {
                 context.read<UserBloc>().add(const UserEvent.userLogout());
               }
@@ -91,7 +93,7 @@ class ProfileContentState extends State<ProfileContent> {
                       ),
                       Align(
                         child: Text(
-                          appLocalizations.lblEnterPassword,
+                          appLocalizations.lblEditLoginData,
                           style: body1,
                           textAlign: TextAlign.center,
                         ),
@@ -127,7 +129,9 @@ class ProfileContentState extends State<ProfileContent> {
                         obscureText: true,
                         hintText: appLocalizations.hintNewPassword,
                         validator: (value) {
-                          if (value != null && value.isNotEmpty && value.length < 6) {
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              value.length < 6) {
                             return appLocalizations.lblPasswordLength;
                           }
                           return null;
@@ -141,7 +145,9 @@ class ProfileContentState extends State<ProfileContent> {
                         validator: (value) {
                           final password = _passwordController.text;
                           final newPassword = _repeatPasswordController.text;
-                          if (password != newPassword && password.isNotEmpty && newPassword.isNotEmpty) {
+                          if (password != newPassword &&
+                              password.isNotEmpty &&
+                              newPassword.isNotEmpty) {
                             return appLocalizations.lblConfirmPassword;
                           }
                           return null;
@@ -149,20 +155,23 @@ class ProfileContentState extends State<ProfileContent> {
                       ),
                       Gaps.larger.spaceVertical,
                       SubmitButton(
-                                titleColor: ColorScheme.of(context).surface,
-                                onPressed: () {
-                                  if (_formKey.currentState?.validate() ?? false) {
-                                    context.read<ProfileBloc>().add(ProfileEvent.updateUserProfile(
-                                        password: _currentPasswordController.text,
-                                        email: _emailController.text,
-                                        newPassword: _passwordController.text));
-                                  }
-                                },
-                                title: appLocalizations.btnSaveChangesText,
-                                backgroundColor: ColorScheme.of(context).primary,
-                                isLoading: context.watch<ProfileBloc>().state.status == ProfileStatus.loading ||
-                                    context.watch<UserBloc>().state.status == UserStatus.loading,
-                              ),
+                        titleColor: ColorScheme.of(context).surface,
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            context.read<ProfileBloc>().add(
+                                ProfileEvent.updateUserProfile(
+                                    password: _currentPasswordController.text,
+                                    email: _emailController.text,
+                                    newPassword: _passwordController.text));
+                          }
+                        },
+                        title: appLocalizations.btnSaveChangesText,
+                        backgroundColor: ColorScheme.of(context).primary,
+                        isLoading: context.watch<ProfileBloc>().state.status ==
+                                ProfileStatus.loading ||
+                            context.watch<UserBloc>().state.status ==
+                                UserStatus.loading,
+                      ),
                       Gaps.larger.spaceVertical,
                     ],
                   ),
