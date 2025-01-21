@@ -12,7 +12,6 @@ import '../../../l10n/localizations_utils.dart';
 import '../../utils/widgets/dropdown_widget.dart';
 import '../../utils/widgets/submit_button.dart';
 import '../../utils/widgets/test_layout_widget.dart';
-import '../../utils/widgets/text_builder_widget.dart';
 import '../bloc/walk_test_bloc.dart';
 
 @RoutePage()

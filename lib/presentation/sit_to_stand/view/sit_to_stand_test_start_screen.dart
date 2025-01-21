@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -39,8 +40,28 @@ class SitToStandTestStartScreen extends StatelessWidget {
   }
 }
 
-class SitToStandTestStartContent extends StatelessWidget {
+class SitToStandTestStartContent extends StatefulWidget {
   const SitToStandTestStartContent({super.key});
+
+  @override
+  State<SitToStandTestStartContent> createState() =>
+      _SitToStandTestStartContentState();
+}
+
+class _SitToStandTestStartContentState
+    extends State<SitToStandTestStartContent> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _hasPlayedSoung = false;
+
+  Future<void> _signalSound(BuildContext context) async {
+    if (_hasPlayedSoung) {
+      return;
+    }
+
+    await _audioPlayer.setAsset('assets/sounds/signal.mp3');
+    await _audioPlayer.play();
+    _hasPlayedSoung = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +76,11 @@ class SitToStandTestStartContent extends StatelessWidget {
             context.showSnackBarMessage(state.error ?? '');
           }
           if (state.status == SitToStandStatus.save) {
-            context.router.replaceAll([const HomeRoute()]);
+            context.router.push(const SitToStandResultRoute());
+          }
+          if (state.isTestFinished &&
+              state.currentRepetition == Constants.totalRepetitions) {
+            _signalSound(context);
           }
         },
         builder: (context, state) {
@@ -140,9 +165,11 @@ class SitToStandTestStartContent extends StatelessWidget {
                         ),
                         Gaps.largest.spaceVertical,
                         SubmitButton(
-                          onPressed: () => context
-                              .read<SitToStandBloc>()
-                              .add(const SaveTestResultEvent()),
+                          onPressed: () {
+                            context
+                                .read<SitToStandBloc>()
+                                .add(const SaveTestResultEvent());
+                          },
                           title: S.current.lblSaveResults,
                           isLoading: state.status == SitToStandStatus.loading,
                           backgroundColor: ColorScheme.of(context).primary,

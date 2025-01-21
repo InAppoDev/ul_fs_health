@@ -1,6 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/calculation_constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -54,17 +57,33 @@ class WalkTestStartScreen extends StatelessWidget {
   }
 }
 
-class WalkTestStartContent extends StatelessWidget {
+class WalkTestStartContent extends StatefulWidget {
   const WalkTestStartContent({super.key, required this.goalDistance});
-
   final double goalDistance;
+
+  @override
+  State<WalkTestStartContent> createState() => _WalkTestStartContentState();
+}
+
+class _WalkTestStartContentState extends State<WalkTestStartContent> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _hasPlayedSound = false;
+
+  Future<void> _signalSound(BuildContext context) async {
+    await _audioPlayer.setAsset('assets/sounds/signal.mp3');
+    await _audioPlayer.play();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
         BlocListener<TimerBloc, TimerState>(listener: (context, state) {
-          if (state.status == TimerStatus.completed) {
+          if (state.status == TimerStatus.completed && !_hasPlayedSound) {
+            setState(() {
+              _hasPlayedSound = true;
+            });
+            _signalSound(context);
             context.read<GPSBloc>().add(const GPSEvent.updatePosition());
             context.read<GPSBloc>().add(GPSEvent.stopTracking(
                 duration: CalculationConstants.defaultTimerDuration));
@@ -74,7 +93,7 @@ class WalkTestStartContent extends StatelessWidget {
                     state.remainingTime));
             context
                 .read<GPSBloc>()
-                .add(GPSEvent.reachGoal(goalDistance: goalDistance));
+                .add(GPSEvent.reachGoal(goalDistance: widget.goalDistance));
           }
         }),
         BlocListener<ResultBloc, ResultState>(listener: (context, state) {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -26,7 +28,31 @@ class SitToStandContent extends StatelessWidget {
   SitToStandContent({super.key});
 
   final _audioPlayer = AudioPlayer();
-  final _isStarting = ValueNotifier(false);
+  final ValueNotifier<bool> _isStarting = ValueNotifier(false);
+  final ValueNotifier<int?> _countdownValue = ValueNotifier(null);
+
+  void _startCountDown(BuildContext context) {
+    _isStarting.value = true;
+    int countdown = 5;
+    Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        if (countdown == 0) {
+          _countdownValue.value = null;
+          timer.cancel();
+          _signalSound(context);
+        } else {
+          _countdownValue.value = countdown--;
+        }
+      },
+    );
+  }
+
+  Future<void> _signalSound(BuildContext context) async {
+    await _audioPlayer.setAsset('assets/sounds/signal.mp3');
+    await _audioPlayer.play();
+    context.router.push(const SitToStandTestStartRoute());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,30 +107,22 @@ class SitToStandContent extends StatelessWidget {
           ),
           Padding(
             padding: Gaps.larger.paddingHorizontal,
-            child: ValueListenableBuilder(
-              valueListenable: _isStarting,
-              builder: (context, value, child) => SubmitButton(
-                onPressed: () async {
-                  _isStarting.value = true;
-                  await Future<void>.delayed(const Duration(seconds: 5)).then(
-                    (_) async {
-                      _audioPlayer
-                        ..setAsset('assets/sounds/signal.mp3')
-                        ..play().then(
-                          (_) {
-                            _isStarting.value = false;
-                            context.router
-                                .push(const SitToStandTestStartRoute());
-                          },
-                        );
-                    },
-                  );
-                },
-                isLoading: value,
-                title: S.current.btnTestStartText.toUpperCase(),
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                titleColor: Theme.of(context).colorScheme.onPrimary,
-              ),
+            child: ValueListenableBuilder<int?>(
+              valueListenable: _countdownValue,
+              builder: (context, countdown, child) {
+                return SubmitButton(
+                  onPressed: _isStarting.value
+                      ? () {}
+                      : () {
+                          _startCountDown(context);
+                        },
+                  title: countdown != null
+                      ? countdown.toString()
+                      : S.current.btnTestStartText.toUpperCase(),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  titleColor: Theme.of(context).colorScheme.onPrimary,
+                );
+              },
             ),
           )
         ],

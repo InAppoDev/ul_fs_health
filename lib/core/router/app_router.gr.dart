@@ -644,6 +644,25 @@ class SignupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SitToStandResultScreen]
+class SitToStandResultRoute extends PageRouteInfo<void> {
+  const SitToStandResultRoute({List<PageRouteInfo>? children})
+      : super(
+          SitToStandResultRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SitToStandResultRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SitToStandResultScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SitToStandScreen]
 class SitToStandRoute extends PageRouteInfo<void> {
   const SitToStandRoute({List<PageRouteInfo>? children})

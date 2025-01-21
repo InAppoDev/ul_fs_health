@@ -24,6 +24,7 @@ import '../../presentation/questionnaire/view/gpaq/gpaq_work_initial_screen.dart
 import '../../presentation/questionnaire/view/gpaq/gpaq_work_screen.dart';
 import '../../presentation/questionnaire/view/lefs/lefs_screen.dart';
 import '../../presentation/questionnaire/view/questionnaire_initial_screen.dart';
+import '../../presentation/sit_to_stand/view/sit_to_stand_result_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_screen.dart';
 import '../../presentation/sit_to_stand/view/sit_to_stand_test_start_screen.dart';
 import '../../presentation/splash/view/splash_screen.dart';
@@ -79,6 +80,10 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/history',
           page: HistoryRoute.page,
+        ),
+        AutoRoute(
+          path: '/sit-to-stand-result',
+          page: SitToStandResultRoute.page,
         ),
       ];
 }
