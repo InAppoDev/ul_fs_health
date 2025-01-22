@@ -10,25 +10,6 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [DashboardMenuScreen]
-class DashboardMenuRoute extends PageRouteInfo<void> {
-  const DashboardMenuRoute({List<PageRouteInfo>? children})
-      : super(
-          DashboardMenuRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'DashboardMenuRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const DashboardMenuScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [GPAQInitialScreen]
 class GPAQInitialRoute extends PageRouteInfo<GPAQInitialRouteArgs> {
   GPAQInitialRoute({

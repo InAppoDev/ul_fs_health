@@ -7,7 +7,6 @@ import '../../domain/repositories/questionnaire_repository.dart';
 import '../../domain/repositories/walk_repository.dart';
 import '../../presentation/auth/view/login_screen.dart';
 import '../../presentation/auth/view/signup_screen.dart';
-import '../../presentation/dashboard_menu/view/dashboard_menu_screen.dart';
 import '../../presentation/history/view/history_screen.dart';
 import '../../presentation/home/view/home_screen.dart';
 import '../../presentation/profile/view/profile_screen.dart';
@@ -50,10 +49,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           path: '/login',
           page: LoginRoute.page,
-        ),
-        AutoRoute(
-          path: '/dashboard_navigation',
-          page: DashboardMenuRoute.page,
         ),
         AutoRoute(
           path: '/signup',

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../core/themes/app_colors.dart';
 import '../../../gen/assets.gen.dart';
@@ -21,7 +22,7 @@ class SimpleAppBarWidget extends StatelessWidget
   final EdgeInsets? contentPadding;
   final bool showBackButton;
   final double toolBarHeight;
-  final VoidCallback? onLeadingPress;
+  final void Function(BuildContext)? onLeadingPress;
   final VoidCallback? onInfoPress;
   final Widget? title;
   final List<Widget>? actions;
@@ -29,6 +30,7 @@ class SimpleAppBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      systemOverlayStyle: SystemUiOverlayStyle.light,
       surfaceTintColor: white,
       centerTitle: true,
       actions: actions ??
@@ -44,11 +46,11 @@ class SimpleAppBarWidget extends StatelessWidget
       title: title ?? const AppHeaderTextWidget(),
       leading: showBackButton
           ? const AutoLeadingButton()
-          : IconButton(
-              onPressed: onLeadingPress,
+          : Builder(builder: (context) => IconButton(
+              onPressed: () => onLeadingPress?.call(context),
               icon: Assets.icons.menu.svg(),
             ),
-    );
+    ));
   }
 
   @override
