@@ -37,7 +37,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
         isTestRunning: true, currentRepetition: 0, isTestFinished: false));
     final Stopwatch stopwatch = Stopwatch()..start();
     var lastEventTime = DateTime.now();
-    await for (final event in accelerometerEvents) {
+    await for (final event in accelerometerEventStream()) {
       if (state.isTestFinished) {
         break;
       }
@@ -49,6 +49,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       lastEventTime = currentTime;
       log('Z = ${event.z}');
       log('X = ${event.x}');
+      log('STANDING = $_isStanding');
       if (state.isTestRunning) {
         if (state.currentRepetition == Constants.totalRepetitions) {
           final bestTime = _result.findBestTime(whenEmpty: state.bestTime);
@@ -63,7 +64,11 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
           ));
           break;
         } else {
-          if (!_isStanding && event.z < Constants.standingPosition) {
+          if (!_isStanding &&
+              event.z < Constants.standingPosition &&
+              (event.x.isNegative && event.x > -Constants.standingPosition ||
+                  !event.x.isNegative &&
+                      event.x < Constants.standingPosition)) {
             /* Detect stand-up movement */
             _isStanding = true;
             stopwatch.stop();
@@ -82,12 +87,17 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
                 currentRepetition: state.currentRepetition + 1,
               ));
             }
-          } else if (_isStanding && event.z > Constants.sittingPosition ||
-              event.x > Constants.sittingPosition ||
-              event.x < -Constants.sittingPosition) {
+          } else if (_isStanding && event.z > Constants.sittingPosition0XAxis ||
+              event.z > Constants.sittingPositionNeutral ||
+              (!event.x.isNegative &&
+                      event.x > Constants.sittingPositionNeutral ||
+                  event.x.isNegative &&
+                      event.x < -Constants.sittingPositionNeutral)) {
             /* Detect sit-down movement */
             _isStanding = false;
-            stopwatch.start();
+            if (!stopwatch.isRunning) {
+              stopwatch.start();
+            }
           }
         }
       }
@@ -118,7 +128,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       emit(state.copyWith(status: SitToStandStatus.loading));
       final testResults =
           await sitToStandRepository.getTestResult(userId: event.userId);
-        
+
       final sortedResults = List<ResultDataEntity>.from(testResults)
         ..sort((a, b) => a.date!.compareTo(b.date!));
       emit(state.copyWith(

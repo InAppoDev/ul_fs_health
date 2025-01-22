@@ -20,38 +20,60 @@ class SitToStandScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SitToStandContent();
+    return const SitToStandContent();
   }
 }
 
-class SitToStandContent extends StatelessWidget {
-  SitToStandContent({super.key});
+class SitToStandContent extends StatefulWidget {
+  const SitToStandContent({super.key});
 
+  @override
+  State<SitToStandContent> createState() => _SitToStandContentState();
+}
+
+class _SitToStandContentState extends State<SitToStandContent> {
   final _audioPlayer = AudioPlayer();
-  final ValueNotifier<bool> _isStarting = ValueNotifier(false);
+
+  bool _isStarting = false;
   final ValueNotifier<int?> _countdownValue = ValueNotifier(null);
+  Timer? _timer;
 
   void _startCountDown(BuildContext context) {
-    _isStarting.value = true;
-    int countdown = 5;
-    Timer.periodic(
+    setState(() {
+      _isStarting = true;
+    });
+    _countdownValue.value = 5;
+    _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        if (countdown == 0) {
-          _countdownValue.value = null;
-          timer.cancel();
+        if (_countdownValue.value == 0) {
+          _resetTimer();
           _signalSound(context);
         } else {
-          _countdownValue.value = countdown--;
+          _countdownValue.value = (_countdownValue.value ?? 1) - 1;
         }
       },
     );
+  }
+
+  void _resetTimer() {
+    _countdownValue.value = null;
+    _timer?.cancel();
+    _isStarting = false;
+    setState(() {});
   }
 
   Future<void> _signalSound(BuildContext context) async {
     await _audioPlayer.setAsset('assets/sounds/signal.mp3');
     await _audioPlayer.play();
     context.router.push(const SitToStandTestStartRoute());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _audioPlayer.dispose();
+    _timer?.cancel();
   }
 
   @override
@@ -111,7 +133,7 @@ class SitToStandContent extends StatelessWidget {
               valueListenable: _countdownValue,
               builder: (context, countdown, child) {
                 return SubmitButton(
-                  onPressed: _isStarting.value
+                  onPressed: _isStarting
                       ? () {}
                       : () {
                           _startCountDown(context);
