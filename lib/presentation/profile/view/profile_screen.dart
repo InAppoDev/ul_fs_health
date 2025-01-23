@@ -101,6 +101,7 @@ class ProfileContentState extends State<ProfileContent> {
                       Gaps.larger.spaceVertical,
                       TextInputWidget(
                         controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
                         hintText: appLocalizations.hintYourEmail,
                         validator: (value) {
                           if (value == null || value.isEmpty) {

@@ -107,6 +107,7 @@ class SignupContent extends StatelessWidget {
                       TextInputWidget(
                         controller: _emailController,
                         hintText: S.current.hintYourEmail,
+                        keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return S.current.lblEmailRequire;

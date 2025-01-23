@@ -52,7 +52,8 @@ class HomeContent extends StatelessWidget {
           title: appLocalizations.menuResultsText),
       SidebarMenuItem(
           routeName: QuestionnaireInitialRoute.name,
-          onPress: () => context.router.push(QuestionnaireInitialRoute(shouldAuthenticate: true)),
+          onPress: () => context.router
+              .push(QuestionnaireInitialRoute(shouldAuthenticate: true)),
           icon: Assets.icons.iconQuestionnaire.svg(),
           title: appLocalizations.menuQuestionnaireText),
       SidebarMenuItem(
@@ -61,9 +62,12 @@ class HomeContent extends StatelessWidget {
           icon: Assets.icons.iconProfile.svg(),
           title: appLocalizations.menuProfileText),
       SidebarMenuItem(
-          onPress: () => context.read<UserBloc>().add(const UserEvent.userLogout()),
+          onPress: () =>
+              context.read<UserBloc>().add(const UserEvent.userLogout()),
           icon: Transform.rotate(
-              angle: pi, child: Icon(Icons.logout, color: ColorScheme.of(context).primary)),
+              angle: pi,
+              child:
+                  Icon(Icons.logout, color: ColorScheme.of(context).primary)),
           title: appLocalizations.menuLogoutText,
           titleColor: ColorScheme.of(context).primary)
     ];
@@ -71,113 +75,126 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SimpleAppBarWidget(
-        actions: [
-          SimpleDropDownButton(
-            items: S.delegate.supportedLocales,
-            selectedItem: MyApp.getLocale(context),
-            width: MediaQuery.sizeOf(context).width / 3,
-            onChanged: (value) async {
-              MyApp.setLocale(context, value ?? MyApp.getLocale(context));
-            },
-          ),
-        ],
-        onLeadingPress: (context) {
-          context.showSideBar();
-        },
-      ),
-      drawer: Builder(
-        builder: (context) => SideBarWidget(
-          selectedRouteName: context.router.current.name,
-          items: _buildMenuItems(context),
+    return BlocListener<UserBloc, UserState>(
+      listener: (context, state) {
+        if (state.status == UserStatus.unauthenticated) {
+          context.router.replaceAll([const LoginRoute()]);
+        }
+      },
+      child: Scaffold(
+        appBar: SimpleAppBarWidget(
+          actions: [
+            SimpleDropDownButton(
+              items: S.delegate.supportedLocales,
+              selectedItem: MyApp.getLocale(context),
+              width: MediaQuery.sizeOf(context).width / 3,
+              onChanged: (value) async {
+                MyApp.setLocale(context, value ?? MyApp.getLocale(context));
+              },
+            ),
+          ],
+          onLeadingPress: (context) {
+            context.showSideBar();
+          },
         ),
-      ),
-      body: Center(
-        child: Padding(
-          padding: Gaps.larger.paddingHorizontal,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ListTile(
-                title: Padding(
-                    padding: Gaps.smaller.paddingBottom,
-                    child: Text(
-                      appLocalizations.welcomeAppNameText(appLocalizations.lblAppName),
-                      style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
-                      textAlign: TextAlign.center,
-                    )),
-                subtitle: Text(appLocalizations.welcomeAppDescriptionText, style: body1),
-              ),
-              Constants.sizedBoxHeightLarge.spaceVertical,
-              Row(
-                children: [
-                  Assets.icons.iconWalkTest.svg(),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(appLocalizations.walkTestTitleText, style: header2),
-                        Gaps.smaller.spaceVertical,
-                        Text(appLocalizations.walkTestDescriptionText, style: body3),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Constants.sizedBoxHeightMiddle.spaceVertical,
-              SubmitButton(
-                  onPressed: () {
-                    _audioPlayer
-                      ..setAsset('assets/sounds/signal.mp3')
-                      ..play();
-                    context.router.push(const WalkTestStartRoute());
-                  },
-                  title: appLocalizations.btnTestStartText,
-                  backgroundColor: ColorScheme.of(context).primary,
-                  titleColor: white),
-              Constants.sizedBoxHeightSmall.spaceVertical,
-              SubmitButton(
-                  onPressed: () {
-                    context.router.push(const WalkTestInitialRoute());
-                  },
-                  title: appLocalizations.btnTestInstructionsText,
-                  backgroundColor: defaultBtnInactiveBackground,
-                  titleColor: defaultTextColor),
-              Constants.sizedBoxHeightLarge.spaceVertical,
-              Row(
-                children: [
-                  Assets.icons.iconSitDownTest.svg(),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(appLocalizations.sitToStandTestTitleText, style: header2),
-                        Gaps.smaller.spaceVertical,
-                        Text(appLocalizations.sitToStandTestDescriptionText,
-                            style: body3),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Constants.sizedBoxHeightMiddle.spaceVertical,
-              SubmitButton(
-                  onPressed: () {
-                    context.router.push(const SitToStandRoute());
-                  },
-                  title: appLocalizations.btnTestStartText,
-                  backgroundColor: ColorScheme.of(context).primary,
-                  titleColor: white),
-              Constants.sizedBoxHeightSmall.spaceVertical,
-              SubmitButton(
-                  onPressed: () {
-                    context.router.push(const SitToStandRoute());
-                  },
-                  title: appLocalizations.btnTestInstructionsText,
-                  backgroundColor: defaultBtnInactiveBackground,
-                  titleColor: defaultTextColor),
-            ],
+        drawer: Builder(
+          builder: (context) => SideBarWidget(
+            selectedRouteName: context.router.current.name,
+            items: _buildMenuItems(context),
+          ),
+        ),
+        body: Center(
+          child: Padding(
+            padding: Gaps.larger.paddingHorizontal,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ListTile(
+                  title: Padding(
+                      padding: Gaps.smaller.paddingBottom,
+                      child: Text(
+                        appLocalizations
+                            .welcomeAppNameText(appLocalizations.lblAppName),
+                        style: header1.copyWith(
+                            fontSize: Constants.headerLargeTextSize),
+                        textAlign: TextAlign.center,
+                      )),
+                  subtitle: Text(appLocalizations.welcomeAppDescriptionText,
+                      style: body1),
+                ),
+                Constants.sizedBoxHeightLarge.spaceVertical,
+                Row(
+                  children: [
+                    Assets.icons.iconWalkTest.svg(),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(appLocalizations.walkTestTitleText,
+                              style: header2),
+                          Gaps.smaller.spaceVertical,
+                          Text(appLocalizations.walkTestDescriptionText,
+                              style: body3),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Constants.sizedBoxHeightMiddle.spaceVertical,
+                SubmitButton(
+                    onPressed: () {
+                      _audioPlayer
+                        ..setAsset('assets/sounds/signal.mp3')
+                        ..play();
+                      context.router.push(const WalkTestStartRoute());
+                    },
+                    title: appLocalizations.btnTestStartText,
+                    backgroundColor: ColorScheme.of(context).primary,
+                    titleColor: white),
+                Constants.sizedBoxHeightSmall.spaceVertical,
+                SubmitButton(
+                    onPressed: () {
+                      context.router.push(const WalkTestInitialRoute());
+                    },
+                    title: appLocalizations.btnTestInstructionsText,
+                    backgroundColor: defaultBtnInactiveBackground,
+                    titleColor: defaultTextColor),
+                Constants.sizedBoxHeightLarge.spaceVertical,
+                Row(
+                  children: [
+                    Assets.icons.iconSitDownTest.svg(),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(appLocalizations.sitToStandTestTitleText,
+                              style: header2),
+                          Gaps.smaller.spaceVertical,
+                          Text(appLocalizations.sitToStandTestDescriptionText,
+                              style: body3),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Constants.sizedBoxHeightMiddle.spaceVertical,
+                SubmitButton(
+                    onPressed: () {
+                      context.router.push(const SitToStandRoute());
+                    },
+                    title: appLocalizations.btnTestStartText,
+                    backgroundColor: ColorScheme.of(context).primary,
+                    titleColor: white),
+                Constants.sizedBoxHeightSmall.spaceVertical,
+                SubmitButton(
+                    onPressed: () {
+                      context.router.push(const SitToStandRoute());
+                    },
+                    title: appLocalizations.btnTestInstructionsText,
+                    backgroundColor: defaultBtnInactiveBackground,
+                    titleColor: defaultTextColor),
+              ],
+            ),
           ),
         ),
       ),
