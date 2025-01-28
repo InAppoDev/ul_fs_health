@@ -16,6 +16,7 @@ class WalkResultModel with _$WalkResultModel {
     required FDocumentReference userRef,
     DateTime? date,
     double? distance,
+    double? length,
     double? averageSpeed}) = _WalkResultModel;
   factory WalkResultModel.fromJson(Map<String, dynamic> json) =>
       _$WalkResultModelFromJson(json);
@@ -24,6 +25,7 @@ class WalkResultModel with _$WalkResultModel {
       WalkResultModel(
           userRef: entity.userRef,
           date: entity.date,
+          length: entity.length,
           distance: entity.distance,
           averageSpeed: entity.averageSpeed);
 
@@ -32,6 +34,9 @@ class WalkResultModel with _$WalkResultModel {
   WalkResultEntity toEntity() {
     return WalkResultEntity(
         userRef: userRef,
-        date: date, distance: distance, averageSpeed: averageSpeed);
+        date: date,
+        distance: distance,
+        length: length,
+        averageSpeed: averageSpeed);
   }
 }

@@ -13,7 +13,6 @@ import '../../../l10n/localizations_utils.dart';
 import '../../history/view/tabs/sit_to_stand_tab.dart';
 import '../../logic/user/user_bloc.dart';
 import '../../utils/widgets/test_layout_widget.dart';
-import '../../walk_test_start/bloc/result_bloc.dart';
 import '../bloc/sit_to_stand_bloc.dart';
 import '../bloc/sit_to_stand_event.dart';
 import '../bloc/sit_to_stand_state.dart';
@@ -59,7 +58,7 @@ class SitToStandResultContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SitToStandBloc, SitToStandState>(
       listener: (context, state) {
-        if (state.status == ResultStatus.failure) {
+        if (state.status == SitToStandStatus.failure) {
           context.showSnackBarMessage(state.error ?? '');
         }
       },

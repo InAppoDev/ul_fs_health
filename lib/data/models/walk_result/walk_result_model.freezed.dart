@@ -25,6 +25,7 @@ mixin _$WalkResultModel {
       throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
+  double? get length => throw _privateConstructorUsedError;
   double? get averageSpeed => throw _privateConstructorUsedError;
 
   /// Serializes this WalkResultModel to a JSON map.
@@ -48,6 +49,7 @@ abstract class $WalkResultModelCopyWith<$Res> {
       DocumentReference<Map<String, dynamic>> userRef,
       DateTime? date,
       double? distance,
+      double? length,
       double? averageSpeed});
 }
 
@@ -69,6 +71,7 @@ class _$WalkResultModelCopyWithImpl<$Res, $Val extends WalkResultModel>
     Object? userRef = null,
     Object? date = freezed,
     Object? distance = freezed,
+    Object? length = freezed,
     Object? averageSpeed = freezed,
   }) {
     return _then(_value.copyWith(
@@ -83,6 +86,10 @@ class _$WalkResultModelCopyWithImpl<$Res, $Val extends WalkResultModel>
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      length: freezed == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
               as double?,
       averageSpeed: freezed == averageSpeed
           ? _value.averageSpeed
@@ -105,6 +112,7 @@ abstract class _$$WalkResultModelImplCopyWith<$Res>
       DocumentReference<Map<String, dynamic>> userRef,
       DateTime? date,
       double? distance,
+      double? length,
       double? averageSpeed});
 }
 
@@ -124,6 +132,7 @@ class __$$WalkResultModelImplCopyWithImpl<$Res>
     Object? userRef = null,
     Object? date = freezed,
     Object? distance = freezed,
+    Object? length = freezed,
     Object? averageSpeed = freezed,
   }) {
     return _then(_$WalkResultModelImpl(
@@ -138,6 +147,10 @@ class __$$WalkResultModelImplCopyWithImpl<$Res>
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      length: freezed == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
               as double?,
       averageSpeed: freezed == averageSpeed
           ? _value.averageSpeed
@@ -154,6 +167,7 @@ class _$WalkResultModelImpl extends _WalkResultModel {
       {@DocumentReferenceConverter() required this.userRef,
       this.date,
       this.distance,
+      this.length,
       this.averageSpeed})
       : super._();
 
@@ -168,11 +182,13 @@ class _$WalkResultModelImpl extends _WalkResultModel {
   @override
   final double? distance;
   @override
+  final double? length;
+  @override
   final double? averageSpeed;
 
   @override
   String toString() {
-    return 'WalkResultModel(userRef: $userRef, date: $date, distance: $distance, averageSpeed: $averageSpeed)';
+    return 'WalkResultModel(userRef: $userRef, date: $date, distance: $distance, length: $length, averageSpeed: $averageSpeed)';
   }
 
   @override
@@ -184,6 +200,7 @@ class _$WalkResultModelImpl extends _WalkResultModel {
             (identical(other.date, date) || other.date == date) &&
             (identical(other.distance, distance) ||
                 other.distance == distance) &&
+            (identical(other.length, length) || other.length == length) &&
             (identical(other.averageSpeed, averageSpeed) ||
                 other.averageSpeed == averageSpeed));
   }
@@ -191,7 +208,7 @@ class _$WalkResultModelImpl extends _WalkResultModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, userRef, date, distance, averageSpeed);
+      Object.hash(runtimeType, userRef, date, distance, length, averageSpeed);
 
   /// Create a copy of WalkResultModel
   /// with the given fields replaced by the non-null parameter values.
@@ -216,6 +233,7 @@ abstract class _WalkResultModel extends WalkResultModel {
       required final DocumentReference<Map<String, dynamic>> userRef,
       final DateTime? date,
       final double? distance,
+      final double? length,
       final double? averageSpeed}) = _$WalkResultModelImpl;
   const _WalkResultModel._() : super._();
 
@@ -229,6 +247,8 @@ abstract class _WalkResultModel extends WalkResultModel {
   DateTime? get date;
   @override
   double? get distance;
+  @override
+  double? get length;
   @override
   double? get averageSpeed;
 

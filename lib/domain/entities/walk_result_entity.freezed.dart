@@ -20,6 +20,7 @@ mixin _$WalkResultEntity {
   DocumentReference<Map<String, dynamic>> get userRef =>
       throw _privateConstructorUsedError;
   DateTime? get date => throw _privateConstructorUsedError;
+  double? get length => throw _privateConstructorUsedError;
   double? get distance => throw _privateConstructorUsedError;
   double? get averageSpeed => throw _privateConstructorUsedError;
 
@@ -40,6 +41,7 @@ abstract class $WalkResultEntityCopyWith<$Res> {
       {@DocumentReferenceConverter()
       DocumentReference<Map<String, dynamic>> userRef,
       DateTime? date,
+      double? length,
       double? distance,
       double? averageSpeed});
 }
@@ -61,6 +63,7 @@ class _$WalkResultEntityCopyWithImpl<$Res, $Val extends WalkResultEntity>
   $Res call({
     Object? userRef = null,
     Object? date = freezed,
+    Object? length = freezed,
     Object? distance = freezed,
     Object? averageSpeed = freezed,
   }) {
@@ -73,6 +76,10 @@ class _$WalkResultEntityCopyWithImpl<$Res, $Val extends WalkResultEntity>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      length: freezed == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as double?,
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -97,6 +104,7 @@ abstract class _$$WalkResultEntityImplCopyWith<$Res>
       {@DocumentReferenceConverter()
       DocumentReference<Map<String, dynamic>> userRef,
       DateTime? date,
+      double? length,
       double? distance,
       double? averageSpeed});
 }
@@ -116,6 +124,7 @@ class __$$WalkResultEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? userRef = null,
     Object? date = freezed,
+    Object? length = freezed,
     Object? distance = freezed,
     Object? averageSpeed = freezed,
   }) {
@@ -128,6 +137,10 @@ class __$$WalkResultEntityImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      length: freezed == length
+          ? _value.length
+          : length // ignore: cast_nullable_to_non_nullable
+              as double?,
       distance: freezed == distance
           ? _value.distance
           : distance // ignore: cast_nullable_to_non_nullable
@@ -146,6 +159,7 @@ class _$WalkResultEntityImpl implements _WalkResultEntity {
   const _$WalkResultEntityImpl(
       {@DocumentReferenceConverter() required this.userRef,
       this.date,
+      this.length,
       this.distance,
       this.averageSpeed});
 
@@ -155,13 +169,15 @@ class _$WalkResultEntityImpl implements _WalkResultEntity {
   @override
   final DateTime? date;
   @override
+  final double? length;
+  @override
   final double? distance;
   @override
   final double? averageSpeed;
 
   @override
   String toString() {
-    return 'WalkResultEntity(userRef: $userRef, date: $date, distance: $distance, averageSpeed: $averageSpeed)';
+    return 'WalkResultEntity(userRef: $userRef, date: $date, length: $length, distance: $distance, averageSpeed: $averageSpeed)';
   }
 
   @override
@@ -171,6 +187,7 @@ class _$WalkResultEntityImpl implements _WalkResultEntity {
             other is _$WalkResultEntityImpl &&
             (identical(other.userRef, userRef) || other.userRef == userRef) &&
             (identical(other.date, date) || other.date == date) &&
+            (identical(other.length, length) || other.length == length) &&
             (identical(other.distance, distance) ||
                 other.distance == distance) &&
             (identical(other.averageSpeed, averageSpeed) ||
@@ -179,7 +196,7 @@ class _$WalkResultEntityImpl implements _WalkResultEntity {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, userRef, date, distance, averageSpeed);
+      Object.hash(runtimeType, userRef, date, length, distance, averageSpeed);
 
   /// Create a copy of WalkResultEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -196,6 +213,7 @@ abstract class _WalkResultEntity implements WalkResultEntity {
       {@DocumentReferenceConverter()
       required final DocumentReference<Map<String, dynamic>> userRef,
       final DateTime? date,
+      final double? length,
       final double? distance,
       final double? averageSpeed}) = _$WalkResultEntityImpl;
 
@@ -204,6 +222,8 @@ abstract class _WalkResultEntity implements WalkResultEntity {
   DocumentReference<Map<String, dynamic>> get userRef;
   @override
   DateTime? get date;
+  @override
+  double? get length;
   @override
   double? get distance;
   @override

@@ -29,9 +29,9 @@ import '../../presentation/sit_to_stand/view/sit_to_stand_test_start_screen.dart
 import '../../presentation/splash/view/splash_screen.dart';
 import '../../presentation/walk_test/bloc/walk_test_bloc.dart';
 import '../../presentation/walk_test/view/walk_test_initial_screen.dart';
+import '../../presentation/walk_test/view/walk_test_result_screen.dart';
 import '../../presentation/walk_test/view/walk_test_screen.dart';
-import '../../presentation/walk_test_result/view/walk_test_result_screen.dart';
-import '../../presentation/walk_test_start/view/walk_test_start_screen.dart';
+import '../../presentation/walk_test/view/walk_test_start_screen.dart';
 
 part 'app_router.gr.dart';
 part 'questionnaire_root_route.dart';

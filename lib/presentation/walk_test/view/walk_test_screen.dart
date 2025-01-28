@@ -1,10 +1,5 @@
-// ignore_for_file: must_be_immutable
-
-import 'dart:async';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/gaps.dart';
 import '../../../core/extensions/number_extension.dart';
@@ -23,75 +18,34 @@ class WalkTestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WalkTestContent();
+    return const WalkTestContent();
   }
 }
 
 class WalkTestContent extends StatelessWidget {
-  WalkTestContent({super.key});
+  const WalkTestContent({super.key});
 
-  final _audioPlayer = AudioPlayer();
-  final ValueNotifier<bool> _isStarting = ValueNotifier(false);
-  final ValueNotifier<int?> _countdownValue = ValueNotifier(null);
-
-  void _startCountDown(BuildContext context) {
-    _isStarting.value = true;
-    int countdown = 5;
-    Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        if (countdown == 0) {
-          _countdownValue.value = null;
-          timer.cancel();
-          _signalSound(context);
-        } else {
-          _countdownValue.value = countdown--;
-        }
-      },
-    );
-  }
-
-  Future<void> _signalSound(BuildContext context) async {
-    await _audioPlayer.setAsset('assets/sounds/signal.mp3');
-    await _audioPlayer.play();
-    context.router.push(const WalkTestStartRoute());
-  }
 
   @override
   Widget build(BuildContext context) {
     return TestLayoutWidget(
-      headerIcon: Assets.icons.iconWalkTest,
-      headerText: appLocalizations.walkTestTitleText,
-      children: [
-        const TextBuilderWidget(),
-        Gaps.largest.spaceVertical,
-        ValueListenableBuilder<int?>(
-          valueListenable: _countdownValue,
-          builder: (context, countdown, _) {
-            if (countdown != null) {
-              return SubmitButton(
-                onPressed: () {},
-                title: '$countdown',
-                backgroundColor: ColorScheme.of(context).primary,
-                titleColor: white,
-              );
-            } else {
-              return SubmitButton(
-                onPressed: () {
-                  _startCountDown(context);
-                },
-                title: appLocalizations.btnTestStartText.toUpperCase(),
-                backgroundColor: ColorScheme.of(context).primary,
-                titleColor: white,
-              );
-            }
-          },
-        ),
-        Gaps.largest.spaceVertical,
-        WalkTestNoteWidget(
-          boldText: appLocalizations.pauseText,
-        ),
-      ],
-    );
+        headerIcon: Assets.icons.iconWalkTest,
+        headerText: appLocalizations.walkTestTitleText,
+        children: [
+          const TextBuilderWidget(),
+          Gaps.largest.spaceVertical,
+          SubmitButton(
+              onPressed: () {
+                context.router.push(WalkTestStartRoute());
+              },
+              title: appLocalizations.btnTestStartText.toUpperCase(),
+              backgroundColor: ColorScheme.of(context).primary,
+              titleColor: white
+          ),
+          Gaps.largest.spaceVertical,
+          WalkTestNoteWidget(
+            boldText: appLocalizations.pauseText,
+          )
+        ]);
   }
 }

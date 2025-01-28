@@ -8,8 +8,7 @@ import 'gps_service.dart';
 
 mixin GPSMixin {
   final LocationSettings kLocationSettings = const LocationSettings(
-    accuracy: LocationAccuracy.high,
-    distanceFilter: 1,
+    accuracy: LocationAccuracy.bestForNavigation,
   );
 }
 
@@ -43,18 +42,24 @@ class GPSServiceImp with GPSMixin implements GPSService {
 
   void _onLocationUpdate(Position position) {
     if (_lastPosition != null) {
-      final double distance = Geolocator.distanceBetween(
-        _lastPosition!.latitude,
-        _lastPosition!.longitude,
-        position.latitude,
-        position.longitude,
-      );
-      _distanceTraveled += distance;
-      _speed = position.speed;
-    }
-    if (!_positionController.isClosed) {
-      _lastPosition = position;
-      _positionController.add(position);
+      final double accuracy = position.accuracy;
+
+      if (accuracy <= 10) {
+        final double distance = Geolocator.distanceBetween(
+          _lastPosition!.latitude,
+          _lastPosition!.longitude,
+          position.latitude,
+          position.longitude,
+        );
+        if (distance > 3) {
+          _distanceTraveled += distance;
+          _speed = position.speed;
+        }
+      }
+      if (!_positionController.isClosed) {
+        _lastPosition = position;
+        _positionController.add(position);
+      }
     }
   }
 
