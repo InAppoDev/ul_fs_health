@@ -46,17 +46,18 @@ class WalkTestStartScreen extends StatelessWidget {
             ..play();
           return WalkTestStartContent(
               audioPlayer: audioPlayer,
-              length: context.watch<WalkTestBloc>().state.selectedLength ??
-                  CalculationConstants.defaultDistanceUnit);
+              userId: context.watch<UserBloc>().state.user?.id ?? '',
+              length: context.watch<WalkTestBloc>().state.selectedLength ?? 0.0);
         }));
   }
 }
 
 class WalkTestStartContent extends StatelessWidget {
-  const WalkTestStartContent({super.key, required this.length, required this.audioPlayer});
+  const WalkTestStartContent({super.key, required this.length, required this.audioPlayer, required this.userId});
 
   final double length;
   final AudioPlayer audioPlayer;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +65,13 @@ class WalkTestStartContent extends StatelessWidget {
       listeners: [
         BlocListener<TimerBloc, TimerState>(listener: (context, state) {
           if (state.status == TimerStatus.completed) {
-            audioPlayer
-              ..setAsset('assets/sounds/signal.mp3')
-              ..play();
             context.read<GPSBloc>().add(const GPSEvent.updatePosition());
             context
                 .read<GPSBloc>()
                 .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
+            audioPlayer
+              ..setAsset('assets/sounds/signal.mp3')
+              ..play();
           } else if (state.status == TimerStatus.running) {
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
                 duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
@@ -195,7 +196,7 @@ class WalkTestStartContent extends StatelessWidget {
                       distance: state.distanceTraveled,
                       length: length,
                       averageSpeed: state.averageSpeed,
-                      userId: context.watch<UserBloc>().state.user?.id ?? ''));
+                      userId: userId));
                 },
                 isLoading: context.watch<WalkTestBloc>().state.status == WalkTestStatus.loading ||
                     context.watch<GPSBloc>().state.status == GPSStatus.loading ||
