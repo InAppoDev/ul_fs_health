@@ -73,6 +73,7 @@ class WalkTestStartContent extends StatelessWidget {
               ..setAsset('assets/sounds/signal.mp3')
               ..play();
           } else if (state.status == TimerStatus.running) {
+            context.read<GPSBloc>().add(const GPSEvent.updateData());
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
                 duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
           }
@@ -180,7 +181,7 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.averageSpeed.formattedSpeedKmhReplaced,
+                      context.watch<GPSBloc>().state.averageSpeed.toSpeedKmH.formattedSpeedKmhReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],

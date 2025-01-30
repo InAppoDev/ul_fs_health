@@ -27,9 +27,10 @@ class GPSServiceImp with GPSMixin implements GPSService {
   double _distanceTraveled = 0.0;
   Position? _lastPosition;
   double _speed = 0.0;
+  double _accuracy = 0.0;
 
   @override
-  GPSData getGpsData() => GPSData(distanceTraveled: _distanceTraveled, speed: _speed);
+  GPSData getGpsData() => GPSData(distanceTraveled: _distanceTraveled, speed: _speed, accuracy: _accuracy);
 
   @override
   Future<void> startTracking() async {
@@ -42,25 +43,33 @@ class GPSServiceImp with GPSMixin implements GPSService {
 
   void _onLocationUpdate(Position position) {
     if (_lastPosition != null) {
-      final double accuracy = position.accuracy;
+      _accuracy = position.accuracy;
+      final DateTime timestamp = position.timestamp;
+      bool hasStrongSignal = _accuracy > 0.0 && _accuracy <= 15;
 
-      if (accuracy <= 10) {
+      // Alternative: If accuracy is missing, check for recent updates
+      if (_accuracy == 0.0) {
+        final DateTime now = DateTime.now();
+        final Duration timeDifference = now.difference(timestamp);
+        hasStrongSignal = timeDifference.inSeconds < 5; // Consider strong if updated within 5 seconds
+      }
+
+      if (hasStrongSignal) {
         final double distance = Geolocator.distanceBetween(
           _lastPosition!.latitude,
           _lastPosition!.longitude,
           position.latitude,
           position.longitude,
         );
-        if (distance > 3) {
-          _distanceTraveled += distance;
-          _speed = position.speed;
-        }
-      }
-      if (!_positionController.isClosed) {
-        _lastPosition = position;
-        _positionController.add(position);
+        _distanceTraveled += distance;
+        _speed = position.speed;
       }
     }
+    _lastPosition = position;
+    if (!_positionController.isClosed) {
+      _positionController.add(position);
+    }
+
   }
 
   @override

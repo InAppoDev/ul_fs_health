@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/constants/calculation_constants.dart';
+import '../../../data/models/gps/gps_data.dart';
 import '../../../domain/usecase/gps_use_case.dart';
 
 part 'gps_event.dart';
@@ -17,6 +18,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     on<_StartTracking>(_onStartTracking);
     on<_StopTracking>(_onStopTracking);
     on<_UpdatePosition>(_onUpdatePosition);
+    on<_UpdateData>(_onUpdateData);
     on<_UpdateAverageSpeed>(_onUpdateAverageSpeed);
     on<_UpdateStartingSpeed>(_onUpdateStartingSpeed);
     on<_ReachGoal>(_onReachGoal);
@@ -48,9 +50,17 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   Future<void> _onUpdatePosition(_UpdatePosition event, Emitter<GPSState> emit) async {
     final data = await gpsUseCase.getGpsData();
     emit(state.copyWith(
+      gpsData: data,
       distanceTraveled: data.distanceTraveled,
       status: GPSStatus.saved,
       speed: data.speed,
+    ));
+  }
+
+  Future<void> _onUpdateData(_UpdateData event, Emitter<GPSState> emit) async {
+    final data = await gpsUseCase.getGpsData();
+    emit(state.copyWith(
+      gpsData: data,
     ));
   }
 

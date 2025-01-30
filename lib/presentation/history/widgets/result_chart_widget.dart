@@ -114,8 +114,7 @@ class ResultChartWidget extends StatelessWidget {
 
                             final isWorstCase = distance == maxDistance;
 
-                            final formattedDistance =
-                                (distance * 100).toStringAsFixed(0);
+                            final formattedDistance = distance.toStringAsFixed(0);
                             return Text(
                               '$formattedDistance m',
                               style: body2.copyWith(

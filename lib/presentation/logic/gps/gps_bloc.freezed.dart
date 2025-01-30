@@ -24,6 +24,7 @@ mixin _$GPSEvent {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +35,7 @@ mixin _$GPSEvent {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$GPSEvent {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +58,7 @@ mixin _$GPSEvent {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +69,7 @@ mixin _$GPSEvent {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,6 +80,7 @@ mixin _$GPSEvent {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,6 +153,7 @@ class _$StartTrackingImpl implements _StartTracking {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) {
     return startTracking();
   }
@@ -160,6 +167,7 @@ class _$StartTrackingImpl implements _StartTracking {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) {
     return startTracking?.call();
   }
@@ -173,6 +181,7 @@ class _$StartTrackingImpl implements _StartTracking {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) {
     if (startTracking != null) {
@@ -190,6 +199,7 @@ class _$StartTrackingImpl implements _StartTracking {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) {
     return startTracking(this);
   }
@@ -203,6 +213,7 @@ class _$StartTrackingImpl implements _StartTracking {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) {
     return startTracking?.call(this);
   }
@@ -216,6 +227,7 @@ class _$StartTrackingImpl implements _StartTracking {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) {
     if (startTracking != null) {
@@ -304,6 +316,7 @@ class _$StopTrackingImpl implements _StopTracking {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) {
     return stopTracking(duration);
   }
@@ -317,6 +330,7 @@ class _$StopTrackingImpl implements _StopTracking {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) {
     return stopTracking?.call(duration);
   }
@@ -330,6 +344,7 @@ class _$StopTrackingImpl implements _StopTracking {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) {
     if (stopTracking != null) {
@@ -347,6 +362,7 @@ class _$StopTrackingImpl implements _StopTracking {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) {
     return stopTracking(this);
   }
@@ -360,6 +376,7 @@ class _$StopTrackingImpl implements _StopTracking {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) {
     return stopTracking?.call(this);
   }
@@ -373,6 +390,7 @@ class _$StopTrackingImpl implements _StopTracking {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) {
     if (stopTracking != null) {
@@ -442,6 +460,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) {
     return updatePosition();
   }
@@ -455,6 +474,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) {
     return updatePosition?.call();
   }
@@ -468,6 +488,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) {
     if (updatePosition != null) {
@@ -485,6 +506,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) {
     return updatePosition(this);
   }
@@ -498,6 +520,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) {
     return updatePosition?.call(this);
   }
@@ -511,6 +534,7 @@ class _$UpdatePositionImpl implements _UpdatePosition {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) {
     if (updatePosition != null) {
@@ -600,6 +624,7 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) {
     return updateAverageSpeed(averageSpeed);
   }
@@ -613,6 +638,7 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) {
     return updateAverageSpeed?.call(averageSpeed);
   }
@@ -626,6 +652,7 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) {
     if (updateAverageSpeed != null) {
@@ -643,6 +670,7 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) {
     return updateAverageSpeed(this);
   }
@@ -656,6 +684,7 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) {
     return updateAverageSpeed?.call(this);
   }
@@ -669,6 +698,7 @@ class _$UpdateAverageSpeedImpl implements _UpdateAverageSpeed {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) {
     if (updateAverageSpeed != null) {
@@ -767,6 +797,7 @@ class _$UpdateStartingSpeedImpl implements _UpdateStartingSpeed {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) {
     return updateStartingSpeed(duration);
   }
@@ -780,6 +811,7 @@ class _$UpdateStartingSpeedImpl implements _UpdateStartingSpeed {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) {
     return updateStartingSpeed?.call(duration);
   }
@@ -793,6 +825,7 @@ class _$UpdateStartingSpeedImpl implements _UpdateStartingSpeed {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) {
     if (updateStartingSpeed != null) {
@@ -810,6 +843,7 @@ class _$UpdateStartingSpeedImpl implements _UpdateStartingSpeed {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) {
     return updateStartingSpeed(this);
   }
@@ -823,6 +857,7 @@ class _$UpdateStartingSpeedImpl implements _UpdateStartingSpeed {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) {
     return updateStartingSpeed?.call(this);
   }
@@ -836,6 +871,7 @@ class _$UpdateStartingSpeedImpl implements _UpdateStartingSpeed {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) {
     if (updateStartingSpeed != null) {
@@ -933,6 +969,7 @@ class _$ReachGoalImpl implements _ReachGoal {
     required TResult Function(double averageSpeed) updateAverageSpeed,
     required TResult Function(int duration) updateStartingSpeed,
     required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
   }) {
     return reachGoal(goalDistance);
   }
@@ -946,6 +983,7 @@ class _$ReachGoalImpl implements _ReachGoal {
     TResult? Function(double averageSpeed)? updateAverageSpeed,
     TResult? Function(int duration)? updateStartingSpeed,
     TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
   }) {
     return reachGoal?.call(goalDistance);
   }
@@ -959,6 +997,7 @@ class _$ReachGoalImpl implements _ReachGoal {
     TResult Function(double averageSpeed)? updateAverageSpeed,
     TResult Function(int duration)? updateStartingSpeed,
     TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
     required TResult orElse(),
   }) {
     if (reachGoal != null) {
@@ -976,6 +1015,7 @@ class _$ReachGoalImpl implements _ReachGoal {
     required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
     required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
     required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
   }) {
     return reachGoal(this);
   }
@@ -989,6 +1029,7 @@ class _$ReachGoalImpl implements _ReachGoal {
     TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
   }) {
     return reachGoal?.call(this);
   }
@@ -1002,6 +1043,7 @@ class _$ReachGoalImpl implements _ReachGoal {
     TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
     TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
     TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
     required TResult orElse(),
   }) {
     if (reachGoal != null) {
@@ -1025,8 +1067,144 @@ abstract class _ReachGoal implements GPSEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdateDataImplCopyWith<$Res> {
+  factory _$$UpdateDataImplCopyWith(
+          _$UpdateDataImpl value, $Res Function(_$UpdateDataImpl) then) =
+      __$$UpdateDataImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateDataImplCopyWithImpl<$Res>
+    extends _$GPSEventCopyWithImpl<$Res, _$UpdateDataImpl>
+    implements _$$UpdateDataImplCopyWith<$Res> {
+  __$$UpdateDataImplCopyWithImpl(
+      _$UpdateDataImpl _value, $Res Function(_$UpdateDataImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GPSEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$UpdateDataImpl implements _UpdateData {
+  const _$UpdateDataImpl();
+
+  @override
+  String toString() {
+    return 'GPSEvent.updateData()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UpdateDataImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() startTracking,
+    required TResult Function(int duration) stopTracking,
+    required TResult Function() updatePosition,
+    required TResult Function(double averageSpeed) updateAverageSpeed,
+    required TResult Function(int duration) updateStartingSpeed,
+    required TResult Function(double goalDistance) reachGoal,
+    required TResult Function() updateData,
+  }) {
+    return updateData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? startTracking,
+    TResult? Function(int duration)? stopTracking,
+    TResult? Function()? updatePosition,
+    TResult? Function(double averageSpeed)? updateAverageSpeed,
+    TResult? Function(int duration)? updateStartingSpeed,
+    TResult? Function(double goalDistance)? reachGoal,
+    TResult? Function()? updateData,
+  }) {
+    return updateData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? startTracking,
+    TResult Function(int duration)? stopTracking,
+    TResult Function()? updatePosition,
+    TResult Function(double averageSpeed)? updateAverageSpeed,
+    TResult Function(int duration)? updateStartingSpeed,
+    TResult Function(double goalDistance)? reachGoal,
+    TResult Function()? updateData,
+    required TResult orElse(),
+  }) {
+    if (updateData != null) {
+      return updateData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartTracking value) startTracking,
+    required TResult Function(_StopTracking value) stopTracking,
+    required TResult Function(_UpdatePosition value) updatePosition,
+    required TResult Function(_UpdateAverageSpeed value) updateAverageSpeed,
+    required TResult Function(_UpdateStartingSpeed value) updateStartingSpeed,
+    required TResult Function(_ReachGoal value) reachGoal,
+    required TResult Function(_UpdateData value) updateData,
+  }) {
+    return updateData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StartTracking value)? startTracking,
+    TResult? Function(_StopTracking value)? stopTracking,
+    TResult? Function(_UpdatePosition value)? updatePosition,
+    TResult? Function(_UpdateAverageSpeed value)? updateAverageSpeed,
+    TResult? Function(_UpdateStartingSpeed value)? updateStartingSpeed,
+    TResult? Function(_ReachGoal value)? reachGoal,
+    TResult? Function(_UpdateData value)? updateData,
+  }) {
+    return updateData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartTracking value)? startTracking,
+    TResult Function(_StopTracking value)? stopTracking,
+    TResult Function(_UpdatePosition value)? updatePosition,
+    TResult Function(_UpdateAverageSpeed value)? updateAverageSpeed,
+    TResult Function(_UpdateStartingSpeed value)? updateStartingSpeed,
+    TResult Function(_ReachGoal value)? reachGoal,
+    TResult Function(_UpdateData value)? updateData,
+    required TResult orElse(),
+  }) {
+    if (updateData != null) {
+      return updateData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateData implements GPSEvent {
+  const factory _UpdateData() = _$UpdateDataImpl;
+}
+
+/// @nodoc
 mixin _$GPSState {
   GPSStatus get status => throw _privateConstructorUsedError;
+  GPSData get gpsData => throw _privateConstructorUsedError;
   double get distanceTraveled => throw _privateConstructorUsedError;
   double get speed => throw _privateConstructorUsedError;
   double get startSpeed => throw _privateConstructorUsedError;
@@ -1046,10 +1224,13 @@ abstract class $GPSStateCopyWith<$Res> {
   @useResult
   $Res call(
       {GPSStatus status,
+      GPSData gpsData,
       double distanceTraveled,
       double speed,
       double startSpeed,
       double averageSpeed});
+
+  $GPSDataCopyWith<$Res> get gpsData;
 }
 
 /// @nodoc
@@ -1068,6 +1249,7 @@ class _$GPSStateCopyWithImpl<$Res, $Val extends GPSState>
   @override
   $Res call({
     Object? status = null,
+    Object? gpsData = null,
     Object? distanceTraveled = null,
     Object? speed = null,
     Object? startSpeed = null,
@@ -1078,6 +1260,10 @@ class _$GPSStateCopyWithImpl<$Res, $Val extends GPSState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as GPSStatus,
+      gpsData: null == gpsData
+          ? _value.gpsData
+          : gpsData // ignore: cast_nullable_to_non_nullable
+              as GPSData,
       distanceTraveled: null == distanceTraveled
           ? _value.distanceTraveled
           : distanceTraveled // ignore: cast_nullable_to_non_nullable
@@ -1096,6 +1282,16 @@ class _$GPSStateCopyWithImpl<$Res, $Val extends GPSState>
               as double,
     ) as $Val);
   }
+
+  /// Create a copy of GPSState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GPSDataCopyWith<$Res> get gpsData {
+    return $GPSDataCopyWith<$Res>(_value.gpsData, (value) {
+      return _then(_value.copyWith(gpsData: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1108,10 +1304,14 @@ abstract class _$$GPSStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {GPSStatus status,
+      GPSData gpsData,
       double distanceTraveled,
       double speed,
       double startSpeed,
       double averageSpeed});
+
+  @override
+  $GPSDataCopyWith<$Res> get gpsData;
 }
 
 /// @nodoc
@@ -1128,6 +1328,7 @@ class __$$GPSStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? gpsData = null,
     Object? distanceTraveled = null,
     Object? speed = null,
     Object? startSpeed = null,
@@ -1138,6 +1339,10 @@ class __$$GPSStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as GPSStatus,
+      gpsData: null == gpsData
+          ? _value.gpsData
+          : gpsData // ignore: cast_nullable_to_non_nullable
+              as GPSData,
       distanceTraveled: null == distanceTraveled
           ? _value.distanceTraveled
           : distanceTraveled // ignore: cast_nullable_to_non_nullable
@@ -1163,6 +1368,7 @@ class __$$GPSStateImplCopyWithImpl<$Res>
 class _$GPSStateImpl implements _GPSState {
   const _$GPSStateImpl(
       {this.status = GPSStatus.initial,
+      this.gpsData = const GPSData(),
       this.distanceTraveled = 0.0,
       this.speed = 0.0,
       this.startSpeed = 0.0,
@@ -1171,6 +1377,9 @@ class _$GPSStateImpl implements _GPSState {
   @override
   @JsonKey()
   final GPSStatus status;
+  @override
+  @JsonKey()
+  final GPSData gpsData;
   @override
   @JsonKey()
   final double distanceTraveled;
@@ -1186,7 +1395,7 @@ class _$GPSStateImpl implements _GPSState {
 
   @override
   String toString() {
-    return 'GPSState(status: $status, distanceTraveled: $distanceTraveled, speed: $speed, startSpeed: $startSpeed, averageSpeed: $averageSpeed)';
+    return 'GPSState(status: $status, gpsData: $gpsData, distanceTraveled: $distanceTraveled, speed: $speed, startSpeed: $startSpeed, averageSpeed: $averageSpeed)';
   }
 
   @override
@@ -1195,6 +1404,7 @@ class _$GPSStateImpl implements _GPSState {
         (other.runtimeType == runtimeType &&
             other is _$GPSStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.gpsData, gpsData) || other.gpsData == gpsData) &&
             (identical(other.distanceTraveled, distanceTraveled) ||
                 other.distanceTraveled == distanceTraveled) &&
             (identical(other.speed, speed) || other.speed == speed) &&
@@ -1205,8 +1415,8 @@ class _$GPSStateImpl implements _GPSState {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, distanceTraveled, speed, startSpeed, averageSpeed);
+  int get hashCode => Object.hash(runtimeType, status, gpsData,
+      distanceTraveled, speed, startSpeed, averageSpeed);
 
   /// Create a copy of GPSState
   /// with the given fields replaced by the non-null parameter values.
@@ -1220,6 +1430,7 @@ class _$GPSStateImpl implements _GPSState {
 abstract class _GPSState implements GPSState {
   const factory _GPSState(
       {final GPSStatus status,
+      final GPSData gpsData,
       final double distanceTraveled,
       final double speed,
       final double startSpeed,
@@ -1227,6 +1438,8 @@ abstract class _GPSState implements GPSState {
 
   @override
   GPSStatus get status;
+  @override
+  GPSData get gpsData;
   @override
   double get distanceTraveled;
   @override
