@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/constants/gaps.dart';
 import '../../../../core/extensions/number_extension.dart';
+import '../../../../core/extensions/unit_extension.dart';
 import '../../../../core/themes/app_text_styles.dart';
 import '../../../../domain/entities/walk_result_entity.dart';
 import '../../../../l10n/localizations_utils.dart';
@@ -81,7 +82,7 @@ class SixMinuteWalkTab extends StatelessWidget {
                           ? '${data.distance?.toStringAsFixed(2).replaceAll('.', ',')} m'
                           : '0,00 m';
                       final averageSpeed = data.averageSpeed != null
-                          ? '${data.averageSpeed?.toStringAsFixed(2).replaceAll('.', ',')} km/h'
+                          ? '${data.averageSpeed?.toSpeedKmH.toStringAsFixed(2).replaceAll('.', ',')} km/h'
                           : '0,00 km/h';
 
                       final isWorst = data == worstValue;

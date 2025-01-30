@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GPSData {
   double get distanceTraveled => throw _privateConstructorUsedError;
   double get speed => throw _privateConstructorUsedError;
+  double get accuracy => throw _privateConstructorUsedError;
 
   /// Create a copy of GPSData
   /// with the given fields replaced by the non-null parameter values.
@@ -30,7 +31,7 @@ abstract class $GPSDataCopyWith<$Res> {
   factory $GPSDataCopyWith(GPSData value, $Res Function(GPSData) then) =
       _$GPSDataCopyWithImpl<$Res, GPSData>;
   @useResult
-  $Res call({double distanceTraveled, double speed});
+  $Res call({double distanceTraveled, double speed, double accuracy});
 }
 
 /// @nodoc
@@ -50,6 +51,7 @@ class _$GPSDataCopyWithImpl<$Res, $Val extends GPSData>
   $Res call({
     Object? distanceTraveled = null,
     Object? speed = null,
+    Object? accuracy = null,
   }) {
     return _then(_value.copyWith(
       distanceTraveled: null == distanceTraveled
@@ -59,6 +61,10 @@ class _$GPSDataCopyWithImpl<$Res, $Val extends GPSData>
       speed: null == speed
           ? _value.speed
           : speed // ignore: cast_nullable_to_non_nullable
+              as double,
+      accuracy: null == accuracy
+          ? _value.accuracy
+          : accuracy // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -71,7 +77,7 @@ abstract class _$$GPSDataImplCopyWith<$Res> implements $GPSDataCopyWith<$Res> {
       __$$GPSDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double distanceTraveled, double speed});
+  $Res call({double distanceTraveled, double speed, double accuracy});
 }
 
 /// @nodoc
@@ -89,6 +95,7 @@ class __$$GPSDataImplCopyWithImpl<$Res>
   $Res call({
     Object? distanceTraveled = null,
     Object? speed = null,
+    Object? accuracy = null,
   }) {
     return _then(_$GPSDataImpl(
       distanceTraveled: null == distanceTraveled
@@ -99,6 +106,10 @@ class __$$GPSDataImplCopyWithImpl<$Res>
           ? _value.speed
           : speed // ignore: cast_nullable_to_non_nullable
               as double,
+      accuracy: null == accuracy
+          ? _value.accuracy
+          : accuracy // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -106,7 +117,8 @@ class __$$GPSDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GPSDataImpl implements _GPSData {
-  const _$GPSDataImpl({this.distanceTraveled = 0.0, this.speed = 0.0});
+  const _$GPSDataImpl(
+      {this.distanceTraveled = 0.0, this.speed = 0.0, this.accuracy = 0.0});
 
   @override
   @JsonKey()
@@ -114,10 +126,13 @@ class _$GPSDataImpl implements _GPSData {
   @override
   @JsonKey()
   final double speed;
+  @override
+  @JsonKey()
+  final double accuracy;
 
   @override
   String toString() {
-    return 'GPSData(distanceTraveled: $distanceTraveled, speed: $speed)';
+    return 'GPSData(distanceTraveled: $distanceTraveled, speed: $speed, accuracy: $accuracy)';
   }
 
   @override
@@ -127,11 +142,14 @@ class _$GPSDataImpl implements _GPSData {
             other is _$GPSDataImpl &&
             (identical(other.distanceTraveled, distanceTraveled) ||
                 other.distanceTraveled == distanceTraveled) &&
-            (identical(other.speed, speed) || other.speed == speed));
+            (identical(other.speed, speed) || other.speed == speed) &&
+            (identical(other.accuracy, accuracy) ||
+                other.accuracy == accuracy));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, distanceTraveled, speed);
+  int get hashCode =>
+      Object.hash(runtimeType, distanceTraveled, speed, accuracy);
 
   /// Create a copy of GPSData
   /// with the given fields replaced by the non-null parameter values.
@@ -143,13 +161,17 @@ class _$GPSDataImpl implements _GPSData {
 }
 
 abstract class _GPSData implements GPSData {
-  const factory _GPSData({final double distanceTraveled, final double speed}) =
-      _$GPSDataImpl;
+  const factory _GPSData(
+      {final double distanceTraveled,
+      final double speed,
+      final double accuracy}) = _$GPSDataImpl;
 
   @override
   double get distanceTraveled;
   @override
   double get speed;
+  @override
+  double get accuracy;
 
   /// Create a copy of GPSData
   /// with the given fields replaced by the non-null parameter values.

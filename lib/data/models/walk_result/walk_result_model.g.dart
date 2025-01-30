@@ -14,6 +14,7 @@ _$WalkResultModelImpl _$$WalkResultModelImplFromJson(
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
       distance: (json['distance'] as num?)?.toDouble(),
+      length: (json['length'] as num?)?.toDouble(),
       averageSpeed: (json['averageSpeed'] as num?)?.toDouble(),
     );
 
@@ -23,5 +24,6 @@ Map<String, dynamic> _$$WalkResultModelImplToJson(
       'userRef': const DocumentReferenceConverter().toJson(instance.userRef),
       'date': instance.date?.toIso8601String(),
       'distance': instance.distance,
+      'length': instance.length,
       'averageSpeed': instance.averageSpeed,
     };

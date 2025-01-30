@@ -15,6 +15,7 @@ class WalkRepositoryImp implements WalkRepository {
       {required String userId,
       DateTime? date,
       double? distance,
+      double? length,
       double? averageSpeed}) async {
     if (userId.isEmpty) {
       throw NotFoundException();
@@ -26,6 +27,7 @@ class WalkRepositoryImp implements WalkRepository {
         userRef: userRef,
         date: date,
         distance: distance,
+        length: length,
         averageSpeed: averageSpeed);
 
     await firebaseService.resultCollectionReference

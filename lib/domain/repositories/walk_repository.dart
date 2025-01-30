@@ -4,6 +4,7 @@ abstract interface class WalkRepository {
   Future<void> saveWalkResults({
     required String userId,
     DateTime? date,
+    double? length,
     double? distance,
     double? averageSpeed});
 

@@ -6,5 +6,12 @@ class WalkTestEvent with _$WalkTestEvent {
       {double? selectedLength,
       @Default(true) bool shouldValidate}) = _WalkTestSelect;
   const factory WalkTestEvent.getWalkTestResult({required String userId}) =
-      GetWalkTestResultEvent;
+      _GetWalkResultEvent;
+  const factory WalkTestEvent.saveWalkTestResult({required String userId,
+    DateTime? date,
+    double? distance,
+    double? length,
+    double? averageSpeed}) =
+  _SaveWalkResultEvent;
+  const factory WalkTestEvent.resetAfterSubmit() = _ResetAfterSubmit;
 }

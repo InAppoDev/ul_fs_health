@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -18,6 +17,7 @@ import '../../../l10n/localizations_utils.dart';
 import '../../../my_app.dart';
 import '../../logic/user/user_bloc.dart';
 import '../../navigation/model/sidebar_menu_item.dart';
+import '../../utils/widgets/button_delayed_widget.dart';
 import '../../utils/widgets/sidebar_widget.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../../utils/widgets/simple_drop_down_button.dart';
@@ -29,14 +29,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomeContent();
+    return const HomeContent();
   }
 }
 
 class HomeContent extends StatelessWidget {
-  HomeContent({super.key});
-
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  const HomeContent({super.key});
 
   List<SidebarMenuItem> _buildMenuItems(BuildContext context) {
     return [
@@ -52,8 +50,7 @@ class HomeContent extends StatelessWidget {
           title: appLocalizations.menuResultsText),
       SidebarMenuItem(
           routeName: QuestionnaireInitialRoute.name,
-          onPress: () => context.router
-              .push(QuestionnaireInitialRoute(shouldAuthenticate: true)),
+          onPress: () => context.router.push(QuestionnaireInitialRoute(shouldAuthenticate: true)),
           icon: Assets.icons.iconQuestionnaire.svg(),
           title: appLocalizations.menuQuestionnaireText),
       SidebarMenuItem(
@@ -62,12 +59,9 @@ class HomeContent extends StatelessWidget {
           icon: Assets.icons.iconProfile.svg(),
           title: appLocalizations.menuProfileText),
       SidebarMenuItem(
-          onPress: () =>
-              context.read<UserBloc>().add(const UserEvent.userLogout()),
+          onPress: () => context.read<UserBloc>().add(const UserEvent.userLogout()),
           icon: Transform.rotate(
-              angle: pi,
-              child:
-                  Icon(Icons.logout, color: ColorScheme.of(context).primary)),
+              angle: pi, child: Icon(Icons.logout, color: ColorScheme.of(context).primary)),
           title: appLocalizations.menuLogoutText,
           titleColor: ColorScheme.of(context).primary)
     ];
@@ -113,14 +107,11 @@ class HomeContent extends StatelessWidget {
                   title: Padding(
                       padding: Gaps.smaller.paddingBottom,
                       child: Text(
-                        appLocalizations
-                            .welcomeAppNameText(appLocalizations.lblAppName),
-                        style: header1.copyWith(
-                            fontSize: Constants.headerLargeTextSize),
+                        appLocalizations.welcomeAppNameText(appLocalizations.lblAppName),
+                        style: header1.copyWith(fontSize: Constants.headerLargeTextSize),
                         textAlign: TextAlign.center,
                       )),
-                  subtitle: Text(appLocalizations.welcomeAppDescriptionText,
-                      style: body1),
+                  subtitle: Text(appLocalizations.welcomeAppDescriptionText, style: body1),
                 ),
                 Constants.sizedBoxHeightLarge.spaceVertical,
                 Row(
@@ -130,24 +121,17 @@ class HomeContent extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(appLocalizations.walkTestTitleText,
-                              style: header2),
+                          Text(appLocalizations.walkTestTitleText, style: header2),
                           Gaps.smaller.spaceVertical,
-                          Text(appLocalizations.walkTestDescriptionText,
-                              style: body3),
+                          Text(appLocalizations.walkTestDescriptionText, style: body3),
                         ],
                       ),
                     )
                   ],
                 ),
                 Constants.sizedBoxHeightMiddle.spaceVertical,
-                SubmitButton(
-                    onPressed: () {
-                      _audioPlayer
-                        ..setAsset('assets/sounds/signal.mp3')
-                        ..play();
-                      context.router.push(const WalkTestStartRoute());
-                    },
+                ButtonDelayedWidget(
+                    onPressed: () => context.router.push(WalkTestStartRoute()),
                     title: appLocalizations.btnTestStartText,
                     backgroundColor: ColorScheme.of(context).primary,
                     titleColor: white),
@@ -167,11 +151,9 @@ class HomeContent extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(appLocalizations.sitToStandTestTitleText,
-                              style: header2),
+                          Text(appLocalizations.sitToStandTestTitleText, style: header2),
                           Gaps.smaller.spaceVertical,
-                          Text(appLocalizations.sitToStandTestDescriptionText,
-                              style: body3),
+                          Text(appLocalizations.sitToStandTestDescriptionText, style: body3),
                         ],
                       ),
                     )

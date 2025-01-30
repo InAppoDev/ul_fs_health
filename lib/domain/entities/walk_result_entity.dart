@@ -14,6 +14,7 @@ class WalkResultEntity with _$WalkResultEntity {
     @DocumentReferenceConverter()
     required FDocumentReference userRef,
     DateTime? date,
+    double? length,
     double? distance,
     double? averageSpeed}) = _WalkResultEntity;
 }

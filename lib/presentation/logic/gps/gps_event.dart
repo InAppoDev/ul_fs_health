@@ -8,4 +8,5 @@ class GPSEvent with _$GPSEvent {
   const factory GPSEvent.updateAverageSpeed({required double averageSpeed}) = _UpdateAverageSpeed;
   const factory GPSEvent.updateStartingSpeed({required int duration}) = _UpdateStartingSpeed;
   const factory GPSEvent.reachGoal({required double goalDistance}) = _ReachGoal;
+  const factory GPSEvent.updateData() = _UpdateData;
 }

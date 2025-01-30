@@ -759,10 +759,13 @@ class WalkTestRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [WalkTestStartScreen]
-class WalkTestStartRoute extends PageRouteInfo<void> {
-  const WalkTestStartRoute({List<PageRouteInfo>? children})
-      : super(
+class WalkTestStartRoute extends PageRouteInfo<WalkTestStartRouteArgs> {
+  WalkTestStartRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
           WalkTestStartRoute.name,
+          args: WalkTestStartRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -771,7 +774,20 @@ class WalkTestStartRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const WalkTestStartScreen();
+      final args = data.argsAs<WalkTestStartRouteArgs>(
+          orElse: () => const WalkTestStartRouteArgs());
+      return WalkTestStartScreen(key: args.key);
     },
   );
+}
+
+class WalkTestStartRouteArgs {
+  const WalkTestStartRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'WalkTestStartRouteArgs{key: $key}';
+  }
 }
