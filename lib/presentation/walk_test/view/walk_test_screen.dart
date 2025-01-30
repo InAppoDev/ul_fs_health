@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +9,7 @@ import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
-import '../../utils/widgets/submit_button.dart';
+import '../../utils/widgets/button_delayed_widget.dart';
 import '../../utils/widgets/test_layout_widget.dart';
 import '../../utils/widgets/text_builder_widget.dart';
 import '../widget/walk_test_note_widget.dart';
@@ -22,10 +24,14 @@ class WalkTestScreen extends StatelessWidget {
   }
 }
 
-class WalkTestContent extends StatelessWidget {
+class WalkTestContent extends StatefulWidget {
   const WalkTestContent({super.key});
 
+  @override
+  State<WalkTestContent> createState() => WalkTestContentState();
+}
 
+class WalkTestContentState extends State<WalkTestContent> {
   @override
   Widget build(BuildContext context) {
     return TestLayoutWidget(
@@ -34,14 +40,11 @@ class WalkTestContent extends StatelessWidget {
         children: [
           const TextBuilderWidget(),
           Gaps.largest.spaceVertical,
-          SubmitButton(
-              onPressed: () {
-                context.router.push(WalkTestStartRoute());
-              },
+          ButtonDelayedWidget(
+              onPressed: () => context.router.push(WalkTestStartRoute()),
               title: appLocalizations.btnTestStartText.toUpperCase(),
               backgroundColor: ColorScheme.of(context).primary,
-              titleColor: white
-          ),
+              titleColor: white),
           Gaps.largest.spaceVertical,
           WalkTestNoteWidget(
             boldText: appLocalizations.pauseText,
