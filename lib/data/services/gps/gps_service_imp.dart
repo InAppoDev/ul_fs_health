@@ -47,11 +47,10 @@ class GPSServiceImp with GPSMixin implements GPSService {
       final DateTime timestamp = position.timestamp;
       bool hasStrongSignal = _accuracy > 0.0 && _accuracy <= 15;
 
-      // Alternative: If accuracy is missing, check for recent updates
       if (_accuracy == 0.0) {
         final DateTime now = DateTime.now();
         final Duration timeDifference = now.difference(timestamp);
-        hasStrongSignal = timeDifference.inSeconds < 5; // Consider strong if updated within 5 seconds
+        hasStrongSignal = timeDifference.inSeconds < 5;
       }
 
       if (hasStrongSignal) {
