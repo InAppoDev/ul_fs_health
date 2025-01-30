@@ -782,6 +782,8 @@ mixin _$WalkTestState {
   String? get errorText => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   List<WalkResultEntity>? get walkResults => throw _privateConstructorUsedError;
+  List<WalkResultEntity>? get walkSortedResults =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.
@@ -801,7 +803,8 @@ abstract class $WalkTestStateCopyWith<$Res> {
       double? selectedLength,
       String? errorText,
       bool isValid,
-      List<WalkResultEntity>? walkResults});
+      List<WalkResultEntity>? walkResults,
+      List<WalkResultEntity>? walkSortedResults});
 }
 
 /// @nodoc
@@ -824,6 +827,7 @@ class _$WalkTestStateCopyWithImpl<$Res, $Val extends WalkTestState>
     Object? errorText = freezed,
     Object? isValid = null,
     Object? walkResults = freezed,
+    Object? walkSortedResults = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -846,6 +850,10 @@ class _$WalkTestStateCopyWithImpl<$Res, $Val extends WalkTestState>
           ? _value.walkResults
           : walkResults // ignore: cast_nullable_to_non_nullable
               as List<WalkResultEntity>?,
+      walkSortedResults: freezed == walkSortedResults
+          ? _value.walkSortedResults
+          : walkSortedResults // ignore: cast_nullable_to_non_nullable
+              as List<WalkResultEntity>?,
     ) as $Val);
   }
 }
@@ -863,7 +871,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       double? selectedLength,
       String? errorText,
       bool isValid,
-      List<WalkResultEntity>? walkResults});
+      List<WalkResultEntity>? walkResults,
+      List<WalkResultEntity>? walkSortedResults});
 }
 
 /// @nodoc
@@ -884,6 +893,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? errorText = freezed,
     Object? isValid = null,
     Object? walkResults = freezed,
+    Object? walkSortedResults = freezed,
   }) {
     return _then(_$InitialImpl(
       status: null == status
@@ -906,6 +916,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value._walkResults
           : walkResults // ignore: cast_nullable_to_non_nullable
               as List<WalkResultEntity>?,
+      walkSortedResults: freezed == walkSortedResults
+          ? _value._walkSortedResults
+          : walkSortedResults // ignore: cast_nullable_to_non_nullable
+              as List<WalkResultEntity>?,
     ));
   }
 }
@@ -918,8 +932,10 @@ class _$InitialImpl implements _Initial {
       this.selectedLength,
       this.errorText,
       this.isValid = false,
-      final List<WalkResultEntity>? walkResults})
-      : _walkResults = walkResults;
+      final List<WalkResultEntity>? walkResults,
+      final List<WalkResultEntity>? walkSortedResults})
+      : _walkResults = walkResults,
+        _walkSortedResults = walkSortedResults;
 
   @override
   @JsonKey()
@@ -941,9 +957,20 @@ class _$InitialImpl implements _Initial {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<WalkResultEntity>? _walkSortedResults;
+  @override
+  List<WalkResultEntity>? get walkSortedResults {
+    final value = _walkSortedResults;
+    if (value == null) return null;
+    if (_walkSortedResults is EqualUnmodifiableListView)
+      return _walkSortedResults;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'WalkTestState(status: $status, selectedLength: $selectedLength, errorText: $errorText, isValid: $isValid, walkResults: $walkResults)';
+    return 'WalkTestState(status: $status, selectedLength: $selectedLength, errorText: $errorText, isValid: $isValid, walkResults: $walkResults, walkSortedResults: $walkSortedResults)';
   }
 
   @override
@@ -958,12 +985,20 @@ class _$InitialImpl implements _Initial {
                 other.errorText == errorText) &&
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
             const DeepCollectionEquality()
-                .equals(other._walkResults, _walkResults));
+                .equals(other._walkResults, _walkResults) &&
+            const DeepCollectionEquality()
+                .equals(other._walkSortedResults, _walkSortedResults));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, selectedLength,
-      errorText, isValid, const DeepCollectionEquality().hash(_walkResults));
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      selectedLength,
+      errorText,
+      isValid,
+      const DeepCollectionEquality().hash(_walkResults),
+      const DeepCollectionEquality().hash(_walkSortedResults));
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.
@@ -980,7 +1015,8 @@ abstract class _Initial implements WalkTestState {
       final double? selectedLength,
       final String? errorText,
       final bool isValid,
-      final List<WalkResultEntity>? walkResults}) = _$InitialImpl;
+      final List<WalkResultEntity>? walkResults,
+      final List<WalkResultEntity>? walkSortedResults}) = _$InitialImpl;
 
   @override
   WalkTestStatus get status;
@@ -992,6 +1028,8 @@ abstract class _Initial implements WalkTestState {
   bool get isValid;
   @override
   List<WalkResultEntity>? get walkResults;
+  @override
+  List<WalkResultEntity>? get walkSortedResults;
 
   /// Create a copy of WalkTestState
   /// with the given fields replaced by the non-null parameter values.

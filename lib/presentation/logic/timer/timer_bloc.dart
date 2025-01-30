@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 
+
 part 'timer_event.dart';
 part 'timer_state.dart';
 part 'timer_bloc.freezed.dart';
@@ -57,7 +58,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
       }
     });
   }
-  //
+
   Future<void> _onCancelTimer(_CancelTimer event, Emitter<TimerState> emit) async {
     emit(state.copyWith(status: TimerStatus.cancelled, remainingTime: 0));
   }

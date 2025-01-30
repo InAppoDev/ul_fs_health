@@ -8,8 +8,9 @@ class WalkTestState with _$WalkTestState {
     String? errorText,
     @Default(false) bool isValid,
     List<WalkResultEntity>? walkResults,
+    List<WalkResultEntity>? walkSortedResults,
   }) = _Initial;
 }
 
-enum WalkTestStatus { initial, loading, failure, success }
+enum WalkTestStatus { initial, loading, failure, success, saved }
 

@@ -27,7 +27,6 @@ import '../widget/walk_test_note_widget.dart';
 @RoutePage()
 class WalkTestStartScreen extends StatelessWidget {
   WalkTestStartScreen({super.key});
-
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
@@ -35,15 +34,17 @@ class WalkTestStartScreen extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(
-              create: (_) => TimerBloc()
-                ..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration))),
+              create: (_) {
+                audioPlayer
+                  ..setAsset('assets/sounds/signal.mp3')
+                  ..play();
+                return TimerBloc()
+                  ..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration));
+              }),
           BlocProvider(
               create: (_) => GPSBloc(getIt<GpsUseCase>())..add(const GPSEvent.startTracking())),
         ],
         child: Builder(builder: (context) {
-          audioPlayer
-            ..setAsset('assets/sounds/signal.mp3')
-            ..play();
           return WalkTestStartContent(
               audioPlayer: audioPlayer,
               userId: context.watch<UserBloc>().state.user?.id ?? '',
@@ -56,22 +57,24 @@ class WalkTestStartContent extends StatelessWidget {
   const WalkTestStartContent({super.key, required this.length, required this.audioPlayer, required this.userId});
 
   final double length;
-  final AudioPlayer audioPlayer;
   final String userId;
+  final AudioPlayer audioPlayer;
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
         BlocListener<TimerBloc, TimerState>(listener: (context, state) {
-          if (state.status == TimerStatus.completed) {
+          if (state.status == TimerStatus.cancelled) {
+            audioPlayer
+              ..setAsset('assets/sounds/signal.mp3')
+              ..play();
+          }
+          else if (state.status == TimerStatus.completed) {
             context.read<GPSBloc>().add(const GPSEvent.updatePosition());
             context
                 .read<GPSBloc>()
                 .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
-            audioPlayer
-              ..setAsset('assets/sounds/signal.mp3')
-              ..play();
           } else if (state.status == TimerStatus.running) {
             context.read<GPSBloc>().add(const GPSEvent.updateData());
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
@@ -79,7 +82,7 @@ class WalkTestStartContent extends StatelessWidget {
           }
         }),
         BlocListener<WalkTestBloc, WalkTestState>(listener: (context, state) {
-          if (state.status == WalkTestStatus.success) {
+          if (state.status == WalkTestStatus.saved) {
             context.read<WalkTestBloc>().add(const WalkTestEvent.resetAfterSubmit());
             context.router.push(const WalkTestResultRoute());
           } else if (state.status == WalkTestStatus.failure) {

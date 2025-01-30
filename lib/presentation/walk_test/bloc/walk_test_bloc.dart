@@ -5,6 +5,7 @@ import '../../../domain/entities/walk_result_entity.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../../domain/repositories/walk_repository.dart';
 import '../../../l10n/localizations_utils.dart';
+import '../../utils/helpers/sort_results.dart';
 
 part 'walk_test_event.dart';
 part 'walk_test_state.dart';
@@ -57,7 +58,7 @@ class WalkTestBloc extends Bloc<WalkTestEvent, WalkTestState> {
           distance: event.distance,
           length: event.length,
           averageSpeed: event.averageSpeed);
-      emit(state.copyWith(status: WalkTestStatus.success));
+      emit(state.copyWith(status: WalkTestStatus.saved));
     } catch (e) {
       emit(state.copyWith(status: WalkTestStatus.failure, errorText: e.toString()));
     }
@@ -68,9 +69,12 @@ class WalkTestBloc extends Bloc<WalkTestEvent, WalkTestState> {
     emit(state.copyWith(status: WalkTestStatus.loading));
     try {
       final results = await walkRepository.getWalkResults(userId: event.userId);
+      final sortedResults = List<WalkResultEntity>.from(results);
+      sortedResults.sort(sortWalkTestResults);
       emit(state.copyWith(
         status: WalkTestStatus.success,
         walkResults: results.isEmpty ? [] : results,
+        walkSortedResults: sortedResults
       ));
     } catch (e) {
       emit(state.copyWith(
