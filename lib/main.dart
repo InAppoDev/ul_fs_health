@@ -13,16 +13,19 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemStatusBarContrastEnforced: true,
-    statusBarColor: lightColorScheme.surface,
-    statusBarBrightness: Brightness.dark,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarContrastEnforced: true,
-    systemNavigationBarColor: lightColorScheme.surface,
-    systemNavigationBarIconBrightness: Brightness.dark,
-    systemNavigationBarDividerColor: lightColorScheme.surface
-  ));
+      systemStatusBarContrastEnforced: true,
+      statusBarColor: lightColorScheme.surface,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarContrastEnforced: true,
+      systemNavigationBarColor: lightColorScheme.surface,
+      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarDividerColor: lightColorScheme.surface));
   configureDependencies();
   final language = await getIt<PreferencesService>().getCurrentLanguage();
   runApp(MyApp(initalLanguageCode: language));

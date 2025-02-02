@@ -22,18 +22,7 @@ class SitToStandTab extends StatelessWidget {
     final worstTimeData = resultDataEntities.isNotEmpty
         ? resultDataEntities
             .reduce((a, b) => (a.resultTime ?? 0) > (b.resultTime ?? 0) ? a : b)
-        : null;
-
-    final worstVelocityData = resultDataEntities.isNotEmpty
-        ? resultDataEntities
-            .reduce((a, b) => (a.velocity ?? 0) > (b.velocity ?? 0) ? a : b)
-        : null;
-
-    final worstValue = worstTimeData != null && worstVelocityData != null
-        ? (worstTimeData.resultTime ?? 0) > (worstVelocityData.velocity ?? 0)
-            ? worstTimeData
-            : worstVelocityData
-        : null;
+        : const ResultDataEntity();
 
     return SingleChildScrollView(
       child: Column(
@@ -68,15 +57,16 @@ class SitToStandTab extends StatelessWidget {
           ...resultDataEntities.map(
             (data) {
               final formattedTime =
-                  ((data.resultTime ?? 0) * 100).toStringAsFixed(0);
+                  ((data.resultTime ?? 0) * 1000).toPrettyResultTime();
               final formattedVelocity = data.velocity != null
                   ? '${data.velocity?.toStringAsFixed(2).replaceAll('.', ',')} m/s'
                   : '0,00 m/s';
 
-              final isWorst = data == worstValue;
+              final isWorst = data.resultTime == worstTimeData.resultTime &&
+                  worstTimeData.resultTime?.toInt() != 0;
               return InfoWidget(
                 date: data.date?.toIso8601String() ?? '',
-                time: '$formattedTime ms',
+                time: formattedTime,
                 velocity: formattedVelocity,
                 color: isWorst
                     ? ColorScheme.of(context).primary

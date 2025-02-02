@@ -33,6 +33,7 @@ dependencies:
   just_audio: ^0.9.42
   sensors_plus: ^6.1.1
   shared_preferences: ^2.3.5
+  vibration: ^3.1.2
 
 dev_dependencies:
   auto_route_generator: ^9.0.0
