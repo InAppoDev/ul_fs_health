@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'gps_data.dart';
+part of 'accelerometer_data.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,168 +15,153 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$GPSData {
+mixin _$AccelerometerData {
   double get distanceTraveled => throw _privateConstructorUsedError;
-  double get speed => throw _privateConstructorUsedError;
-  double get accuracy => throw _privateConstructorUsedError;
+  int get stepCount => throw _privateConstructorUsedError;
 
-  /// Create a copy of GPSData
+  /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $GPSDataCopyWith<GPSData> get copyWith => throw _privateConstructorUsedError;
+  $AccelerometerDataCopyWith<AccelerometerData> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GPSDataCopyWith<$Res> {
-  factory $GPSDataCopyWith(GPSData value, $Res Function(GPSData) then) =
-      _$GPSDataCopyWithImpl<$Res, GPSData>;
+abstract class $AccelerometerDataCopyWith<$Res> {
+  factory $AccelerometerDataCopyWith(
+          AccelerometerData value, $Res Function(AccelerometerData) then) =
+      _$AccelerometerDataCopyWithImpl<$Res, AccelerometerData>;
   @useResult
-  $Res call({double distanceTraveled, double speed, double accuracy});
+  $Res call({double distanceTraveled, int stepCount});
 }
 
 /// @nodoc
-class _$GPSDataCopyWithImpl<$Res, $Val extends GPSData>
-    implements $GPSDataCopyWith<$Res> {
-  _$GPSDataCopyWithImpl(this._value, this._then);
+class _$AccelerometerDataCopyWithImpl<$Res, $Val extends AccelerometerData>
+    implements $AccelerometerDataCopyWith<$Res> {
+  _$AccelerometerDataCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of GPSData
+  /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? distanceTraveled = null,
-    Object? speed = null,
-    Object? accuracy = null,
+    Object? stepCount = null,
   }) {
     return _then(_value.copyWith(
       distanceTraveled: null == distanceTraveled
           ? _value.distanceTraveled
           : distanceTraveled // ignore: cast_nullable_to_non_nullable
               as double,
-      speed: null == speed
-          ? _value.speed
-          : speed // ignore: cast_nullable_to_non_nullable
-              as double,
-      accuracy: null == accuracy
-          ? _value.accuracy
-          : accuracy // ignore: cast_nullable_to_non_nullable
-              as double,
+      stepCount: null == stepCount
+          ? _value.stepCount
+          : stepCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$GPSDataImplCopyWith<$Res> implements $GPSDataCopyWith<$Res> {
-  factory _$$GPSDataImplCopyWith(
-          _$GPSDataImpl value, $Res Function(_$GPSDataImpl) then) =
-      __$$GPSDataImplCopyWithImpl<$Res>;
+abstract class _$$AccelerometerDataImplCopyWith<$Res>
+    implements $AccelerometerDataCopyWith<$Res> {
+  factory _$$AccelerometerDataImplCopyWith(_$AccelerometerDataImpl value,
+          $Res Function(_$AccelerometerDataImpl) then) =
+      __$$AccelerometerDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double distanceTraveled, double speed, double accuracy});
+  $Res call({double distanceTraveled, int stepCount});
 }
 
 /// @nodoc
-class __$$GPSDataImplCopyWithImpl<$Res>
-    extends _$GPSDataCopyWithImpl<$Res, _$GPSDataImpl>
-    implements _$$GPSDataImplCopyWith<$Res> {
-  __$$GPSDataImplCopyWithImpl(
-      _$GPSDataImpl _value, $Res Function(_$GPSDataImpl) _then)
+class __$$AccelerometerDataImplCopyWithImpl<$Res>
+    extends _$AccelerometerDataCopyWithImpl<$Res, _$AccelerometerDataImpl>
+    implements _$$AccelerometerDataImplCopyWith<$Res> {
+  __$$AccelerometerDataImplCopyWithImpl(_$AccelerometerDataImpl _value,
+      $Res Function(_$AccelerometerDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of GPSData
+  /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? distanceTraveled = null,
-    Object? speed = null,
-    Object? accuracy = null,
+    Object? stepCount = null,
   }) {
-    return _then(_$GPSDataImpl(
+    return _then(_$AccelerometerDataImpl(
       distanceTraveled: null == distanceTraveled
           ? _value.distanceTraveled
           : distanceTraveled // ignore: cast_nullable_to_non_nullable
               as double,
-      speed: null == speed
-          ? _value.speed
-          : speed // ignore: cast_nullable_to_non_nullable
-              as double,
-      accuracy: null == accuracy
-          ? _value.accuracy
-          : accuracy // ignore: cast_nullable_to_non_nullable
-              as double,
+      stepCount: null == stepCount
+          ? _value.stepCount
+          : stepCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$GPSDataImpl implements _GPSData {
-  const _$GPSDataImpl(
-      {this.distanceTraveled = 0.0, this.speed = 0.0, this.accuracy = 0.0});
+class _$AccelerometerDataImpl implements _AccelerometerData {
+  const _$AccelerometerDataImpl(
+      {this.distanceTraveled = 0.0, this.stepCount = 0});
 
   @override
   @JsonKey()
   final double distanceTraveled;
   @override
   @JsonKey()
-  final double speed;
-  @override
-  @JsonKey()
-  final double accuracy;
+  final int stepCount;
 
   @override
   String toString() {
-    return 'GPSData(distanceTraveled: $distanceTraveled, speed: $speed, accuracy: $accuracy)';
+    return 'AccelerometerData(distanceTraveled: $distanceTraveled, stepCount: $stepCount)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GPSDataImpl &&
+            other is _$AccelerometerDataImpl &&
             (identical(other.distanceTraveled, distanceTraveled) ||
                 other.distanceTraveled == distanceTraveled) &&
-            (identical(other.speed, speed) || other.speed == speed) &&
-            (identical(other.accuracy, accuracy) ||
-                other.accuracy == accuracy));
+            (identical(other.stepCount, stepCount) ||
+                other.stepCount == stepCount));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, distanceTraveled, speed, accuracy);
+  int get hashCode => Object.hash(runtimeType, distanceTraveled, stepCount);
 
-  /// Create a copy of GPSData
+  /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$GPSDataImplCopyWith<_$GPSDataImpl> get copyWith =>
-      __$$GPSDataImplCopyWithImpl<_$GPSDataImpl>(this, _$identity);
+  _$$AccelerometerDataImplCopyWith<_$AccelerometerDataImpl> get copyWith =>
+      __$$AccelerometerDataImplCopyWithImpl<_$AccelerometerDataImpl>(
+          this, _$identity);
 }
 
-abstract class _GPSData implements GPSData {
-  const factory _GPSData(
+abstract class _AccelerometerData implements AccelerometerData {
+  const factory _AccelerometerData(
       {final double distanceTraveled,
-      final double speed,
-      final double accuracy}) = _$GPSDataImpl;
+      final int stepCount}) = _$AccelerometerDataImpl;
 
   @override
   double get distanceTraveled;
   @override
-  double get speed;
-  @override
-  double get accuracy;
+  int get stepCount;
 
-  /// Create a copy of GPSData
+  /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GPSDataImplCopyWith<_$GPSDataImpl> get copyWith =>
+  _$$AccelerometerDataImplCopyWith<_$AccelerometerDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
