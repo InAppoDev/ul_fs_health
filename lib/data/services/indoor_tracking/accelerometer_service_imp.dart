@@ -65,7 +65,6 @@ class AccelerometerServiceImp with AccelerometerMixin implements AccelerometerSe
   DateTime? _lastTimestamp;
   DateTime? _lastTimestampGyro;
 
-  double _lastDeltaTime = 0.0;
 
   static const double _gravityAlpha = 0.8;
   double _gravityX = 0.0;

@@ -59,7 +59,6 @@ class TrackingServiceImp implements TrackingService {
             if (!isStrongSignal) {
               gpsService.reset();
             }
-            _previousMode = isStrongSignal ? TrackingMode.gps : TrackingMode.accelerometer;
           }),
       accelerometerService.startTracking(
           onRunning: () => !(_currentMode == TrackingMode.gps),
