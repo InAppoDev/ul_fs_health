@@ -64,9 +64,7 @@ class TrackingServiceImp implements TrackingService {
           onRunning: () => !(_currentMode == TrackingMode.gps),
           onUpdate: (event) {
             final accData = accelerometerService.getAccelerometerData();
-            // if (accData.distanceTraveled >= 0.01) {
               _accDistance += accData.distanceTraveled;
-            // }
             if (_currentMode == TrackingMode.gps) {
               accelerometerService.reset();
             }
