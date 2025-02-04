@@ -5,7 +5,6 @@ import 'package:geolocator/geolocator.dart';
 import '../../models/tracking/tracking_data.dart';
 import '../gps/gps_service.dart';
 import '../indoor_tracking/accelerometer_service.dart';
-import 'helpers/kalman_filter.dart';
 import 'tracking_service.dart';
 
 enum TrackingMode { none, gps, accelerometer }
@@ -16,7 +15,6 @@ class TrackingServiceImp implements TrackingService {
   final GPSService gpsService;
   final AccelerometerService accelerometerService;
 
-  TrackingMode _previousMode = TrackingMode.none;
 
   TrackingMode _currentMode = TrackingMode.none;
 
