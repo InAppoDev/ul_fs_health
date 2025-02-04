@@ -12,7 +12,7 @@ import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../di/service_locator.dart';
-import '../../../domain/usecase/gps_use_case.dart';
+import '../../../domain/usecase/tracking_use_case.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
 import '../../logic/gps/gps_bloc.dart';
@@ -42,7 +42,7 @@ class WalkTestStartScreen extends StatelessWidget {
                   ..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration));
               }),
           BlocProvider(
-              create: (_) => GPSBloc(getIt<GpsUseCase>())..add(const GPSEvent.startTracking())),
+              create: (_) => GPSBloc(getIt<TrackingUseCase>())..add(const GPSEvent.startTracking())),
         ],
         child: Builder(builder: (context) {
           return WalkTestStartContent(
@@ -92,10 +92,17 @@ class WalkTestStartContent extends StatelessWidget {
         })
       ],
       child: TestLayoutWidget(
+        isScrollable: true,
         headerIcon: Assets.icons.iconWalkTest,
         headerText: appLocalizations.walkTestTitleText,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Text(context.watch<GPSBloc>().trackingUseCase.isGpsMode ? "GPS" : "Accelerometer", style: body1),
+          Gaps.larger.spaceVertical,
+          Text("Accuracy: ${context.watch<GPSBloc>().state.trackingData.gpsData?.accuracy ?? 0.0}", style: body1),
+          Gaps.larger.spaceVertical,
+          Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),
+          Gaps.larger.spaceVertical,
           if (context.watch<TimerBloc>().state.status == TimerStatus.completed)
             Align(
               child: Text(

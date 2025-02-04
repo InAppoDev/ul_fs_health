@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:geolocator/geolocator.dart';
-
-import '../../models/gps/gps_data.dart';
+import '../../models/tracking/gps_data.dart';
 import '../permission/permission_service.dart';
 import 'gps_service.dart';
 
@@ -21,65 +19,99 @@ class GPSServiceImp with GPSMixin implements GPSService {
 
   StreamSubscription<Position>? _positionStream;
 
-  @override
-  LocationSettings get locationSettings => kLocationSettings;
+  static const int smoothingWindow = 5;
+  final List<Position> _recentPositions = [];
+  bool _hasStrongSignal = true;
 
   double _distanceTraveled = 0.0;
   Position? _lastPosition;
-  double _speed = 0.0;
+  double _smoothedDistance = 0.0;
+  double _smoothedSpeed = 0.0;
   double _accuracy = 0.0;
+  final double _alpha = 0.2;
 
   @override
-  GPSData getGpsData() => GPSData(distanceTraveled: _distanceTraveled, speed: _speed, accuracy: _accuracy);
+  LocationSettings get locationSettings => kLocationSettings;
 
   @override
-  Future<void> startTracking() async {
+  GpsData getGpsData() => GpsData(
+      isGPSSignalStrong: _hasStrongSignal,
+      distanceTraveled: _distanceTraveled,
+      speed: _smoothedSpeed,
+      accuracy: _accuracy);
+
+  @override
+  Future<void> startTracking(
+      {required bool Function() onRunning, required void Function(Position) onUpdate}) async {
     _positionStream =
-        Geolocator.getPositionStream(locationSettings: kLocationSettings).listen(_onLocationUpdate);
+        Geolocator.getPositionStream(locationSettings: kLocationSettings).listen((position) {
+      final acc = position.accuracy;
+      _hasStrongSignal = acc <= 10.0;
+      _accuracy = acc;
+      _distanceTraveled = 0.0;
+      final bool running = onRunning();
+      if (running) {
+        _onLocationUpdate(position);
+      }
+      onUpdate(position);
+    });
   }
 
   @override
-  Future<void> stopTracking() async => await _positionStream?.cancel();
-
-  void _onLocationUpdate(Position position) {
-    if (_lastPosition != null) {
-      _accuracy = position.accuracy;
-      final DateTime timestamp = position.timestamp;
-      bool hasStrongSignal = _accuracy > 0.0 && _accuracy <= 15;
-
-      if (_accuracy == 0.0) {
-        final DateTime now = DateTime.now();
-        final Duration timeDifference = now.difference(timestamp);
-        hasStrongSignal = timeDifference.inSeconds < 5;
-      }
-
-      if (hasStrongSignal) {
-        final double distance = Geolocator.distanceBetween(
-          _lastPosition!.latitude,
-          _lastPosition!.longitude,
-          position.latitude,
-          position.longitude,
-        );
-        _distanceTraveled += distance;
-        _speed = position.speed;
-      }
-    }
-    _lastPosition = position;
-    if (!_positionController.isClosed) {
-      _positionController.add(position);
-    }
-
+  Future<void> stopTracking() async {
+    await _positionStream?.cancel();
   }
 
   @override
-  Stream<Position> get positionStream => _positionController.stream;
+  void reset() {
+    _distanceTraveled = 0.0;
+    _smoothedSpeed = 0.0;
+    _smoothedDistance = 0.0;
+    _lastPosition = null;
+    _recentPositions.clear();
+  }
 
   @override
   Future<void> dispose() async {
     await _positionStream?.cancel();
     await _positionController.close();
     _distanceTraveled = 0.0;
-    _speed = 0.0;
+    _smoothedSpeed = 0.0;
     _lastPosition = null;
+  }
+
+  bool get hasStrongSignal => _hasStrongSignal;
+
+  @override
+  Stream<Position> get positionStream => _positionController.stream;
+
+  void _onLocationUpdate(Position position) {
+    if (_lastPosition != null) {
+      if (!_hasStrongSignal) {
+        return;
+      }
+      _recentPositions.add(position);
+      if (_recentPositions.length > smoothingWindow) {
+        _recentPositions.removeAt(0);
+      }
+
+      final double rawDistance = Geolocator.distanceBetween(
+        _lastPosition!.latitude,
+        _lastPosition!.longitude,
+        position.latitude,
+        position.longitude,
+      );
+
+      _smoothedDistance = _alpha * rawDistance + (1 - _alpha) * _smoothedDistance;
+      _smoothedSpeed = _alpha * position.speed + (1 - _alpha) * _smoothedSpeed;
+
+      _distanceTraveled = _smoothedDistance;
+      print("gps:::: $_distanceTraveled");
+    }
+
+    _lastPosition = position;
+    if (!_positionController.isClosed) {
+      _positionController.add(position);
+    }
   }
 }

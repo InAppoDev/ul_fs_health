@@ -23,8 +23,6 @@ mixin _$TimerEvent {
     required TResult Function(int duration, int remainingTime) updateTimer,
     required TResult Function(int duration, int remainingTime) pauseTimer,
     required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,8 +32,6 @@ mixin _$TimerEvent {
     TResult? Function(int duration, int remainingTime)? updateTimer,
     TResult? Function(int duration, int remainingTime)? pauseTimer,
     TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,8 +41,6 @@ mixin _$TimerEvent {
     TResult Function(int duration, int remainingTime)? updateTimer,
     TResult Function(int duration, int remainingTime)? pauseTimer,
     TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,8 +51,6 @@ mixin _$TimerEvent {
     required TResult Function(_UpdateTimer value) updateTimer,
     required TResult Function(_PauseTimer value) pauseTimer,
     required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,8 +60,6 @@ mixin _$TimerEvent {
     TResult? Function(_UpdateTimer value)? updateTimer,
     TResult? Function(_PauseTimer value)? pauseTimer,
     TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,8 +69,6 @@ mixin _$TimerEvent {
     TResult Function(_UpdateTimer value)? updateTimer,
     TResult Function(_PauseTimer value)? pauseTimer,
     TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,8 +169,6 @@ class _$StartTimerImpl implements _StartTimer {
     required TResult Function(int duration, int remainingTime) updateTimer,
     required TResult Function(int duration, int remainingTime) pauseTimer,
     required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
   }) {
     return startTimer(duration);
   }
@@ -195,8 +181,6 @@ class _$StartTimerImpl implements _StartTimer {
     TResult? Function(int duration, int remainingTime)? updateTimer,
     TResult? Function(int duration, int remainingTime)? pauseTimer,
     TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
   }) {
     return startTimer?.call(duration);
   }
@@ -209,8 +193,6 @@ class _$StartTimerImpl implements _StartTimer {
     TResult Function(int duration, int remainingTime)? updateTimer,
     TResult Function(int duration, int remainingTime)? pauseTimer,
     TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (startTimer != null) {
@@ -227,8 +209,6 @@ class _$StartTimerImpl implements _StartTimer {
     required TResult Function(_UpdateTimer value) updateTimer,
     required TResult Function(_PauseTimer value) pauseTimer,
     required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
   }) {
     return startTimer(this);
   }
@@ -241,8 +221,6 @@ class _$StartTimerImpl implements _StartTimer {
     TResult? Function(_UpdateTimer value)? updateTimer,
     TResult? Function(_PauseTimer value)? pauseTimer,
     TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
   }) {
     return startTimer?.call(this);
   }
@@ -255,8 +233,6 @@ class _$StartTimerImpl implements _StartTimer {
     TResult Function(_UpdateTimer value)? updateTimer,
     TResult Function(_PauseTimer value)? pauseTimer,
     TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (startTimer != null) {
@@ -324,8 +300,6 @@ class _$CancelTimerImpl implements _CancelTimer {
     required TResult Function(int duration, int remainingTime) updateTimer,
     required TResult Function(int duration, int remainingTime) pauseTimer,
     required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
   }) {
     return cancelTimer();
   }
@@ -338,8 +312,6 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult? Function(int duration, int remainingTime)? updateTimer,
     TResult? Function(int duration, int remainingTime)? pauseTimer,
     TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
   }) {
     return cancelTimer?.call();
   }
@@ -352,8 +324,6 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult Function(int duration, int remainingTime)? updateTimer,
     TResult Function(int duration, int remainingTime)? pauseTimer,
     TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (cancelTimer != null) {
@@ -370,8 +340,6 @@ class _$CancelTimerImpl implements _CancelTimer {
     required TResult Function(_UpdateTimer value) updateTimer,
     required TResult Function(_PauseTimer value) pauseTimer,
     required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
   }) {
     return cancelTimer(this);
   }
@@ -384,8 +352,6 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult? Function(_UpdateTimer value)? updateTimer,
     TResult? Function(_PauseTimer value)? pauseTimer,
     TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
   }) {
     return cancelTimer?.call(this);
   }
@@ -398,8 +364,6 @@ class _$CancelTimerImpl implements _CancelTimer {
     TResult Function(_UpdateTimer value)? updateTimer,
     TResult Function(_PauseTimer value)? pauseTimer,
     TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (cancelTimer != null) {
@@ -497,8 +461,6 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     required TResult Function(int duration, int remainingTime) updateTimer,
     required TResult Function(int duration, int remainingTime) pauseTimer,
     required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
   }) {
     return updateTimer(duration, remainingTime);
   }
@@ -511,8 +473,6 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult? Function(int duration, int remainingTime)? updateTimer,
     TResult? Function(int duration, int remainingTime)? pauseTimer,
     TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
   }) {
     return updateTimer?.call(duration, remainingTime);
   }
@@ -525,8 +485,6 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult Function(int duration, int remainingTime)? updateTimer,
     TResult Function(int duration, int remainingTime)? pauseTimer,
     TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (updateTimer != null) {
@@ -543,8 +501,6 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     required TResult Function(_UpdateTimer value) updateTimer,
     required TResult Function(_PauseTimer value) pauseTimer,
     required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
   }) {
     return updateTimer(this);
   }
@@ -557,8 +513,6 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult? Function(_UpdateTimer value)? updateTimer,
     TResult? Function(_PauseTimer value)? pauseTimer,
     TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
   }) {
     return updateTimer?.call(this);
   }
@@ -571,8 +525,6 @@ class _$UpdateTimerImpl implements _UpdateTimer {
     TResult Function(_UpdateTimer value)? updateTimer,
     TResult Function(_PauseTimer value)? pauseTimer,
     TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (updateTimer != null) {
@@ -680,8 +632,6 @@ class _$PauseTimerImpl implements _PauseTimer {
     required TResult Function(int duration, int remainingTime) updateTimer,
     required TResult Function(int duration, int remainingTime) pauseTimer,
     required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
   }) {
     return pauseTimer(duration, remainingTime);
   }
@@ -694,8 +644,6 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult? Function(int duration, int remainingTime)? updateTimer,
     TResult? Function(int duration, int remainingTime)? pauseTimer,
     TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
   }) {
     return pauseTimer?.call(duration, remainingTime);
   }
@@ -708,8 +656,6 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult Function(int duration, int remainingTime)? updateTimer,
     TResult Function(int duration, int remainingTime)? pauseTimer,
     TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (pauseTimer != null) {
@@ -726,8 +672,6 @@ class _$PauseTimerImpl implements _PauseTimer {
     required TResult Function(_UpdateTimer value) updateTimer,
     required TResult Function(_PauseTimer value) pauseTimer,
     required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
   }) {
     return pauseTimer(this);
   }
@@ -740,8 +684,6 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult? Function(_UpdateTimer value)? updateTimer,
     TResult? Function(_PauseTimer value)? pauseTimer,
     TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
   }) {
     return pauseTimer?.call(this);
   }
@@ -754,8 +696,6 @@ class _$PauseTimerImpl implements _PauseTimer {
     TResult Function(_UpdateTimer value)? updateTimer,
     TResult Function(_PauseTimer value)? pauseTimer,
     TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (pauseTimer != null) {
@@ -826,8 +766,6 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     required TResult Function(int duration, int remainingTime) updateTimer,
     required TResult Function(int duration, int remainingTime) pauseTimer,
     required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
   }) {
     return resumeTimer();
   }
@@ -840,8 +778,6 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult? Function(int duration, int remainingTime)? updateTimer,
     TResult? Function(int duration, int remainingTime)? pauseTimer,
     TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
   }) {
     return resumeTimer?.call();
   }
@@ -854,8 +790,6 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult Function(int duration, int remainingTime)? updateTimer,
     TResult Function(int duration, int remainingTime)? pauseTimer,
     TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (resumeTimer != null) {
@@ -872,8 +806,6 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     required TResult Function(_UpdateTimer value) updateTimer,
     required TResult Function(_PauseTimer value) pauseTimer,
     required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
   }) {
     return resumeTimer(this);
   }
@@ -886,8 +818,6 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult? Function(_UpdateTimer value)? updateTimer,
     TResult? Function(_PauseTimer value)? pauseTimer,
     TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
   }) {
     return resumeTimer?.call(this);
   }
@@ -900,8 +830,6 @@ class _$ResumeTimerImpl implements _ResumeTimer {
     TResult Function(_UpdateTimer value)? updateTimer,
     TResult Function(_PauseTimer value)? pauseTimer,
     TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
     required TResult orElse(),
   }) {
     if (resumeTimer != null) {
@@ -916,319 +844,10 @@ abstract class _ResumeTimer implements TimerEvent {
 }
 
 /// @nodoc
-abstract class _$$ResetAfterSubmitImplCopyWith<$Res> {
-  factory _$$ResetAfterSubmitImplCopyWith(_$ResetAfterSubmitImpl value,
-          $Res Function(_$ResetAfterSubmitImpl) then) =
-      __$$ResetAfterSubmitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ResetAfterSubmitImplCopyWithImpl<$Res>
-    extends _$TimerEventCopyWithImpl<$Res, _$ResetAfterSubmitImpl>
-    implements _$$ResetAfterSubmitImplCopyWith<$Res> {
-  __$$ResetAfterSubmitImplCopyWithImpl(_$ResetAfterSubmitImpl _value,
-      $Res Function(_$ResetAfterSubmitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TimerEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ResetAfterSubmitImpl implements _ResetAfterSubmit {
-  const _$ResetAfterSubmitImpl();
-
-  @override
-  String toString() {
-    return 'TimerEvent.resetAfterSubmit()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ResetAfterSubmitImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) startTimer,
-    required TResult Function() cancelTimer,
-    required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) pauseTimer,
-    required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
-  }) {
-    return resetAfterSubmit();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? startTimer,
-    TResult? Function()? cancelTimer,
-    TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? pauseTimer,
-    TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
-  }) {
-    return resetAfterSubmit?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? startTimer,
-    TResult Function()? cancelTimer,
-    TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? pauseTimer,
-    TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
-    required TResult orElse(),
-  }) {
-    if (resetAfterSubmit != null) {
-      return resetAfterSubmit();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_StartTimer value) startTimer,
-    required TResult Function(_CancelTimer value) cancelTimer,
-    required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) pauseTimer,
-    required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
-  }) {
-    return resetAfterSubmit(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StartTimer value)? startTimer,
-    TResult? Function(_CancelTimer value)? cancelTimer,
-    TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? pauseTimer,
-    TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
-  }) {
-    return resetAfterSubmit?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTimer value)? startTimer,
-    TResult Function(_CancelTimer value)? cancelTimer,
-    TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? pauseTimer,
-    TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
-    required TResult orElse(),
-  }) {
-    if (resetAfterSubmit != null) {
-      return resetAfterSubmit(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ResetAfterSubmit implements TimerEvent {
-  const factory _ResetAfterSubmit() = _$ResetAfterSubmitImpl;
-}
-
-/// @nodoc
-abstract class _$$ShouldEnableSoundImplCopyWith<$Res> {
-  factory _$$ShouldEnableSoundImplCopyWith(_$ShouldEnableSoundImpl value,
-          $Res Function(_$ShouldEnableSoundImpl) then) =
-      __$$ShouldEnableSoundImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool enable});
-}
-
-/// @nodoc
-class __$$ShouldEnableSoundImplCopyWithImpl<$Res>
-    extends _$TimerEventCopyWithImpl<$Res, _$ShouldEnableSoundImpl>
-    implements _$$ShouldEnableSoundImplCopyWith<$Res> {
-  __$$ShouldEnableSoundImplCopyWithImpl(_$ShouldEnableSoundImpl _value,
-      $Res Function(_$ShouldEnableSoundImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TimerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? enable = null,
-  }) {
-    return _then(_$ShouldEnableSoundImpl(
-      enable: null == enable
-          ? _value.enable
-          : enable // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ShouldEnableSoundImpl implements _ShouldEnableSound {
-  const _$ShouldEnableSoundImpl({this.enable = false});
-
-  @override
-  @JsonKey()
-  final bool enable;
-
-  @override
-  String toString() {
-    return 'TimerEvent.shouldEnableSound(enable: $enable)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ShouldEnableSoundImpl &&
-            (identical(other.enable, enable) || other.enable == enable));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, enable);
-
-  /// Create a copy of TimerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ShouldEnableSoundImplCopyWith<_$ShouldEnableSoundImpl> get copyWith =>
-      __$$ShouldEnableSoundImplCopyWithImpl<_$ShouldEnableSoundImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) startTimer,
-    required TResult Function() cancelTimer,
-    required TResult Function(int duration, int remainingTime) updateTimer,
-    required TResult Function(int duration, int remainingTime) pauseTimer,
-    required TResult Function() resumeTimer,
-    required TResult Function() resetAfterSubmit,
-    required TResult Function(bool enable) shouldEnableSound,
-  }) {
-    return shouldEnableSound(enable);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? startTimer,
-    TResult? Function()? cancelTimer,
-    TResult? Function(int duration, int remainingTime)? updateTimer,
-    TResult? Function(int duration, int remainingTime)? pauseTimer,
-    TResult? Function()? resumeTimer,
-    TResult? Function()? resetAfterSubmit,
-    TResult? Function(bool enable)? shouldEnableSound,
-  }) {
-    return shouldEnableSound?.call(enable);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? startTimer,
-    TResult Function()? cancelTimer,
-    TResult Function(int duration, int remainingTime)? updateTimer,
-    TResult Function(int duration, int remainingTime)? pauseTimer,
-    TResult Function()? resumeTimer,
-    TResult Function()? resetAfterSubmit,
-    TResult Function(bool enable)? shouldEnableSound,
-    required TResult orElse(),
-  }) {
-    if (shouldEnableSound != null) {
-      return shouldEnableSound(enable);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_StartTimer value) startTimer,
-    required TResult Function(_CancelTimer value) cancelTimer,
-    required TResult Function(_UpdateTimer value) updateTimer,
-    required TResult Function(_PauseTimer value) pauseTimer,
-    required TResult Function(_ResumeTimer value) resumeTimer,
-    required TResult Function(_ResetAfterSubmit value) resetAfterSubmit,
-    required TResult Function(_ShouldEnableSound value) shouldEnableSound,
-  }) {
-    return shouldEnableSound(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_StartTimer value)? startTimer,
-    TResult? Function(_CancelTimer value)? cancelTimer,
-    TResult? Function(_UpdateTimer value)? updateTimer,
-    TResult? Function(_PauseTimer value)? pauseTimer,
-    TResult? Function(_ResumeTimer value)? resumeTimer,
-    TResult? Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult? Function(_ShouldEnableSound value)? shouldEnableSound,
-  }) {
-    return shouldEnableSound?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_StartTimer value)? startTimer,
-    TResult Function(_CancelTimer value)? cancelTimer,
-    TResult Function(_UpdateTimer value)? updateTimer,
-    TResult Function(_PauseTimer value)? pauseTimer,
-    TResult Function(_ResumeTimer value)? resumeTimer,
-    TResult Function(_ResetAfterSubmit value)? resetAfterSubmit,
-    TResult Function(_ShouldEnableSound value)? shouldEnableSound,
-    required TResult orElse(),
-  }) {
-    if (shouldEnableSound != null) {
-      return shouldEnableSound(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ShouldEnableSound implements TimerEvent {
-  const factory _ShouldEnableSound({final bool enable}) =
-      _$ShouldEnableSoundImpl;
-
-  bool get enable;
-
-  /// Create a copy of TimerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ShouldEnableSoundImplCopyWith<_$ShouldEnableSoundImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 mixin _$TimerState {
   TimerStatus get status => throw _privateConstructorUsedError;
   int get remainingTime => throw _privateConstructorUsedError;
   double get progress => throw _privateConstructorUsedError;
-  dynamic get enableSound => throw _privateConstructorUsedError;
 
   /// Create a copy of TimerState
   /// with the given fields replaced by the non-null parameter values.
@@ -1243,11 +862,7 @@ abstract class $TimerStateCopyWith<$Res> {
           TimerState value, $Res Function(TimerState) then) =
       _$TimerStateCopyWithImpl<$Res, TimerState>;
   @useResult
-  $Res call(
-      {TimerStatus status,
-      int remainingTime,
-      double progress,
-      dynamic enableSound});
+  $Res call({TimerStatus status, int remainingTime, double progress});
 }
 
 /// @nodoc
@@ -1268,7 +883,6 @@ class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
     Object? status = null,
     Object? remainingTime = null,
     Object? progress = null,
-    Object? enableSound = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -1283,10 +897,6 @@ class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as double,
-      enableSound: freezed == enableSound
-          ? _value.enableSound
-          : enableSound // ignore: cast_nullable_to_non_nullable
-              as dynamic,
     ) as $Val);
   }
 }
@@ -1299,11 +909,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {TimerStatus status,
-      int remainingTime,
-      double progress,
-      dynamic enableSound});
+  $Res call({TimerStatus status, int remainingTime, double progress});
 }
 
 /// @nodoc
@@ -1322,7 +928,6 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? status = null,
     Object? remainingTime = null,
     Object? progress = null,
-    Object? enableSound = freezed,
   }) {
     return _then(_$InitialImpl(
       status: null == status
@@ -1337,7 +942,6 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as double,
-      enableSound: freezed == enableSound ? _value.enableSound! : enableSound,
     ));
   }
 }
@@ -1348,8 +952,7 @@ class _$InitialImpl extends _Initial {
   const _$InitialImpl(
       {this.status = TimerStatus.initial,
       this.remainingTime = 360,
-      this.progress = 0,
-      this.enableSound = false})
+      this.progress = 0})
       : super._();
 
   @override
@@ -1361,13 +964,10 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final double progress;
-  @override
-  @JsonKey()
-  final dynamic enableSound;
 
   @override
   String toString() {
-    return 'TimerState(status: $status, remainingTime: $remainingTime, progress: $progress, enableSound: $enableSound)';
+    return 'TimerState(status: $status, remainingTime: $remainingTime, progress: $progress)';
   }
 
   @override
@@ -1379,14 +979,11 @@ class _$InitialImpl extends _Initial {
             (identical(other.remainingTime, remainingTime) ||
                 other.remainingTime == remainingTime) &&
             (identical(other.progress, progress) ||
-                other.progress == progress) &&
-            const DeepCollectionEquality()
-                .equals(other.enableSound, enableSound));
+                other.progress == progress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, remainingTime, progress,
-      const DeepCollectionEquality().hash(enableSound));
+  int get hashCode => Object.hash(runtimeType, status, remainingTime, progress);
 
   /// Create a copy of TimerState
   /// with the given fields replaced by the non-null parameter values.
@@ -1401,8 +998,7 @@ abstract class _Initial extends TimerState {
   const factory _Initial(
       {final TimerStatus status,
       final int remainingTime,
-      final double progress,
-      final dynamic enableSound}) = _$InitialImpl;
+      final double progress}) = _$InitialImpl;
   const _Initial._() : super._();
 
   @override
@@ -1411,8 +1007,6 @@ abstract class _Initial extends TimerState {
   int get remainingTime;
   @override
   double get progress;
-  @override
-  dynamic get enableSound;
 
   /// Create a copy of TimerState
   /// with the given fields replaced by the non-null parameter values.
