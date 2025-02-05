@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/constants/calculation_constants.dart';
-import '../../../data/models/gps/gps_data.dart';
-import '../../../domain/usecase/gps_use_case.dart';
+import '../../../data/models/tracking/tracking_data.dart';
+import '../../../domain/usecase/tracking_use_case.dart';
 
 part 'gps_event.dart';
 
@@ -14,7 +14,7 @@ part 'gps_state.dart';
 part 'gps_bloc.freezed.dart';
 
 class GPSBloc extends Bloc<GPSEvent, GPSState> {
-  GPSBloc(this.gpsUseCase) : super(const _GPSState()) {
+  GPSBloc(this.trackingUseCase) : super(const _GPSState()) {
     on<_StartTracking>(_onStartTracking);
     on<_StopTracking>(_onStopTracking);
     on<_UpdatePosition>(_onUpdatePosition);
@@ -24,7 +24,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     on<_ReachGoal>(_onReachGoal);
   }
 
-  final GpsUseCase gpsUseCase;
+  final TrackingUseCase trackingUseCase;
 
   Future<void> _onUpdateAverageSpeed(_UpdateAverageSpeed event, Emitter<GPSState> emit) async {
     emit(state.copyWith(averageSpeed: event.averageSpeed));
@@ -32,55 +32,73 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   Future<void> _onStartTracking(_StartTracking event, Emitter<GPSState> emit) async {
     emit(state.copyWith(status: GPSStatus.loading));
-    await gpsUseCase.startTracking();
+    await trackingUseCase.startTracking();
     emit(state.copyWith(status: GPSStatus.running));
   }
 
   Future<void> _onStopTracking(_StopTracking event, Emitter<GPSState> emit) async {
     emit(state.copyWith(status: GPSStatus.loading));
-    final data = await gpsUseCase.getGpsData();
-    await gpsUseCase.stopTracking();
+    final data = await trackingUseCase.getTrackingData();
+    await trackingUseCase.stopTracking();
     final double duration = event.duration.toDouble();
     final double distance = state.distanceTraveled;
-    final double averageSpeed = _calculateAverageSpeed(duration, distance, data.speed);
+    final double averageSpeed =
+        _calculateAverageSpeed(duration, distance, data.gpsData?.speed ?? 0.0);
 
     emit(state.copyWith(status: GPSStatus.stopped, averageSpeed: averageSpeed));
   }
 
   Future<void> _onUpdatePosition(_UpdatePosition event, Emitter<GPSState> emit) async {
-    final data = await gpsUseCase.getGpsData();
+    final data = await trackingUseCase.getTrackingData();
     emit(state.copyWith(
-      gpsData: data,
-      distanceTraveled: data.distanceTraveled,
+      trackingData: data,
+      distanceTraveled: (data.isGps
+              ? data.gpsData?.distanceTraveled
+              : data.accelerometerData?.distanceTraveled) ??
+          0.0,
       status: GPSStatus.saved,
-      speed: data.speed,
+      speed: data.isGps ? data.gpsData?.speed ?? 0.0 : 0.0,
     ));
   }
 
   Future<void> _onUpdateData(_UpdateData event, Emitter<GPSState> emit) async {
-    final data = await gpsUseCase.getGpsData();
+    final data = await trackingUseCase.getTrackingData();
     emit(state.copyWith(
-      gpsData: data,
+      distanceTraveled: (data.isGps
+          ? data.gpsData?.distanceTraveled
+          : data.accelerometerData?.distanceTraveled) ??
+          0.0,
+      trackingData: data,
     ));
   }
 
   FutureOr<void> _onUpdateStartingSpeed(_UpdateStartingSpeed event, Emitter<GPSState> emit) async {
     final double startingDistance = CalculationConstants.startingDistance;
-    final data = await gpsUseCase.getGpsData();
-    if (data.distanceTraveled == startingDistance) {
+    final data = await trackingUseCase.getTrackingData();
+    double distance = 0.0;
+    double speed = 0.0;
+    if (data.isGps) {
+      distance = data.gpsData?.distanceTraveled ?? 0.0;
+      speed = data.gpsData?.speed ?? 0.0;
+    } else {
+      distance = data.accelerometerData?.distanceTraveled ?? 0.0;
+    }
+    if (distance == startingDistance) {
       final double startSpeed =
-          _calculateAverageSpeed(event.duration.toDouble(), startingDistance, data.speed);
+          _calculateAverageSpeed(event.duration.toDouble(), startingDistance, speed);
       emit(state.copyWith(startSpeed: startSpeed));
     }
   }
 
   FutureOr<void> _onReachGoal(_ReachGoal event, Emitter<GPSState> emit) async {
     final double goalDistance = event.goalDistance;
-    final data = await gpsUseCase.getGpsData();
-
-    if (data.distanceTraveled >= goalDistance) {
+    final data = await trackingUseCase.getTrackingData();
+    final double distance =
+        (data.isGps ? data.gpsData?.distanceTraveled : data.accelerometerData?.distanceTraveled) ??
+            0.0;
+    if (distance >= goalDistance) {
       emit(state.copyWith(status: GPSStatus.loading));
-      await gpsUseCase.stopTracking();
+      await trackingUseCase.stopTracking();
       emit(state.copyWith(status: GPSStatus.stopped));
     }
   }
@@ -102,7 +120,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   @override
   Future<void> close() async {
-    await gpsUseCase.dispose();
+    await trackingUseCase.dispose();
     return super.close();
   }
 }

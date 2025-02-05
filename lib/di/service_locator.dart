@@ -13,15 +13,19 @@ import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
 import '../data/services/gps/gps_service.dart';
 import '../data/services/gps/gps_service_imp.dart';
+import '../data/services/indoor_tracking/indoor_tracking_service.dart';
+import '../data/services/indoor_tracking/indoor_tracking_service_imp.dart';
 import '../data/services/permission/gps_permission_service.dart';
 import '../data/services/permission/permission_service.dart';
+import '../data/services/tracking/tracking_service.dart';
+import '../data/services/tracking/tracking_service_imp.dart';
 import '../domain/repositories/auth_repository.dart';
 import '../domain/repositories/profile_repository.dart';
 import '../domain/repositories/questionnaire_repository.dart';
 import '../domain/repositories/sit_to_stand_repository.dart';
 import '../domain/repositories/user_repository.dart';
 import '../domain/repositories/walk_repository.dart';
-import '../domain/usecase/gps_use_case.dart';
+import '../domain/usecase/tracking_use_case.dart';
 import '../services/preferences/preferences_service.dart';
 import '../services/preferences/preferences_service_imp.dart';
 
@@ -49,8 +53,10 @@ void _configureServices() {
       ),
     )
     ..registerLazySingleton<PermissionService>(() => GpsPermissionService())
-    ..registerFactory<GPSService>(
-        () => GPSServiceImp(getIt<PermissionService>()));
+    ..registerFactory<GPSService>(() => GPSServiceImp(getIt<PermissionService>()))
+    ..registerFactory<IndoorTrackingService>(() => IndoorTrackingServiceImp())
+    ..registerFactory<TrackingService>(
+        () => TrackingServiceImp(getIt<GPSService>(), getIt<IndoorTrackingService>()));
 }
 
 void _configureRepositories() {
@@ -61,15 +67,15 @@ void _configureRepositories() {
         () => UserRepositoryImp(firebaseService: getIt<FirebaseService>()))
     ..registerLazySingleton<ProfileRepository>(
         () => ProfileRepositoryImp(firebaseService: getIt<FirebaseService>()))
-    ..registerLazySingleton<SitToStandRepository>(() =>
-        SitToStandRepositoryImp(firebaseService: getIt<FirebaseService>()))
+    ..registerLazySingleton<SitToStandRepository>(
+        () => SitToStandRepositoryImp(firebaseService: getIt<FirebaseService>()))
     ..registerLazySingleton<WalkRepository>(
         () => WalkRepositoryImp(firebaseService: getIt<FirebaseService>()))
-    ..registerLazySingleton<QuestionnaireRepository>(() =>
-        QuestionnaireRepositoryImp(firebaseService: getIt<FirebaseService>()));
+    ..registerLazySingleton<QuestionnaireRepository>(
+        () => QuestionnaireRepositoryImp(firebaseService: getIt<FirebaseService>()));
 }
 
 void _configureUseCases() {
-  getIt.registerFactory<GpsUseCase>(
-      () => GpsUseCase(getIt<GPSService>(), getIt<PermissionService>()));
+  getIt.registerFactory<TrackingUseCase>(
+      () => TrackingUseCase(getIt<TrackingService>(), getIt<PermissionService>()));
 }

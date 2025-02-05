@@ -1204,7 +1204,7 @@ abstract class _UpdateData implements GPSEvent {
 /// @nodoc
 mixin _$GPSState {
   GPSStatus get status => throw _privateConstructorUsedError;
-  GPSData get gpsData => throw _privateConstructorUsedError;
+  TrackingData get trackingData => throw _privateConstructorUsedError;
   double get distanceTraveled => throw _privateConstructorUsedError;
   double get speed => throw _privateConstructorUsedError;
   double get startSpeed => throw _privateConstructorUsedError;
@@ -1224,13 +1224,13 @@ abstract class $GPSStateCopyWith<$Res> {
   @useResult
   $Res call(
       {GPSStatus status,
-      GPSData gpsData,
+      TrackingData trackingData,
       double distanceTraveled,
       double speed,
       double startSpeed,
       double averageSpeed});
 
-  $GPSDataCopyWith<$Res> get gpsData;
+  $TrackingDataCopyWith<$Res> get trackingData;
 }
 
 /// @nodoc
@@ -1249,7 +1249,7 @@ class _$GPSStateCopyWithImpl<$Res, $Val extends GPSState>
   @override
   $Res call({
     Object? status = null,
-    Object? gpsData = null,
+    Object? trackingData = null,
     Object? distanceTraveled = null,
     Object? speed = null,
     Object? startSpeed = null,
@@ -1260,10 +1260,10 @@ class _$GPSStateCopyWithImpl<$Res, $Val extends GPSState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as GPSStatus,
-      gpsData: null == gpsData
-          ? _value.gpsData
-          : gpsData // ignore: cast_nullable_to_non_nullable
-              as GPSData,
+      trackingData: null == trackingData
+          ? _value.trackingData
+          : trackingData // ignore: cast_nullable_to_non_nullable
+              as TrackingData,
       distanceTraveled: null == distanceTraveled
           ? _value.distanceTraveled
           : distanceTraveled // ignore: cast_nullable_to_non_nullable
@@ -1287,9 +1287,9 @@ class _$GPSStateCopyWithImpl<$Res, $Val extends GPSState>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $GPSDataCopyWith<$Res> get gpsData {
-    return $GPSDataCopyWith<$Res>(_value.gpsData, (value) {
-      return _then(_value.copyWith(gpsData: value) as $Val);
+  $TrackingDataCopyWith<$Res> get trackingData {
+    return $TrackingDataCopyWith<$Res>(_value.trackingData, (value) {
+      return _then(_value.copyWith(trackingData: value) as $Val);
     });
   }
 }
@@ -1304,14 +1304,14 @@ abstract class _$$GPSStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {GPSStatus status,
-      GPSData gpsData,
+      TrackingData trackingData,
       double distanceTraveled,
       double speed,
       double startSpeed,
       double averageSpeed});
 
   @override
-  $GPSDataCopyWith<$Res> get gpsData;
+  $TrackingDataCopyWith<$Res> get trackingData;
 }
 
 /// @nodoc
@@ -1328,7 +1328,7 @@ class __$$GPSStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? gpsData = null,
+    Object? trackingData = null,
     Object? distanceTraveled = null,
     Object? speed = null,
     Object? startSpeed = null,
@@ -1339,10 +1339,10 @@ class __$$GPSStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as GPSStatus,
-      gpsData: null == gpsData
-          ? _value.gpsData
-          : gpsData // ignore: cast_nullable_to_non_nullable
-              as GPSData,
+      trackingData: null == trackingData
+          ? _value.trackingData
+          : trackingData // ignore: cast_nullable_to_non_nullable
+              as TrackingData,
       distanceTraveled: null == distanceTraveled
           ? _value.distanceTraveled
           : distanceTraveled // ignore: cast_nullable_to_non_nullable
@@ -1368,7 +1368,7 @@ class __$$GPSStateImplCopyWithImpl<$Res>
 class _$GPSStateImpl implements _GPSState {
   const _$GPSStateImpl(
       {this.status = GPSStatus.initial,
-      this.gpsData = const GPSData(),
+      this.trackingData = const TrackingData(),
       this.distanceTraveled = 0.0,
       this.speed = 0.0,
       this.startSpeed = 0.0,
@@ -1379,7 +1379,7 @@ class _$GPSStateImpl implements _GPSState {
   final GPSStatus status;
   @override
   @JsonKey()
-  final GPSData gpsData;
+  final TrackingData trackingData;
   @override
   @JsonKey()
   final double distanceTraveled;
@@ -1395,7 +1395,7 @@ class _$GPSStateImpl implements _GPSState {
 
   @override
   String toString() {
-    return 'GPSState(status: $status, gpsData: $gpsData, distanceTraveled: $distanceTraveled, speed: $speed, startSpeed: $startSpeed, averageSpeed: $averageSpeed)';
+    return 'GPSState(status: $status, trackingData: $trackingData, distanceTraveled: $distanceTraveled, speed: $speed, startSpeed: $startSpeed, averageSpeed: $averageSpeed)';
   }
 
   @override
@@ -1404,7 +1404,8 @@ class _$GPSStateImpl implements _GPSState {
         (other.runtimeType == runtimeType &&
             other is _$GPSStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.gpsData, gpsData) || other.gpsData == gpsData) &&
+            (identical(other.trackingData, trackingData) ||
+                other.trackingData == trackingData) &&
             (identical(other.distanceTraveled, distanceTraveled) ||
                 other.distanceTraveled == distanceTraveled) &&
             (identical(other.speed, speed) || other.speed == speed) &&
@@ -1415,7 +1416,7 @@ class _$GPSStateImpl implements _GPSState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, gpsData,
+  int get hashCode => Object.hash(runtimeType, status, trackingData,
       distanceTraveled, speed, startSpeed, averageSpeed);
 
   /// Create a copy of GPSState
@@ -1430,7 +1431,7 @@ class _$GPSStateImpl implements _GPSState {
 abstract class _GPSState implements GPSState {
   const factory _GPSState(
       {final GPSStatus status,
-      final GPSData gpsData,
+      final TrackingData trackingData,
       final double distanceTraveled,
       final double speed,
       final double startSpeed,
@@ -1439,7 +1440,7 @@ abstract class _GPSState implements GPSState {
   @override
   GPSStatus get status;
   @override
-  GPSData get gpsData;
+  TrackingData get trackingData;
   @override
   double get distanceTraveled;
   @override
