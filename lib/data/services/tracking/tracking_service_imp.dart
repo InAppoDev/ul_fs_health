@@ -4,16 +4,16 @@ import 'package:geolocator/geolocator.dart';
 
 import '../../models/tracking/tracking_data.dart';
 import '../gps/gps_service.dart';
-import '../indoor_tracking/accelerometer_service.dart';
+import '../indoor_tracking/indoor_tracking_service.dart';
 import 'tracking_service.dart';
 
-enum TrackingMode { none, gps, accelerometer }
+enum TrackingMode { none, gps, indoor }
 
 class TrackingServiceImp implements TrackingService {
-  TrackingServiceImp(this.gpsService, this.accelerometerService);
+  TrackingServiceImp(this.gpsService, this.indoorTrackingService);
 
   final GPSService gpsService;
-  final AccelerometerService accelerometerService;
+  final IndoorTrackingService indoorTrackingService;
 
 
   TrackingMode _currentMode = TrackingMode.none;
@@ -28,7 +28,7 @@ class TrackingServiceImp implements TrackingService {
   Future<void> dispose() async {
     await Future.wait([
       gpsService.dispose(),
-      accelerometerService.dispose(),
+      indoorTrackingService.dispose(),
     ]);
     await _gpsStreamSubscription?.cancel();
   }
@@ -36,7 +36,7 @@ class TrackingServiceImp implements TrackingService {
   @override
   TrackingData getTrackingData() {
     final gpsData = gpsService.getGpsData();
-    final accData = accelerometerService.getAccelerometerData();
+    final accData = indoorTrackingService.getAccelerometerData();
     final distance = _gpsDistance + _accDistance;
     return TrackingData(
         accelerometerData: accData.copyWith(distanceTraveled: distance),
@@ -52,7 +52,7 @@ class TrackingServiceImp implements TrackingService {
           onUpdate: (pos) {
             final gpsData = gpsService.getGpsData();
             final bool isStrongSignal = gpsData.isGPSSignalStrong;
-            _currentMode = isStrongSignal ? TrackingMode.gps : TrackingMode.accelerometer;
+            _currentMode = isStrongSignal ? TrackingMode.gps : TrackingMode.indoor;
             if (gpsData.distanceTraveled >= 0.01) {
               _gpsDistance += gpsData.distanceTraveled;
             }
@@ -60,13 +60,13 @@ class TrackingServiceImp implements TrackingService {
               gpsService.reset();
             }
           }),
-      accelerometerService.startTracking(
+      indoorTrackingService.startTracking(
           onRunning: () => !(_currentMode == TrackingMode.gps),
           onUpdate: (event) {
-            final accData = accelerometerService.getAccelerometerData();
+            final accData = indoorTrackingService.getAccelerometerData();
               _accDistance += accData.distanceTraveled;
             if (_currentMode == TrackingMode.gps) {
-              accelerometerService.reset();
+              indoorTrackingService.reset();
             }
           })
     ]);
@@ -74,6 +74,6 @@ class TrackingServiceImp implements TrackingService {
 
   @override
   Future<void> stopTracking() async {
-    await Future.wait([gpsService.stopTracking(), accelerometerService.stopTracking()]);
+    await Future.wait([gpsService.stopTracking(), indoorTrackingService.stopTracking()]);
   }
 }

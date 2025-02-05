@@ -13,8 +13,8 @@ import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
 import '../data/services/gps/gps_service.dart';
 import '../data/services/gps/gps_service_imp.dart';
-import '../data/services/indoor_tracking/accelerometer_service.dart';
-import '../data/services/indoor_tracking/accelerometer_service_imp.dart';
+import '../data/services/indoor_tracking/indoor_tracking_service.dart';
+import '../data/services/indoor_tracking/indoor_tracking_service_imp.dart';
 import '../data/services/permission/gps_permission_service.dart';
 import '../data/services/permission/permission_service.dart';
 import '../data/services/tracking/tracking_service.dart';
@@ -54,9 +54,9 @@ void _configureServices() {
     )
     ..registerLazySingleton<PermissionService>(() => GpsPermissionService())
     ..registerFactory<GPSService>(() => GPSServiceImp(getIt<PermissionService>()))
-    ..registerFactory<AccelerometerService>(() => AccelerometerServiceImp())
+    ..registerFactory<IndoorTrackingService>(() => IndoorTrackingServiceImp())
     ..registerFactory<TrackingService>(
-        () => TrackingServiceImp(getIt<GPSService>(), getIt<AccelerometerService>()));
+        () => TrackingServiceImp(getIt<GPSService>(), getIt<IndoorTrackingService>()));
 }
 
 void _configureRepositories() {

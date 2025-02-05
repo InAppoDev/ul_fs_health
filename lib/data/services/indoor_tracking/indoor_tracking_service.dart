@@ -4,7 +4,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 import '../../models/tracking/accelerometer_data.dart';
 
-abstract class AccelerometerService {
+abstract class IndoorTrackingService {
   int get stepCount;
 
   double get estimatedDistanceTravelled;
@@ -13,7 +13,8 @@ abstract class AccelerometerService {
 
   AccelerometerData getAccelerometerData();
 
-  Future<void> startTracking({required bool Function() onRunning, required void Function(AccelerometerEvent) onUpdate});
+  Future<void> startTracking(
+      {required bool Function() onRunning, required void Function(AccelerometerEvent) onUpdate});
 
   Future<void> stopTracking();
 
