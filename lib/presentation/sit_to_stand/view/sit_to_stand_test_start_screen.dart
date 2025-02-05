@@ -76,7 +76,7 @@ class _SitToStandTestStartContentState
             context.showSnackBarMessage(state.error ?? '');
           }
           if (state.status == SitToStandStatus.save) {
-            context.router.push(const SitToStandResultRoute());
+            context.router.replace(const SitToStandResultRoute());
           }
           if (state.isTestFinished &&
               state.currentRepetition == Constants.totalRepetitions) {
@@ -149,7 +149,9 @@ class _SitToStandTestStartContentState
                             Column(
                               children: [
                                 Text(S.current.lblTime, style: body1),
-                                Text('${state.bestTime.toStringAsFixed(3)} ms',
+                                Text(
+                                    (state.bestTime * 1000)
+                                        .toPrettyResultTime(),
                                     style: body1.copyWith(fontSize: 28)),
                               ],
                             ),

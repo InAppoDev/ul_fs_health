@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../core/extensions/number_extension.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
 import '../../../domain/entities/result_data_entity.dart';
@@ -114,7 +115,8 @@ class ResultChartWidget extends StatelessWidget {
 
                             final isWorstCase = distance == maxDistance;
 
-                            final formattedDistance = distance.toStringAsFixed(0);
+                            final formattedDistance =
+                                distance.toStringAsFixed(0);
                             return Text(
                               '$formattedDistance m',
                               style: body2.copyWith(
@@ -138,9 +140,9 @@ class ResultChartWidget extends StatelessWidget {
                             final isWorstCase = resultTime == maxResultTime;
 
                             final formattedTime =
-                                (resultTime * 100).toStringAsFixed(0);
+                                (resultTime * 1000).toPrettyResultTime();
                             return Text(
-                              '$formattedTime ms',
+                              formattedTime,
                               style: body2.copyWith(
                                 fontSize: 10,
                                 color: isWorstCase

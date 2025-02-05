@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:vibration/vibration.dart';
 import '../../../core/constants/constants.dart';
 import '../../../core/extensions/list_extension.dart';
 import '../../../domain/entities/result_data_entity.dart';
@@ -24,6 +25,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
   final List<ResultDataEntity> _result = [];
   Timer? _timer;
   var _isStanding = false;
+  var _hasSit = true;
 
   @override
   Future<void> close() {
@@ -35,7 +37,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
       StartTestEvent event, Emitter<SitToStandState> emit) async {
     emit(state.copyWith(
         isTestRunning: true, currentRepetition: 0, isTestFinished: false));
-    final Stopwatch stopwatch = Stopwatch()..start();
+    final Stopwatch stopwatch = Stopwatch();
     var lastEventTime = DateTime.now();
     await for (final event in accelerometerEventStream()) {
       if (state.isTestFinished) {
@@ -47,34 +49,47 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
         continue;
       }
       lastEventTime = currentTime;
-      log('Z = ${event.z}');
-      log('X = ${event.x}');
-      log('STANDING = $_isStanding');
+      log('Z = ${event.z.toStringAsFixed(2)}\tX = ${event.x.toStringAsFixed(2)}');
+      log('STANDING = $_isStanding\tHAS SIT = $_hasSit');
       if (state.isTestRunning) {
         if (state.currentRepetition == Constants.totalRepetitions) {
-          final bestTime = _result.findBestTime(whenEmpty: state.bestTime);
-          final bestVelocity =
-              _result.findBestVelocity(whenEmpty: state.bestVelocity);
+          final result = _result.findObjectByBestTime();
           emit(state.copyWith(
             isTestRunning: false,
             isTestFinished: true,
             progress: 1.0,
-            bestTime: bestTime,
-            bestVelocity: bestVelocity,
+            bestTime: result?.resultTime ?? 0.0,
+            bestVelocity: result?.velocity ?? 0.0,
           ));
           break;
         } else {
-          if (!_isStanding &&
-              event.z < Constants.standingPosition &&
-              (event.x.isNegative && event.x > -Constants.standingPosition ||
-                  !event.x.isNegative &&
-                      event.x < Constants.standingPosition)) {
-            /* Detect stand-up movement */
+          if (!_hasSit && event.z > Constants.seatOffPosition ||
+              event.x.isNegative && event.x < -Constants.seatOffPosition ||
+              !event.x.isNegative && event.x > Constants.seatOffPosition) {
+            /* Detect sitting position */
+            _isStanding = false;
+            _hasSit = true;
+          } else if (!_isStanding &&
+              _hasSit &&
+              event.z <= Constants.seatOffPosition &&
+              (event.x.isNegative && event.x > -Constants.seatOffPosition ||
+                  !event.x.isNegative && event.x < Constants.seatOffPosition)) {
+            /* Detect seat-off movement and start timer */
             _isStanding = true;
+            if (!stopwatch.isRunning) {
+              stopwatch.start();
+            }
+          } else if (_isStanding &&
+              event.z >= -1 &&
+              event.z <= 1 &&
+              event.x >= -1 &&
+              event.x <= 1) {
+            /* Detect standing position and stop timer */
+            _hasSit = false;
             stopwatch.stop();
             final standDuration = stopwatch.elapsed.inMilliseconds / 1000.0;
             stopwatch.reset();
-            if (standDuration > 0) {
+            if (standDuration >= 0.0001) {
               final velocity = 1.0 / standDuration;
               _result.add(ResultDataEntity(
                 resultTime: standDuration,
@@ -82,24 +97,18 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
               ));
               final progress =
                   (state.currentRepetition + 1) / Constants.totalRepetitions;
+              if (await Vibration.hasVibrator()) {
+                Vibration.vibrate();
+              }
               emit(state.copyWith(
                 progress: progress,
                 currentRepetition: state.currentRepetition + 1,
               ));
             }
-          } else if (_isStanding && event.z > Constants.sittingPosition0XAxis ||
-              event.z > Constants.sittingPositionNeutral ||
-              (!event.x.isNegative &&
-                      event.x > Constants.sittingPositionNeutral ||
-                  event.x.isNegative &&
-                      event.x < -Constants.sittingPositionNeutral)) {
-            /* Detect sit-down movement */
-            _isStanding = false;
-            if (!stopwatch.isRunning) {
-              stopwatch.start();
-            }
           }
         }
+      } else {
+        break;
       }
     }
   }
@@ -107,16 +116,14 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
   Future<void> _onStopTest(
       StopTestEvent event, Emitter<SitToStandState> emit) async {
     if (state.isTestRunning) {
-      final bestTime = _result.findBestTime(whenEmpty: state.bestTime);
-      final bestVelocity =
-          _result.findBestVelocity(whenEmpty: state.bestVelocity);
+      final result = _result.findObjectByBestTime();
       _result.clear();
       emit(state.copyWith(
         isTestRunning: false,
         isTestFinished: true,
         status: SitToStandStatus.stop,
-        bestTime: bestTime,
-        bestVelocity: bestVelocity,
+        bestTime: result?.resultTime ?? 0.0,
+        bestVelocity: result?.velocity ?? 0.0,
       ));
     }
   }

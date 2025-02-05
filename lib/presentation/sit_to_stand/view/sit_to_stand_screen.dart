@@ -46,11 +46,10 @@ class _SitToStandContentState extends State<SitToStandContent> {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
+        _countdownValue.value = (_countdownValue.value ?? 1) - 1;
         if (_countdownValue.value == 0) {
           _resetTimer();
           _signalSound(context);
-        } else {
-          _countdownValue.value = (_countdownValue.value ?? 1) - 1;
         }
       },
     );
@@ -66,7 +65,7 @@ class _SitToStandContentState extends State<SitToStandContent> {
   Future<void> _signalSound(BuildContext context) async {
     await _audioPlayer.setAsset('assets/sounds/signal.mp3');
     await _audioPlayer.play();
-    context.router.push(const SitToStandTestStartRoute());
+    context.router.replace(const SitToStandTestStartRoute());
   }
 
   @override

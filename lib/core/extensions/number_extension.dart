@@ -24,4 +24,12 @@ extension NumberExtension on double {
 
   Offset get smallY => Offset(0, this);
   Offset get smallX => Offset(this, 0);
+
+  String toPrettyResultTime() {
+    if (this < 1000) {
+      return '${toInt()} ms';
+    } else {
+      return '${(this / 1000).toStringAsFixed(3)} s';
+    }
+  }
 }
