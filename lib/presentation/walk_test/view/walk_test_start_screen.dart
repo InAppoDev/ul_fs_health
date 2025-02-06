@@ -97,11 +97,11 @@ class WalkTestStartContent extends StatelessWidget {
         headerText: appLocalizations.walkTestTitleText,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(context.watch<GPSBloc>().trackingUseCase.isGpsMode ? "GPS" : "Accelerometer", style: body1),
-          Gaps.larger.spaceVertical,
-          Text("Accuracy: ${context.watch<GPSBloc>().state.trackingData.gpsData?.accuracy ?? 0.0}", style: body1),
-          Gaps.larger.spaceVertical,
-          Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),
+          // Text(context.watch<GPSBloc>().trackingUseCase.isGpsMode ? "GPS" : "Accelerometer", style: body1),
+          // Gaps.larger.spaceVertical,
+          // Text("Accuracy: ${context.watch<GPSBloc>().state.trackingData.gpsData?.accuracy ?? 0.0}", style: body1),
+          // Gaps.larger.spaceVertical,
+          // Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),
           Gaps.larger.spaceVertical,
           if (context.watch<TimerBloc>().state.status == TimerStatus.completed)
             Align(
