@@ -15,7 +15,7 @@ abstract class Constants {
   static double get totalRepetitions => 5.0;
   static double get standingPosition => 3.0;
   static double get sittingPosition0XAxis => 9.0;
-  static double get seatOffPosition => 7.0;
+  static double get seatOffPosition => 8.5;
   static int get debounceDuration => 100;
   static int get defaultTabControllerLength => 2;
 }

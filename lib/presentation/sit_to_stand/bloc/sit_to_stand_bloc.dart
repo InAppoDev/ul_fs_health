@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:developer';
+import 'dart:math' as math;
 import 'package:bloc/bloc.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:vibration/vibration.dart';
@@ -39,6 +40,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
         isTestRunning: true, currentRepetition: 0, isTestFinished: false));
     final Stopwatch stopwatch = Stopwatch();
     var lastEventTime = DateTime.now();
+    final hasVirbator = await Vibration.hasVibrator();
     await for (final event in accelerometerEventStream()) {
       if (state.isTestFinished) {
         break;
@@ -49,8 +51,9 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
         continue;
       }
       lastEventTime = currentTime;
-      log('Z = ${event.z.toStringAsFixed(2)}\tX = ${event.x.toStringAsFixed(2)}');
+      log('Z = ${event.z.toStringAsFixed(2)}\tX = ${event.x.toStringAsFixed(2)}\tY = ${event.y.toStringAsFixed(2)}');
       log('STANDING = $_isStanding\tHAS SIT = $_hasSit');
+      log('RESULT = ${_result.map((e) => e.resultTime)}');
       if (state.isTestRunning) {
         if (state.currentRepetition == Constants.totalRepetitions) {
           final result = _result.findObjectByBestTime();
@@ -63,33 +66,28 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
           ));
           break;
         } else {
-          if (!_hasSit && event.z > Constants.seatOffPosition ||
-              event.x.isNegative && event.x < -Constants.seatOffPosition ||
-              !event.x.isNegative && event.x > Constants.seatOffPosition) {
+          if (!_hasSit && event.y.abs() < 2) {
             /* Detect sitting position */
             _isStanding = false;
             _hasSit = true;
           } else if (!_isStanding &&
               _hasSit &&
               event.z <= Constants.seatOffPosition &&
-              (event.x.isNegative && event.x > -Constants.seatOffPosition ||
-                  !event.x.isNegative && event.x < Constants.seatOffPosition)) {
+              event.x.abs() < Constants.seatOffPosition &&
+              event.y.abs() > 2) {
             /* Detect seat-off movement and start timer */
             _isStanding = true;
             if (!stopwatch.isRunning) {
               stopwatch.start();
             }
-          } else if (_isStanding &&
-              event.z >= -1 &&
-              event.z <= 1 &&
-              event.x >= -1 &&
-              event.x <= 1) {
+          } else if (_isStanding && event.z >= -1 && event.z <= 1 ||
+              event.y.abs() > Constants.sittingPosition0XAxis) {
             /* Detect standing position and stop timer */
             _hasSit = false;
             stopwatch.stop();
             final standDuration = stopwatch.elapsed.inMilliseconds / 1000.0;
             stopwatch.reset();
-            if (standDuration >= 0.0001) {
+            if (standDuration > 0) {
               final velocity = 1.0 / standDuration;
               _result.add(ResultDataEntity(
                 resultTime: standDuration,
@@ -97,7 +95,7 @@ class SitToStandBloc extends Bloc<SitToStandEvent, SitToStandState> {
               ));
               final progress =
                   (state.currentRepetition + 1) / Constants.totalRepetitions;
-              if (await Vibration.hasVibrator()) {
+              if (hasVirbator) {
                 Vibration.vibrate();
               }
               emit(state.copyWith(
