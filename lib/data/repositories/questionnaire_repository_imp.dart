@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../core/constants/aliases.dart';
 import '../../domain/entities/questionnaire/questionnaire_entity.dart';
 import '../../domain/repositories/questionnaire_repository.dart';
 import '../models/questionnaire/questionnaire_model.dart';
@@ -11,57 +12,22 @@ class QuestionnaireRepositoryImp implements QuestionnaireRepository {
   final FirebaseService firebaseService;
 
   @override
-  Future<void> storeGPAQRecreationData({required QuestionnaireEntity entity}) async {
+  Future<void> storeData({required QuestionnaireEntity entity}) async {
     final userId = (await firebaseService.getLoggedinUser())?.uid;
     if (userId != null) {
-      final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
       final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
-          SetOptions(merge: true));
-    }
-  }
-
-  @override
-  Future<void> storeGPAQSedentaryData({required QuestionnaireEntity entity}) async {
-    final userId = (await firebaseService.getLoggedinUser())?.uid;
-    if (userId != null) {
-      final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
-      final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
-          SetOptions(merge: true));
-    }
-  }
-
-  @override
-  Future<void> storeGPAQTravelData({required QuestionnaireEntity entity}) async {
-    final userId = (await firebaseService.getLoggedinUser())?.uid;
-    if (userId != null) {
-      final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
-      final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
-          SetOptions(merge: true));
-    }
-  }
-
-  @override
-  Future<void> storeGPAQWorkData({required QuestionnaireEntity entity}) async {
-    final userId = (await firebaseService.getLoggedinUser())?.uid;
-    if (userId != null) {
-      final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
-      final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
-          SetOptions(merge: true));
-    }
-  }
-
-  @override
-  Future<void> storeLEFSData({required QuestionnaireEntity entity}) async {
-    final userId = (await firebaseService.getLoggedinUser())?.uid;
-    if (userId != null) {
-      final userDoc = firebaseService.questionnaireCollectionReference.doc(userId);
-      final userRef = firebaseService.getDocument(firebaseService.userCollectionReference, userId);
-      await userDoc.set(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
-          SetOptions(merge: true));
+      final FQuerySnapshot querySnapshot = await firebaseService.questionnaireCollectionReference
+          .where('userRef', isEqualTo: userRef)
+          .get();
+      final data = querySnapshot.docs;
+      if (data.isEmpty) {
+        await firebaseService.questionnaireCollectionReference
+            .add(QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson());
+      } else {
+        await data.first.reference.set(
+            QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
+            SetOptions(merge: true));
+      }
     }
   }
 }
