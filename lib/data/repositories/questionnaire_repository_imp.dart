@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../core/constants/aliases.dart';
+import '../../core/exceptions/exceptions.dart';
 import '../../domain/entities/questionnaire/questionnaire_entity.dart';
 import '../../domain/repositories/questionnaire_repository.dart';
 import '../models/questionnaire/questionnaire_model.dart';
@@ -28,6 +29,9 @@ class QuestionnaireRepositoryImp implements QuestionnaireRepository {
             QuestionnaireModel.fromEntity(entity.copyWith(userRef: userRef)).toJson(),
             SetOptions(merge: true));
       }
+    }
+    else {
+      throw NotFoundException('user not found');
     }
   }
 }
