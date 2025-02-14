@@ -130,7 +130,7 @@ class HomeContent extends StatelessWidget {
                   ],
                 ),
                 Constants.sizedBoxHeightMiddle.spaceVertical,
-                ButtonDelayedWidget(
+                SubmitButton(
                     onPressed: () => context.router.push(const WalkTestInitialRoute()),
                     title: appLocalizations.btnTestStartText,
                     backgroundColor: ColorScheme.of(context).primary,
