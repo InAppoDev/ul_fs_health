@@ -130,16 +130,15 @@ class HomeContent extends StatelessWidget {
                   ],
                 ),
                 Constants.sizedBoxHeightMiddle.spaceVertical,
-                ButtonDelayedWidget(
-                    onPressed: () => context.router.push(WalkTestStartRoute()),
+                SubmitButton(
+                    onPressed: () => context.router.push(const WalkTestInitialRoute()),
                     title: appLocalizations.btnTestStartText,
                     backgroundColor: ColorScheme.of(context).primary,
                     titleColor: white),
                 Constants.sizedBoxHeightSmall.spaceVertical,
+                // TODO Hovsep: change navigation when instraction UI will ready, for now navigate walk initial page
                 SubmitButton(
-                    onPressed: () {
-                      context.router.push(const WalkTestInitialRoute());
-                    },
+                    onPressed: () => context.router.push(const WalkTestInitialRoute()),
                     title: appLocalizations.btnTestInstructionsText,
                     backgroundColor: defaultBtnInactiveBackground,
                     titleColor: defaultTextColor),
