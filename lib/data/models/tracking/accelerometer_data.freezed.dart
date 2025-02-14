@@ -14,10 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+AccelerometerData _$AccelerometerDataFromJson(Map<String, dynamic> json) {
+  return _AccelerometerData.fromJson(json);
+}
+
 /// @nodoc
 mixin _$AccelerometerData {
   double get distanceTraveled => throw _privateConstructorUsedError;
   int get stepCount => throw _privateConstructorUsedError;
+
+  /// Serializes this AccelerometerData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
@@ -107,10 +114,13 @@ class __$$AccelerometerDataImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$AccelerometerDataImpl implements _AccelerometerData {
   const _$AccelerometerDataImpl(
       {this.distanceTraveled = 0.0, this.stepCount = 0});
+
+  factory _$AccelerometerDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccelerometerDataImplFromJson(json);
 
   @override
   @JsonKey()
@@ -135,6 +145,7 @@ class _$AccelerometerDataImpl implements _AccelerometerData {
                 other.stepCount == stepCount));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, distanceTraveled, stepCount);
 
@@ -146,12 +157,22 @@ class _$AccelerometerDataImpl implements _AccelerometerData {
   _$$AccelerometerDataImplCopyWith<_$AccelerometerDataImpl> get copyWith =>
       __$$AccelerometerDataImplCopyWithImpl<_$AccelerometerDataImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AccelerometerDataImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _AccelerometerData implements AccelerometerData {
   const factory _AccelerometerData(
       {final double distanceTraveled,
       final int stepCount}) = _$AccelerometerDataImpl;
+
+  factory _AccelerometerData.fromJson(Map<String, dynamic> json) =
+      _$AccelerometerDataImpl.fromJson;
 
   @override
   double get distanceTraveled;

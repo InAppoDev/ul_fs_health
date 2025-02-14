@@ -4,6 +4,7 @@ import 'accelerometer_data.dart';
 import 'gps_data.dart';
 
 part 'tracking_data.freezed.dart';
+part 'tracking_data.g.dart';
 
 @freezed
 class TrackingData with _$TrackingData {
@@ -12,4 +13,7 @@ class TrackingData with _$TrackingData {
     GpsData? gpsData,
     @Default(true) bool isGps
   }) = _TrackingData;
+
+  factory TrackingData.fromJson(Map<String, dynamic> json) =>
+      _$TrackingDataFromJson(json);
 }

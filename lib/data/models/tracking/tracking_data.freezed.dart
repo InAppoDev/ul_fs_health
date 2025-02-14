@@ -14,12 +14,19 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+TrackingData _$TrackingDataFromJson(Map<String, dynamic> json) {
+  return _TrackingData.fromJson(json);
+}
+
 /// @nodoc
 mixin _$TrackingData {
   AccelerometerData? get accelerometerData =>
       throw _privateConstructorUsedError;
   GpsData? get gpsData => throw _privateConstructorUsedError;
   bool get isGps => throw _privateConstructorUsedError;
+
+  /// Serializes this TrackingData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of TrackingData
   /// with the given fields replaced by the non-null parameter values.
@@ -157,10 +164,13 @@ class __$$TrackingDataImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$TrackingDataImpl implements _TrackingData {
   const _$TrackingDataImpl(
       {this.accelerometerData, this.gpsData, this.isGps = true});
+
+  factory _$TrackingDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TrackingDataImplFromJson(json);
 
   @override
   final AccelerometerData? accelerometerData;
@@ -186,6 +196,7 @@ class _$TrackingDataImpl implements _TrackingData {
             (identical(other.isGps, isGps) || other.isGps == isGps));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, accelerometerData, gpsData, isGps);
@@ -197,6 +208,13 @@ class _$TrackingDataImpl implements _TrackingData {
   @pragma('vm:prefer-inline')
   _$$TrackingDataImplCopyWith<_$TrackingDataImpl> get copyWith =>
       __$$TrackingDataImplCopyWithImpl<_$TrackingDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TrackingDataImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _TrackingData implements TrackingData {
@@ -204,6 +222,9 @@ abstract class _TrackingData implements TrackingData {
       {final AccelerometerData? accelerometerData,
       final GpsData? gpsData,
       final bool isGps}) = _$TrackingDataImpl;
+
+  factory _TrackingData.fromJson(Map<String, dynamic> json) =
+      _$TrackingDataImpl.fromJson;
 
   @override
   AccelerometerData? get accelerometerData;

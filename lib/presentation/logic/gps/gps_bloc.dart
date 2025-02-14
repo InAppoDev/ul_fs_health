@@ -5,7 +5,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/constants/calculation_constants.dart';
 import '../../../data/models/tracking/tracking_data.dart';
-import '../../../domain/usecase/tracking_use_case.dart';
+import '../../../data/services/tracking_background_service/tracking_background_service.dart';
+import '../../../services/background_service/background_service.dart';
 
 part 'gps_event.dart';
 
@@ -14,7 +15,7 @@ part 'gps_state.dart';
 part 'gps_bloc.freezed.dart';
 
 class GPSBloc extends Bloc<GPSEvent, GPSState> {
-  GPSBloc(this.trackingUseCase) : super(const _GPSState()) {
+  GPSBloc(this.trackingBackgroundService) : super(const _GPSState()) {
     on<_StartTracking>(_onStartTracking);
     on<_StopTracking>(_onStopTracking);
     on<_UpdatePosition>(_onUpdatePosition);
@@ -24,7 +25,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     on<_ReachGoal>(_onReachGoal);
   }
 
-  final TrackingUseCase trackingUseCase;
+  final TrackingBackgroundService trackingBackgroundService;
 
   Future<void> _onUpdateAverageSpeed(_UpdateAverageSpeed event, Emitter<GPSState> emit) async {
     emit(state.copyWith(averageSpeed: event.averageSpeed));
@@ -32,14 +33,16 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   Future<void> _onStartTracking(_StartTracking event, Emitter<GPSState> emit) async {
     emit(state.copyWith(status: GPSStatus.loading));
-    await trackingUseCase.startTracking();
+    await startBackgroundService();
+    await trackingBackgroundService.startTracking();
     emit(state.copyWith(status: GPSStatus.running));
   }
 
   Future<void> _onStopTracking(_StopTracking event, Emitter<GPSState> emit) async {
     emit(state.copyWith(status: GPSStatus.loading));
-    final data = await trackingUseCase.getTrackingData();
-    await trackingUseCase.stopTracking();
+    await stopBackgroundService();
+    final data = await trackingBackgroundService.getTrackingData();
+    await trackingBackgroundService.stopTracking();
     final double duration = event.duration.toDouble();
     final double distance = state.distanceTraveled;
     final double averageSpeed =
@@ -49,7 +52,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   }
 
   Future<void> _onUpdatePosition(_UpdatePosition event, Emitter<GPSState> emit) async {
-    final data = await trackingUseCase.getTrackingData();
+    final data = await trackingBackgroundService.getTrackingData();
     emit(state.copyWith(
       trackingData: data,
       distanceTraveled: (data.isGps
@@ -62,7 +65,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   }
 
   Future<void> _onUpdateData(_UpdateData event, Emitter<GPSState> emit) async {
-    final data = await trackingUseCase.getTrackingData();
+    final data = await trackingBackgroundService.getTrackingData();
     emit(state.copyWith(
       distanceTraveled: (data.isGps
           ? data.gpsData?.distanceTraveled
@@ -74,7 +77,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   FutureOr<void> _onUpdateStartingSpeed(_UpdateStartingSpeed event, Emitter<GPSState> emit) async {
     final double startingDistance = CalculationConstants.startingDistance;
-    final data = await trackingUseCase.getTrackingData();
+    final data = await trackingBackgroundService.getTrackingData();
     double distance = 0.0;
     double speed = 0.0;
     if (data.isGps) {
@@ -92,13 +95,13 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   FutureOr<void> _onReachGoal(_ReachGoal event, Emitter<GPSState> emit) async {
     final double goalDistance = event.goalDistance;
-    final data = await trackingUseCase.getTrackingData();
+    final data = await trackingBackgroundService.getTrackingData();
     final double distance =
         (data.isGps ? data.gpsData?.distanceTraveled : data.accelerometerData?.distanceTraveled) ??
             0.0;
     if (distance >= goalDistance) {
       emit(state.copyWith(status: GPSStatus.loading));
-      await trackingUseCase.stopTracking();
+      await trackingBackgroundService.stopTracking();
       emit(state.copyWith(status: GPSStatus.stopped));
     }
   }
@@ -120,7 +123,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
 
   @override
   Future<void> close() async {
-    await trackingUseCase.dispose();
+    await trackingBackgroundService.dispose();
     return super.close();
   }
 }

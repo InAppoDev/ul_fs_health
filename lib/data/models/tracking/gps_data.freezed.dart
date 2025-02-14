@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+GpsData _$GpsDataFromJson(Map<String, dynamic> json) {
+  return _GpsData.fromJson(json);
+}
+
 /// @nodoc
 mixin _$GpsData {
   double get distanceTraveled => throw _privateConstructorUsedError;
@@ -21,6 +25,9 @@ mixin _$GpsData {
   double get accuracy => throw _privateConstructorUsedError;
   bool get isGPSSignalStrong => throw _privateConstructorUsedError;
   int get stepCount => throw _privateConstructorUsedError;
+
+  /// Serializes this GpsData to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of GpsData
   /// with the given fields replaced by the non-null parameter values.
@@ -147,7 +154,7 @@ class __$$GpsDataImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$GpsDataImpl implements _GpsData {
   const _$GpsDataImpl(
       {this.distanceTraveled = 0.0,
@@ -155,6 +162,9 @@ class _$GpsDataImpl implements _GpsData {
       this.accuracy = 0.0,
       this.isGPSSignalStrong = true,
       this.stepCount = 0});
+
+  factory _$GpsDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GpsDataImplFromJson(json);
 
   @override
   @JsonKey()
@@ -193,6 +203,7 @@ class _$GpsDataImpl implements _GpsData {
                 other.stepCount == stepCount));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, distanceTraveled, speed,
       accuracy, isGPSSignalStrong, stepCount);
@@ -204,6 +215,13 @@ class _$GpsDataImpl implements _GpsData {
   @pragma('vm:prefer-inline')
   _$$GpsDataImplCopyWith<_$GpsDataImpl> get copyWith =>
       __$$GpsDataImplCopyWithImpl<_$GpsDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GpsDataImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _GpsData implements GpsData {
@@ -213,6 +231,8 @@ abstract class _GpsData implements GpsData {
       final double accuracy,
       final bool isGPSSignalStrong,
       final int stepCount}) = _$GpsDataImpl;
+
+  factory _GpsData.fromJson(Map<String, dynamic> json) = _$GpsDataImpl.fromJson;
 
   @override
   double get distanceTraveled;

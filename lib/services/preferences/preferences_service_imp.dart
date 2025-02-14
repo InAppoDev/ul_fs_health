@@ -10,13 +10,11 @@ class PreferencesServiceImp implements PreferencesService {
 
   @override
   Future<String> getCurrentLanguage() async {
-    return (await sharedPreferences).getString(PreferencesKeys.language) ??
-        'en';
+    return (await sharedPreferences).getString(PreferencesKeys.language) ?? 'en';
   }
 
   @override
   Future<void> saveCurrentLanguage(String languageCode) async {
-    await (await sharedPreferences)
-        .setString(PreferencesKeys.language, languageCode);
+    await (await sharedPreferences).setString(PreferencesKeys.language, languageCode);
   }
 }
