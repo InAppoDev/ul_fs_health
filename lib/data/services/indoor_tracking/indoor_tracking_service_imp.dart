@@ -334,6 +334,6 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   AccelerometerData getAccelerometerData() => AccelerometerData(
       stepCount: _stepCount,
       distanceTraveled: _estimatedDistance,
-      // isMoved: _isMoved,
+      isMoved: _isMoved,
       isTurned: _isTurned);
 }
