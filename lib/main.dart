@@ -8,7 +8,6 @@ import 'data/services/tracking_background_service/tracking_background_service.da
 import 'di/service_locator.dart';
 import 'firebase_options.dart';
 import 'my_app.dart';
-import 'services/background_service/background_service.dart';
 import 'services/preferences/preferences_service.dart';
 
 void main() async {
@@ -30,9 +29,6 @@ void main() async {
       systemNavigationBarIconBrightness: Brightness.dark,
       systemNavigationBarDividerColor: lightColorScheme.surface));
   configureDependencies();
-  TrackingBackgroundService.instance
-      .initialize(getIt<PermissionService>(), getIt<TrackingService>());
-  await initializeService();
   final language = await getIt<PreferencesService>().getCurrentLanguage();
   runApp(MyApp(initalLanguageCode: language));
 }

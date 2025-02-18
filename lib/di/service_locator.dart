@@ -25,6 +25,7 @@ import '../domain/repositories/questionnaire_repository.dart';
 import '../domain/repositories/sit_to_stand_repository.dart';
 import '../domain/repositories/user_repository.dart';
 import '../domain/repositories/walk_repository.dart';
+import '../domain/usecase/tracking_use_case.dart';
 import '../services/preferences/preferences_service.dart';
 import '../services/preferences/preferences_service_imp.dart';
 
@@ -34,6 +35,7 @@ void configureDependencies() {
   _configureGeneralDependencies();
   _configureServices();
   _configureRepositories();
+  _configureUseCases();
 }
 
 void _configureGeneralDependencies() {
@@ -73,3 +75,7 @@ void _configureRepositories() {
         () => QuestionnaireRepositoryImp(firebaseService: getIt<FirebaseService>()));
 }
 
+void _configureUseCases() {
+  getIt.registerFactory<TrackingUseCase>(
+      () => TrackingUseCase(getIt<TrackingService>(), getIt<PermissionService>()));
+}

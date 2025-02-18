@@ -11,11 +11,10 @@ import '../../../core/extensions/unit_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
-import '../../../data/services/tracking_background_service/tracking_background_service.dart';
 import '../../../di/service_locator.dart';
+import '../../../domain/usecase/tracking_use_case.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../l10n/localizations_utils.dart';
-import '../../../services/preferences/preferences_service.dart';
 import '../../logic/gps/gps_bloc.dart';
 import '../../logic/timer/timer_bloc.dart';
 import '../../logic/user/user_bloc.dart';
@@ -28,23 +27,22 @@ import '../widget/walk_test_note_widget.dart';
 @RoutePage()
 class WalkTestStartScreen extends StatelessWidget {
   WalkTestStartScreen({super.key});
-
   final AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) {
-            audioPlayer
-              ..setAsset('assets/sounds/signal.mp3')
-              ..play();
-            return TimerBloc()
-              ..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration));
-          }),
           BlocProvider(
-              create: (_) =>
-                  GPSBloc(TrackingBackgroundService.instance)..add(const GPSEvent.startTracking())),
+              create: (_) {
+                audioPlayer
+                  ..setAsset('assets/sounds/signal.mp3')
+                  ..play();
+                return TimerBloc()
+                  ..add(TimerEvent.startTimer(CalculationConstants.defaultTimerDuration));
+              }),
+          BlocProvider(
+              create: (_) => GPSBloc(getIt<TrackingUseCase>())..add(const GPSEvent.startTracking())),
         ],
         child: Builder(builder: (context) {
           return WalkTestStartContent(
@@ -56,8 +54,7 @@ class WalkTestStartScreen extends StatelessWidget {
 }
 
 class WalkTestStartContent extends StatelessWidget {
-  const WalkTestStartContent(
-      {super.key, required this.length, required this.audioPlayer, required this.userId});
+  const WalkTestStartContent({super.key, required this.length, required this.audioPlayer, required this.userId});
 
   final double length;
   final String userId;
@@ -72,13 +69,14 @@ class WalkTestStartContent extends StatelessWidget {
             audioPlayer
               ..setAsset('assets/sounds/signal.mp3')
               ..play();
-          } else if (state.status == TimerStatus.completed) {
+          }
+          else if (state.status == TimerStatus.completed) {
             context.read<GPSBloc>().add(const GPSEvent.updatePosition());
             context
                 .read<GPSBloc>()
                 .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
           } else if (state.status == TimerStatus.running) {
-            context.read<GPSBloc>().add(const GPSEvent.updateData());
+            // context.read<GPSBloc>().add(const GPSEvent.updateData());
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
                 duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
           }
