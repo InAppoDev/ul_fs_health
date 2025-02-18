@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import '../../models/tracking/tracking_data.dart';
 import '../permission/permission_service.dart';
 import '../tracking/tracking_service.dart';
+import '../tracking/tracking_service_imp.dart';
 
 
 class TrackingBackgroundService {
@@ -20,7 +21,7 @@ class TrackingBackgroundService {
     this.permissionService = permissionService;
   }
 
-  bool get isGpsMode => trackingService!.isGpsMode;
+  bool get isGpsMode => trackingService!.currentMode == TrackingMode.gps;
 
   Future<void> startTracking() async {
     final bool serviceEnabled = await Geolocator.isLocationServiceEnabled();

@@ -11,6 +11,7 @@ import '../../../core/extensions/unit_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
+import '../../../data/services/tracking/tracking_service_imp.dart';
 import '../../../di/service_locator.dart';
 import '../../../domain/usecase/tracking_use_case.dart';
 import '../../../gen/assets.gen.dart';
@@ -97,7 +98,7 @@ class WalkTestStartContent extends StatelessWidget {
         headerText: appLocalizations.walkTestTitleText,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(context.watch<GPSBloc>().state.trackingData.isGps ? "GPS" : "Accelerometer",
+          Text(context.watch<GPSBloc>().state.trackingData.mode == TrackingMode.gps ? "GPS" : "Accelerometer",
               style: body1),
           Gaps.larger.spaceVertical,
           Text("Accuracy: ${context.watch<GPSBloc>().state.trackingData.gpsData?.accuracy ?? 0.0}",

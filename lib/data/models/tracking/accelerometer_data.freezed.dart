@@ -22,6 +22,8 @@ AccelerometerData _$AccelerometerDataFromJson(Map<String, dynamic> json) {
 mixin _$AccelerometerData {
   double get distanceTraveled => throw _privateConstructorUsedError;
   int get stepCount => throw _privateConstructorUsedError;
+  bool get isMoved => throw _privateConstructorUsedError;
+  bool get isTurned => throw _privateConstructorUsedError;
 
   /// Serializes this AccelerometerData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +41,8 @@ abstract class $AccelerometerDataCopyWith<$Res> {
           AccelerometerData value, $Res Function(AccelerometerData) then) =
       _$AccelerometerDataCopyWithImpl<$Res, AccelerometerData>;
   @useResult
-  $Res call({double distanceTraveled, int stepCount});
+  $Res call(
+      {double distanceTraveled, int stepCount, bool isMoved, bool isTurned});
 }
 
 /// @nodoc
@@ -59,6 +62,8 @@ class _$AccelerometerDataCopyWithImpl<$Res, $Val extends AccelerometerData>
   $Res call({
     Object? distanceTraveled = null,
     Object? stepCount = null,
+    Object? isMoved = null,
+    Object? isTurned = null,
   }) {
     return _then(_value.copyWith(
       distanceTraveled: null == distanceTraveled
@@ -69,6 +74,14 @@ class _$AccelerometerDataCopyWithImpl<$Res, $Val extends AccelerometerData>
           ? _value.stepCount
           : stepCount // ignore: cast_nullable_to_non_nullable
               as int,
+      isMoved: null == isMoved
+          ? _value.isMoved
+          : isMoved // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTurned: null == isTurned
+          ? _value.isTurned
+          : isTurned // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -81,7 +94,8 @@ abstract class _$$AccelerometerDataImplCopyWith<$Res>
       __$$AccelerometerDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double distanceTraveled, int stepCount});
+  $Res call(
+      {double distanceTraveled, int stepCount, bool isMoved, bool isTurned});
 }
 
 /// @nodoc
@@ -99,6 +113,8 @@ class __$$AccelerometerDataImplCopyWithImpl<$Res>
   $Res call({
     Object? distanceTraveled = null,
     Object? stepCount = null,
+    Object? isMoved = null,
+    Object? isTurned = null,
   }) {
     return _then(_$AccelerometerDataImpl(
       distanceTraveled: null == distanceTraveled
@@ -109,6 +125,14 @@ class __$$AccelerometerDataImplCopyWithImpl<$Res>
           ? _value.stepCount
           : stepCount // ignore: cast_nullable_to_non_nullable
               as int,
+      isMoved: null == isMoved
+          ? _value.isMoved
+          : isMoved // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTurned: null == isTurned
+          ? _value.isTurned
+          : isTurned // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -117,7 +141,10 @@ class __$$AccelerometerDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AccelerometerDataImpl implements _AccelerometerData {
   const _$AccelerometerDataImpl(
-      {this.distanceTraveled = 0.0, this.stepCount = 0});
+      {this.distanceTraveled = 0.0,
+      this.stepCount = 0,
+      this.isMoved = false,
+      this.isTurned = false});
 
   factory _$AccelerometerDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$AccelerometerDataImplFromJson(json);
@@ -128,10 +155,16 @@ class _$AccelerometerDataImpl implements _AccelerometerData {
   @override
   @JsonKey()
   final int stepCount;
+  @override
+  @JsonKey()
+  final bool isMoved;
+  @override
+  @JsonKey()
+  final bool isTurned;
 
   @override
   String toString() {
-    return 'AccelerometerData(distanceTraveled: $distanceTraveled, stepCount: $stepCount)';
+    return 'AccelerometerData(distanceTraveled: $distanceTraveled, stepCount: $stepCount, isMoved: $isMoved, isTurned: $isTurned)';
   }
 
   @override
@@ -142,12 +175,16 @@ class _$AccelerometerDataImpl implements _AccelerometerData {
             (identical(other.distanceTraveled, distanceTraveled) ||
                 other.distanceTraveled == distanceTraveled) &&
             (identical(other.stepCount, stepCount) ||
-                other.stepCount == stepCount));
+                other.stepCount == stepCount) &&
+            (identical(other.isMoved, isMoved) || other.isMoved == isMoved) &&
+            (identical(other.isTurned, isTurned) ||
+                other.isTurned == isTurned));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, distanceTraveled, stepCount);
+  int get hashCode =>
+      Object.hash(runtimeType, distanceTraveled, stepCount, isMoved, isTurned);
 
   /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.
@@ -169,7 +206,9 @@ class _$AccelerometerDataImpl implements _AccelerometerData {
 abstract class _AccelerometerData implements AccelerometerData {
   const factory _AccelerometerData(
       {final double distanceTraveled,
-      final int stepCount}) = _$AccelerometerDataImpl;
+      final int stepCount,
+      final bool isMoved,
+      final bool isTurned}) = _$AccelerometerDataImpl;
 
   factory _AccelerometerData.fromJson(Map<String, dynamic> json) =
       _$AccelerometerDataImpl.fromJson;
@@ -178,6 +217,10 @@ abstract class _AccelerometerData implements AccelerometerData {
   double get distanceTraveled;
   @override
   int get stepCount;
+  @override
+  bool get isMoved;
+  @override
+  bool get isTurned;
 
   /// Create a copy of AccelerometerData
   /// with the given fields replaced by the non-null parameter values.

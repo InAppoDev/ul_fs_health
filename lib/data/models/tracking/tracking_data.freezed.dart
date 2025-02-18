@@ -23,7 +23,7 @@ mixin _$TrackingData {
   AccelerometerData? get accelerometerData =>
       throw _privateConstructorUsedError;
   GpsData? get gpsData => throw _privateConstructorUsedError;
-  bool get isGps => throw _privateConstructorUsedError;
+  TrackingMode get mode => throw _privateConstructorUsedError;
 
   /// Serializes this TrackingData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,7 +42,9 @@ abstract class $TrackingDataCopyWith<$Res> {
       _$TrackingDataCopyWithImpl<$Res, TrackingData>;
   @useResult
   $Res call(
-      {AccelerometerData? accelerometerData, GpsData? gpsData, bool isGps});
+      {AccelerometerData? accelerometerData,
+      GpsData? gpsData,
+      TrackingMode mode});
 
   $AccelerometerDataCopyWith<$Res>? get accelerometerData;
   $GpsDataCopyWith<$Res>? get gpsData;
@@ -65,7 +67,7 @@ class _$TrackingDataCopyWithImpl<$Res, $Val extends TrackingData>
   $Res call({
     Object? accelerometerData = freezed,
     Object? gpsData = freezed,
-    Object? isGps = null,
+    Object? mode = null,
   }) {
     return _then(_value.copyWith(
       accelerometerData: freezed == accelerometerData
@@ -76,10 +78,10 @@ class _$TrackingDataCopyWithImpl<$Res, $Val extends TrackingData>
           ? _value.gpsData
           : gpsData // ignore: cast_nullable_to_non_nullable
               as GpsData?,
-      isGps: null == isGps
-          ? _value.isGps
-          : isGps // ignore: cast_nullable_to_non_nullable
-              as bool,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as TrackingMode,
     ) as $Val);
   }
 
@@ -121,7 +123,9 @@ abstract class _$$TrackingDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {AccelerometerData? accelerometerData, GpsData? gpsData, bool isGps});
+      {AccelerometerData? accelerometerData,
+      GpsData? gpsData,
+      TrackingMode mode});
 
   @override
   $AccelerometerDataCopyWith<$Res>? get accelerometerData;
@@ -144,7 +148,7 @@ class __$$TrackingDataImplCopyWithImpl<$Res>
   $Res call({
     Object? accelerometerData = freezed,
     Object? gpsData = freezed,
-    Object? isGps = null,
+    Object? mode = null,
   }) {
     return _then(_$TrackingDataImpl(
       accelerometerData: freezed == accelerometerData
@@ -155,10 +159,10 @@ class __$$TrackingDataImplCopyWithImpl<$Res>
           ? _value.gpsData
           : gpsData // ignore: cast_nullable_to_non_nullable
               as GpsData?,
-      isGps: null == isGps
-          ? _value.isGps
-          : isGps // ignore: cast_nullable_to_non_nullable
-              as bool,
+      mode: null == mode
+          ? _value.mode
+          : mode // ignore: cast_nullable_to_non_nullable
+              as TrackingMode,
     ));
   }
 }
@@ -167,7 +171,7 @@ class __$$TrackingDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TrackingDataImpl implements _TrackingData {
   const _$TrackingDataImpl(
-      {this.accelerometerData, this.gpsData, this.isGps = true});
+      {this.accelerometerData, this.gpsData, this.mode = TrackingMode.none});
 
   factory _$TrackingDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$TrackingDataImplFromJson(json);
@@ -178,11 +182,11 @@ class _$TrackingDataImpl implements _TrackingData {
   final GpsData? gpsData;
   @override
   @JsonKey()
-  final bool isGps;
+  final TrackingMode mode;
 
   @override
   String toString() {
-    return 'TrackingData(accelerometerData: $accelerometerData, gpsData: $gpsData, isGps: $isGps)';
+    return 'TrackingData(accelerometerData: $accelerometerData, gpsData: $gpsData, mode: $mode)';
   }
 
   @override
@@ -193,13 +197,13 @@ class _$TrackingDataImpl implements _TrackingData {
             (identical(other.accelerometerData, accelerometerData) ||
                 other.accelerometerData == accelerometerData) &&
             (identical(other.gpsData, gpsData) || other.gpsData == gpsData) &&
-            (identical(other.isGps, isGps) || other.isGps == isGps));
+            (identical(other.mode, mode) || other.mode == mode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, accelerometerData, gpsData, isGps);
+      Object.hash(runtimeType, accelerometerData, gpsData, mode);
 
   /// Create a copy of TrackingData
   /// with the given fields replaced by the non-null parameter values.
@@ -221,7 +225,7 @@ abstract class _TrackingData implements TrackingData {
   const factory _TrackingData(
       {final AccelerometerData? accelerometerData,
       final GpsData? gpsData,
-      final bool isGps}) = _$TrackingDataImpl;
+      final TrackingMode mode}) = _$TrackingDataImpl;
 
   factory _TrackingData.fromJson(Map<String, dynamic> json) =
       _$TrackingDataImpl.fromJson;
@@ -231,7 +235,7 @@ abstract class _TrackingData implements TrackingData {
   @override
   GpsData? get gpsData;
   @override
-  bool get isGps;
+  TrackingMode get mode;
 
   /// Create a copy of TrackingData
   /// with the given fields replaced by the non-null parameter values.

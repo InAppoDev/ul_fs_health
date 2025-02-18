@@ -6,7 +6,7 @@ import 'gps_service.dart';
 
 mixin GPSMixin {
   final LocationSettings kLocationSettings = const LocationSettings(
-    accuracy: LocationAccuracy.bestForNavigation,
+    accuracy: LocationAccuracy.high,
   );
 }
 
@@ -44,14 +44,14 @@ class GPSServiceImp with GPSMixin implements GPSService {
   Future<void> startTracking(
       {required bool Function() onRunning, required void Function(Position) onUpdate}) async {
     _positionStream =
-        Geolocator.getPositionStream(locationSettings: kLocationSettings).listen((position) {
+        Geolocator.getPositionStream(locationSettings: kLocationSettings).listen((position) async {
       final acc = position.accuracy;
       _hasStrongSignal = acc <= 10.0;
       _accuracy = acc;
       _distanceTraveled = 0.0;
       final bool running = onRunning();
       if (running) {
-        _onLocationUpdate(position);
+        await _onLocationUpdate(position);
       }
       onUpdate(position);
     });
@@ -85,7 +85,7 @@ class GPSServiceImp with GPSMixin implements GPSService {
   @override
   Stream<Position> get positionStream => _positionController.stream;
 
-  void _onLocationUpdate(Position position) {
+  Future<void> _onLocationUpdate(Position position) async {
     if (_lastPosition != null) {
       if (!_hasStrongSignal) {
         return;
@@ -108,8 +108,7 @@ class GPSServiceImp with GPSMixin implements GPSService {
       _distanceTraveled = _smoothedDistance;
       print("gps:::: $_distanceTraveled");
     }
-
-    _lastPosition = position;
+    _lastPosition = await Geolocator.getCurrentPosition(locationSettings: kLocationSettings);
     if (!_positionController.isClosed) {
       _positionController.add(position);
     }

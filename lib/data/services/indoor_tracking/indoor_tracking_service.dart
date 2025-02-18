@@ -9,6 +9,10 @@ abstract class IndoorTrackingService {
 
   double get estimatedDistanceTravelled;
 
+  bool get isTurned;
+
+  bool get isMoved;
+
   void reset();
 
   AccelerometerData getAccelerometerData();

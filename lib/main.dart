@@ -10,6 +10,7 @@ import 'firebase_options.dart';
 import 'my_app.dart';
 import 'services/preferences/preferences_service.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

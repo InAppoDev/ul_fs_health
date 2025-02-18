@@ -1,20 +1,21 @@
-
 import '../../../models/measurment/coordinate_model.dart';
 
-enum KalmanFilterType {x, y, z}
+enum KalmanFilterType { x, y, z }
 
 class KalmanFilter {
+  KalmanFilter({this.processNoise = 1e-5, this.measurementNoise = 0.1});
+
   CoordinateModel _estimate = const CoordinateModel();
   CoordinateModel _error = const CoordinateModel();
-  final double _processNoise = 1e-5;
-  final double _measurementNoise = 0.1;
+  final double processNoise;
+  final double measurementNoise;
 
   double applyOne(double measurement, double estimate, double error, KalmanFilterType type) {
     double errorCovariance = error;
-    final double kalmanGain = errorCovariance / (errorCovariance + _measurementNoise);
+    final double kalmanGain = errorCovariance / (errorCovariance + measurementNoise);
     final double est = estimate + kalmanGain * (measurement - estimate);
-    errorCovariance = (1 - kalmanGain) * errorCovariance + _processNoise;
-    switch(type) {
+    errorCovariance = (1 - kalmanGain) * errorCovariance + processNoise;
+    switch (type) {
       case KalmanFilterType.x:
         _error = _error.copyWith(x: errorCovariance);
         _estimate = _estimate.copyWith(x: est);
@@ -28,14 +29,10 @@ class KalmanFilter {
     return est;
   }
 
-  CoordinateModel apply(double x, double y, double z) {
+  CoordinateModel apply(double x, [double y = 0, double z = 0]) {
     final double newX = applyOne(x, _estimate.x, _error.x, KalmanFilterType.x);
     final double newY = applyOne(y, _estimate.y, _error.y, KalmanFilterType.y);
     final double newZ = applyOne(z, _estimate.z, _error.z, KalmanFilterType.z);
-    return CoordinateModel(
-      x: newX,
-      y: newY,
-      z: newZ
-    );
+    return CoordinateModel(x: newX, y: newY, z: newZ);
   }
 }
