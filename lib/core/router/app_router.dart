@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/services/permission/gps_permission_service.dart';
+import '../../data/services/permission/permission_service.dart';
 import '../../di/service_locator.dart';
 import '../../domain/repositories/questionnaire_repository.dart';
 import '../../domain/repositories/walk_repository.dart';
@@ -56,9 +58,17 @@ class AppRouter extends RootStackRouter {
         ),
         WalkRootRoute.route,
         QuestionnaireRootRoute.route,
-        AutoRoute(
+        CustomRoute<PageRoute<dynamic>>(
           path: '/home',
           page: HomeRoute.page,
+          customRouteBuilder: <T>(context, child, page) => PageRouteBuilder(
+            fullscreenDialog: page.fullscreenDialog,
+            settings: page,
+            pageBuilder: (context, animation, secondaryAnimation) {
+              getIt<PermissionService>().handlePermission();
+              return child;
+            },
+          ),
         ),
         AutoRoute(
           path: '/sit_to_stand',

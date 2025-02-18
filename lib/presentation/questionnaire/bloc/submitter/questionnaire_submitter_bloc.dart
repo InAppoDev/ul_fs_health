@@ -34,7 +34,7 @@ class QuestionnaireSubmitterBloc
   Future<void> _onSubmitWork(_SubmitWork event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQWorkData(
+      await questionnaireRepository.storeData(
           entity: QuestionnaireEntity(
               workData: WorkDataEntity(
                   hours: event.workData.hours,
@@ -52,9 +52,8 @@ class QuestionnaireSubmitterBloc
       _SubmitWorkInitial event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQWorkData(
-          entity:
-              QuestionnaireEntity(isVigorousActivity: event.hasActivity));
+      await questionnaireRepository.storeData(
+          entity: QuestionnaireEntity(isVigorousActivity: event.hasActivity));
 
       emit(state.copyWith(status: QuestionnaireSubmitterStatus.success));
     } catch (e) {
@@ -67,9 +66,9 @@ class QuestionnaireSubmitterBloc
       _SubmitTravel event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQTravelData(
+      await questionnaireRepository.storeData(
           entity: QuestionnaireEntity(
-              recreateData: QuestionnaireDataEntity(
+              travelData: QuestionnaireDataEntity(
                   daysInWeek: event.travelData.daysInWeek ?? 0,
                   hasActivity: event.travelData.hasActivity ?? false,
                   hours: event.travelData.hours,
@@ -85,7 +84,7 @@ class QuestionnaireSubmitterBloc
       _SubmitRecreation event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQRecreationData(
+      await questionnaireRepository.storeData(
           entity: QuestionnaireEntity(
               recreateData: QuestionnaireDataEntity(
                   daysInWeek: event.recreationData.daysInWeek ?? 0,
@@ -103,7 +102,7 @@ class QuestionnaireSubmitterBloc
       _SubmitSedentary event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeGPAQSedentaryData(
+      await questionnaireRepository.storeData(
           entity: QuestionnaireEntity(
               sedentaryData: SedentaryDataEntity(
         hours: event.sedentaryData.hours,
@@ -119,7 +118,7 @@ class QuestionnaireSubmitterBloc
   Future<void> _onSubmitLEFS(_SubmitLEFS event, Emitter<QuestionnaireSubmitterState> emit) async {
     emit(state.copyWith(status: QuestionnaireSubmitterStatus.loading));
     try {
-      await questionnaireRepository.storeLEFSData(
+      await questionnaireRepository.storeData(
           entity: QuestionnaireEntity(lefsData: LEFSDataEntity(data: event.lefsData)));
       emit(state.copyWith(status: QuestionnaireSubmitterStatus.success));
     } catch (e) {
