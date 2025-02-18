@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../domain/repositories/auth_repository.dart';
@@ -26,6 +27,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final userId = await authRepository.signInWithEmailPassword(
           event.email, event.password);
       emit(state.copyWith(status: AuthStatus.successLogin, userId: userId));
+    } on FirebaseAuthException catch (e) {
+      emit(state.copyWith(
+          status: AuthStatus.failure, error: e.message ?? 'Unable to sign in'));
     } catch (e) {
       emit(state.copyWith(status: AuthStatus.failure, error: e.toString()));
     }
@@ -38,6 +42,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final userId = await authRepository.signUpWithEmailPassword(
           event.email, event.password);
       emit(state.copyWith(status: AuthStatus.successSignup, userId: userId));
+    } on FirebaseAuthException catch (e) {
+      emit(state.copyWith(
+          status: AuthStatus.failure, error: e.message ?? 'Unable to sign up'));
     } catch (e) {
       emit(state.copyWith(status: AuthStatus.failure, error: e.toString()));
     }
