@@ -98,7 +98,7 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   Future<void> initPlatformState() async {
     final bool granted = await _checkActivityRecognitionPermission();
     if (!granted) {
-      dev.log("errrr pedometer");
+      dev.log('errrr pedometer');
       return;
       // tell user, the app will not work
     }
@@ -129,7 +129,7 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
     await initPlatformState();
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream.listen((status) {
       _isMoved = status.status != 'stopped';
-      print("KKKK::: ${status.status}");
+      dev.log('KKKK::: ${status.status}');
     });
     _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
       _estimatedDistance = 0.0;
