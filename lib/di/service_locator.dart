@@ -13,7 +13,6 @@ import '../data/services/firebase/firebase_service.dart';
 import '../data/services/firebase/firebase_service_imp.dart';
 import '../data/services/gps/gps_service.dart';
 import '../data/services/gps/gps_service_imp.dart';
-import '../data/services/indoor_tracking/helpers/localization_tracking.dart';
 import '../data/services/indoor_tracking/indoor_tracking_service.dart';
 import '../data/services/indoor_tracking/indoor_tracking_service_imp.dart';
 import '../data/services/permission/gps_permission_service.dart';

@@ -30,5 +30,4 @@ const _$TrackingModeEnumMap = {
   TrackingMode.none: 'none',
   TrackingMode.gps: 'gps',
   TrackingMode.indoor: 'indoor',
-  TrackingMode.localization: 'localization',
 };

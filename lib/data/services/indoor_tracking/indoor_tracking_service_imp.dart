@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:developer' as dev;
+
 
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -51,7 +53,6 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   double _yaw = 0.0;
   double _pitch = 0.0;
   double _roll = 0.0;
-  double _prevYaw = 0.0;
 
   Quaternion _currentQuat = Quaternion.identity();
   Quaternion _prevQuat = Quaternion.identity();
@@ -98,7 +99,7 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   Future<void> initPlatformState() async {
     final bool granted = await _checkActivityRecognitionPermission();
     if (!granted) {
-      print("errrr pedometer");
+      dev.log("errrr pedometer");
       return;
       // tell user, the app will not work
     }
