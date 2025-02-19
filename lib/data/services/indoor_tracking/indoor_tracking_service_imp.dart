@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'dart:math';
 import 'dart:developer' as dev;
-
+import 'dart:math';
 
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
