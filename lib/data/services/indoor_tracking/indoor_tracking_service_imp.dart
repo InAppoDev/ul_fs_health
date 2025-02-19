@@ -1,10 +1,15 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:sensors_plus/sensors_plus.dart';
-import '../../models/measurment/coordinate_model.dart';
+import 'package:vector_math/vector_math.dart';
 import '../../models/tracking/accelerometer_data.dart';
 import 'helpers/kalman_filter.dart';
+import 'helpers/mahony_filter.dart';
 import 'indoor_tracking_service.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:pedometer/pedometer.dart';
+
+
 
 mixin IndoorTrackingMixin {
   double lowPassFilter(double newData, double prevData, double alpha) {
@@ -27,12 +32,11 @@ mixin IndoorTrackingMixin {
     return time;
   }
 
-  CoordinateModel applyHighPassFilter(
-      CoordinateModel newAcc, CoordinateModel prevAcc, double alpha, CoordinateModel gravity) {
-    return CoordinateModel(
-      x: alpha * (prevAcc.x + newAcc.x - gravity.x),
-      y: alpha * (prevAcc.y + newAcc.y - gravity.y),
-      z: alpha * (prevAcc.z + newAcc.z - gravity.z),
+  Vector3 applyHighPassFilterapplyHighPassFilter(Vector3 newAcc, Vector3 prevAcc, double alpha, Vector3 gravity) {
+    return Vector3(
+      alpha * (prevAcc.x + newAcc.x - gravity.x),
+      alpha * (prevAcc.y + newAcc.y - gravity.y),
+      alpha * (prevAcc.z + newAcc.z - gravity.z),
     );
   }
 
@@ -46,17 +50,14 @@ mixin IndoorTrackingMixin {
 }
 
 class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackingService {
-  int _stepCount = 0;
   double _estimatedDistance = 0.0;
-  final List<double> _accelerationBuffer = [];
-  final List<CoordinateModel> _referenceStepPattern = [];
-  final List<double> _recentMagnitudes = [];
-  final _peakWindowSize = 10;
-  final int _bufferSize = 10;
+  final MahonyFilter mahonyFilter = MahonyFilter();
+  StreamSubscription<PedestrianStatus>? _pedestrianStatusStream;
 
   bool _isMoved = false;
 
-  CoordinateModel _prevPos = const CoordinateModel();
+  Vector3 _prevPos = Vector3.zero();
+
 
   @override
   bool get isMoved => _isMoved;
@@ -66,273 +67,263 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
   final KalmanFilter _kalmanFilter = KalmanFilter(measurementNoise: 0.01);
 
-  final StreamController<int> _stepController = StreamController<int>.broadcast();
+  final KalmanFilter _kalmanFilterVelocity = KalmanFilter(measurementNoise: 0.01);
+
   StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
   StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
 
-  static const double _motionThreshold = 1e-5;
 
   static const double _accelerationDeadZoneThreshold = 0.005;
-  static const double _peakThreshold = 1.2;
   static const double _velocityDeadZoneThreshold = 0.001;
-  final int _minStepIntervalMs = 300;  // Minimum interval (0.3s)
-  final int _maxStepIntervalMs = 1500; // Maximum interval (1.5s)
 
-  CoordinateModel _gyros = const CoordinateModel();
+  Timer? _timer;
 
-  CoordinateModel _velocity = const CoordinateModel();
 
-  CoordinateModel _smoothedAcc = const CoordinateModel();
+  AccelerometerEvent? _currentEvent;
+  GyroscopeEvent? _currentGyroEvent;
+  double _prevTime = 0.0;
+
+  Vector3 _velocity = Vector3.zero();
+
+  Vector3 _prevCoord = Vector3.zero();
+  Vector3 _prevGyroCoord = Vector3.zero();
 
   double _yaw = 0.0;
   double _pitch = 0.0;
   double _roll = 0.0;
-  double _prevYaw = 0.0;
 
   bool _isTurned = false;
 
-  DateTime _startTimer = DateTime.now();
-  DateTime? _lastTimestamp;
-  DateTime? _lastTimestampGyro;
 
-  static const double _gravityAlpha = 0.8;
-  CoordinateModel _gravity = const CoordinateModel();
+  static const double _gravityAlpha = 0.1;
+  Vector3 _gravity = Vector3.zero();
 
-  @override
-  int get stepCount => _stepCount;
 
   @override
   double get estimatedDistanceTravelled => _estimatedDistance;
 
-  @override
-  Stream<int> get stepCountStream => _stepController.stream;
+
+  List<double> quaternionToEuler(List<double> q) {
+    final double qw = q[0]; // w (scalar)
+    final double qx = q[1]; // x
+    final double qy = q[2]; // y
+    final double qz = q[3]; // z
+
+    // Roll (φ) - Rotation around X-axis
+    final double roll = atan2(2.0 * (qw * qx + qy * qz), 1.0 - 2.0 * (qx * qx + qy * qy));
+
+    // Pitch (θ) - Rotation around Y-axis
+    final double sinp = 2.0 * (qw * qy - qz * qx);
+    final double pitch = (sinp.abs() >= 1.0) ? (sinp.sign * (pi / 2)) : asin(sinp);
+
+    // Yaw (ψ) - Rotation around Z-axis
+    final double yaw = atan2(2.0 * (qw * qz + qx * qy), 1.0 - 2.0 * (qy * qy + qz * qz));
+
+    return [roll, pitch, yaw]; // Return values in radians
+  }
+
+  Future<bool> _checkActivityRecognitionPermission() async {
+    bool granted = await Permission.activityRecognition.isGranted;
+    final bool granted2 = await Permission.sensors.isGranted;
+
+    if (!granted) {
+      granted = await Permission.activityRecognition.request() ==
+          PermissionStatus.granted;
+    }
+    if (!granted2) {
+      granted = await Permission.sensors.request() ==
+          PermissionStatus.granted;
+    }
+
+    return granted;
+  }
+
+  Future<void> initPlatformState() async {
+    final bool granted = await _checkActivityRecognitionPermission();
+    if (!granted) {
+      print("errrr pedometer");
+      return ;
+      // tell user, the app will not work
+    }
+
+  }
+
 
   @override
   Future<void> startTracking(
-      {required bool Function() onRunning,
-      required void Function(AccelerometerEvent) onUpdate}) async {
-    _accelerometerSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
-      final now = DateTime.now();
-      if (_lastTimestamp == null) {
-        _lastTimestamp = now;
-        return;
-      }
+      {required bool Function() onRunning, required void Function(double) onUpdate}) async {
+    await initPlatformState();
+    _pedestrianStatusStream = Pedometer.pedestrianStatusStream.listen((status) {
+      _isMoved = status.status != 'stopped';
+      print("KKKK::: ${status.status}");
+    });
+    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
       _estimatedDistance = 0.0;
-      _gravity = CoordinateModel(
-          x: lowPassFilter(event.x, _gravity.x, _gravityAlpha),
-          y: lowPassFilter(event.y, _gravity.y, _gravityAlpha),
-          z: lowPassFilter(event.z, _gravity.z, _gravityAlpha));
+      if (_currentEvent != null && _currentGyroEvent != null) {
+        _kalmanFilter.predict(KalmanFilterType.x);
+        _kalmanFilter.predict(KalmanFilterType.y);
+        _kalmanFilter.predict(KalmanFilterType.z);
+        final Vector3 filtered = _kalmanFilter.apply(_currentEvent!.x, _currentEvent!.y, _currentEvent!.z);
+        double ax = filtered.x;
+        double ay = filtered.y;
+        double az = filtered.z;
 
-      final CoordinateModel linearAcc = CoordinateModel(
-          x: event.x - _gravity.x, y: event.y - _gravity.y, z: event.z - _gravity.z);
+        ax = lowPassFilter(ax, _prevCoord.x, 1.2);
+        ay = lowPassFilter(ay, _prevCoord.y, 1.2);
+        az = lowPassFilter(az, _prevCoord.z, 1.2);
 
-      final filteredAcc = applyHighPassFilter(linearAcc, _smoothedAcc, 0.9, _gravity);
+        _prevCoord = Vector3(ax, ay, az);
 
-      final coord = CoordinateModel(x: event.x, y: event.y, z: event.z);
-      final bool isRunning = onRunning();
-      final moved = _isStepDetected(filteredAcc, coord, event);
-      if ((moved || _isTurned) && isRunning) {
-        _onStepDetected(filteredAcc, event);
-        _updateVelocityAndDistance(filteredAcc, event);
+        double gx = _currentGyroEvent!.x;
+        double gy = _currentGyroEvent!.y;
+        double gz = _currentGyroEvent!.z;
+
+        gx = lowPassFilter(gx, _prevGyroCoord.x, _gravityAlpha);
+        gy = lowPassFilter(gy, _prevGyroCoord.y, _gravityAlpha);
+        gz = lowPassFilter(gz, _prevGyroCoord.z, _gravityAlpha);
+
+        _prevGyroCoord = Vector3(gx, gy, gz);
+        mahonyFilter.update(ax, ay, az, gx, gy, gz);
+
+        final List<double> quaternion = mahonyFilter.quaternion;
+
+        // Correct gravity from the accelerometer reading
+        final double gravityX = 2 * (quaternion[1] * quaternion[3] - quaternion[0] * quaternion[2]);
+        final double gravityY = 2 * (quaternion[0] * quaternion[1] + quaternion[2] * quaternion[3]);
+        final double gravityZ = quaternion[0] * quaternion[0] -
+            quaternion[1] * quaternion[1] -
+            quaternion[2] * quaternion[2] +
+            quaternion[3] * quaternion[3];
+
+        final euler = quaternionToEuler(quaternion);
+        _roll = euler[0];
+        _pitch = euler[1];
+        _yaw = euler[2];
+
+        _gravity = Vector3(gravityX, gravityY, gravityZ);
+
+        ax -= gravityX;
+        ay -= gravityY;
+        az -= gravityZ;
+
+        final double currentTime = timer.tick / 100.0;
+        final double deltaT = currentTime - _prevTime;
+        _prevTime = currentTime;
+
+        final linearAcc = Vector3(ax, ay, az);
+
+        final bool isRunning = onRunning();
+        if (_isMoved && isRunning) {
+          _onStepDetected(linearAcc, deltaT);
+          _updateVelocityAndDistance(linearAcc, deltaT);
+        }
+        onUpdate(_estimatedDistance);
       }
-      _prevPos = coord;
-      print("KKKK::: ${now.difference(_startTimer).inMilliseconds}");
-      if (now.difference(_startTimer).inMilliseconds > 100) {
-        _isMoved = moved;
-        _startTimer = now;
-      }
-
-      _lastTimestamp = now;
-      onUpdate(event);
     });
 
+    _accelerometerSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
+      _currentEvent = event;
+
+    });
+
+
+
     _gyroscopeSubscription = gyroscopeEvents.listen((GyroscopeEvent event) {
-      final DateTime now = DateTime.now();
-      if (_lastTimestampGyro == null) {
-        _lastTimestampGyro = now;
-        return;
-      }
-
-      final time = now.difference(_lastTimestamp!).inMilliseconds / 1000.0;
-
-      final double deltaTime = applyDeltaTimeThreshold(time, 0.1, 0.2);
-      _gyros = CoordinateModel(x: event.x, y: event.y, z: event.z);
-
-      _yaw += _gyros.z * deltaTime;
-      _pitch += _gyros.x * deltaTime;
-      _roll += _gyros.y * deltaTime;
-
-      if (_yaw > pi) {
-        _yaw -= 2 * pi;
-      }
-
-      if (_yaw < -pi) {
-        _yaw += 2 * pi;
-      }
-
-      // Check for a significant change in yaw (e.g., more than 30 degrees)
-      final double deltaYaw = (_yaw - _prevYaw).abs();
-      _isTurned = deltaYaw > pi / 6;
-
-      // Update previous yaw
-      _prevYaw = _yaw;
+      _currentGyroEvent = event;
+      // final double deltaTime = applyDeltaTimeThreshold(time, 0.1, 0.2);
+      // _gyros = Vector3(x: event.x, y: event.y, z: event.z);
+      //
+      // _yaw += _gyros.z * deltaTime;
+      // _pitch += _gyros.x * deltaTime;
+      // _roll += _gyros.y * deltaTime;
+      //
+      // if (_yaw > pi) {
+      //   _yaw -= 2 * pi;
+      // }
+      //
+      // if (_yaw < -pi) {
+      //   _yaw += 2 * pi;
+      // }
+      //
+      // // Check for a significant change in yaw (e.g., more than 30 degrees)
+      // final double deltaYaw = (_yaw - _prevYaw).abs();
+      // _isTurned = deltaYaw > pi / 6;
+      //
+      // // Update previous yaw
+      // _prevYaw = _yaw;
     });
   }
 
   @override
   void reset() {
-    // _smoothedAcc = const CoordinateModel();
     _estimatedDistance = 0.0;
-    // _accelerationBuffer.clear();
-    // _velocity = const CoordinateModel();
-    // _yaw = 0.0;
-    // _pitch = 0.0;
-    // _roll = 0.0;
-    // // _lastTimestamp = null;
-    // // _lastTimestampGyro = null;
-    // _gravity = const CoordinateModel();
-    // _gyros = const CoordinateModel();
   }
 
   @override
   Future<void> stopTracking() async {
     await _accelerometerSubscription?.cancel();
     await _gyroscopeSubscription?.cancel();
+    _timer?.cancel();
+    await _pedestrianStatusStream?.cancel();
   }
 
-  bool _isMoving() {
-    if (_recentMagnitudes.length < _peakWindowSize) {
-      return false;
+  void _onStepDetected(Vector3 acc, double deltaTime) {
+    final Vector3 diff = acc - _prevPos;
+
+    final double motionAcceleration = diff.length;
+
+    final double calculatedDistance = _velocity.x * deltaTime + 0.5 * motionAcceleration * deltaTime * deltaTime;
+
+    _estimatedDistance += calculatedDistance;
+  }
+
+  void _updateVelocityAndDistance(Vector3 linearAcc, double deltaTime) {
+    final Vector3 rotatedAcc = Vector3(
+        linearAcc.x * cos(_pitch) * cos(_yaw) +
+            linearAcc.y * (cos(_pitch) * sin(_yaw)) -
+            linearAcc.z * sin(_pitch),
+        linearAcc.x * (sin(_roll) * sin(_pitch) * cos(_yaw) - cos(_roll) * sin(_yaw)) +
+            linearAcc.y * (cos(_roll) * cos(_yaw) + sin(_roll) * sin(_pitch) * sin(_yaw)) +
+            linearAcc.z * cos(_pitch) * sin(_roll),
+        linearAcc.x * (cos(_roll) * sin(_pitch) * cos(_yaw) + sin(_roll) * sin(_yaw)) +
+            linearAcc.y * (sin(_roll) * cos(_yaw) - cos(_roll) * sin(_pitch) * sin(_yaw)) +
+            linearAcc.z * cos(_pitch) * cos(_roll));
+
+    final Vector3 acc = Vector3(
+        applyDeadZone(rotatedAcc.x, _accelerationDeadZoneThreshold),
+        applyDeadZone(rotatedAcc.y, _accelerationDeadZoneThreshold),
+        applyDeadZone(rotatedAcc.z, _accelerationDeadZoneThreshold));
+
+    if (acc.x == 0.0 && acc.y == 0.0 && acc.z == 0.0) {
+      _velocity = Vector3.zero();
+    } else {
+      _velocity = Vector3(_velocity.x + acc.x * deltaTime, _velocity.y + acc.y * deltaTime,
+          _velocity.z + acc.z * deltaTime);
+      _kalmanFilterVelocity.predict(KalmanFilterType.x);
+      _kalmanFilterVelocity.predict(KalmanFilterType.y);
+      _kalmanFilterVelocity.predict(KalmanFilterType.z);
+      _velocity = _kalmanFilterVelocity.apply(_velocity.x, _velocity.y, _velocity.z);
+      _velocity = Vector3(
+          dynamicDeadZone(_velocity.x, _velocityDeadZoneThreshold, 1.5),
+          dynamicDeadZone(_velocity.y, _velocityDeadZoneThreshold, 1.5),
+          dynamicDeadZone(_velocity.z, _velocityDeadZoneThreshold, 1.5));
     }
-
-    final double current = _recentMagnitudes[_peakWindowSize ~/ 2];
-    final double average = _recentMagnitudes.reduce((a, b) => a + b) / _recentMagnitudes.length;
-    final double dynamicThreshold = max(_peakThreshold, average * 1.2);
-
-    return _isPeak(current, dynamicThreshold);
-  }
-
-  /// Peak Detection Logic
-  bool _isPeak(double value, double threshold) {
-    final int mid = _peakWindowSize ~/ 2;
-    for (int i = 0; i < _recentMagnitudes.length; i++) {
-      if (i == mid) {
-        continue;
-      }
-      if (value <= _recentMagnitudes[i]) {
-        return false;
-      }
-    }
-    return value > threshold;
-  }
-
-  bool _isStationary(CoordinateModel acc) {
-    final double magnitude = sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
-    return magnitude < _motionThreshold;
-  }
-
-  bool _isStepDetected(CoordinateModel acc, CoordinateModel coordinate, AccelerometerEvent event) {
-    return _isMoving() || _isStationary(acc);
-    // final double magnitude = sqrt(acc.x * acc.x + acc.y * acc.y + acc.z * acc.z);
-    // _accelerationBuffer.add(magnitude);
-    // if (_accelerationBuffer.length > _bufferSize) _accelerationBuffer.removeAt(0);
-    //
-    // final double adaptiveThreshold = max(0.5, min(1.0, magnitude * 10));
-    // return magnitude > adaptiveThreshold;
-    // _smoothedAcc = _smoothedAcc.copyWith(
-    //     x: lowPassFilter(acc.x, _smoothedAcc.x, 1.2),
-    //     y: lowPassFilter(acc.y, _smoothedAcc.y, 1.2),
-    //     z: lowPassFilter(acc.z, _smoothedAcc.z, 1.2));
-    //
-    // final diffX = CoordinateModel(
-    //     x: coordinate.x - _prevPos.x, y: coordinate.y - _prevPos.y, z: coordinate.z - _prevPos.z);
-    // final dist = sqrt(diffX.x * diffX.x + diffX.y * diffX.y + diffX.z * diffX.z);
-    //
-    // return dist > 0.6;
-  }
-
-  void _onStepDetected(CoordinateModel acc, AccelerometerEvent event) {
-    if (_lastTimestamp != null) {
-      final CoordinateModel model = _kalmanFilter.apply(acc.x, acc.y, acc.z);
-      final CoordinateModel diff =
-          CoordinateModel(x: acc.x - model.x, y: acc.y - model.y, z: acc.z - model.z);
-
-      final double motionAcceleration = sqrt(diff.x * diff.x + diff.y * diff.y + diff.z * diff.z);
-      final DateTime now = DateTime.now();
-      final double time = now.difference(_lastTimestamp!).inMilliseconds / 1000.0;
-      final double deltaTime = applyDeltaTimeThreshold(time, 0.1, 0.2);
-
-      final double calculatedDistance =
-          (_velocity.x * deltaTime) + (0.5 * motionAcceleration * deltaTime * deltaTime);
-      _estimatedDistance += calculatedDistance;
-
-      if (!_stepController.isClosed) {
-        _stepController.add(_stepCount);
-      }
-      _stepCount++;
-    }
-  }
-
-  double movingAverage(List<double> data, int period) {
-    if (data.length < period) {
-      return 0.0;
-    }
-    final double sum = data.sublist(data.length - period).reduce((a, b) => a + b);
-    return sum / period;
-  }
-
-  void _updateVelocityAndDistance(CoordinateModel linearAcc, AccelerometerEvent event) {
-    if (_lastTimestamp != null) {
-      final DateTime now = DateTime.now();
-      final double time = (now.difference(_lastTimestamp!).inMilliseconds) / 1000.0;
-      final double deltaTime = applyDeltaTimeThreshold(time, 0.1, 0.2);
-      final CoordinateModel rotatedAcc = CoordinateModel(
-          x: linearAcc.x * cos(_pitch) * cos(_yaw) +
-              linearAcc.y * (cos(_pitch) * sin(_yaw)) -
-              linearAcc.z * sin(_pitch),
-          y: linearAcc.x * (sin(_roll) * sin(_pitch) * cos(_yaw) - cos(_roll) * sin(_yaw)) +
-              linearAcc.y * (cos(_roll) * cos(_yaw) + sin(_roll) * sin(_pitch) * sin(_yaw)) +
-              linearAcc.z * cos(_pitch) * sin(_roll),
-          z: linearAcc.x * (cos(_roll) * sin(_pitch) * cos(_yaw) + sin(_roll) * sin(_yaw)) +
-              linearAcc.y * (sin(_roll) * cos(_yaw) - cos(_roll) * sin(_pitch) * sin(_yaw)) +
-              linearAcc.z * cos(_pitch) * cos(_roll));
-
-      final CoordinateModel acc = CoordinateModel(
-          x: applyDeadZone(rotatedAcc.x, _accelerationDeadZoneThreshold),
-          y: applyDeadZone(rotatedAcc.y, _accelerationDeadZoneThreshold),
-          z: applyDeadZone(rotatedAcc.z, _accelerationDeadZoneThreshold));
-
-      if (acc.x == 0.0 && acc.y == 0.0 && acc.z == 0.0) {
-        _velocity = const CoordinateModel();
-      } else {
-        _velocity = CoordinateModel(
-            x: _velocity.x + acc.x * deltaTime,
-            y: _velocity.y + acc.y * deltaTime,
-            z: _velocity.z + acc.z * deltaTime);
-        _velocity = _kalmanFilter.apply(_velocity.x, _velocity.y, _velocity.z);
-        _velocity = CoordinateModel(
-            x: dynamicDeadZone(_velocity.x, _velocityDeadZoneThreshold, 1.5),
-            y: dynamicDeadZone(_velocity.y, _velocityDeadZoneThreshold, 1.5),
-            z: dynamicDeadZone(_velocity.z, _velocityDeadZoneThreshold, 1.5));
-      }
-      final CoordinateModel distance = CoordinateModel(
-          x: _velocity.x * deltaTime, y: _velocity.y * deltaTime, z: _velocity.z * deltaTime);
-      final double totalDistance =
-          sqrt(distance.x * distance.x + distance.y * distance.y + distance.z * distance.z);
-      _estimatedDistance += totalDistance;
-    }
+    final Vector3 distance =
+        Vector3(_velocity.x * deltaTime, _velocity.y * deltaTime, _velocity.z * deltaTime);
+    final double totalDistance = distance.length;
+    _estimatedDistance += totalDistance;
   }
 
   @override
   Future<void> dispose() async {
+    _timer?.cancel();
     await _accelerometerSubscription?.cancel();
+    await _pedestrianStatusStream?.cancel();
     await _gyroscopeSubscription?.cancel();
-    await _stepController.close();
   }
 
   @override
   AccelerometerData getAccelerometerData() => AccelerometerData(
-      stepCount: _stepCount,
       distanceTraveled: _estimatedDistance,
       isMoved: _isMoved,
       isTurned: _isTurned);

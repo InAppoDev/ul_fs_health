@@ -83,9 +83,10 @@ class TrackingServiceImp implements TrackingService {
               _currentMode == TrackingMode.indoor ||
               _currentMode == TrackingMode.none ||
               indoorTrackingService.isTurned,
-          onUpdate: (event) {
-            final accData = indoorTrackingService.getAccelerometerData();
-            _accDistance += accData.distanceTraveled;
+          onUpdate: (distance) {
+            // final accData = indoorTrackingService.getAccelerometerData();
+            // if (distance > 0.3)
+              _accDistance += distance;
             if (_currentMode == TrackingMode.gps) {
               indoorTrackingService.reset();
             }

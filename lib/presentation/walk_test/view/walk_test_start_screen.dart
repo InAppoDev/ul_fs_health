@@ -77,7 +77,7 @@ class WalkTestStartContent extends StatelessWidget {
                 .read<GPSBloc>()
                 .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
           } else if (state.status == TimerStatus.running) {
-            // context.read<GPSBloc>().add(const GPSEvent.updateData());
+            context.read<GPSBloc>().add(const GPSEvent.updateData());
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
                 duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
           }
@@ -102,6 +102,11 @@ class WalkTestStartContent extends StatelessWidget {
               style: body1),
           Gaps.larger.spaceVertical,
           Text("Accuracy: ${context.watch<GPSBloc>().state.trackingData.gpsData?.accuracy ?? 0.0}",
+              style: body1),
+          Gaps.larger.spaceVertical,
+          Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),
+          Gaps.larger.spaceVertical,
+          Text("isWalked: ${context.watch<GPSBloc>().state.trackingData.accelerometerData?.isMoved ?? 0.0}",
               style: body1),
           Gaps.larger.spaceVertical,
           Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),

@@ -11,6 +11,8 @@ _$AccelerometerDataImpl _$$AccelerometerDataImplFromJson(
     _$AccelerometerDataImpl(
       distanceTraveled: (json['distanceTraveled'] as num?)?.toDouble() ?? 0.0,
       stepCount: (json['stepCount'] as num?)?.toInt() ?? 0,
+      isMoved: json['isMoved'] as bool? ?? false,
+      isTurned: json['isTurned'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AccelerometerDataImplToJson(
@@ -18,4 +20,6 @@ Map<String, dynamic> _$$AccelerometerDataImplToJson(
     <String, dynamic>{
       'distanceTraveled': instance.distanceTraveled,
       'stepCount': instance.stepCount,
+      'isMoved': instance.isMoved,
+      'isTurned': instance.isTurned,
     };
