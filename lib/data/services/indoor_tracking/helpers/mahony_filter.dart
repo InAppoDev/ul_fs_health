@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:vector_math/vector_math.dart';
+
 class MahonyFilter { // 2 * proportional gain (Kp), (2.0 * 0.5) = 1.0
 
   MahonyFilter() {
@@ -26,7 +28,7 @@ class MahonyFilter { // 2 * proportional gain (Kp), (2.0 * 0.5) = 1.0
   late double _ki; // 2 * integral gain (Ki), (2.0 * 0.0) = 0.0
   late double _kp;
 
-  List<double> get quaternion => [_qW, _qX, _qY, _qZ];
+  Quaternion get quaternion => Quaternion(_qX, _qY, _qZ, _qW);
 
   void resetValues() {
     _qW = 1.0;

@@ -1,51 +1,23 @@
 import 'dart:async';
 import 'dart:math';
+
+import 'package:pedometer/pedometer.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:vector_math/vector_math.dart';
+
 import '../../models/tracking/accelerometer_data.dart';
 import 'helpers/kalman_filter.dart';
 import 'helpers/mahony_filter.dart';
 import 'indoor_tracking_service.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:pedometer/pedometer.dart';
-
-
 
 mixin IndoorTrackingMixin {
   double lowPassFilter(double newData, double prevData, double alpha) {
     return prevData + alpha * (newData - prevData);
   }
 
-  double applyLowPassFilter(double newData, double deltaTime) {
-    const double alpha = 0.1;
-    return (1 - alpha) * deltaTime + alpha * newData;
-  }
-
-  double applyDeltaTimeThreshold(double deltaTime, double lowerThreshold, double upperThreshold) {
-    double time = deltaTime;
-    if (time < lowerThreshold) {
-      time = lowerThreshold;
-    }
-    if (time > upperThreshold) {
-      time = upperThreshold;
-    }
-    return time;
-  }
-
-  Vector3 applyHighPassFilterapplyHighPassFilter(Vector3 newAcc, Vector3 prevAcc, double alpha, Vector3 gravity) {
-    return Vector3(
-      alpha * (prevAcc.x + newAcc.x - gravity.x),
-      alpha * (prevAcc.y + newAcc.y - gravity.y),
-      alpha * (prevAcc.z + newAcc.z - gravity.z),
-    );
-  }
-
   double applyDeadZone(double value, double threshold) {
     return (value.abs() < threshold) ? 0.0 : value;
-  }
-
-  double dynamicDeadZone(double value, double baseThreshold, double varianceFactor) {
-    return (value.abs() < baseThreshold * varianceFactor) ? 0.0 : value;
   }
 }
 
@@ -56,28 +28,19 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
   bool _isMoved = false;
 
-  Vector3 _prevPos = Vector3.zero();
-
-
   @override
   bool get isMoved => _isMoved;
 
   @override
   bool get isTurned => _isTurned;
 
-  final KalmanFilter _kalmanFilter = KalmanFilter(measurementNoise: 0.01);
-
-  final KalmanFilter _kalmanFilterVelocity = KalmanFilter(measurementNoise: 0.01);
+  final KalmanFilter _kalmanFilter = KalmanFilter(measurementNoise: 0.001);
+  final KalmanFilter _kalmanFilterGyro = KalmanFilter(measurementNoise: 0.001);
 
   StreamSubscription<AccelerometerEvent>? _accelerometerSubscription;
   StreamSubscription<GyroscopeEvent>? _gyroscopeSubscription;
 
-
-  static const double _accelerationDeadZoneThreshold = 0.005;
-  static const double _velocityDeadZoneThreshold = 0.001;
-
   Timer? _timer;
-
 
   AccelerometerEvent? _currentEvent;
   GyroscopeEvent? _currentGyroEvent;
@@ -85,29 +48,25 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
   Vector3 _velocity = Vector3.zero();
 
-  Vector3 _prevCoord = Vector3.zero();
-  Vector3 _prevGyroCoord = Vector3.zero();
-
   double _yaw = 0.0;
   double _pitch = 0.0;
   double _roll = 0.0;
+  double _prevYaw = 0.0;
+
+  Quaternion _currentQuat = Quaternion.identity();
+  Quaternion _prevQuat = Quaternion.identity();
 
   bool _isTurned = false;
-
-
-  static const double _gravityAlpha = 0.1;
-  Vector3 _gravity = Vector3.zero();
 
 
   @override
   double get estimatedDistanceTravelled => _estimatedDistance;
 
-
-  List<double> quaternionToEuler(List<double> q) {
-    final double qw = q[0]; // w (scalar)
-    final double qx = q[1]; // x
-    final double qy = q[2]; // y
-    final double qz = q[3]; // z
+  List<double> quaternionToEuler(Quaternion q) {
+    final double qw = q.w; // w (scalar)
+    final double qx = q.x; // x
+    final double qy = q.y; // y
+    final double qz = q.z; // z
 
     // Roll (φ) - Rotation around X-axis
     final double roll = atan2(2.0 * (qw * qx + qy * qz), 1.0 - 2.0 * (qx * qx + qy * qy));
@@ -127,12 +86,10 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
     final bool granted2 = await Permission.sensors.isGranted;
 
     if (!granted) {
-      granted = await Permission.activityRecognition.request() ==
-          PermissionStatus.granted;
+      granted = await Permission.activityRecognition.request() == PermissionStatus.granted;
     }
     if (!granted2) {
-      granted = await Permission.sensors.request() ==
-          PermissionStatus.granted;
+      granted = await Permission.sensors.request() == PermissionStatus.granted;
     }
 
     return granted;
@@ -142,12 +99,29 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
     final bool granted = await _checkActivityRecognitionPermission();
     if (!granted) {
       print("errrr pedometer");
-      return ;
+      return;
       // tell user, the app will not work
     }
-
   }
 
+
+  // helper for quaternion dot product
+  double quaternionDotProduct(Quaternion q1, Quaternion q2) {
+    return q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
+  }
+
+
+  // difference between quaternions in radians
+  double quaternionAngleDifference(Quaternion q1, Quaternion q2) {
+    // Calculate the dot product of the quaternions
+    double dot = quaternionDotProduct(q1, q2);
+
+    // Clip the value to avoid NaN due to floating-point precision issues
+    dot = dot.clamp(-1.0, 1.0);
+
+    // The angle difference is computed from the dot product
+    return 2 * acos(dot); // Result is in radians
+  }
 
   @override
   Future<void> startTracking(
@@ -159,48 +133,45 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
     });
     _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
       _estimatedDistance = 0.0;
+      _velocity = Vector3.zero();
       if (_currentEvent != null && _currentGyroEvent != null) {
-        _kalmanFilter.predict(KalmanFilterType.x);
-        _kalmanFilter.predict(KalmanFilterType.y);
-        _kalmanFilter.predict(KalmanFilterType.z);
-        final Vector3 filtered = _kalmanFilter.apply(_currentEvent!.x, _currentEvent!.y, _currentEvent!.z);
+        final Vector3 filtered =
+            _kalmanFilter.apply(_currentEvent!.x, _currentEvent!.y, _currentEvent!.z);
         double ax = filtered.x;
         double ay = filtered.y;
         double az = filtered.z;
 
-        ax = lowPassFilter(ax, _prevCoord.x, 1.2);
-        ay = lowPassFilter(ay, _prevCoord.y, 1.2);
-        az = lowPassFilter(az, _prevCoord.z, 1.2);
+        final Vector3 filteredGyro = _kalmanFilterGyro.apply(
+            _currentGyroEvent!.x, _currentGyroEvent!.y, _currentGyroEvent!.z);
+        final double gx = filteredGyro.x;
+        final double gy = filteredGyro.y;
+        final double gz = filteredGyro.z;
 
-        _prevCoord = Vector3(ax, ay, az);
-
-        double gx = _currentGyroEvent!.x;
-        double gy = _currentGyroEvent!.y;
-        double gz = _currentGyroEvent!.z;
-
-        gx = lowPassFilter(gx, _prevGyroCoord.x, _gravityAlpha);
-        gy = lowPassFilter(gy, _prevGyroCoord.y, _gravityAlpha);
-        gz = lowPassFilter(gz, _prevGyroCoord.z, _gravityAlpha);
-
-        _prevGyroCoord = Vector3(gx, gy, gz);
         mahonyFilter.update(ax, ay, az, gx, gy, gz);
 
-        final List<double> quaternion = mahonyFilter.quaternion;
-
+        _currentQuat = mahonyFilter.quaternion;
+        // _currentQuat = Quaternion(x, y, z, w)
         // Correct gravity from the accelerometer reading
-        final double gravityX = 2 * (quaternion[1] * quaternion[3] - quaternion[0] * quaternion[2]);
-        final double gravityY = 2 * (quaternion[0] * quaternion[1] + quaternion[2] * quaternion[3]);
-        final double gravityZ = quaternion[0] * quaternion[0] -
-            quaternion[1] * quaternion[1] -
-            quaternion[2] * quaternion[2] +
-            quaternion[3] * quaternion[3];
+        final double gravityX =
+            2 * (_currentQuat.x * _currentQuat.z - _currentQuat.w * _currentQuat.y);
+        final double gravityY =
+            2 * (_currentQuat.w * _currentQuat.x + _currentQuat.y * _currentQuat.z);
+        final double gravityZ = _currentQuat.w * _currentQuat.w -
+            _currentQuat.x * _currentQuat.x -
+            _currentQuat.y * _currentQuat.y +
+            _currentQuat.z * _currentQuat.z;
 
-        final euler = quaternionToEuler(quaternion);
+        final euler = quaternionToEuler(_currentQuat);
+        final double angularChange = quaternionAngleDifference(_prevQuat, _currentQuat);
+
+        // Check if the angular change exceeds a threshold (e.g., 15 degrees)
+        _isTurned = angularChange > radians(30);
+
+        _prevQuat = _currentQuat;
         _roll = euler[0];
         _pitch = euler[1];
         _yaw = euler[2];
 
-        _gravity = Vector3(gravityX, gravityY, gravityZ);
 
         ax -= gravityX;
         ay -= gravityY;
@@ -210,27 +181,25 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
         final double deltaT = currentTime - _prevTime;
         _prevTime = currentTime;
 
-        final linearAcc = Vector3(ax, ay, az);
+        const double accelerationFactor = 9.8; // accelerometer measures with g-unit - 9.8
+        final linearAcc = Vector3(ax, ay, az) * accelerationFactor;
 
         final bool isRunning = onRunning();
         if (_isMoved && isRunning) {
           _onStepDetected(linearAcc, deltaT);
           _updateVelocityAndDistance(linearAcc, deltaT);
         }
+
         onUpdate(_estimatedDistance);
       }
     });
 
     _accelerometerSubscription = accelerometerEvents.listen((AccelerometerEvent event) {
       _currentEvent = event;
-
     });
-
-
 
     _gyroscopeSubscription = gyroscopeEvents.listen((GyroscopeEvent event) {
       _currentGyroEvent = event;
-      // final double deltaTime = applyDeltaTimeThreshold(time, 0.1, 0.2);
       // _gyros = Vector3(x: event.x, y: event.y, z: event.z);
       //
       // _yaw += _gyros.z * deltaTime;
@@ -257,6 +226,7 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   @override
   void reset() {
     _estimatedDistance = 0.0;
+    _velocity = Vector3.zero();
   }
 
   @override
@@ -268,11 +238,9 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   }
 
   void _onStepDetected(Vector3 acc, double deltaTime) {
-    final Vector3 diff = acc - _prevPos;
+    final double motionAcceleration = acc.length;
 
-    final double motionAcceleration = diff.length;
-
-    final double calculatedDistance = _velocity.x * deltaTime + 0.5 * motionAcceleration * deltaTime * deltaTime;
+    final double calculatedDistance = 0.5 * motionAcceleration * deltaTime * deltaTime; // a*t^2 / 2
 
     _estimatedDistance += calculatedDistance;
   }
@@ -289,29 +257,17 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
             linearAcc.y * (sin(_roll) * cos(_yaw) - cos(_roll) * sin(_pitch) * sin(_yaw)) +
             linearAcc.z * cos(_pitch) * cos(_roll));
 
-    final Vector3 acc = Vector3(
-        applyDeadZone(rotatedAcc.x, _accelerationDeadZoneThreshold),
-        applyDeadZone(rotatedAcc.y, _accelerationDeadZoneThreshold),
-        applyDeadZone(rotatedAcc.z, _accelerationDeadZoneThreshold));
+    final Vector3 acc = Vector3(rotatedAcc.x, rotatedAcc.y, rotatedAcc.z);
 
     if (acc.x == 0.0 && acc.y == 0.0 && acc.z == 0.0) {
       _velocity = Vector3.zero();
     } else {
-      _velocity = Vector3(_velocity.x + acc.x * deltaTime, _velocity.y + acc.y * deltaTime,
-          _velocity.z + acc.z * deltaTime);
-      _kalmanFilterVelocity.predict(KalmanFilterType.x);
-      _kalmanFilterVelocity.predict(KalmanFilterType.y);
-      _kalmanFilterVelocity.predict(KalmanFilterType.z);
-      _velocity = _kalmanFilterVelocity.apply(_velocity.x, _velocity.y, _velocity.z);
-      _velocity = Vector3(
-          dynamicDeadZone(_velocity.x, _velocityDeadZoneThreshold, 1.5),
-          dynamicDeadZone(_velocity.y, _velocityDeadZoneThreshold, 1.5),
-          dynamicDeadZone(_velocity.z, _velocityDeadZoneThreshold, 1.5));
+      _velocity = Vector3(acc.x * deltaTime, acc.y * deltaTime, acc.z * deltaTime);
     }
     final Vector3 distance =
         Vector3(_velocity.x * deltaTime, _velocity.y * deltaTime, _velocity.z * deltaTime);
     final double totalDistance = distance.length;
-    _estimatedDistance += totalDistance;
+    _estimatedDistance += totalDistance; // angular velocity radius
   }
 
   @override
@@ -324,7 +280,5 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
   @override
   AccelerometerData getAccelerometerData() => AccelerometerData(
-      distanceTraveled: _estimatedDistance,
-      isMoved: _isMoved,
-      isTurned: _isTurned);
+      distanceTraveled: _estimatedDistance, isMoved: _isMoved, isTurned: _isTurned);
 }

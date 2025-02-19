@@ -61,7 +61,7 @@ class TrackingServiceImp implements TrackingService {
     await Future.wait([
       gpsService.startTracking(
           onRunning: () =>
-              gpsService.getGpsData().isGPSSignalStrong && !indoorTrackingService.isTurned,
+              false,
           onUpdate: (pos) {
             final gpsData = gpsService.getGpsData();
             final accData = indoorTrackingService.getAccelerometerData();
@@ -70,7 +70,8 @@ class TrackingServiceImp implements TrackingService {
               return;
             }
             final bool isStrongSignal = gpsData.isGPSSignalStrong;
-            _currentMode = isStrongSignal ? TrackingMode.gps : TrackingMode.indoor;
+            _currentMode = TrackingMode.indoor;
+            // _currentMode = isStrongSignal ? TrackingMode.gps : TrackingMode.indoor;
             if (gpsData.distanceTraveled >= 0.01 && !accData.isTurned && accData.isMoved) {
               _gpsDistance += gpsData.distanceTraveled;
             }
