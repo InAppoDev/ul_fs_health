@@ -59,7 +59,7 @@ class TrackingServiceImp implements TrackingService {
   Future<void> startTracking() async {
     await Future.wait([
       gpsService.startTracking(
-          onRunning: () => false,
+          onRunning: () => gpsService.getGpsData().isGPSSignalStrong && !indoorTrackingService.isTurned,
           onUpdate: (pos) {
             final gpsData = gpsService.getGpsData();
             final accData = indoorTrackingService.getAccelerometerData();
