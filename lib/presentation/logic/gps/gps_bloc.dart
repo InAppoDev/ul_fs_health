@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../core/constants/calculation_constants.dart';
 import '../../../data/models/tracking/tracking_data.dart';
 import '../../../domain/usecase/tracking_use_case.dart';
+import '../../../data/services/tracking/tracking_service_imp.dart';
 
 part 'gps_event.dart';
 
@@ -52,19 +53,19 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     final data = await trackingUseCase.getTrackingData();
     emit(state.copyWith(
       trackingData: data,
-      distanceTraveled: (data.isGps
+      distanceTraveled: (data.mode == TrackingMode.gps
               ? data.gpsData?.distanceTraveled
               : data.accelerometerData?.distanceTraveled) ??
           0.0,
       status: GPSStatus.saved,
-      speed: data.isGps ? data.gpsData?.speed ?? 0.0 : 0.0,
+      speed: data.mode == TrackingMode.gps ? data.gpsData?.speed ?? 0.0 : 0.0,
     ));
   }
 
   Future<void> _onUpdateData(_UpdateData event, Emitter<GPSState> emit) async {
     final data = await trackingUseCase.getTrackingData();
     emit(state.copyWith(
-      distanceTraveled: (data.isGps
+      distanceTraveled: (data.mode == TrackingMode.gps
           ? data.gpsData?.distanceTraveled
           : data.accelerometerData?.distanceTraveled) ??
           0.0,
@@ -77,7 +78,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     final data = await trackingUseCase.getTrackingData();
     double distance = 0.0;
     double speed = 0.0;
-    if (data.isGps) {
+    if (data.mode == TrackingMode.gps) {
       distance = data.gpsData?.distanceTraveled ?? 0.0;
       speed = data.gpsData?.speed ?? 0.0;
     } else {
@@ -94,7 +95,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     final double goalDistance = event.goalDistance;
     final data = await trackingUseCase.getTrackingData();
     final double distance =
-        (data.isGps ? data.gpsData?.distanceTraveled : data.accelerometerData?.distanceTraveled) ??
+        (data.mode == TrackingMode.gps ? data.gpsData?.distanceTraveled : data.accelerometerData?.distanceTraveled) ??
             0.0;
     if (distance >= goalDistance) {
       emit(state.copyWith(status: GPSStatus.loading));

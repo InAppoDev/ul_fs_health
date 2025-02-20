@@ -52,11 +52,12 @@ void _configureServices() {
         firestore: FirebaseFirestore.instance,
       ),
     )
+    // ..registerSingleton<LocalizationTracking>(LocalizationTracking())
     ..registerLazySingleton<PermissionService>(() => GpsPermissionService())
     ..registerFactory<GPSService>(() => GPSServiceImp(getIt<PermissionService>()))
     ..registerFactory<IndoorTrackingService>(() => IndoorTrackingServiceImp())
-    ..registerFactory<TrackingService>(
-        () => TrackingServiceImp(getIt<GPSService>(), getIt<IndoorTrackingService>()));
+    ..registerFactory<TrackingService>(() => TrackingServiceImp(
+        getIt<GPSService>(), getIt<IndoorTrackingService>(), /* getIt<LocalizationTracking>() */));
 }
 
 void _configureRepositories() {

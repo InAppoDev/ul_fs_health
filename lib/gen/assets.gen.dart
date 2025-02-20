@@ -41,15 +41,15 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
-        chevronLeft,
-        menu,
-        iconHome,
-        iconProfile,
-        iconQuestionnaire,
-        iconResults,
-        iconSitDownTest,
-        iconWalkTest
-      ];
+    chevronLeft,
+    menu,
+    iconHome,
+    iconProfile,
+    iconQuestionnaire,
+    iconResults,
+    iconSitDownTest,
+    iconWalkTest,
+  ];
 }
 
 class $AssetsSoundsGen {
@@ -63,24 +63,17 @@ class $AssetsSoundsGen {
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsSoundsGen sounds = $AssetsSoundsGen();
 }
 
 class SvgGenImage {
-  const SvgGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = false;
+  const SvgGenImage(this._assetName, {this.size, this.flavors = const {}}) : _isVecFormat = false;
 
-  const SvgGenImage.vec(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  }) : _isVecFormat = true;
+  const SvgGenImage.vec(this._assetName, {this.size, this.flavors = const {}})
+    : _isVecFormat = true;
 
   final String _assetName;
   final Size? size;
@@ -109,11 +102,7 @@ class SvgGenImage {
   }) {
     final _svg.BytesLoader loader;
     if (_isVecFormat) {
-      loader = _vg.AssetBytesLoader(
-        _assetName,
-        assetBundle: bundle,
-        packageName: package,
-      );
+      loader = _vg.AssetBytesLoader(_assetName, assetBundle: bundle, packageName: package);
     } else {
       loader = _svg.SvgAssetLoader(
         _assetName,

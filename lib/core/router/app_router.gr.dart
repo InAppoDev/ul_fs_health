@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -17,13 +18,13 @@ class GPAQInitialRoute extends PageRouteInfo<GPAQInitialRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQInitialRoute.name,
-          args: GPAQInitialRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQInitialRoute.name,
+         args: GPAQInitialRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQInitialRoute';
 
@@ -31,7 +32,8 @@ class GPAQInitialRoute extends PageRouteInfo<GPAQInitialRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQInitialRouteArgs>(
-          orElse: () => const GPAQInitialRouteArgs());
+        orElse: () => const GPAQInitialRouteArgs(),
+      );
       return GPAQInitialScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -41,10 +43,7 @@ class GPAQInitialRoute extends PageRouteInfo<GPAQInitialRouteArgs> {
 }
 
 class GPAQInitialRouteArgs {
-  const GPAQInitialRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQInitialRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -65,13 +64,13 @@ class GPAQRecreationInitialRoute
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQRecreationInitialRoute.name,
-          args: GPAQRecreationInitialRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQRecreationInitialRoute.name,
+         args: GPAQRecreationInitialRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQRecreationInitialRoute';
 
@@ -79,7 +78,8 @@ class GPAQRecreationInitialRoute
     name,
     builder: (data) {
       final args = data.argsAs<GPAQRecreationInitialRouteArgs>(
-          orElse: () => const GPAQRecreationInitialRouteArgs());
+        orElse: () => const GPAQRecreationInitialRouteArgs(),
+      );
       return GPAQRecreationInitialScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -112,13 +112,13 @@ class GPAQRecreationRoute extends PageRouteInfo<GPAQRecreationRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQRecreationRoute.name,
-          args: GPAQRecreationRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQRecreationRoute.name,
+         args: GPAQRecreationRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQRecreationRoute';
 
@@ -126,7 +126,8 @@ class GPAQRecreationRoute extends PageRouteInfo<GPAQRecreationRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQRecreationRouteArgs>(
-          orElse: () => const GPAQRecreationRouteArgs());
+        orElse: () => const GPAQRecreationRouteArgs(),
+      );
       return GPAQRecreationScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -136,10 +137,7 @@ class GPAQRecreationRoute extends PageRouteInfo<GPAQRecreationRouteArgs> {
 }
 
 class GPAQRecreationRouteArgs {
-  const GPAQRecreationRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQRecreationRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -160,13 +158,13 @@ class GPAQSedentaryInitialRoute
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQSedentaryInitialRoute.name,
-          args: GPAQSedentaryInitialRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQSedentaryInitialRoute.name,
+         args: GPAQSedentaryInitialRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQSedentaryInitialRoute';
 
@@ -174,7 +172,8 @@ class GPAQSedentaryInitialRoute
     name,
     builder: (data) {
       final args = data.argsAs<GPAQSedentaryInitialRouteArgs>(
-          orElse: () => const GPAQSedentaryInitialRouteArgs());
+        orElse: () => const GPAQSedentaryInitialRouteArgs(),
+      );
       return GPAQSedentaryInitialScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -207,13 +206,13 @@ class GPAQSedentaryRoute extends PageRouteInfo<GPAQSedentaryRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQSedentaryRoute.name,
-          args: GPAQSedentaryRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQSedentaryRoute.name,
+         args: GPAQSedentaryRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQSedentaryRoute';
 
@@ -221,7 +220,8 @@ class GPAQSedentaryRoute extends PageRouteInfo<GPAQSedentaryRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQSedentaryRouteArgs>(
-          orElse: () => const GPAQSedentaryRouteArgs());
+        orElse: () => const GPAQSedentaryRouteArgs(),
+      );
       return GPAQSedentaryScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -231,10 +231,7 @@ class GPAQSedentaryRoute extends PageRouteInfo<GPAQSedentaryRouteArgs> {
 }
 
 class GPAQSedentaryRouteArgs {
-  const GPAQSedentaryRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQSedentaryRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -254,13 +251,13 @@ class GPAQTravelInitialRoute extends PageRouteInfo<GPAQTravelInitialRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQTravelInitialRoute.name,
-          args: GPAQTravelInitialRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQTravelInitialRoute.name,
+         args: GPAQTravelInitialRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQTravelInitialRoute';
 
@@ -268,7 +265,8 @@ class GPAQTravelInitialRoute extends PageRouteInfo<GPAQTravelInitialRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQTravelInitialRouteArgs>(
-          orElse: () => const GPAQTravelInitialRouteArgs());
+        orElse: () => const GPAQTravelInitialRouteArgs(),
+      );
       return GPAQTravelInitialScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -278,10 +276,7 @@ class GPAQTravelInitialRoute extends PageRouteInfo<GPAQTravelInitialRouteArgs> {
 }
 
 class GPAQTravelInitialRouteArgs {
-  const GPAQTravelInitialRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQTravelInitialRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -301,13 +296,13 @@ class GPAQTravelRoute extends PageRouteInfo<GPAQTravelRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQTravelRoute.name,
-          args: GPAQTravelRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQTravelRoute.name,
+         args: GPAQTravelRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQTravelRoute';
 
@@ -315,7 +310,8 @@ class GPAQTravelRoute extends PageRouteInfo<GPAQTravelRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQTravelRouteArgs>(
-          orElse: () => const GPAQTravelRouteArgs());
+        orElse: () => const GPAQTravelRouteArgs(),
+      );
       return GPAQTravelScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -325,10 +321,7 @@ class GPAQTravelRoute extends PageRouteInfo<GPAQTravelRouteArgs> {
 }
 
 class GPAQTravelRouteArgs {
-  const GPAQTravelRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQTravelRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -348,13 +341,13 @@ class GPAQWorkInitialRoute extends PageRouteInfo<GPAQWorkInitialRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQWorkInitialRoute.name,
-          args: GPAQWorkInitialRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQWorkInitialRoute.name,
+         args: GPAQWorkInitialRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQWorkInitialRoute';
 
@@ -362,7 +355,8 @@ class GPAQWorkInitialRoute extends PageRouteInfo<GPAQWorkInitialRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQWorkInitialRouteArgs>(
-          orElse: () => const GPAQWorkInitialRouteArgs());
+        orElse: () => const GPAQWorkInitialRouteArgs(),
+      );
       return GPAQWorkInitialScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -372,10 +366,7 @@ class GPAQWorkInitialRoute extends PageRouteInfo<GPAQWorkInitialRouteArgs> {
 }
 
 class GPAQWorkInitialRouteArgs {
-  const GPAQWorkInitialRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQWorkInitialRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -395,13 +386,13 @@ class GPAQWorkRoute extends PageRouteInfo<GPAQWorkRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          GPAQWorkRoute.name,
-          args: GPAQWorkRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         GPAQWorkRoute.name,
+         args: GPAQWorkRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GPAQWorkRoute';
 
@@ -409,7 +400,8 @@ class GPAQWorkRoute extends PageRouteInfo<GPAQWorkRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GPAQWorkRouteArgs>(
-          orElse: () => const GPAQWorkRouteArgs());
+        orElse: () => const GPAQWorkRouteArgs(),
+      );
       return GPAQWorkScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -419,10 +411,7 @@ class GPAQWorkRoute extends PageRouteInfo<GPAQWorkRouteArgs> {
 }
 
 class GPAQWorkRouteArgs {
-  const GPAQWorkRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const GPAQWorkRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -438,10 +427,7 @@ class GPAQWorkRouteArgs {
 /// [HistoryScreen]
 class HistoryRoute extends PageRouteInfo<void> {
   const HistoryRoute({List<PageRouteInfo>? children})
-      : super(
-          HistoryRoute.name,
-          initialChildren: children,
-        );
+    : super(HistoryRoute.name, initialChildren: children);
 
   static const String name = 'HistoryRoute';
 
@@ -457,10 +443,7 @@ class HistoryRoute extends PageRouteInfo<void> {
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
+    : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
@@ -480,21 +463,19 @@ class LEFSRoute extends PageRouteInfo<LEFSRouteArgs> {
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          LEFSRoute.name,
-          args: LEFSRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         LEFSRoute.name,
+         args: LEFSRouteArgs(key: key, shouldAuthenticate: shouldAuthenticate),
+         initialChildren: children,
+       );
 
   static const String name = 'LEFSRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<LEFSRouteArgs>(orElse: () => const LEFSRouteArgs());
+      final args = data.argsAs<LEFSRouteArgs>(
+        orElse: () => const LEFSRouteArgs(),
+      );
       return LEFSScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -504,10 +485,7 @@ class LEFSRoute extends PageRouteInfo<LEFSRouteArgs> {
 }
 
 class LEFSRouteArgs {
-  const LEFSRouteArgs({
-    this.key,
-    this.shouldAuthenticate = false,
-  });
+  const LEFSRouteArgs({this.key, this.shouldAuthenticate = false});
 
   final Key? key;
 
@@ -523,10 +501,7 @@ class LEFSRouteArgs {
 /// [LoginScreen]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
-          initialChildren: children,
-        );
+    : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
@@ -542,10 +517,7 @@ class LoginRoute extends PageRouteInfo<void> {
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
+    : super(ProfileRoute.name, initialChildren: children);
 
   static const String name = 'ProfileRoute';
 
@@ -566,13 +538,13 @@ class QuestionnaireInitialRoute
     bool shouldAuthenticate = false,
     List<PageRouteInfo>? children,
   }) : super(
-          QuestionnaireInitialRoute.name,
-          args: QuestionnaireInitialRouteArgs(
-            key: key,
-            shouldAuthenticate: shouldAuthenticate,
-          ),
-          initialChildren: children,
-        );
+         QuestionnaireInitialRoute.name,
+         args: QuestionnaireInitialRouteArgs(
+           key: key,
+           shouldAuthenticate: shouldAuthenticate,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'QuestionnaireInitialRoute';
 
@@ -580,7 +552,8 @@ class QuestionnaireInitialRoute
     name,
     builder: (data) {
       final args = data.argsAs<QuestionnaireInitialRouteArgs>(
-          orElse: () => const QuestionnaireInitialRouteArgs());
+        orElse: () => const QuestionnaireInitialRouteArgs(),
+      );
       return QuestionnaireInitialScreen(
         key: args.key,
         shouldAuthenticate: args.shouldAuthenticate,
@@ -609,10 +582,7 @@ class QuestionnaireInitialRouteArgs {
 /// [SignupScreen]
 class SignupRoute extends PageRouteInfo<void> {
   const SignupRoute({List<PageRouteInfo>? children})
-      : super(
-          SignupRoute.name,
-          initialChildren: children,
-        );
+    : super(SignupRoute.name, initialChildren: children);
 
   static const String name = 'SignupRoute';
 
@@ -628,10 +598,7 @@ class SignupRoute extends PageRouteInfo<void> {
 /// [SitToStandResultScreen]
 class SitToStandResultRoute extends PageRouteInfo<void> {
   const SitToStandResultRoute({List<PageRouteInfo>? children})
-      : super(
-          SitToStandResultRoute.name,
-          initialChildren: children,
-        );
+    : super(SitToStandResultRoute.name, initialChildren: children);
 
   static const String name = 'SitToStandResultRoute';
 
@@ -647,10 +614,7 @@ class SitToStandResultRoute extends PageRouteInfo<void> {
 /// [SitToStandScreen]
 class SitToStandRoute extends PageRouteInfo<void> {
   const SitToStandRoute({List<PageRouteInfo>? children})
-      : super(
-          SitToStandRoute.name,
-          initialChildren: children,
-        );
+    : super(SitToStandRoute.name, initialChildren: children);
 
   static const String name = 'SitToStandRoute';
 
@@ -666,10 +630,7 @@ class SitToStandRoute extends PageRouteInfo<void> {
 /// [SitToStandTestStartScreen]
 class SitToStandTestStartRoute extends PageRouteInfo<void> {
   const SitToStandTestStartRoute({List<PageRouteInfo>? children})
-      : super(
-          SitToStandTestStartRoute.name,
-          initialChildren: children,
-        );
+    : super(SitToStandTestStartRoute.name, initialChildren: children);
 
   static const String name = 'SitToStandTestStartRoute';
 
@@ -685,10 +646,7 @@ class SitToStandTestStartRoute extends PageRouteInfo<void> {
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
-      : super(
-          SplashRoute.name,
-          initialChildren: children,
-        );
+    : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
@@ -704,10 +662,7 @@ class SplashRoute extends PageRouteInfo<void> {
 /// [WalkTestInitialScreen]
 class WalkTestInitialRoute extends PageRouteInfo<void> {
   const WalkTestInitialRoute({List<PageRouteInfo>? children})
-      : super(
-          WalkTestInitialRoute.name,
-          initialChildren: children,
-        );
+    : super(WalkTestInitialRoute.name, initialChildren: children);
 
   static const String name = 'WalkTestInitialRoute';
 
@@ -723,10 +678,7 @@ class WalkTestInitialRoute extends PageRouteInfo<void> {
 /// [WalkTestResultScreen]
 class WalkTestResultRoute extends PageRouteInfo<void> {
   const WalkTestResultRoute({List<PageRouteInfo>? children})
-      : super(
-          WalkTestResultRoute.name,
-          initialChildren: children,
-        );
+    : super(WalkTestResultRoute.name, initialChildren: children);
 
   static const String name = 'WalkTestResultRoute';
 
@@ -742,10 +694,7 @@ class WalkTestResultRoute extends PageRouteInfo<void> {
 /// [WalkTestScreen]
 class WalkTestRoute extends PageRouteInfo<void> {
   const WalkTestRoute({List<PageRouteInfo>? children})
-      : super(
-          WalkTestRoute.name,
-          initialChildren: children,
-        );
+    : super(WalkTestRoute.name, initialChildren: children);
 
   static const String name = 'WalkTestRoute';
 
@@ -760,14 +709,12 @@ class WalkTestRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [WalkTestStartScreen]
 class WalkTestStartRoute extends PageRouteInfo<WalkTestStartRouteArgs> {
-  WalkTestStartRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
-          WalkTestStartRoute.name,
-          args: WalkTestStartRouteArgs(key: key),
-          initialChildren: children,
-        );
+  WalkTestStartRoute({Key? key, List<PageRouteInfo>? children})
+    : super(
+        WalkTestStartRoute.name,
+        args: WalkTestStartRouteArgs(key: key),
+        initialChildren: children,
+      );
 
   static const String name = 'WalkTestStartRoute';
 
@@ -775,7 +722,8 @@ class WalkTestStartRoute extends PageRouteInfo<WalkTestStartRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<WalkTestStartRouteArgs>(
-          orElse: () => const WalkTestStartRouteArgs());
+        orElse: () => const WalkTestStartRouteArgs(),
+      );
       return WalkTestStartScreen(key: args.key);
     },
   );

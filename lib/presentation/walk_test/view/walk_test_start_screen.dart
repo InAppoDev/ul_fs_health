@@ -11,6 +11,7 @@ import '../../../core/extensions/unit_extension.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/themes/app_colors.dart';
 import '../../../core/themes/app_text_styles.dart';
+import '../../../data/services/tracking/tracking_service_imp.dart';
 import '../../../di/service_locator.dart';
 import '../../../domain/usecase/tracking_use_case.dart';
 import '../../../gen/assets.gen.dart';
@@ -76,7 +77,7 @@ class WalkTestStartContent extends StatelessWidget {
                 .read<GPSBloc>()
                 .add(GPSEvent.stopTracking(duration: CalculationConstants.defaultTimerDuration));
           } else if (state.status == TimerStatus.running) {
-            // context.read<GPSBloc>().add(const GPSEvent.updateData());
+            context.read<GPSBloc>().add(const GPSEvent.updateData());
             context.read<GPSBloc>().add(GPSEvent.updateStartingSpeed(
                 duration: CalculationConstants.defaultTimerDuration - state.remainingTime));
           }
@@ -97,6 +98,18 @@ class WalkTestStartContent extends StatelessWidget {
         headerText: appLocalizations.walkTestTitleText,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Text(context.watch<GPSBloc>().state.trackingData.mode == TrackingMode.gps ? "GPS" : "Accelerometer",
+              style: body1),
+          Gaps.larger.spaceVertical,
+          Text("Accuracy: ${context.watch<GPSBloc>().state.trackingData.gpsData?.accuracy ?? 0.0}",
+              style: body1),
+          Gaps.larger.spaceVertical,
+          Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),
+          Gaps.larger.spaceVertical,
+          Text("isWalked: ${context.watch<GPSBloc>().state.trackingData.accelerometerData?.isMoved ?? 0.0}",
+              style: body1),
+          Gaps.larger.spaceVertical,
+          Text("Distance: ${context.watch<GPSBloc>().state.distanceTraveled}", style: body1),
           Gaps.larger.spaceVertical,
           if (context.watch<TimerBloc>().state.status == TimerStatus.completed)
             Align(
@@ -186,7 +199,12 @@ class WalkTestStartContent extends StatelessWidget {
                     ),
                     Gaps.medium.spaceVertical,
                     Text(
-                      context.watch<GPSBloc>().state.averageSpeed.toSpeedKmH.formattedSpeedKmhReplaced,
+                      context
+                          .watch<GPSBloc>()
+                          .state
+                          .averageSpeed
+                          .toSpeedKmH
+                          .formattedSpeedKmhReplaced,
                       style: body1.copyWith(fontSize: 28, height: 1),
                     ),
                   ],

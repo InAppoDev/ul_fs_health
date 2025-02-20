@@ -2,11 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/themes/app_colors.dart';
-import 'core/themes/app_themes.dart';
+import 'data/services/permission/permission_service.dart';
+import 'data/services/tracking/tracking_service.dart';
+import 'data/services/tracking_background_service/tracking_background_service.dart';
 import 'di/service_locator.dart';
 import 'firebase_options.dart';
 import 'my_app.dart';
 import 'services/preferences/preferences_service.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
