@@ -49,15 +49,19 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
   Vector3 _velocity = Vector3.zero();
 
+
   double _yaw = 0.0;
+
+  double _prevYaw = 0.0;
   double _pitch = 0.0;
   double _roll = 0.0;
+  double _startYaw = 0.0;
+  // double _yawGyro = 0.0;
 
   Quaternion _currentQuat = Quaternion.identity();
   Quaternion _prevQuat = Quaternion.identity();
 
   bool _isTurned = false;
-
 
   @override
   double get estimatedDistanceTravelled => _estimatedDistance;
@@ -104,42 +108,26 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
     }
   }
 
-
-  // helper for quaternion dot product
-  double quaternionDotProduct(Quaternion q1, Quaternion q2) {
-    return q1.w * q2.w + q1.x * q2.x + q1.y * q2.y + q1.z * q2.z;
-  }
-
-
-  // difference between quaternions in radians
-  double quaternionAngleDifference(Quaternion q1, Quaternion q2) {
-    // Calculate the dot product of the quaternions
-    double dot = quaternionDotProduct(q1, q2);
-
-    // Clip the value to avoid NaN due to floating-point precision issues
-    dot = dot.clamp(-1.0, 1.0);
-
-    // The angle difference is computed from the dot product
-    return 2 * acos(dot); // Result is in radians
-  }
-
   @override
   Future<void> startTracking(
-      {required bool Function() onRunning, required void Function(double) onUpdate}) async {
+      {required Future<bool> Function() onRunning,
+      required Future<void> Function(double) onUpdate}) async {
     await initPlatformState();
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream.listen((status) {
       _isMoved = status.status != 'stopped';
       dev.log('KKKK::: ${status.status}');
     });
-    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) async {
       _estimatedDistance = 0.0;
       _velocity = Vector3.zero();
       if (_currentEvent != null && _currentGyroEvent != null) {
         final Vector3 filtered =
             _kalmanFilter.apply(_currentEvent!.x, _currentEvent!.y, _currentEvent!.z);
-        double ax = filtered.x;
-        double ay = filtered.y;
-        double az = filtered.z;
+        const double accelerationFactor = 9.8;
+        final Vector3 acc = filtered * accelerationFactor;
+        double ax = acc.x;
+        double ay = acc.y;
+        double az = acc.z;
 
         final Vector3 filteredGyro = _kalmanFilterGyro.apply(
             _currentGyroEvent!.x, _currentGyroEvent!.y, _currentGyroEvent!.z);
@@ -162,35 +150,58 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
             _currentQuat.z * _currentQuat.z;
 
         final euler = quaternionToEuler(_currentQuat);
-        final double angularChange = quaternionAngleDifference(_prevQuat, _currentQuat);
 
-        // Check if the angular change exceeds a threshold (e.g., 15 degrees)
-        _isTurned = angularChange > radians(30);
+        final double currentTime = timer.tick / 100.0;
+        final double deltaT = currentTime - _prevTime;
+        _prevTime = currentTime;
 
         _prevQuat = _currentQuat;
-        _roll = euler[0];
-        _pitch = euler[1];
-        _yaw = euler[2];
+        _roll += euler[0];
+        _pitch += euler[1];
+        _yaw += euler[2];
+        //
+        if (_yaw > pi) {
+          _yaw -= 2 * pi;
+        }
+
+        if (_yaw < -pi) {
+          _yaw += 2 * pi;
+        }
+
+        // Check for a significant change in yaw (e.g., more than 30 degrees)
+        final double deltaYaw = (_yaw - _prevYaw).abs();
+        final complete = _yaw - _startYaw;
+        if (deltaYaw > pi / 6) {
+          _isTurned = true;
+          _startYaw = _yaw;
+        } else {
+          _isTurned = false;
+          _startYaw = 0.0;
+        }
+        if (complete >= radians(-15) && complete <= radians(15) || !_isMoved) {
+          _isTurned = false;
+          _startYaw = 0.0;
+        }
+
+        _prevYaw = _yaw;
 
 
         ax -= gravityX;
         ay -= gravityY;
         az -= gravityZ;
 
-        final double currentTime = timer.tick / 100.0;
-        final double deltaT = currentTime - _prevTime;
-        _prevTime = currentTime;
 
-        const double accelerationFactor = 9.8; // accelerometer measures with g-unit - 9.8
-        final linearAcc = Vector3(ax, ay, az) * accelerationFactor;
 
-        final bool isRunning = onRunning();
+        // const double accelerationFactor = 9.8; // accelerometer measures with g-unit - 9.8
+        final linearAcc = Vector3(ax, ay, az);
+
+        final bool isRunning = await onRunning();
         if (_isMoved && isRunning) {
           _onStepDetected(linearAcc, deltaT);
           _updateVelocityAndDistance(linearAcc, deltaT);
         }
 
-        onUpdate(_estimatedDistance);
+        await onUpdate(_estimatedDistance);
       }
     });
 
@@ -200,26 +211,6 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
     _gyroscopeSubscription = gyroscopeEvents.listen((GyroscopeEvent event) {
       _currentGyroEvent = event;
-      // _gyros = Vector3(x: event.x, y: event.y, z: event.z);
-      //
-      // _yaw += _gyros.z * deltaTime;
-      // _pitch += _gyros.x * deltaTime;
-      // _roll += _gyros.y * deltaTime;
-      //
-      // if (_yaw > pi) {
-      //   _yaw -= 2 * pi;
-      // }
-      //
-      // if (_yaw < -pi) {
-      //   _yaw += 2 * pi;
-      // }
-      //
-      // // Check for a significant change in yaw (e.g., more than 30 degrees)
-      // final double deltaYaw = (_yaw - _prevYaw).abs();
-      // _isTurned = deltaYaw > pi / 6;
-      //
-      // // Update previous yaw
-      // _prevYaw = _yaw;
     });
   }
 
@@ -227,6 +218,9 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   void reset() {
     _estimatedDistance = 0.0;
     _velocity = Vector3.zero();
+    _yaw = 0.0;
+    _pitch = 0.0;
+    _roll = 0.0;
   }
 
   @override

@@ -12,6 +12,7 @@ class TrackingData with _$TrackingData {
   const factory TrackingData({
     AccelerometerData? accelerometerData,
     GpsData? gpsData,
+    @Default(0.0) double distance,
     @Default(TrackingMode.none) TrackingMode mode
   }) = _TrackingData;
 

@@ -16,7 +16,7 @@ abstract class IndoorTrackingService {
   AccelerometerData getAccelerometerData();
 
   Future<void> startTracking(
-      {required bool Function() onRunning, required void Function(double) onUpdate});
+      {required Future<bool> Function() onRunning, required Future<void> Function(double) onUpdate});
 
   Future<void> stopTracking();
 
