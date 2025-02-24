@@ -53,10 +53,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
     final data = await trackingUseCase.getTrackingData();
     emit(state.copyWith(
       trackingData: data,
-      distanceTraveled: (data.mode == TrackingMode.gps
-              ? data.gpsData?.distanceTraveled
-              : data.accelerometerData?.distanceTraveled) ??
-          0.0,
+      distanceTraveled: data.distance,
       status: GPSStatus.saved,
       speed: data.mode == TrackingMode.gps ? data.gpsData?.speed ?? 0.0 : 0.0,
     ));
@@ -65,10 +62,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   Future<void> _onUpdateData(_UpdateData event, Emitter<GPSState> emit) async {
     final data = await trackingUseCase.getTrackingData();
     emit(state.copyWith(
-      distanceTraveled: (data.mode == TrackingMode.gps
-          ? data.gpsData?.distanceTraveled
-          : data.accelerometerData?.distanceTraveled) ??
-          0.0,
+      distanceTraveled: data.distance,
       trackingData: data,
     ));
   }
@@ -76,17 +70,10 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   FutureOr<void> _onUpdateStartingSpeed(_UpdateStartingSpeed event, Emitter<GPSState> emit) async {
     final double startingDistance = CalculationConstants.startingDistance;
     final data = await trackingUseCase.getTrackingData();
-    double distance = 0.0;
-    double speed = 0.0;
-    if (data.mode == TrackingMode.gps) {
-      distance = data.gpsData?.distanceTraveled ?? 0.0;
-      speed = data.gpsData?.speed ?? 0.0;
-    } else {
-      distance = data.accelerometerData?.distanceTraveled ?? 0.0;
-    }
+    final double distance = data.distance;
     if (distance == startingDistance) {
       final double startSpeed =
-          _calculateAverageSpeed(event.duration.toDouble(), startingDistance, speed);
+          _calculateAverageSpeed(event.duration.toDouble(), startingDistance, data.gpsData?.speed ?? 0.0);
       emit(state.copyWith(startSpeed: startSpeed));
     }
   }
@@ -94,9 +81,7 @@ class GPSBloc extends Bloc<GPSEvent, GPSState> {
   FutureOr<void> _onReachGoal(_ReachGoal event, Emitter<GPSState> emit) async {
     final double goalDistance = event.goalDistance;
     final data = await trackingUseCase.getTrackingData();
-    final double distance =
-        (data.mode == TrackingMode.gps ? data.gpsData?.distanceTraveled : data.accelerometerData?.distanceTraveled) ??
-            0.0;
+    final double distance = data.distance;
     if (distance >= goalDistance) {
       emit(state.copyWith(status: GPSStatus.loading));
       await trackingUseCase.stopTracking();

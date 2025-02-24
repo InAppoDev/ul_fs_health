@@ -14,7 +14,7 @@ abstract class GPSService {
   void reset();
 
   GpsData getGpsData();
-  Future<void> startTracking({required bool Function() onRunning, required void Function(Position) onUpdate});
+  Future<void> startTracking({required Future<bool> Function() onRunning, required Future<void> Function(Position) onUpdate});
   Future<void> stopTracking();
 
   Future<void> dispose();

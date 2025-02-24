@@ -42,18 +42,18 @@ class GPSServiceImp with GPSMixin implements GPSService {
 
   @override
   Future<void> startTracking(
-      {required bool Function() onRunning, required void Function(Position) onUpdate}) async {
+      {required Future<bool> Function() onRunning, required Future<void> Function(Position) onUpdate}) async {
     _positionStream =
         Geolocator.getPositionStream(locationSettings: kLocationSettings).listen((position) async {
       final acc = position.accuracy;
       _hasStrongSignal = acc <= 10.0;
       _accuracy = acc;
       _distanceTraveled = 0.0;
-      final bool running = onRunning();
+      final bool running = await onRunning();
       if (running) {
         await _onLocationUpdate(position);
       }
-      onUpdate(position);
+      await onUpdate(position);
     });
   }
 

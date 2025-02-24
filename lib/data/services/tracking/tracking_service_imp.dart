@@ -19,8 +19,8 @@ class TrackingServiceImp implements TrackingService {
   final GPSService gpsService;
   final IndoorTrackingService indoorTrackingService;
 
-
   TrackingMode _currentMode = TrackingMode.none;
+  TrackingMode _lastMode = TrackingMode.none;
 
   @override
   bool get isTurned => indoorTrackingService.isTurned;
@@ -30,6 +30,9 @@ class TrackingServiceImp implements TrackingService {
 
   double _gpsDistance = 0.0;
   double _accDistance = 0.0;
+  int _indoorStableReading = 0;
+  int _gpsStableReading = 0;
+  DateTime? _lastSwitchTime;
   StreamSubscription<Position>? _gpsStreamSubscription;
 
   @override
@@ -50,38 +53,80 @@ class TrackingServiceImp implements TrackingService {
     final accData = indoorTrackingService.getAccelerometerData();
     final distance = _gpsDistance + _accDistance;
     return TrackingData(
-        accelerometerData: accData.copyWith(distanceTraveled: distance),
+        accelerometerData: accData.copyWith(distanceTraveled: _accDistance),
         mode: _currentMode,
-        gpsData: gpsData.copyWith(distanceTraveled: distance));
+        distance: distance,
+        gpsData: gpsData.copyWith(distanceTraveled: _gpsDistance));
   }
 
   @override
   Future<void> startTracking() async {
     await Future.wait([
       gpsService.startTracking(
-          onRunning: () => false,
-          onUpdate: (pos) {
+          onRunning: () async =>
+              gpsService.getGpsData().isGPSSignalStrong && !indoorTrackingService.isTurned,
+          onUpdate: (pos) async {
             final gpsData = gpsService.getGpsData();
             final accData = indoorTrackingService.getAccelerometerData();
             if (accData.isTurned) {
               _currentMode = TrackingMode.indoor;
+              _lastMode = TrackingMode.indoor;
               return;
             }
+
             final bool isStrongSignal = gpsData.isGPSSignalStrong;
-            _currentMode = isStrongSignal ? TrackingMode.gps : TrackingMode.indoor;
-            if (gpsData.distanceTraveled >= 0.01 && !accData.isTurned && accData.isMoved) {
+            if (isStrongSignal) {
+              _gpsStableReading++;
+              _indoorStableReading = 0; // Reset indoor count
+            } else {
+              _indoorStableReading++;
+              _gpsStableReading = 0; // Reset GPS count
+            }
+            if (_gpsStableReading >= 3) {
+              _currentMode = TrackingMode.gps;
+            }
+            if (_indoorStableReading >= 3) {
+              _currentMode = TrackingMode.indoor;
+            }
+
+            if (_lastSwitchTime == null || DateTime.now().difference(_lastSwitchTime!).inMilliseconds >= 800) {
+              // Apply hysteresis-based switching with delay
+              if (_gpsStableReading >= 3 && _currentMode != TrackingMode.gps) {
+                // Wait only if switching from indoor to GPS, not on first detection
+                if (_lastMode != TrackingMode.gps) {
+                  _lastSwitchTime = DateTime.now();
+                  _currentMode = TrackingMode.gps;
+                }
+              }
+
+              if (_indoorStableReading >= 3 && _currentMode != TrackingMode.indoor) {
+                // Wait only if switching from GPS to Indoor, not on first detection
+                if (_lastMode != TrackingMode.indoor) {
+                  _lastSwitchTime = DateTime.now();
+                  _currentMode = TrackingMode.indoor;
+                }
+              }
+            }
+
+            if (_currentMode == TrackingMode.gps &&
+                _lastMode != TrackingMode.indoor &&
+                gpsData.distanceTraveled >= 0.01 &&
+                !accData.isTurned &&
+                accData.isMoved) {
               _gpsDistance += gpsData.distanceTraveled;
             }
-            if (!isStrongSignal || accData.isTurned) {
-              gpsService.reset();
+
+            if (_currentMode == TrackingMode.indoor && _lastMode != TrackingMode.gps) {
+              gpsService.reset(); // Reset GPS tracking but keep the distance
             }
+            _lastMode = _currentMode;
           }),
       indoorTrackingService.startTracking(
-          onRunning: () =>
+          onRunning: () async =>
               _currentMode == TrackingMode.indoor ||
               _currentMode == TrackingMode.none ||
               indoorTrackingService.isTurned,
-          onUpdate: (distance) {
+          onUpdate: (distance) async {
             _accDistance += distance;
             if (_currentMode == TrackingMode.gps) {
               indoorTrackingService.reset();
