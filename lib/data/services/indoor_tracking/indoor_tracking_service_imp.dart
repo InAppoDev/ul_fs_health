@@ -59,7 +59,6 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
   // double _yawGyro = 0.0;
 
   Quaternion _currentQuat = Quaternion.identity();
-  Quaternion _prevQuat = Quaternion.identity();
 
   bool _isTurned = false;
 
@@ -123,7 +122,7 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
       if (_currentEvent != null && _currentGyroEvent != null) {
         final Vector3 filtered =
             _kalmanFilter.apply(_currentEvent!.x, _currentEvent!.y, _currentEvent!.z);
-        const double accelerationFactor = 9.8;
+        const double accelerationFactor = 9.8; // accelerometer measures with g-unit - 9.8
         final Vector3 acc = filtered * accelerationFactor;
         double ax = acc.x;
         double ay = acc.y;
@@ -138,7 +137,6 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
         mahonyFilter.update(ax, ay, az, gx, gy, gz);
 
         _currentQuat = mahonyFilter.quaternion;
-        // _currentQuat = Quaternion(x, y, z, w)
         // Correct gravity from the accelerometer reading
         final double gravityX =
             2 * (_currentQuat.x * _currentQuat.z - _currentQuat.w * _currentQuat.y);
@@ -151,11 +149,8 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
 
         final euler = quaternionToEuler(_currentQuat);
 
-        final double currentTime = timer.tick / 100.0;
-        final double deltaT = currentTime - _prevTime;
-        _prevTime = currentTime;
 
-        _prevQuat = _currentQuat;
+
         _roll += euler[0];
         _pitch += euler[1];
         _yaw += euler[2];
@@ -190,9 +185,9 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
         ay -= gravityY;
         az -= gravityZ;
 
-
-
-        // const double accelerationFactor = 9.8; // accelerometer measures with g-unit - 9.8
+        final double currentTime = timer.tick / 100.0;
+        final double deltaT = currentTime - _prevTime;
+        _prevTime = currentTime;
         final linearAcc = Vector3(ax, ay, az);
 
         final bool isRunning = await onRunning();
