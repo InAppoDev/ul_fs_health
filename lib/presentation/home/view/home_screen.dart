@@ -216,7 +216,12 @@ class HomeContent extends StatelessWidget {
     final bool granted = await _checkActivityRecognitionPermission();
     if (!granted) {
       dev.log('errrr pedometer');
-      context.showSnackBarMessage('Location permission denied');
+      context.showSnackBarMessage('activity permission denied');
+      await Future<void>.delayed(const Duration(seconds: 1)).then(
+            (value) async {
+          await getIt<PermissionService>().openAppSettings();
+        },
+      );
       return;
       // tell user, the app will not work
     }
