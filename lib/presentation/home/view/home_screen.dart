@@ -1,9 +1,11 @@
+import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../core/constants/constants.dart';
 import '../../../core/constants/gaps.dart';
@@ -20,7 +22,6 @@ import '../../../l10n/localizations_utils.dart';
 import '../../../my_app.dart';
 import '../../logic/user/user_bloc.dart';
 import '../../navigation/model/sidebar_menu_item.dart';
-import '../../utils/widgets/button_delayed_widget.dart';
 import '../../utils/widgets/sidebar_widget.dart';
 import '../../utils/widgets/simple_app_bar_widget.dart';
 import '../../utils/widgets/simple_drop_down_button.dart';
@@ -197,6 +198,31 @@ class HomeContent extends StatelessWidget {
     );
   }
 
+  Future<bool> _checkActivityRecognitionPermission() async {
+    bool granted = await Permission.activityRecognition.isGranted;
+    final bool granted2 = await Permission.sensors.isGranted;
+
+    if (!granted) {
+      granted = await Permission.activityRecognition.request() == PermissionStatus.granted;
+    }
+    if (!granted2) {
+      granted = await Permission.sensors.request() == PermissionStatus.granted;
+    }
+
+    return granted;
+  }
+
+  Future<void> _initPlatformState(BuildContext context) async {
+    final bool granted = await _checkActivityRecognitionPermission();
+    if (!granted) {
+      dev.log('errrr pedometer');
+      context.showSnackBarMessage('Location permission denied');
+      return;
+      // tell user, the app will not work
+    }
+  }
+
+
   Future<void> _onStartWalkTest(BuildContext context) async {
     final permission = await getIt<PermissionService>().handlePermission();
     if (permission == LocationPermission.deniedForever) {
@@ -211,5 +237,6 @@ class HomeContent extends StatelessWidget {
         permission == LocationPermission.whileInUse) {
       context.router.push(const WalkTestInitialRoute());
     }
+    await _initPlatformState(context);
   }
 }

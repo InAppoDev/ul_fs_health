@@ -3,7 +3,6 @@ import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:pedometer/pedometer.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:vector_math/vector_math.dart';
 
@@ -84,34 +83,11 @@ class IndoorTrackingServiceImp with IndoorTrackingMixin implements IndoorTrackin
     return [roll, pitch, yaw]; // Return values in radians
   }
 
-  Future<bool> _checkActivityRecognitionPermission() async {
-    bool granted = await Permission.activityRecognition.isGranted;
-    final bool granted2 = await Permission.sensors.isGranted;
-
-    if (!granted) {
-      granted = await Permission.activityRecognition.request() == PermissionStatus.granted;
-    }
-    if (!granted2) {
-      granted = await Permission.sensors.request() == PermissionStatus.granted;
-    }
-
-    return granted;
-  }
-
-  Future<void> initPlatformState() async {
-    final bool granted = await _checkActivityRecognitionPermission();
-    if (!granted) {
-      dev.log('errrr pedometer');
-      return;
-      // tell user, the app will not work
-    }
-  }
 
   @override
   Future<void> startTracking(
       {required Future<bool> Function() onRunning,
       required Future<void> Function(double) onUpdate}) async {
-    await initPlatformState();
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream.listen((status) {
       _isMoved = status.status != 'stopped';
       dev.log('KKKK::: ${status.status}');
