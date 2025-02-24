@@ -15,6 +15,7 @@ _$TrackingDataImpl _$$TrackingDataImplFromJson(Map<String, dynamic> json) =>
       gpsData: json['gpsData'] == null
           ? null
           : GpsData.fromJson(json['gpsData'] as Map<String, dynamic>),
+      distance: (json['distance'] as num?)?.toDouble() ?? 0.0,
       mode: $enumDecodeNullable(_$TrackingModeEnumMap, json['mode']) ??
           TrackingMode.none,
     );
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$TrackingDataImplToJson(_$TrackingDataImpl instance) =>
     <String, dynamic>{
       'accelerometerData': instance.accelerometerData,
       'gpsData': instance.gpsData,
+      'distance': instance.distance,
       'mode': _$TrackingModeEnumMap[instance.mode]!,
     };
 
